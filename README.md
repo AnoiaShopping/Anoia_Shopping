@@ -1,4 +1,4 @@
-# Projecte Integrador
+# Anoia Shopping
 
 ## Integrants
 Abel Esteban Ferrer
