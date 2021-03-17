@@ -16,7 +16,7 @@ Joan Francesc Pedro García
 
 ## Estructura principal
 
-### [Carpeta Android](android)
+### [Carpeta Android](Android/)
 
 En la carpeta d'Android ens trobem amb tots els arxius de la part programada de la nostra plataforma per a dispositius mòbils.
 
