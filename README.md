@@ -27,3 +27,11 @@ Més informació d'aquesta part al seu README.
 En la carpeta de backend ens trobem amb tota la part de backend i BBDD del nostre projecte.
 
 Informació del backend al seu README.
+
+## Eines
+
+**[Android Studio](https://developer.android.com/studio)**
+
+**[Postman](https://www.postman.com/)**
+
+**[Docker](https://www.docker.com/)**
