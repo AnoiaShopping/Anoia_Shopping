@@ -1,0 +1,49 @@
+version: '3.7'
+services:
+
+  static-file-server:
+    image: nginx:latest
+    ports:
+      - 8001:80
+    volumes:
+      - ../../static/.:/usr/share/nginx/html/static
+  backend:
+    build: "./backend"
+    ports:
+      - "8000:8000"
+    environment:
+      - DAMCore_DB_HOST=mysql_db_container
+    volumes:
+      - ../../DAM-ProjectCore/.:/app
+      - ../../static/.:/static
+    tty: true
+    links:
+      - adminer_container
+      - mysql_db_container
+    depends_on:
+      - mysql_db_container
+
+  mysql_db_container:
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root1234
+      MYSQL_DATABASE: dev-test
+      MYSQL_USER: dev-user
+      MYSQL_PASSWORD: 1234
+
+    ports:
+      - 3306:3306
+    cap_add:
+      - SYS_NICE  # CAP_SYS_NIC
+
+
+  adminer_container:
+      image: adminer:latest
+      environment:
+        ADMINER_DEFAULT_SERVER: mysql_db_container
+      ports:
+        - 8080:8080
+
+
+

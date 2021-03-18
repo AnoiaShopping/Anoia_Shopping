@@ -1,0 +1,8 @@
+falcon
+passlib
+sqlalchemy
+sqlalchemy_i18n
+gunicorn
+pymysql
+jsonschema
+falcon-multipart
