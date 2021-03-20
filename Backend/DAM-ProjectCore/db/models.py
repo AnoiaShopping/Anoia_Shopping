@@ -67,9 +67,6 @@ class EventStatusEnum(enum.Enum):
     ongoing = "G"
     undefined = "U"
 
-class RoleEnum(enum.Enum):
-    premium = "P"
-    freemium = "F"
 
 EventParticipantsAssociation = Table("event_participants_association", SQLAlchemyBase.metadata,
                                      Column("event_id", Integer,
@@ -174,7 +171,6 @@ class User(SQLAlchemyBase, JSONModel):
     photo = Column(Unicode(255))
     events_owner = relationship("Event", back_populates="owner", cascade="all, delete-orphan")
     events_enrolled = relationship("Event", back_populates="registered")
-    role = Column(Enum(RoleEnum), nullable=False)
 
     @hybrid_property
     def public_profile(self):

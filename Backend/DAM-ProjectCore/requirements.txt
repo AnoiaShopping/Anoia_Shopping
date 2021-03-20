@@ -1,6 +1,6 @@
 falcon
 passlib
-sqlalchemy
+sqlalchemy==1.3.23
 sqlalchemy_i18n
 gunicorn
 pymysql

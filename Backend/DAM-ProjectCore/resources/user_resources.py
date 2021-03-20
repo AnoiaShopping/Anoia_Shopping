@@ -9,7 +9,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
 import messages
-from db.models import User, GenereEnum, RoleEnum
+from db.models import User, GenereEnum
 from hooks import requires_auth
 from resources.base_resources import DAMCoreResource
 from resources.schemas import SchemaRegisterUser
@@ -45,10 +45,6 @@ class ResourceRegisterUser(DAMCoreResource):
             except ValueError:
                 raise falcon.HTTPBadRequest(description=messages.genere_invalid)
 
-            try:
-                aux_role = RoleEnum(req.media["role"].upper())
-            except ValueError:
-                raise falcon.HTTPBadRequest(description=messages.role_invalid)
 
             aux_user.username = req.media["username"]
             aux_user.password = req.media["password"]
@@ -56,7 +52,6 @@ class ResourceRegisterUser(DAMCoreResource):
             aux_user.name = req.media["name"]
             aux_user.surname = req.media["surname"]
             aux_user.genere = aux_genere
-            aux_user.role = aux_role
 
             self.db_session.add(aux_user)
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="dam.anoiashopping.gtidic.udl.cat.ui.register.FirstFragment"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.register.FirstFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="dam.anoiashopping.gtidic.udl.cat.ui.register.SecondFragment"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.register.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 

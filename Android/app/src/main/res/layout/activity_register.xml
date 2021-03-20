@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.register.RegisterActivity">
+    tools:context=".views.register.RegisterActivity">
 
     <TextView
         android:id="@+id/Register"
@@ -105,7 +105,7 @@
         app:layout_constraintTop_toBottomOf="@+id/i.Password2" />
 
     <Button
-        android:id="@+id/Sumbit"
+        android:id="@+id/bt.registrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Aquest correu ja te un compte"
-        app:layout_constraintEnd_toEndOf="@+id/Sumbit"
-        app:layout_constraintStart_toStartOf="@+id/Sumbit"
-        app:layout_constraintTop_toBottomOf="@+id/Sumbit" />
+        app:layout_constraintEnd_toEndOf="@+id/bt.registrarse"
+        app:layout_constraintStart_toStartOf="@+id/bt.registrarse"
+        app:layout_constraintTop_toBottomOf="@+id/bt.registrarse" />
 </androidx.constraintlayout.widget.ConstraintLayout>
