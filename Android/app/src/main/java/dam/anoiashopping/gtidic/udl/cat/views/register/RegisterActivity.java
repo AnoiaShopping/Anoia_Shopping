@@ -52,38 +52,62 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });*/
 
-        // Comprobem que totes les dades estiguin plenes per registrar-se
-        Register_Button.setOnClickListener(v -> {
-            //System.out.println("Email" + Login_Utils.isValidEmailAddress(Email.getText().toString()));
-            //System.out.println("Pss1" + Login_Utils.isValidPassword(Password1.getText().toString()));
-            //System.out.println("Pss2" + Login_Utils.isValidPassword(Password2.getText().toString()));
 
+        Register_Button.setOnClickListener(v -> {
             if (CheckAll()) {
                 startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
             }
         });
     }
 
+    // Comprobem que totes les dades estiguin plenes per registrar-se
     protected boolean CheckAll () {
         int i = 0;
-        if (!Login_Utils.isValidEmailAddress(Email.getText().toString())) {
-            System.out.println("Correu");
+
+        if (First_Name.getText().toString().isEmpty()) {
+            First_Name.setError("Escriu el teu Nom");
             i++;
         }
-        if (!Login_Utils.isValidPassword(Password1.getText().toString())) {
-            System.out.println("Pss1");
+
+        if (Last_Name.getText().toString().isEmpty()) {
+            Last_Name.setError("Escriu el teu Cognom");
             i++;
         }
-        if (!Login_Utils.isValidPassword(Password2.getText().toString())) {
-            System.out.println("Pss2");
+
+        if (User_name.getText().toString().isEmpty()) {
+            User_name.setError("Escriu el teu Nom d'Usuari");
             i++;
         }
-        if (!Password1.getText().toString().equals(Password2.getText().toString())) {
-            System.out.println("Pss no iguals");
+
+        if (Email.getText().toString().isEmpty()) {
+            Email.setError("Escriu el teu Correu");
+            i++;
+        } else if (!Login_Utils.isValidEmailAddress(Email.getText().toString())) {
+            Email.setError("Correu Invàlid");
             i++;
         }
+
+        if (Password1.getText().toString().isEmpty()) {
+            Password1.setError("Escriu una Contrassenya");
+            i++;
+        } else if (!Login_Utils.isValidPassword(Password1.getText().toString())) {
+            Password1.setError("Contrassenya Invàlida");
+            i++;
+        }
+
+        if (Password2.getText().toString().isEmpty()) {
+            Password2.setError("Escriu una Contrassenya");
+            i++;
+        } else if (!Login_Utils.isValidPassword(Password2.getText().toString())) {
+            Password2.setError("Contrassenya Invàlida");
+            i++;
+        } else if (!Password1.getText().toString().equals(Password2.getText().toString())) {
+            Password2.setError("Les Contrassenyes han de coincidir");
+            i++;
+        }
+
         if (!Accept_Terms_conditions.isChecked()) {
-            System.out.println("No acceptats");
+            Accept_Terms_conditions.setError("Has d'acceptar els Termes i Condicions per registrar-te");
             i++;
         }
         return i == 0;
