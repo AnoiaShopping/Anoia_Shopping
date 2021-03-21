@@ -22,7 +22,7 @@ En la carpeta d'Android ens trobem amb tots els arxius de la part programada de 
 
 Més informació d'aquesta part al seu README.
 
-### Carpeta Backend
+### [Carpeta Backend](Backend/)
 
 En la carpeta de backend ens trobem amb tota la part de backend i BBDD del nostre projecte.
 
