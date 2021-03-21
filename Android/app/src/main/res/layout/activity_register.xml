@@ -7,10 +7,10 @@
     tools:context=".views.register.RegisterActivity">
 
     <TextView
-        android:id="@+id/Register"
+        android:id="@+id/t_Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="REGISTRE"
+        android:text="@string/singInTop"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.100000024" />
 
     <EditText
-        android:id="@+id/i.FirstName"
+        android:id="@+id/i_FirstName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -28,99 +28,96 @@
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
         android:ems="10"
-        android:hint="Nom"
+        android:hint="@string/firstName"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Register" />
+        app:layout_constraintTop_toBottomOf="@+id/t_Register"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/i.LastName"
+        android:id="@+id/i_LastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Cognoms"
+        android:hint="@string/lastName"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/i.FirstName"
-        app:layout_constraintStart_toStartOf="@+id/i.FirstName"
-        app:layout_constraintTop_toBottomOf="@+id/i.FirstName" />
+        app:layout_constraintEnd_toEndOf="@+id/i_FirstName"
+        app:layout_constraintStart_toStartOf="@+id/i_FirstName"
+        app:layout_constraintTop_toBottomOf="@+id/i_FirstName"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/i.UserName"
+        android:id="@+id/i_UserName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Nom d'Usuari"
+        android:hint="@string/username"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/i.LastName"
-        app:layout_constraintStart_toStartOf="@+id/i.LastName"
-        app:layout_constraintTop_toBottomOf="@+id/i.LastName" />
+        app:layout_constraintEnd_toEndOf="@+id/i_LastName"
+        app:layout_constraintStart_toStartOf="@+id/i_LastName"
+        app:layout_constraintTop_toBottomOf="@+id/i_LastName"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/i.Email"
+        android:id="@+id/i_Email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Correu Electrònic"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/i.UserName"
-        app:layout_constraintStart_toStartOf="@+id/i.UserName"
-        app:layout_constraintTop_toBottomOf="@+id/i.UserName" />
+        android:hint="@string/email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/i_UserName"
+        app:layout_constraintStart_toStartOf="@+id/i_UserName"
+        app:layout_constraintTop_toBottomOf="@+id/i_UserName" />
 
     <EditText
-        android:id="@+id/i.Password1"
+        android:id="@+id/i_Password1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Contrassenya"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/i.Email"
-        app:layout_constraintStart_toStartOf="@+id/i.Email"
-        app:layout_constraintTop_toBottomOf="@+id/i.Email" />
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/i_Email"
+        app:layout_constraintStart_toStartOf="@+id/i_Email"
+        app:layout_constraintTop_toBottomOf="@+id/i_Email"
+        android:importantForAutofill="no" />
 
     <EditText
-        android:id="@+id/i.Password2"
+        android:id="@+id/i_Password2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Repetir Contrassenya"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/i.Password1"
-        app:layout_constraintStart_toStartOf="@+id/i.Password1"
-        app:layout_constraintTop_toBottomOf="@+id/i.Password1" />
+        android:hint="@string/passwordRepeat"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/i_Password1"
+        app:layout_constraintStart_toStartOf="@+id/i_Password1"
+        app:layout_constraintTop_toBottomOf="@+id/i_Password1"
+        android:importantForAutofill="no" />
 
     <CheckBox
-        android:id="@+id/AcceptConditions"
+        android:id="@+id/c_AcceptConditions"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Al clicar, acceptes les condicions d'ús"
-        app:layout_constraintEnd_toEndOf="@+id/i.Password2"
-        app:layout_constraintStart_toStartOf="@+id/i.Password2"
-        app:layout_constraintTop_toBottomOf="@+id/i.Password2" />
+        android:text="@string/conditions"
+        app:layout_constraintEnd_toEndOf="@+id/i_Password2"
+        app:layout_constraintStart_toStartOf="@+id/i_Password2"
+        app:layout_constraintTop_toBottomOf="@+id/i_Password2" />
 
     <Button
-        android:id="@+id/bt.registrarse"
+        android:id="@+id/b_registrarse"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="REGISTRAR-SE"
-        app:layout_constraintEnd_toEndOf="@+id/AcceptConditions"
-        app:layout_constraintStart_toStartOf="@+id/AcceptConditions"
-        app:layout_constraintTop_toBottomOf="@+id/AcceptConditions" />
+        android:text="@string/singInButton"
+        app:layout_constraintEnd_toEndOf="@+id/c_AcceptConditions"
+        app:layout_constraintStart_toStartOf="@+id/c_AcceptConditions"
+        app:layout_constraintTop_toBottomOf="@+id/c_AcceptConditions" />
 
-    <TextView
-        android:id="@+id/AcountExists"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Aquest correu ja te un compte"
-        app:layout_constraintEnd_toEndOf="@+id/bt.registrarse"
-        app:layout_constraintStart_toStartOf="@+id/bt.registrarse"
-        app:layout_constraintTop_toBottomOf="@+id/bt.registrarse" />
 </androidx.constraintlayout.widget.ConstraintLayout>

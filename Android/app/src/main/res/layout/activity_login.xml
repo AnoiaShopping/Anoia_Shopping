@@ -7,9 +7,10 @@
     tools:context=".views.login.LoginActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/i_Logo"
         android:layout_width="@android:dimen/thumbnail_width"
         android:layout_height="@android:dimen/thumbnail_height"
+        android:contentDescription="App Logotipo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +19,7 @@
         app:srcCompat="@drawable/as1" />
 
     <EditText
-        android:id="@+id/i.Username"
+        android:id="@+id/i_Username"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -26,45 +27,60 @@
         android:layout_marginTop="50dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="Nom d'Usuari"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/i_Logo" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/i_Password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="Contrassenya"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/i.Username"
-        app:layout_constraintStart_toStartOf="@+id/i.Username"
-        app:layout_constraintTop_toBottomOf="@+id/i.Username" />
+        app:layout_constraintEnd_toEndOf="@+id/i_Username"
+        app:layout_constraintStart_toStartOf="@+id/i_Username"
+        app:layout_constraintTop_toBottomOf="@+id/i_Username"
+        android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/b.Iniciar"
+        android:id="@+id/b_LogIn1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:text="INICIAR SESSIÓ"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintEnd_toEndOf="@+id/i_Password"
+        app:layout_constraintStart_toStartOf="@+id/i_Password"
+        app:layout_constraintTop_toBottomOf="@+id/i_Password" />
 
     <TextView
-        android:id="@+id/b.Registre"
+        android:id="@+id/b_Registre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:clickable="true"
         android:linksClickable="true"
         android:longClickable="true"
-        android:text="@string/action_sign_in"
-        app:layout_constraintEnd_toEndOf="@+id/b.Iniciar"
-        app:layout_constraintStart_toStartOf="@+id/b.Iniciar"
-        app:layout_constraintTop_toBottomOf="@+id/b.Iniciar" />
+        android:text="@string/singIn"
+        app:layout_constraintEnd_toEndOf="@+id/b_LogIn1"
+        app:layout_constraintStart_toStartOf="@+id/b_LogIn1"
+        app:layout_constraintTop_toBottomOf="@+id/b_LogIn1"
+        android:focusable="true" />
+
+    <TextView
+        android:id="@+id/b_LostPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:text="@string/forgotPassword"
+        app:layout_constraintEnd_toEndOf="@+id/i_Password"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/i_Password"
+        app:layout_constraintTop_toBottomOf="@+id/i_Password" />
 </androidx.constraintlayout.widget.ConstraintLayout>
