@@ -11,7 +11,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
-import dam.anoiashopping.gtidic.udl.cat.utils.Login_Utils;
+import dam.anoiashopping.gtidic.udl.cat.utils.*;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -58,19 +58,34 @@ public class RegisterActivity extends AppCompatActivity {
             //System.out.println("Pss1" + Login_Utils.isValidPassword(Password1.getText().toString()));
             //System.out.println("Pss2" + Login_Utils.isValidPassword(Password2.getText().toString()));
 
-            if (Login_Utils.isValidEmailAddress(Email.getText().toString()) == false) {
-                System.out.println("Correu");
-            } else if (Login_Utils.isValidPassword(Password1.getText().toString()) == false) {
-                System.out.println("Pss1");
-            } else if (Login_Utils.isValidPassword(Password2.getText().toString()) == false) {
-                System.out.println("Pss2");
-            } else if (Password1.getText().toString().equals(Password2.getText().toString()) == false) {
-                System.out.println("Pss no iguals");
-            } else if (Accept_Terms_conditions.isChecked() == false) {
-                System.out.println("No acceptats");
-            } else {
+            if (CheckAll()) {
                 startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
             }
         });
+    }
+
+    protected boolean CheckAll () {
+        int i = 0;
+        if (!Login_Utils.isValidEmailAddress(Email.getText().toString())) {
+            System.out.println("Correu");
+            i++;
+        }
+        if (!Login_Utils.isValidPassword(Password1.getText().toString())) {
+            System.out.println("Pss1");
+            i++;
+        }
+        if (!Login_Utils.isValidPassword(Password2.getText().toString())) {
+            System.out.println("Pss2");
+            i++;
+        }
+        if (!Password1.getText().toString().equals(Password2.getText().toString())) {
+            System.out.println("Pss no iguals");
+            i++;
+        }
+        if (!Accept_Terms_conditions.isChecked()) {
+            System.out.println("No acceptats");
+            i++;
+        }
+        return i == 0;
     }
 }
