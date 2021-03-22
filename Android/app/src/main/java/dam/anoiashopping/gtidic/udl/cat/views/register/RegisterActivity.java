@@ -7,23 +7,25 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
-import dam.anoiashopping.gtidic.udl.cat.utils.*;
+import dam.anoiashopping.gtidic.udl.cat.utils.EULA;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText First_Name;
-    private EditText Last_Name;
-    private EditText User_name;
-    private EditText Email;
-    private EditText Password1;
-    private EditText Password2;
-    private Button Register_Button;
-    private CheckBox Accept_Terms_conditions;
-    private Login_Utils Login_Utils;
+    protected EditText First_Name;
+    protected EditText Last_Name;
+    protected EditText User_Name;
+    protected EditText Email;
+    protected EditText Password1;
+    protected EditText Password2;
+    protected Button Register_Button;
+    protected CheckBox Accept_Terms_conditions;
+
+    final EULA eula_dialog = new EULA (this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +33,12 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView (R.layout.activity_register);
         First_Name = findViewById (R.id.i_FirstName);
         Last_Name = findViewById (R.id.i_LastName);
-        User_name = findViewById (R.id.i_UserName);
+        User_Name = findViewById (R.id.i_UserName);
         Email = findViewById (R.id.i_Email);
         Password1 = findViewById (R.id.i_Password1);
         Password2 = findViewById (R.id.i_Password2);
         Register_Button = findViewById (R.id.b_registrarse);
         Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);
-        Login_Utils = new Login_Utils();
     }
 
     @Override
@@ -45,71 +46,20 @@ public class RegisterActivity extends AppCompatActivity {
         super.onStart();
 
         // Mostra EULA
-        /*Accept_Terms_conditions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Accept_Terms_conditions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
+                eula_dialog.show(R.id.c_AcceptConditions);
             }
-        });*/
+        });
 
 
         Register_Button.setOnClickListener(v -> {
-            if (CheckAll()) {
+
+            if (RegisterCheck.CheckAll(First_Name, Last_Name, User_Name, Email, Password1, Password2, Accept_Terms_conditions)) {
                 startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
             }
         });
     }
-
-    // Comprobem que totes les dades estiguin plenes per registrar-se
-    protected boolean CheckAll () {
-        int i = 0;
-
-        if (First_Name.getText().toString().isEmpty()) {
-            First_Name.setError("Escriu el teu Nom");
-            i++;
-        }
-
-        if (Last_Name.getText().toString().isEmpty()) {
-            Last_Name.setError("Escriu el teu Cognom");
-            i++;
-        }
-
-        if (User_name.getText().toString().isEmpty()) {
-            User_name.setError("Escriu el teu Nom d'Usuari");
-            i++;
-        }
-
-        if (Email.getText().toString().isEmpty()) {
-            Email.setError("Escriu el teu Correu");
-            i++;
-        } else if (!Login_Utils.isValidEmailAddress(Email.getText().toString())) {
-            Email.setError("Correu Invàlid");
-            i++;
-        }
-
-        if (Password1.getText().toString().isEmpty()) {
-            Password1.setError("Escriu una Contrassenya");
-            i++;
-        } else if (!Login_Utils.isValidPassword(Password1.getText().toString())) {
-            Password1.setError("Contrassenya Invàlida");
-            i++;
-        }
-
-        if (Password2.getText().toString().isEmpty()) {
-            Password2.setError("Escriu una Contrassenya");
-            i++;
-        } else if (!Login_Utils.isValidPassword(Password2.getText().toString())) {
-            Password2.setError("Contrassenya Invàlida");
-            i++;
-        } else if (!Password1.getText().toString().equals(Password2.getText().toString())) {
-            Password2.setError("Les Contrassenyes han de coincidir");
-            i++;
-        }
-
-        if (!Accept_Terms_conditions.isChecked()) {
-            Accept_Terms_conditions.setError("Has d'acceptar els Termes i Condicions per registrar-te");
-            i++;
-        }
-        return i == 0;
-    }
+    
 }
