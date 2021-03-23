@@ -7,6 +7,7 @@ import dam.anoiashopping.gtidic.udl.cat.utils.*;
 public class RegisterCheck extends RegisterActivity{
 
     // Comprobem que totes les dades estiguin plenes per registrar-se
+    // String hardcoded moure a strings.xml
 
     protected static boolean CheckAll (EditText First_Name, EditText Last_Name, EditText User_Name,
                                        EditText Email, EditText Password1, EditText Password2,

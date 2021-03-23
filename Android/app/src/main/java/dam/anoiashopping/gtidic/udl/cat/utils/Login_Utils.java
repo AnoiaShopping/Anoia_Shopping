@@ -5,6 +5,8 @@ import java.util.regex.Pattern;
 
 public class Login_Utils {
 
+    //@Jordi: Afegir testos unitaris
+
     public Login_Utils() {
     }
 
