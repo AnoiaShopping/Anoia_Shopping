@@ -15,6 +15,7 @@ public class RegisterCheck extends RegisterActivity{
         Login_Utils Login_Utils = new Login_Utils();
         int i = 0;
 
+        //Aquesta Activity no cal, tot a RegisterCheck
         if (First_Name.getText().toString().isEmpty()) {
             First_Name.setError("Escriu el teu Nom");
             i++;
@@ -57,6 +58,8 @@ public class RegisterCheck extends RegisterActivity{
         if (!Accept_Terms_conditions.isChecked()) {
             Accept_Terms_conditions.setError("Has d'acceptar els Termes i Condicions per registrar-te");
             i++;
+        }else{
+            Accept_Terms_conditions.setError(null);
         }
         return i == 0;
     }
