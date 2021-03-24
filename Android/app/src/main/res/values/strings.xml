@@ -16,6 +16,8 @@
     <string name="forgotPassword"><u>Has olvidat la contrassenya?</u></string>
     <string name="welcome">BENVINGUT!!<br />GRÀCIES PER UTILITZAR LA NOSTRA PLATAFORMA</string>
 
+    <string name="emptyUsername">Escriu un nom dUsuari</string>
+
     <!-- EULA: Terms and conditions -->
     <string name="accept">Accept</string>
     <string name="eula_string"> <![CDATA[
