@@ -35,3 +35,5 @@ Informació del backend al seu README.
 **[Postman](https://www.postman.com/)**
 
 **[Docker](https://www.docker.com/)**
+
+#ANOIA SHOPPING
