@@ -166,7 +166,7 @@ class User(SQLAlchemyBase, JSONModel):
     name = Column(Unicode(50), nullable=False)
     surname = Column(Unicode(50), nullable=False)
     birthdate = Column(Date)
-    genere = Column(Enum(GenereEnum), nullable=False)
+    genere = Column(Enum(GenereEnum))
     phone = Column(Unicode(50))
     photo = Column(Unicode(255))
     events_owner = relationship("Event", back_populates="owner", cascade="all, delete-orphan")

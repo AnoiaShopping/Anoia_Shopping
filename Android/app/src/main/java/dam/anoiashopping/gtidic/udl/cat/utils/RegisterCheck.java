@@ -1,16 +1,16 @@
-package dam.anoiashopping.gtidic.udl.cat.views.register;
+package dam.anoiashopping.gtidic.udl.cat.utils;
 
 import android.widget.CheckBox;
 import android.widget.EditText;
-import dam.anoiashopping.gtidic.udl.cat.utils.*;
+import dam.anoiashopping.gtidic.udl.cat.views.register.RegisterActivity;
 
-public class RegisterCheck extends RegisterActivity{
+public class RegisterCheck extends RegisterActivity {
 
     // Comprobem que totes les dades estiguin plenes per registrar-se
 
-    protected static boolean CheckAll (EditText First_Name, EditText Last_Name, EditText User_Name,
-                                       EditText Email, EditText Password1, EditText Password2,
-                                       CheckBox Accept_Terms_conditions) {
+    public static boolean CheckAll(EditText First_Name, EditText Last_Name, EditText User_Name,
+                                   EditText Email, EditText Password1, EditText Password2,
+                                   CheckBox Accept_Terms_conditions) {
 
         Login_Utils Login_Utils = new Login_Utils();
         int i = 0;
@@ -55,9 +55,10 @@ public class RegisterCheck extends RegisterActivity{
         }
 
         if (!Accept_Terms_conditions.isChecked()) {
-            Accept_Terms_conditions.setError("Has d'acceptar els Termes i Condicions per registrar-te");
+            Accept_Terms_conditions.setError(null);
             i++;
         }
         return i == 0;
     }
 }
+

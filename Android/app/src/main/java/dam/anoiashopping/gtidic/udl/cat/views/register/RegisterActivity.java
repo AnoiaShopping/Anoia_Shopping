@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.utils.EULA;
+import static dam.anoiashopping.gtidic.udl.cat.utils.RegisterCheck.CheckAll;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -56,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Register_Button.setOnClickListener(v -> {
 
-            if (RegisterCheck.CheckAll(First_Name, Last_Name, User_Name, Email, Password1, Password2, Accept_Terms_conditions)) {
+            if (CheckAll(First_Name, Last_Name, User_Name, Email, Password1, Password2, Accept_Terms_conditions)) {
                 startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
             }
         });

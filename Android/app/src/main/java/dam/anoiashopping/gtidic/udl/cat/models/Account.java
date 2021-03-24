@@ -1,6 +1,6 @@
 package dam.anoiashopping.gtidic.udl.cat.models;
 
-/*import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.SerializedName;
 
 public class Account {
 
@@ -60,4 +60,3 @@ public class Account {
     }
 
 }
-*/
