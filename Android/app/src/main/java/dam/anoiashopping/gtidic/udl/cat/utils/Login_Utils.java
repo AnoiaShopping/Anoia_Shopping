@@ -21,4 +21,11 @@ public class Login_Utils {
         matcher = pattern.matcher(password);
         return matcher.matches();
     }
+
+    public boolean isValidName(String name){
+
+    String regex = "/^[a-z][\\w-]{2,19}$/i"; //De la A a la Z amb 2 a 19 caracters
+    return name.matches(regex);
+    }
+    
 }
