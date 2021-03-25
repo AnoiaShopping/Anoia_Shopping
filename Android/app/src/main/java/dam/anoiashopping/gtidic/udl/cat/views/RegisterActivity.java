@@ -8,21 +8,19 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModelProvider;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
+import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityRegisterBinding;
 import dam.anoiashopping.gtidic.udl.cat.utils.EULA;
+import dam.anoiashopping.gtidic.udl.cat.viewmodels.SignUpViewModel;
 
 import static dam.anoiashopping.gtidic.udl.cat.utils.RegisterCheck.CheckAll;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    protected EditText First_Name;
-    protected EditText Last_Name;
-    protected EditText User_Name;
-    protected EditText Email;
-    protected EditText Password1;
-    protected EditText Password2;
-    protected Button Register_Button;
     protected CheckBox Accept_Terms_conditions;
 
     final EULA eula_dialog = new EULA (this);
@@ -31,14 +29,14 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_register);
-        First_Name = findViewById (R.id.i_FirstName);
-        Last_Name = findViewById (R.id.i_LastName);
-        User_Name = findViewById (R.id.i_UserName);
-        Email = findViewById (R.id.i_Email);
-        Password1 = findViewById (R.id.i_Password1);
-        Password2 = findViewById (R.id.i_Password2);
-        Register_Button = findViewById (R.id.b_registrarse);
-        Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);
+        initView();
+    }
+
+    private void initView () {
+        SignUpViewModel signUpViewModel = new ViewModelProvider (this).get(SignUpViewModel.class);
+        ActivityRegisterBinding activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+        activitySignupBinding.setLifecycleOwner(this);
+        activitySignupBinding.setViewModel (signUpViewModel);
     }
 
     @Override
@@ -53,13 +51,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-
-        Register_Button.setOnClickListener(v -> {
-
-            if (CheckAll(First_Name, Last_Name, User_Name, Email, Password1, Password2, Accept_Terms_conditions)) {
-                startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
-            }
-        });
     }
     
 }

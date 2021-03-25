@@ -20,6 +20,8 @@ public class RegisterCheck extends RegisterActivity {
             i++;
         }
 
+       // TODO getApplicationContext()
+
         if (Last_Name.getText().toString().isEmpty()) {
             Last_Name.setError("Escriu el teu Cognom");
             i++;
