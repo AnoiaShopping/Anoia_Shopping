@@ -1,18 +1,17 @@
-package dam.anoiashopping.gtidic.udl.cat.views.register;
+package dam.anoiashopping.gtidic.udl.cat.views;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.utils.EULA;
+
 import static dam.anoiashopping.gtidic.udl.cat.utils.RegisterCheck.CheckAll;
 
 public class RegisterActivity extends AppCompatActivity {

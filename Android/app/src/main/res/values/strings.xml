@@ -1,22 +1,38 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Android</string>
-    <!-- Login/Register Strings -->
 
+    <!-- Screen Strings -->
     <string name="logIn">Iniciar Sessió</string>
     <string name="singIn"><u>Registrar-se</u></string>
     <string name="singInButton">Registrar-se</string>
     <string name="singInTop">REGISTRE</string>
-    <string name="username">Nom dUsuari</string>
+    <string name="username">Nom d\'Usuari</string>
     <string name="password">Contrassenya</string>
     <string name="passwordRepeat">Repetir Contrassenya</string>
     <string name="firstName">Nom</string>
     <string name="lastName">Cognom</string>
     <string name="email">Correu Electrònic</string>
-    <string name="conditions">Al clicar, acceptes els termes i condicions dús</string>
+    <string name="conditions">Al clicar, acceptes els termes i condicions d\'ús</string>
     <string name="forgotPassword"><u>Has olvidat la contrassenya?</u></string>
     <string name="welcome">BENVINGUT!!<br />GRÀCIES PER UTILITZAR LA NOSTRA PLATAFORMA</string>
 
-    <string name="emptyUsername">Escriu un nom dUsuari</string>
+    <!-- Error Strings-->
+    <string name="emptyUsername">Escriu un Nom d\'Usuari</string>
+    <string name="wrongUsername">Nom d\'Usuari incorrecte. El Nom d\'Usuari només pot tenir majúscules, minúscules, guions i guions baixos</string>
+
+    <string name="emptyFirstName">Escriu el teu Nom</string>
+    <string name="wrongFirstName">Nom incorrecte. El Nom només pot tenir majúscules i minúscules</string>
+
+    <string name="emptyLastName">Escriu el teu Cognom</string>
+    <string name="wrongLastName">Cognom incorrecte. El Cognom només pot tenir majúscules i minúscules</string>
+
+    <string name="emptyEmail">Escriu el teu Correu Electrònic</string>
+    <string name="wrongEmail">Comprobi que ha escrit bé el seu correu</string>
+
+    <string name="emptyPassword">Escriu una Contrassenya</string>
+    <string name="wrongPassword">Contrassenya incorrecte. La Contrassenya ha de ser mínim 8 caràcters de llarg, ha de tenir mínim una majúscula, una minúscula, un número i algun caràcter especial.</string>
+    <string  name="samePassword">Les Contrassenyes han de coincidir</string>
+
 
     <!-- EULA: Terms and conditions -->
     <string name="accept">Accept</string>

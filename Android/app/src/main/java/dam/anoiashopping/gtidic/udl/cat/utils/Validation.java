@@ -1,4 +1,4 @@
-/*package dam.anoiashopping.gtidic.udl.cat.utils;
+package dam.anoiashopping.gtidic.udl.cat.utils;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 
@@ -19,11 +19,11 @@ public class Validation {
     public static void getUsernameError (String msg, boolean isValid, String username) {
 
         if (username.isEmpty()) {
-            msg = getString(R.string.emptyUsername);
+            //msg = getString(R.string.emptyUsername);
             isValid = false;
             return;
         }
 
 
     }
-}*/
+}

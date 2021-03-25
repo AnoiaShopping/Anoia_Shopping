@@ -2,7 +2,7 @@ package dam.anoiashopping.gtidic.udl.cat.utils;
 
 import android.widget.CheckBox;
 import android.widget.EditText;
-import dam.anoiashopping.gtidic.udl.cat.views.register.RegisterActivity;
+import dam.anoiashopping.gtidic.udl.cat.views.RegisterActivity;
 
 public class RegisterCheck extends RegisterActivity {
 

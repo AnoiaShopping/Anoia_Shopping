@@ -6,7 +6,7 @@
     app:startDestination="@id/loginActivity">
     <activity
         android:id="@+id/loginActivity"
-        android:name="dam.anoiashopping.gtidic.udl.cat.views.login.LoginActivity"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
 </navigation>

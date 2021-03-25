@@ -1,4 +1,4 @@
-package dam.anoiashopping.gtidic.udl.cat.views.register;
+package dam.anoiashopping.gtidic.udl.cat.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
-import dam.anoiashopping.gtidic.udl.cat.views.login.LoginActivity;
 
 public class RegisterConfirmationActivity extends AppCompatActivity {
 
