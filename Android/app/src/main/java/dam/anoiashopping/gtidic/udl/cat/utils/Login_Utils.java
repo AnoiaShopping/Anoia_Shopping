@@ -24,8 +24,8 @@ public class Login_Utils {
 
     public boolean isValidName(String name){
 
-    String regex = "/^[a-z][\\w-]{2,19}$/i"; //De la A a la Z amb 2 a 19 caracters
-    return name.matches(regex);
+    String regexName = "/^[a-zA-Zà-ÿÀ-Ý]{2,15}[\\s]?[a-zA-Zà-ÿÀ-Ý]{0,15}$/i";
+    return name.matches(regexName);
     }
     
 }

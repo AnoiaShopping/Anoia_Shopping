@@ -24,14 +24,18 @@ public class SignUpViewModel extends ViewModel {
 
 
     public void onRegister(){
-        Account account = new Account();
-        account.setUsername(Username.getValue());
-        account.setFirstname(Name.getValue());
-        account.setLastname(Surname.getValue());
-        account.setPassword(Password.getValue());
-        account.setEmail(Email.getValue());
-        Log.d(TAG,account.toString());
-        this.accountRepo.registerAccount(account);
+
+            Account account = new Account();
+            account.setUsername(Username.getValue());
+            account.setFirstname(Name.getValue());
+            account.setLastname(Surname.getValue());
+            account.setPassword(Password.getValue());
+            account.setEmail(Email.getValue());
+        if (0 == 0) {
+            Log.d(TAG, account.toString());
+            this.accountRepo.registerAccount(account);
+            //RegisterActivity.validRegistration();
+        }
     }
 
 

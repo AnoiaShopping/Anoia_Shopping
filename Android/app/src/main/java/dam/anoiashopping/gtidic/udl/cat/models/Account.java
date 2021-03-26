@@ -6,9 +6,9 @@ public class Account {
 
     @SerializedName("username")
     private String username;
-    @SerializedName("firstname")
+    @SerializedName("name")
     private String firstname;
-    @SerializedName("lastname")
+    @SerializedName("surname")
     private String lastname;
     @SerializedName("email")
     private String email;

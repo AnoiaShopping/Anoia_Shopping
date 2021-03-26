@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -21,8 +22,7 @@ import static dam.anoiashopping.gtidic.udl.cat.utils.RegisterCheck.CheckAll;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    protected CheckBox Accept_Terms_conditions;
-
+    CheckBox Accept_Terms_conditions;
     final EULA eula_dialog = new EULA (this);
 
     @Override
@@ -33,24 +33,24 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void initView () {
-        SignUpViewModel signUpViewModel = new ViewModelProvider (this).get(SignUpViewModel.class);
-        ActivityRegisterBinding activitySignupBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
-        activitySignupBinding.setLifecycleOwner(this);
-        activitySignupBinding.setViewModel (signUpViewModel);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
 
         // Mostra EULA
-        Accept_Terms_conditions.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);
+        Accept_Terms_conditions.setOnCheckedChangeListener(
+                new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 eula_dialog.show(R.id.c_AcceptConditions);
             }
         });
 
+        SignUpViewModel signUpViewModel = new ViewModelProvider (this).get(SignUpViewModel.class);
+        ActivityRegisterBinding activityRegisterBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
+        activityRegisterBinding.setLifecycleOwner(this);
+        activityRegisterBinding.setViewModel (signUpViewModel);
     }
-    
+
+    public static boolean equals() {
+        return true;
+    }
 }
