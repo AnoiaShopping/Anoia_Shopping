@@ -1,161 +1,130 @@
 package dam.anoiashopping.gtidic.udl.cat.utils;
 
-import android.content.Context;
+import java.util.regex.Pattern;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
-import dam.anoiashopping.gtidic.udl.cat.models.Account;
 
 public class Validation {
 
-    //TODO
-    Context context;
-    public Validation(Context context) {
-        this.context = context;
-    }
+    public static ValidationResultImpl checkFirstName (String FirstName) {
 
-    public boolean validation (Account account) {
-
-        boolean Return = true;
-        ValidationResultImpl validationResultImpl = new ValidationResultImpl("", true);
-
-
-        validationResultImpl = isValidFirstName(account.getFirstname());
-        if (!validationResultImpl.isValid()) {
-            Return = false;
-            System.out.println(validationResultImpl.getMsgError());
-            //TODO: ensenyar error
-        }
-
-        validationResultImpl = isValidLastName(account.getLastname());
-        if (!validationResultImpl.isValid()) {
-            Return = false;
-            System.out.println(validationResultImpl.getMsgError());
-            //TODO: ensenyar error
-        }
-
-        validationResultImpl = isValidUsername (account.getUsername());
-        if (!validationResultImpl.isValid()) {
-            Return = false;
-            System.out.println(validationResultImpl.getMsgError());
-            //TODO: ensenyar error
-        }
-
-        validationResultImpl = isValidEmail (account.getEmail());
-        if (!validationResultImpl.isValid()) {
-            Return = false;
-            System.out.println(validationResultImpl.getMsgError());
-            //TODO: ensenyar error
-        }
-
-        validationResultImpl = isValidPassword (account.getPassword());
-        if (!validationResultImpl.isValid()) {
-            Return = false;
-            System.out.println(validationResultImpl.getMsgError());
-            //TODO: ensenyar error
-        }
-
-        return Return;
-
-    }
-
-    private ValidationResultImpl isValidFirstName(String name) {
-
-        String msg = "";
         boolean isValid = true;
+        int msg_code = 0;
 
-        String regex = "^[a-zA-Zà-ÿÀ-Ý]{2,15}[\\s]?[a-zA-Zà-ÿÀ-Ý]{0,15}$";
-        if (!name.matches(regex)) {
+        if (FirstName == null) {
 
             isValid = false;
+            msg_code = R.string.emptyFirstName;
 
-            if (name.isEmpty()) {
-                msg = context.getString(R.string.emptyFirstName);
-            } else {
-                msg = context.getString(R.string.wrongFirstName);
+        } else {
+
+            if (!Pattern.matches(FirstName, "^[a-zA-Zà-ÿÀ-Ý]{2,15}[\\s]?[a-zA-Zà-ÿÀ-Ý]{0,15}$")) {
+
+                isValid = false;
+                msg_code = R.string.wrongFirstName;
             }
+
         }
 
-        return new ValidationResultImpl(msg, isValid);
+        return new ValidationResultImpl (msg_code, isValid);
     }
 
-    private ValidationResultImpl isValidLastName(String name) {
+    public static ValidationResultImpl checkLastName (String LastName) {
 
-        String msg = "";
         boolean isValid = true;
+        int msg_code = 0;
 
-        String regex = "^[a-zA-Zà-ÿÀ-Ý]{2,15}[\\s]?[a-zA-Zà-ÿÀ-Ý]{0,15}$";
-        if (!name.matches(regex)) {
+        if (LastName == null) {
 
             isValid = false;
+            msg_code = R.string.emptyLastName;
 
-            if (name.isEmpty()) {
-                msg = context.getString(R.string.emptyLastName);
-            } else {
-                msg = context.getString(R.string.wrongLastName);
+        } else {
+
+            if (!Pattern.matches(LastName, "^[a-zA-Zà-ÿÀ-Ý]{2,15}[\\s]?[a-zA-Zà-ÿÀ-Ý]{0,15}$")) {
+
+                isValid = false;
+                msg_code = R.string.wrongLastName;
             }
+
         }
 
-        return new ValidationResultImpl(msg, isValid);
+        return new ValidationResultImpl (msg_code, isValid);
     }
 
-    private ValidationResultImpl isValidUsername (String Username) {
+    public static ValidationResultImpl checkUsername (String Username) {
 
-        String msg = "";
         boolean isValid = true;
+        int msg_code = 0;
 
-        String regex = "^[\\w-.]{2,20}$";
-        if (Username.matches(regex)) {
+        if (Username == null) {
 
             isValid = false;
+            msg_code = R.string.emptyUsername;
 
-            if (Username.isEmpty()) {
-                msg = context.getString(R.string.emptyUsername);
-            } else {
-                msg = context.getString(R.string.wrongUsername);
+        } else {
+
+            if (!Pattern.matches(Username, "^[\\w-.]{2,20}$")) {
+
+                isValid = false;
+                msg_code = R.string.wrongUsername;
             }
+
         }
 
-        return new ValidationResultImpl(msg, isValid);
+        return new ValidationResultImpl (msg_code, isValid);
     }
 
-    private ValidationResultImpl isValidEmail (String email) {
+    public static ValidationResultImpl checkEmail (String Email) {
 
-        String msg = "";
         boolean isValid = true;
+        int msg_code = 0;
 
-        String regex = "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$";
-        if (!email.matches(regex)) {
+        if (Email == null) {
 
             isValid = false;
+            msg_code = R.string.emptyEmail;
 
-            if (email.isEmpty()) {
-                msg = context.getString(R.string.emptyEmail);
-            } else {
-                msg = context.getString(R.string.wrongEmail);
+        } else {
+
+            if (!Pattern.matches(Email, "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$")) {
+
+                isValid = false;
+                msg_code = R.string.wrongEmail;
             }
+
         }
 
-        return new ValidationResultImpl(msg, isValid);
+        return new ValidationResultImpl (msg_code, isValid);
     }
 
-    private ValidationResultImpl isValidPassword (String password) {
+    public static ValidationResultImpl checkPassword (String Password, String Password2) {
 
-        String msg = "";
         boolean isValid = true;
+        int msg_code = 0;
 
-        String regex = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
-        if (!password.matches(regex)) {
+        if (Password == null) {
 
             isValid = false;
+            msg_code = R.string.emptyPassword;
 
-            if (password.isEmpty()) {
-                msg = context.getString(R.string.emptyPassword);
-            } else {
-                msg = context.getString(R.string.wrongPassword);
+        } else {
+
+            if (!Pattern.matches(Password, "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$")) {
+
+                isValid = false;
+                msg_code = R.string.wrongPassword;
+
             }
+            else if (!Password.equals(Password2)) {
+
+                isValid = false;
+                msg_code = R.string.samePassword;
+            }
+
         }
 
-        return new ValidationResultImpl(msg, isValid);
+        return new ValidationResultImpl (msg_code, isValid);
     }
 
 }

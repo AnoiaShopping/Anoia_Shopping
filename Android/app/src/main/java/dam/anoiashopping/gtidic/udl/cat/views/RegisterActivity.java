@@ -1,16 +1,13 @@
-package dam.anoiashopping.gtidic.udl.cat.views;
+  package dam.anoiashopping.gtidic.udl.cat.views;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
@@ -18,12 +15,11 @@ import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityRegisterBinding;
 import dam.anoiashopping.gtidic.udl.cat.utils.EULA;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.SignUpViewModel;
 
-import static dam.anoiashopping.gtidic.udl.cat.utils.RegisterCheck.CheckAll;
-
-public class RegisterActivity extends AppCompatActivity {
+  public class RegisterActivity extends AppCompatActivity {
 
     CheckBox Accept_Terms_conditions;
     final EULA eula_dialog = new EULA (this);
+    Button register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initView () {
 
-        // Mostra EULA
         Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);
         Accept_Terms_conditions.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
@@ -44,13 +39,17 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        SignUpViewModel signUpViewModel = new ViewModelProvider (this).get(SignUpViewModel.class);
+        register = findViewById (R.id.b_registrarse);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO : Aqui posava el que m'havies posat al correu a la part del activity
+            }
+        });
+
+        SignUpViewModel signUpViewModel = new ViewModelProvider(this).get(SignUpViewModel.class);
         ActivityRegisterBinding activityRegisterBinding = DataBindingUtil.setContentView(this, R.layout.activity_register);
         activityRegisterBinding.setLifecycleOwner(this);
         activityRegisterBinding.setViewModel (signUpViewModel);
-    }
-
-    public static boolean equals() {
-        return true;
     }
 }

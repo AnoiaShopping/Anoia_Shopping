@@ -109,6 +109,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/passwordRepeat"
+        android:text="@={viewModel.Password2}"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/i_Password1"
         app:layout_constraintStart_toStartOf="@+id/i_Password1"

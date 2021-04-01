@@ -4,15 +4,15 @@ public class ValidationResultImpl {
 
     //TODO
 
-    private final String msgError;
+    private final int msgError;
     private final boolean isValid;
 
-    public ValidationResultImpl (String msgError, boolean isValid) {
+    public ValidationResultImpl (int msgError, boolean isValid) {
         this.msgError = msgError;
         this.isValid  = isValid;
     }
 
-    public String getMsgError() {
+    public int getMsgError() {
         return this.msgError;
     }
 
