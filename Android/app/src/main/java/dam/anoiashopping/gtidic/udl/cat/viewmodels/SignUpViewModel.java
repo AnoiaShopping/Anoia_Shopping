@@ -31,14 +31,18 @@ public class SignUpViewModel extends ViewModel {
     public MutableLiveData <String> Password  = new MutableLiveData <> ();
     public MutableLiveData <String> Password2 = new MutableLiveData <> ();
 
-    //public MutableLiveData <CheckBox> EULA = new MutableLiveData <> ();
-    //public boolean checkboxEULA;
+    public boolean EULAcheck = false;
 
     public MutableLiveData <ValidationResultImpl> FirstNameValidator = new MutableLiveData <> ();
     public MutableLiveData <ValidationResultImpl> LastNameValidator  = new MutableLiveData <> ();
     public MutableLiveData <ValidationResultImpl> UsernameValidator  = new MutableLiveData <> ();
     public MutableLiveData <ValidationResultImpl> EmailValidator     = new MutableLiveData <> ();
     public MutableLiveData <ValidationResultImpl> PasswordValidator  = new MutableLiveData <> ();
+
+
+    public MutableLiveData <String> getRegisterResponse () {
+        return this.accountRepo.getmResponseRegister();
+    }
 
     public SignUpViewModel() {
         this.accountRepo = new AccountRepo();
@@ -52,11 +56,12 @@ public class SignUpViewModel extends ViewModel {
         EmailValidator.setValue     (Validation.checkEmail     (Email.getValue()));
         PasswordValidator.setValue  (Validation.checkPassword  (Password.getValue(), Password2.getValue()));
 
+
+
         return (FirstNameValidator.getValue().isValid() && LastNameValidator.getValue().isValid() &&
                 UsernameValidator.getValue().isValid()  && EmailValidator.getValue().isValid()    &&
-                PasswordValidator.getValue().isValid());
+                PasswordValidator.getValue().isValid()) && EULAcheck;
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void onRegister(){
@@ -69,15 +74,13 @@ public class SignUpViewModel extends ViewModel {
             account.setFirstname(FirstName.getValue());
             account.setLastname(LastName.getValue());
             account.setEmail(Email.getValue());
-            account.setPassword(Utils.encode(Password.getValue(), "16", 29000));
-
+            account.setPassword(Password.getValue());
 
             this.accountRepo.registerAccount(account);
 
             Log.d ("SignUpViewModel", "Valid Form");
 
         } else {
-
             Log.d ("SignUpViewModel", "Invalid form");
         }
     }

@@ -2,6 +2,7 @@
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -24,7 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     CheckBox Accept_Terms_conditions;
     final EULA eula_dialog = new EULA (this);
-    Button register;
+
+    public SignUpViewModel signUpViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void initView () {
 
-        SignUpViewModel signUpViewModel = new ViewModelProvider (this).get (SignUpViewModel.class);
+        signUpViewModel = new ViewModelProvider (this).get (SignUpViewModel.class);
         ActivityRegisterBinding activityRegisterBinding = DataBindingUtil.setContentView (this, R.layout.activity_register);
         activityRegisterBinding.setLifecycleOwner (this);
         activityRegisterBinding.setViewModel (signUpViewModel);
@@ -84,21 +86,24 @@ public class RegisterActivity extends AppCompatActivity {
                     }
         });
 
-        //TODO : No funciona
-        register = findViewById(R.id.b_registrarse);
-        register.setOnClickListener(v -> {
-            if (signUpViewModel.isFormValid()) {
-                startActivity (new Intent (RegisterActivity.this, RegisterConfirmationActivity.class));
+        signUpViewModel.getRegisterResponse().observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Log.d("RegisterActivity", s);
+                if (s.equals("El registre s'ha fet correctament!!!!")) {
+                    startActivity (new Intent (RegisterActivity.this, RegisterConfirmationActivity.class));
+                }
             }
         });
 
-        //TODO : No funciona al afegir booleà al SignUpViewModel
         Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);
         Accept_Terms_conditions.setOnCheckedChangeListener(
                 new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 eula_dialog.show(R.id.c_AcceptConditions);
+
+                signUpViewModel.EULAcheck = Accept_Terms_conditions.isChecked();
             }
         });
 

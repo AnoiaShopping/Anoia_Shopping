@@ -1,6 +1,12 @@
 package dam.anoiashopping.gtidic.udl.cat.models;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.google.gson.annotations.SerializedName;
+
+import dam.anoiashopping.gtidic.udl.cat.utils.Utils;
 
 public class Account {
 
@@ -55,8 +61,9 @@ public class Account {
         return password;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void setPassword(String password) {
-        this.password = password;
+        this.password = Utils.encode(password, "16", 29000);
     }
 
 }
