@@ -18,7 +18,7 @@ public class Validation {
 
         } else {
 
-            if (!Pattern.matches(FirstName, "^[a-zA-Zà-ÿÀ-Ý]{2,15}[\\s]?[a-zA-Zà-ÿÀ-Ý]{0,15}$")) {
+            if (!FirstName.matches("^[a-zA-Zà-ÿÀ-Ý]{2,15}[\\s]?[a-zA-Zà-ÿÀ-Ý]{0,15}$")) {
 
                 isValid = false;
                 msg_code = R.string.wrongFirstName;
@@ -41,7 +41,7 @@ public class Validation {
 
         } else {
 
-            if (!Pattern.matches(LastName, "^[a-zA-Zà-ÿÀ-Ý]{2,15}[\\s]?[a-zA-Zà-ÿÀ-Ý]{0,15}$")) {
+            if (!LastName.matches("^[a-zA-Zà-ÿÀ-Ý]{2,15}[\\s]?[a-zA-Zà-ÿÀ-Ý]{0,15}$")) {
 
                 isValid = false;
                 msg_code = R.string.wrongLastName;
@@ -64,7 +64,7 @@ public class Validation {
 
         } else {
 
-            if (!Pattern.matches(Username, "^[\\w-.]{2,20}$")) {
+            if (!Username.matches("^[\\w-.]{2,20}$")) {
 
                 isValid = false;
                 msg_code = R.string.wrongUsername;
@@ -87,7 +87,7 @@ public class Validation {
 
         } else {
 
-            if (!Pattern.matches(Email, "^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$")) {
+            if (!Email.matches("^[\\w-_.+]*[\\w-_.]@([\\w]+\\.)+[\\w]+[\\w]$")) {
 
                 isValid = false;
                 msg_code = R.string.wrongEmail;
@@ -110,7 +110,7 @@ public class Validation {
 
         } else {
 
-            if (!Pattern.matches(Password, "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$")) {
+            if (!Password.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$")) {
 
                 isValid = false;
                 msg_code = R.string.wrongPassword;
