@@ -4,19 +4,19 @@ public class ValidationResultImpl {
 
     //TODO
 
-    private final String msgError;
-    private final boolean isError;
+    private final int msgError;
+    private final boolean isValid;
 
-    public ValidationResultImpl (String msgError, boolean isError) {
+    public ValidationResultImpl (int msgError, boolean isValid) {
         this.msgError = msgError;
-        this.isError  = isError;
+        this.isValid  = isValid;
     }
 
-    public String getMsgError() {
+    public int getMsgError() {
         return this.msgError;
     }
 
-    public boolean isError() {
-        return this.isError;
+    public boolean isValid() {
+        return this.isValid;
     }
 }

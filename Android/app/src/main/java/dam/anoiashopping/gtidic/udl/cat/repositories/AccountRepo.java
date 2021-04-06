@@ -24,6 +24,10 @@ public class AccountRepo {
         this.mResponseRegister = new MutableLiveData<>();
     }
 
+    public MutableLiveData<String> getmResponseRegister() {
+        return mResponseRegister;
+    }
+
     public void registerAccount(Account account){
 
         accountService.register(account).enqueue(new Callback <ResponseBody>() {
