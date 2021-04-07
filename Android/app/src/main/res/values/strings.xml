@@ -31,9 +31,9 @@
 
     <string name="emptyPassword">Escriu una Contrassenya</string>
     <string name="wrongPassword">Contrassenya incorrecte. La Contrassenya ha de ser mínim 8 caràcters de llarg, ha de tenir mínim una majúscula, una minúscula, un número i algun caràcter especial.</string>
-    <string  name="samePassword">Les Contrassenyes han de coincidir</string>
+    <string name="samePassword">Les Contrassenyes han de coincidir</string>
 
-    <string  name="noError">Camp Correcte</string>
+    <string name="noError">Camp Correcte</string>
 
 
     <!-- EULA: Terms and conditions -->
