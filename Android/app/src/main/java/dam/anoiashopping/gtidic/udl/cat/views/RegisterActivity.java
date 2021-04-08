@@ -76,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
             Log.d("RegisterActivity", s);
             if (s.equals("El registre s'ha fet correctament!!!!")) {
                 startActivity (new Intent (RegisterActivity.this, RegisterConfirmationActivity.class));
-            }
         });
 
         Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);
@@ -84,7 +83,6 @@ public class RegisterActivity extends AppCompatActivity {
             eula_dialog.show(R.id.c_AcceptConditions);
             signUpViewModel.EULAcheck = Accept_Terms_conditions.isChecked();
         });
-
     }
     
 }
