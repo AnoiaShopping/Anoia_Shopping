@@ -42,69 +42,47 @@ public class RegisterActivity extends AppCompatActivity {
         activityRegisterBinding.setLifecycleOwner (this);
         activityRegisterBinding.setViewModel (signUpViewModel);
 
-        /*signUpViewModel.FirstNameValidator.observe(this, new Observer<ValidationResultImpl>() {
-
-            @Override
-            public void onChanged(ValidationResultImpl validationResult) {
-                if (!validationResult.isValid()) {
-                    activityRegisterBinding.iFirstName.setError(getString(validationResult.getMsgError()));
-                }
-            }
-        });*/
-
         signUpViewModel.FirstNameValidator.observe(this, validationResult -> {
-                    if (!validationResult.isValid()) {
-                        activityRegisterBinding.iFirstName.setError(getString(validationResult.getMsgError()));
-                    }
+            if (!validationResult.isValid()) {
+                activityRegisterBinding.iFirstName.setError(getString(validationResult.getMsgError()));
+            }
         });
 
-        signUpViewModel.LastNameValidator.observe(this,
-                validationResult -> {
-                    if (!validationResult.isValid()) {
-                        activityRegisterBinding.iLastName.setError(getString(validationResult.getMsgError()));
-                    }
+        signUpViewModel.LastNameValidator.observe(this, validationResult -> {
+            if (!validationResult.isValid()) {
+                activityRegisterBinding.iLastName.setError(getString(validationResult.getMsgError()));
+            }
         });
 
-        signUpViewModel.UsernameValidator.observe(this,
-                validationResult -> {
-                    if (!validationResult.isValid()) {
-                        activityRegisterBinding.iUserName.setError(getString(validationResult.getMsgError()));
-                    }
+        signUpViewModel.UsernameValidator.observe(this, validationResult -> {
+            if (!validationResult.isValid()) {
+                activityRegisterBinding.iUserName.setError(getString(validationResult.getMsgError()));
+            }
         });
 
-        signUpViewModel.EmailValidator.observe(this,
-                validationResult -> {
-                    if (!validationResult.isValid()) {
-                        activityRegisterBinding.iEmail.setError(getString(validationResult.getMsgError()));
-                    }
+        signUpViewModel.EmailValidator.observe(this, validationResult -> {
+            if (!validationResult.isValid()) {
+                activityRegisterBinding.iEmail.setError(getString(validationResult.getMsgError()));
+            }
         });
 
-        signUpViewModel.PasswordValidator.observe(this,
-                validationResult -> {
-                    if (!validationResult.isValid()) {
-                        activityRegisterBinding.iPassword1.setError(getString(validationResult.getMsgError()));
-                    }
+        signUpViewModel.PasswordValidator.observe(this, validationResult -> {
+            if (!validationResult.isValid()) {
+                activityRegisterBinding.iPassword1.setError(getString(validationResult.getMsgError()));
+            }
         });
 
-        signUpViewModel.getRegisterResponse().observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-                Log.d("RegisterActivity", s);
-                if (s.equals("El registre s'ha fet correctament!!!!")) {
-                    startActivity (new Intent (RegisterActivity.this, RegisterConfirmationActivity.class));
-                }
+        signUpViewModel.getRegisterResponse().observe(this, s -> {
+            Log.d("RegisterActivity", s);
+            if (s.equals("El registre s'ha fet correctament!!!!")) {
+                startActivity (new Intent (RegisterActivity.this, RegisterConfirmationActivity.class));
             }
         });
 
         Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);
-        Accept_Terms_conditions.setOnCheckedChangeListener(
-                new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                eula_dialog.show(R.id.c_AcceptConditions);
-
-                signUpViewModel.EULAcheck = Accept_Terms_conditions.isChecked();
-            }
+        Accept_Terms_conditions.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            eula_dialog.show(R.id.c_AcceptConditions);
+            signUpViewModel.EULAcheck = Accept_Terms_conditions.isChecked();
         });
 
     }

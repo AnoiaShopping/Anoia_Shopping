@@ -15,17 +15,21 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        setTheme(R.style.Theme_Android);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        register = (TextView) findViewById(R.id.b_Registre);
 
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity (new Intent (LoginActivity.this, RegisterActivity.class));
-            }
-        });
+        register = (TextView) findViewById(R.id.b_Registre);
+        register.setOnClickListener(v -> startActivity (new Intent (LoginActivity.this, RegisterActivity.class)));
+
+        initView();
     }
 
+    private void initView () {
+
+
+
+    }
 
 }

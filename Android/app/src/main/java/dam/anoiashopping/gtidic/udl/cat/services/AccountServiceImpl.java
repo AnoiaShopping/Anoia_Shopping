@@ -15,4 +15,9 @@ public class AccountServiceImpl implements AccountServiceI {
     public Call<ResponseBody> register(Account account) {
         return refrotit.create(AccountServiceI.class).register(account);
     }
+
+    @Override
+    public Call <ResponseBody> create_token (String s) {
+        return refrotit.create(AccountServiceI.class).create_token(s);
+    }
 }

@@ -54,7 +54,7 @@ public class SignUpViewModel extends ViewModel {
         LastNameValidator.setValue  (Validation.checkLastName  (LastName.getValue()));
         UsernameValidator.setValue  (Validation.checkUsername  (Username.getValue()));
         EmailValidator.setValue     (Validation.checkEmail     (Email.getValue()));
-        PasswordValidator.setValue  (Validation.checkPassword  (Password.getValue(), Password2.getValue()));
+        PasswordValidator.setValue  (Validation.checkPasswords (Password.getValue(), Password2.getValue()));
 
 
 

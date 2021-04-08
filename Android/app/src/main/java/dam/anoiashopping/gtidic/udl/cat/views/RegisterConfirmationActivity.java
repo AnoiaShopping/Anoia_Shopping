@@ -18,11 +18,6 @@ public class RegisterConfirmationActivity extends AppCompatActivity {
 
         Button LogIn =  findViewById(R.id.b_LogIn2);
 
-        LogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity (new Intent(RegisterConfirmationActivity.this, LoginActivity.class));
-            }
-        });
+        LogIn.setOnClickListener(v -> startActivity (new Intent(RegisterConfirmationActivity.this, LoginActivity.class)));
     }
 }
