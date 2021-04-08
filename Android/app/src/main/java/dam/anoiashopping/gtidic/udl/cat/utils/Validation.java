@@ -98,7 +98,7 @@ public class Validation {
         return new ValidationResultImpl (msg_code, isValid);
     }
 
-    public static ValidationResultImpl checkPassword (String Password, String Password2) {
+    public static ValidationResultImpl checkPasswords (String Password, String Password2) {
 
         boolean isValid = true;
         int msg_code = 0;
@@ -120,6 +120,30 @@ public class Validation {
 
                 isValid = false;
                 msg_code = R.string.samePassword;
+            }
+
+        }
+
+        return new ValidationResultImpl (msg_code, isValid);
+    }
+
+    public static ValidationResultImpl checkPassword (String Password) {
+
+        boolean isValid = true;
+        int msg_code = 0;
+
+        if (Password == null) {
+
+            isValid = false;
+            msg_code = R.string.emptyPassword;
+
+        } else {
+
+            if (!Password.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$")) {
+
+                isValid = false;
+                msg_code = R.string.wrongPassword;
+
             }
 
         }

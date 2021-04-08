@@ -76,7 +76,6 @@ public class RegisterActivity extends AppCompatActivity {
             Log.d("RegisterActivity", s);
             if (s.equals("El registre s'ha fet correctament!!!!")) {
                 startActivity (new Intent (RegisterActivity.this, RegisterConfirmationActivity.class));
-            } // TODO
         });
 
         Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);

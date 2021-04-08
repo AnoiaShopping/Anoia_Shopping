@@ -3,6 +3,7 @@
 
     <!-- Screen Strings -->
     <string name="logIn">Iniciar Sessió</string>
+    <string name="logIn2">INICIAR SESSIÓ</string>
     <string name="singIn"><u>Registrar-se</u></string>
     <string name="singInButton">Registrar-se</string>
     <string name="singInTop">REGISTRE</string>
