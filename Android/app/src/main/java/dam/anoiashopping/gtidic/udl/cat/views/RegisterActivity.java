@@ -75,7 +75,8 @@ public class RegisterActivity extends AppCompatActivity {
         signUpViewModel.getRegisterResponse().observe(this, s -> {
             Log.d("RegisterActivity", s);
             if (s.equals("El registre s'ha fet correctament!!!!")) {
-                startActivity (new Intent (RegisterActivity.this, RegisterConfirmationActivity.class));
+                startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
+            }
         });
 
         Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);

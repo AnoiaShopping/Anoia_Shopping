@@ -5,6 +5,7 @@ import android.util.Base64;
 
 import androidx.annotation.RequiresApi;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import java.nio.charset.StandardCharsets;
 
@@ -13,7 +14,7 @@ import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
 import dam.anoiashopping.gtidic.udl.cat.utils.Validation;
 import dam.anoiashopping.gtidic.udl.cat.utils.ValidationResultImpl;
 
-public class LoginViewModel {
+public class LoginViewModel extends ViewModel {
 
     private AccountRepo accountRepo;
     private final String TAG = "SignUpVM";
