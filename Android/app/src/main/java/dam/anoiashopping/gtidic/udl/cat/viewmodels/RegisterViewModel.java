@@ -19,7 +19,7 @@ import dam.anoiashopping.gtidic.udl.cat.utils.ValidationResultImpl;
 import dam.anoiashopping.gtidic.udl.cat.views.RegisterActivity;
 import dam.anoiashopping.gtidic.udl.cat.views.RegisterConfirmationActivity;
 
-public class SignUpViewModel extends ViewModel {
+public class RegisterViewModel extends ViewModel {
 
     private AccountRepo accountRepo;
     private final String TAG = "SignUpVM";
@@ -31,7 +31,7 @@ public class SignUpViewModel extends ViewModel {
     public MutableLiveData <String> Password  = new MutableLiveData <> ();
     public MutableLiveData <String> Password2 = new MutableLiveData <> ();
 
-    public boolean EULAcheck = false;
+    public boolean EULA_Check = false;
 
     public MutableLiveData <ValidationResultImpl> FirstNameValidator = new MutableLiveData <> ();
     public MutableLiveData <ValidationResultImpl> LastNameValidator  = new MutableLiveData <> ();
@@ -44,7 +44,7 @@ public class SignUpViewModel extends ViewModel {
         return this.accountRepo.getmResponseRegister();
     }
 
-    public SignUpViewModel() {
+    public RegisterViewModel() {
         this.accountRepo = new AccountRepo();
     }
 
@@ -60,11 +60,11 @@ public class SignUpViewModel extends ViewModel {
 
         return (FirstNameValidator.getValue().isValid() && LastNameValidator.getValue().isValid() &&
                 UsernameValidator.getValue().isValid()  && EmailValidator.getValue().isValid()    &&
-                PasswordValidator.getValue().isValid()) && EULAcheck;
+                PasswordValidator.getValue().isValid()) && EULA_Check;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    public void onRegister(){
+    public void onRegister () {
 
         if (this.isFormValid()) {
 
@@ -78,10 +78,11 @@ public class SignUpViewModel extends ViewModel {
 
             this.accountRepo.registerAccount(account);
 
-            Log.d ("SignUpViewModel", "Valid Form");
+            Log.d (TAG, "Valid Form");
 
         } else {
-            Log.d ("SignUpViewModel", "Invalid form");
+
+            Log.d (TAG, "Invalid form");
         }
     }
 

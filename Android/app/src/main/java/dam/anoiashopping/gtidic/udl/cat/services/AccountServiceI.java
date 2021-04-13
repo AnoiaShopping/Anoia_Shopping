@@ -16,4 +16,6 @@ public interface AccountServiceI {
     @POST("/account/create_token")
     Call <ResponseBody> create_token (@Header ("Authorization") String s);
 
+    //TODO : Afegir uploadImage (Utilitzar @Multipart)
+
 }

@@ -22,20 +22,24 @@ public class AccountRepo {
     private final AccountServiceI accountService;
     private final MutableLiveData <String> mResponseRegister;
     private final MutableLiveData <String> mResponseLogin;
+    private final MutableLiveData <Boolean> correctLogin;
 
     public AccountRepo() {
         this.accountService = new AccountServiceImpl();
         this.mResponseRegister = new MutableLiveData<>();
-        this.mResponseLogin =  new MutableLiveData<>();
+        this.mResponseLogin = new MutableLiveData<>();
+        this.correctLogin = new MutableLiveData<>();
     }
 
-    public MutableLiveData <String> getmResponseRegister() {
+    public MutableLiveData <String> getmResponseRegister () {
         return mResponseRegister;
     }
 
-    public MutableLiveData<String> getmResponseLogin() {
+    public MutableLiveData <String> getmResponseLogin () {
         return mResponseLogin;
     }
+
+    public MutableLiveData <Boolean> getCorrectLogin () { return correctLogin; }
 
     public void registerAccount(Account account){
 
@@ -50,6 +54,7 @@ public class AccountRepo {
                     mResponseRegister.setValue("El registre s'ha fet correctament!!!!");
                 }else{
                     String error_msg = "Error: " + response.errorBody();
+                    // TODO : ValidationResultImpl
                     mResponseRegister.setValue(error_msg);
                 }
 
@@ -74,7 +79,10 @@ public class AccountRepo {
                 int code = response.code();
                 Log.d(TAG,  "createTokenUser() -> ha rebut del backend un codi:  " + code);
 
-                if (code == 200 ){
+                if (code == 200) {
+
+                    correctLogin.setValue(true);
+
                     try {
                         String authToken = response.body().string().split(":")[1];
                         authToken=authToken.substring(2,authToken.length()-2);
@@ -87,6 +95,9 @@ public class AccountRepo {
                     }
                 }
                 else{
+
+                    correctLogin.setValue(false);
+
                     try {
                         String error_msg = "Error: " + response.errorBody().string();
                         Log.d(TAG,  "createTokenUser() -> ha rebut l'error:  " + error_msg);

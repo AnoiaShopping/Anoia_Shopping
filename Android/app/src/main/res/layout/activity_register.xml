@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="dam.anoiashopping.gtidic.udl.cat.viewmodels.SignUpViewModel" />
+            type="dam.anoiashopping.gtidic.udl.cat.viewmodels.RegisterViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout

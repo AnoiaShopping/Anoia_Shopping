@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityLoginBinding;
+import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -21,6 +22,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        PreferencesProvider.init(this);
 
         setTheme(R.style.Theme_Android);
         super.onCreate(savedInstanceState);
@@ -38,6 +41,14 @@ public class LoginActivity extends AppCompatActivity {
         ActivityLoginBinding activityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         activityLoginBinding.setLifecycleOwner (this);
         activityLoginBinding.setViewModel (loginViewModel);
+
+        loginViewModel.getLoginResponse().observe(this, s -> {
+            if (s.equals(true)) {
+                startActivity (new Intent (LoginActivity.this, MainActivity.class));
+            }
+        });
+
+
     }
 
 }
