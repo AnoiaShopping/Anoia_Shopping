@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,6 +26,11 @@ public class LoginActivity extends AppCompatActivity {
 
         PreferencesProvider.init(this);
 
+        if (!PreferencesProvider.providePreferences().getString("token", "").equals("")) {
+
+            startActivity(new Intent (LoginActivity.this, MainActivity.class));
+        }
+
         setTheme(R.style.Theme_Android);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -43,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         activityLoginBinding.setViewModel (loginViewModel);
 
         loginViewModel.getLoginResponse().observe(this, s -> {
-            if (s.equals(true)) {
+            if (s) {
                 startActivity (new Intent (LoginActivity.this, MainActivity.class));
             }
         });
