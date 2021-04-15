@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityLoginBinding;
@@ -17,8 +18,8 @@ import dam.anoiashopping.gtidic.udl.cat.viewmodels.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private final String TAG = "LoginActivity";
     private TextView register;
-
     public LoginViewModel loginViewModel;
 
     @Override
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (!PreferencesProvider.providePreferences().getString("token", "").equals("")) {
 
+            Log.d(TAG, "L'usuari ja té token: " + PreferencesProvider.providePreferences().getString("token", ""));
             startActivity(new Intent (LoginActivity.this, MainActivity.class));
         }
 
@@ -49,8 +51,17 @@ public class LoginActivity extends AppCompatActivity {
         activityLoginBinding.setViewModel (loginViewModel);
 
         loginViewModel.getLoginResponse().observe(this, s -> {
+
             if (s) {
+
+                Log.d (TAG, "Login correcte");
+                Toast.makeText(getApplicationContext(), R.string.OkLogIn, Toast.LENGTH_SHORT).show();
                 startActivity (new Intent (LoginActivity.this, MainActivity.class));
+
+            } else {
+
+                Log.d (TAG, "Login incorrecte");
+                Toast.makeText(getApplicationContext(), R.string.FailLogIn, Toast.LENGTH_SHORT).show();
             }
         });
 

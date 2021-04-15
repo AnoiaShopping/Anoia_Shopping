@@ -1,9 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">Android</string>
+    <string name="app_name">Anoia Shopping</string>
 
     <!-- Screen Strings -->
     <string name="logIn">Iniciar Sessió</string>
     <string name="logIn2">INICIAR SESSIÓ</string>
+    <string name="OkLogIn">Inici Correcte, Benvingut</string>
+    <string name="FailLogIn">ERROR! Email i/o contrassenya incorrectes</string>
+    <string name="logo">Logotip</string>
     <string name="singIn"><u>Registrar-se</u></string>
     <string name="singInButton">Registrar-se</string>
     <string name="singInTop">REGISTRE</string>
