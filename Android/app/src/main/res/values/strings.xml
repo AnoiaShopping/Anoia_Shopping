@@ -19,6 +19,7 @@
     <string name="conditions">Al clicar, acceptes els termes i condicions d\'ús</string>
     <string name="forgotPassword"><u>Has olvidat la contrassenya?</u></string>
     <string name="welcome">BENVINGUT!!<br />GRÀCIES PER UTILITZAR LA NOSTRA PLATAFORMA</string>
+    <string name="settings">Configuració</string>
 
     <!-- Error Strings-->
     <string name="emptyUsername">Escriu un Nom d\'Usuari</string>
