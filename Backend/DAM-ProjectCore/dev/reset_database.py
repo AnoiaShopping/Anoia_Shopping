@@ -87,7 +87,7 @@ if __name__ == "__main__":
         birthdate=datetime.datetime(2000, 3, 17),
         genere=GenereEnum.male,
     )
-    user_2.set_password("Aa@123456")
+    user_3.set_password("Aa@123456")
 
     db_session.add(user_admin)
     db_session.add(user_1)
