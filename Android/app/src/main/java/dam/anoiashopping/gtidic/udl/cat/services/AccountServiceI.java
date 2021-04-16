@@ -16,6 +16,9 @@ public interface AccountServiceI {
     @POST("/account/create_token")
     Call <ResponseBody> create_token (@Header ("Authorization") String s);
 
+    @POST("/account/delete_token")
+    Call <ResponseBody> delete_token ();
+
     //TODO : Afegir uploadImage (Utilitzar @Multipart)
 
 }

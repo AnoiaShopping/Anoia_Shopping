@@ -216,7 +216,6 @@ class User(SQLAlchemyBase, JSONModel):
             "surname": self.surname,
             "birthdate": self.birthdate.strftime(
                 settings.DATE_DEFAULT_FORMAT) if self.birthdate is not None else self.birthdate,
-            "genere": self.genere.value,
             "phone": self.phone,
             "photo": self.photo_url
         }

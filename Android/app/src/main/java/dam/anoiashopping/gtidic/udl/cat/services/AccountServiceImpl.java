@@ -20,4 +20,9 @@ public class AccountServiceImpl implements AccountServiceI {
     public Call <ResponseBody> create_token (String s) {
         return refrotit.create(AccountServiceI.class).create_token(s);
     }
+
+    @Override
+    public Call <ResponseBody> delete_token () {
+        return refrotit.create(AccountServiceI.class).delete_token(); //TODO : veure com funciona
+    }
 }
