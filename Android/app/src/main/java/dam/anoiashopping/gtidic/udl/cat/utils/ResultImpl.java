@@ -2,8 +2,6 @@ package dam.anoiashopping.gtidic.udl.cat.utils;
 
 public class ResultImpl {
 
-    //TODO
-
     private final int msgError;
     private final boolean isValid;
 

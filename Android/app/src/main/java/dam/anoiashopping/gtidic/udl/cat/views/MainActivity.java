@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.setViewModel (mainViewModel);
 
         mainViewModel.getDeleteResponse().observe(this, s -> {
-            if (s) {
+
+            if (s.isValid()) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });

@@ -33,7 +33,7 @@ public class RegisterViewModel extends ViewModel {
     public MutableLiveData <ResultImpl> PasswordValidator  = new MutableLiveData <> ();
 
 
-    public MutableLiveData <String> getRegisterResponse () {
+    public MutableLiveData <ResultImpl> getRegisterResponse () {
         return this.accountRepo.getmResponseRegister();
     }
 

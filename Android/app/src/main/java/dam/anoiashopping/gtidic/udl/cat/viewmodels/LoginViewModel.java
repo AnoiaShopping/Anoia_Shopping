@@ -31,8 +31,8 @@ public class LoginViewModel extends ViewModel {
         this.accountRepo = new AccountRepo();
     }
 
-    public MutableLiveData <Boolean> getLoginResponse () {
-        return this.accountRepo.getCorrectLogin();
+    public MutableLiveData <ResultImpl> getLoginResponse () {
+        return this.accountRepo.getmResponseCreateToken();
     }
 
     public boolean isFormValid () {

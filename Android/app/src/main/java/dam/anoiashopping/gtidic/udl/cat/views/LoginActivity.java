@@ -49,11 +49,15 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         loginViewModel.getLoginResponse().observe(this, s -> {
-            if (s) {
+
+            if (s.isValid()) {
+
                 Log.d (TAG, "Login correcte");
                 Toast.makeText(getApplicationContext(), R.string.OkLogIn, Toast.LENGTH_SHORT).show();
                 startActivity (new Intent (LoginActivity.this, MainActivity.class));
+
             } else {
+
                 Log.d (TAG, "Login incorrecte");
                 Toast.makeText(getApplicationContext(), R.string.FailLogIn, Toast.LENGTH_SHORT).show();
             }

@@ -68,8 +68,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         registerViewModel.getRegisterResponse().observe(this, s -> {
-            Log.d (TAG, s);
-            if (s.equals("El registre s'ha fet correctament!!!!")) {
+            
+            if (s.isValid()) {
                 startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
             }
         });
