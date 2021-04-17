@@ -68,7 +68,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         registerViewModel.getRegisterResponse().observe(this, s -> {
-            
+
             if (s.isValid()) {
                 startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
             }

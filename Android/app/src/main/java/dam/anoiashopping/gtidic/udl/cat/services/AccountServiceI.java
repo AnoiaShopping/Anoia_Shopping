@@ -14,14 +14,14 @@ public interface AccountServiceI {
     @POST("/users/register")
     Call <ResponseBody> register (@Body Account account);
 
+    @GET("/account/profile")
+    Call <Account> get_account (@Header("Authorization") String s);
+
     @POST("/account/create_token")
     Call <ResponseBody> create_token (@Header ("Authorization") String s);
 
     @POST("/account/delete_token")
     Call <ResponseBody> delete_token (@Header("Authorization") String s, @Body Token token);
-
-    @GET("/account/profile")
-    Call <Account> get_account (@Header("Authorization") String s);
 
     //TODO : Afegir uploadImage (Utilitzar @Multipart)
 

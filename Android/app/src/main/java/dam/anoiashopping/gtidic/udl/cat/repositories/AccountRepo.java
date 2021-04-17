@@ -24,19 +24,28 @@ public class AccountRepo {
     private final String TAG = "AccountRepo";
 
     private final AccountServiceI accountService;
+
     private final MutableLiveData <ResultImpl> mResponseRegister;
+    private final MutableLiveData <ResultImpl> mResponseGetAccount;
     private final MutableLiveData <ResultImpl> mResponseCreateToken;
     private final MutableLiveData <ResultImpl> mResponseDeleteToken;
+    private MutableLiveData <Account> account;
 
     public AccountRepo() {
         this.accountService       = new AccountServiceImpl ();
         this.mResponseRegister    = new MutableLiveData <> ();
+        this.mResponseGetAccount  = new MutableLiveData <> ();
+        this.account              = new MutableLiveData <> ();
         this.mResponseCreateToken = new MutableLiveData <> ();
         this.mResponseDeleteToken = new MutableLiveData <> ();
     }
 
     public MutableLiveData <ResultImpl> getmResponseRegister() {
         return mResponseRegister;
+    }
+
+    public MutableLiveData <Account> getAccount() {
+        return account;
     }
 
     public MutableLiveData <ResultImpl> getmResponseCreateToken() {
@@ -59,6 +68,7 @@ public class AccountRepo {
                 if (return_code == 200){
                     mResponseRegister.setValue (new ResultImpl(0, true));
                 }else{
+
                     String error_msg = "Error: " + response.errorBody();
                     Log.d (TAG, error_msg);
 
@@ -78,8 +88,43 @@ public class AccountRepo {
 
     }
 
+    public void getAccount (String s) {
+        accountService.get_account(s).enqueue(new Callback<Account>() {
 
-    public void createTokenUser (String s){
+            @Override
+            public void onResponse (Call<Account> call, Response<Account> response) {
+
+                int code = response.code();
+                Log.d(TAG,  "getAccount() -> ha rebut el codi:  " + code);
+
+                if (code == 200) {
+
+                    account = (MutableLiveData <Account>) call;
+                    mResponseGetAccount.setValue (new ResultImpl (0, true));
+
+                } else {
+
+                    String error_msg = "Error: " + response.errorBody();
+                    Log.d (TAG, "getAccount() -> ha rebut l'error:" + error_msg);
+
+                    mResponseGetAccount.setValue (new ResultImpl (0, false));
+
+                }
+            }
+
+            @Override
+            public void onFailure (Call<Account> call, Throwable t) {
+
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "getAccount() onFailure() -> ha rebut el missatge:  " + error_msg);
+
+                mResponseCreateToken.setValue (new ResultImpl(0, false));
+
+            }
+        });
+    }
+
+    public void createTokenUser (String s) {
 
         accountService.create_token(s).enqueue(new Callback <ResponseBody> () {
             @Override
@@ -107,7 +152,7 @@ public class AccountRepo {
                     try {
 
                         String error_msg = "Error: " + response.errorBody().string();
-                        Log.d(TAG,  "createTokenUser() -> ha rebut l'error:  " + error_msg);
+                        Log.d(TAG,  "createTokenUser() -> ha rebut l'error: " + error_msg);
                         PreferencesProvider.providePreferences().edit().remove("token").apply();
 
                         mResponseCreateToken.setValue (new ResultImpl(0, false));
@@ -144,7 +189,7 @@ public class AccountRepo {
                 if (code == 200){
 
                     PreferencesProvider.providePreferences().edit().remove("token").apply();
-                    Log.d(TAG,  "deleteTokenUser() -> Token eliminat correctament." + code);
+                    Log.d(TAG,  "deleteTokenUser() -> Token eliminat correctament.");
 
                     mResponseDeleteToken.setValue(new ResultImpl(0, true));
 
@@ -156,7 +201,8 @@ public class AccountRepo {
                     Log.d (TAG, "deleteTokenUser() -> S'eliminarà el token local.");
                     PreferencesProvider.providePreferences().edit().remove("token").apply();
 
-                    mResponseDeleteToken.setValue (new ResultImpl(0, true));
+                    mResponseDeleteToken.setValue (new ResultImpl(-1, true));
+                    // TODO: Canviar a un missatge d'avís al usuari
 
                 } else {
 

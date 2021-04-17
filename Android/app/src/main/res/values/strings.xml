@@ -21,6 +21,9 @@
     <string name="welcome">BENVINGUT!!<br />GRÀCIES PER UTILITZAR LA NOSTRA PLATAFORMA</string>
     <string name="settings">Configuració</string>
 
+    <string name="actualize">Actualitzar compte</string>
+    <string name="delete">Eliminar compte</string>
+
     <!-- Error Strings-->
     <string name="emptyUsername">Escriu un Nom d\'Usuari</string>
     <string name="wrongUsername">Nom d\'Usuari incorrecte. El Nom d\'Usuari només pot tenir majúscules, minúscules, guions i guions baixos</string>

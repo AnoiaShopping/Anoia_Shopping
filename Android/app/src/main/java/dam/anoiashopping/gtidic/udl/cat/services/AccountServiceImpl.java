@@ -17,17 +17,17 @@ public class AccountServiceImpl implements AccountServiceI {
     }
 
     @Override
-    public Call <ResponseBody> create_token (String s) {
+    public Call <Account> get_account (String s) {
+        return refrotit.create(AccountServiceI.class).get_account(s);
+    }
+
+    @Override
+    public Call<ResponseBody> create_token(String s) {
         return refrotit.create(AccountServiceI.class).create_token(s);
     }
 
     @Override
-    public Call <ResponseBody> delete_token (String s, Token token) {
+    public Call<ResponseBody> delete_token(String s, Token token) {
         return refrotit.create(AccountServiceI.class).delete_token(s, token);
-    }
-
-    @Override
-    public Call <Account> get_account (String s) {
-        return refrotit.create(AccountServiceI.class).get_account(s);
     }
 }
