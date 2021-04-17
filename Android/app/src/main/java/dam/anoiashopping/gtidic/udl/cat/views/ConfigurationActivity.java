@@ -28,5 +28,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         ActivityConfigurationBinding activityConfigurationBinding = DataBindingUtil.setContentView (this, R.layout.activity_configuration);
         activityConfigurationBinding.setLifecycleOwner (this);
         activityConfigurationBinding.setViewModel (configurationViewModel);
+
+        configurationViewModel.getAccount();
     }
 }

@@ -29,13 +29,13 @@ public class AccountRepo {
     private final MutableLiveData <ResultImpl> mResponseGetAccount;
     private final MutableLiveData <ResultImpl> mResponseCreateToken;
     private final MutableLiveData <ResultImpl> mResponseDeleteToken;
-    private MutableLiveData <Account> account;
+    private Account account;
 
     public AccountRepo() {
         this.accountService       = new AccountServiceImpl ();
         this.mResponseRegister    = new MutableLiveData <> ();
         this.mResponseGetAccount  = new MutableLiveData <> ();
-        this.account              = new MutableLiveData <> ();
+        this.account              = new Account();
         this.mResponseCreateToken = new MutableLiveData <> ();
         this.mResponseDeleteToken = new MutableLiveData <> ();
     }
@@ -44,7 +44,7 @@ public class AccountRepo {
         return mResponseRegister;
     }
 
-    public MutableLiveData <Account> getAccount() {
+    public Account getAccount() {
         return account;
     }
 
@@ -54,6 +54,10 @@ public class AccountRepo {
 
     public MutableLiveData <ResultImpl> getmResponseDeleteToken() {
         return mResponseDeleteToken;
+    }
+
+    public MutableLiveData<ResultImpl> getmResponseGetAccount() {
+        return mResponseGetAccount;
     }
 
     public void registerAccount(Account account){
@@ -89,17 +93,18 @@ public class AccountRepo {
     }
 
     public void getAccount (String s) {
-        accountService.get_account(s).enqueue(new Callback<Account>() {
+        accountService.get_account(s).enqueue(new Callback <Account> () {
 
             @Override
-            public void onResponse (Call<Account> call, Response<Account> response) {
+            public void onResponse (Call <Account> call, Response<Account> response) {
 
                 int code = response.code();
                 Log.d(TAG,  "getAccount() -> ha rebut el codi:  " + code);
 
                 if (code == 200) {
 
-                    account = (MutableLiveData <Account>) call;
+                    account  = (Account) call; // TODO: Error, falla el get
+
                     mResponseGetAccount.setValue (new ResultImpl (0, true));
 
                 } else {

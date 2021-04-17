@@ -3,6 +3,7 @@ package dam.anoiashopping.gtidic.udl.cat.models;
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.annotations.SerializedName;
 
