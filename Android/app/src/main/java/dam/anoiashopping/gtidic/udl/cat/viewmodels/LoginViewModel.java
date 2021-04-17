@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
-import dam.anoiashopping.gtidic.udl.cat.utils.ValidationResultImpl;
+import dam.anoiashopping.gtidic.udl.cat.utils.ResultImpl;
 
 public class LoginViewModel extends ViewModel {
 
@@ -22,8 +22,8 @@ public class LoginViewModel extends ViewModel {
     public MutableLiveData <String> email    = new MutableLiveData <> ();
     public MutableLiveData <String> password = new MutableLiveData <> ();
 
-    public MutableLiveData <ValidationResultImpl> emailValidator = new MutableLiveData <> ();
-    public MutableLiveData <ValidationResultImpl> passwordValidator = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> emailValidator = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> passwordValidator = new MutableLiveData <> ();
 
     public MutableLiveData <Boolean> registerClick = new MutableLiveData <> ();
 
@@ -38,15 +38,15 @@ public class LoginViewModel extends ViewModel {
     public boolean isFormValid () {
 
         if (email.getValue() == null) {
-            emailValidator.setValue(new ValidationResultImpl (R.string.emptyEmail, false));
+            emailValidator.setValue(new ResultImpl(R.string.emptyEmail, false));
         } else {
-            emailValidator.setValue(new ValidationResultImpl (0, true));
+            emailValidator.setValue(new ResultImpl(0, true));
         }
 
         if (password.getValue() == null) {
-            passwordValidator.setValue(new ValidationResultImpl (R.string.emptyPassword, false));
+            passwordValidator.setValue(new ResultImpl(R.string.emptyPassword, false));
         } else {
-            passwordValidator.setValue(new ValidationResultImpl (0, true));
+            passwordValidator.setValue(new ResultImpl(0, true));
         }
 
         return emailValidator.getValue().isValid() && passwordValidator.getValue().isValid();

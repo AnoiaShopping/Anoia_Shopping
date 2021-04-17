@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel;
 import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
 import dam.anoiashopping.gtidic.udl.cat.utils.Validation;
-import dam.anoiashopping.gtidic.udl.cat.utils.ValidationResultImpl;
+import dam.anoiashopping.gtidic.udl.cat.utils.ResultImpl;
 
 public class RegisterViewModel extends ViewModel {
 
@@ -26,11 +26,11 @@ public class RegisterViewModel extends ViewModel {
 
     public boolean EULA_Check = false;
 
-    public MutableLiveData <ValidationResultImpl> FirstNameValidator = new MutableLiveData <> ();
-    public MutableLiveData <ValidationResultImpl> LastNameValidator  = new MutableLiveData <> ();
-    public MutableLiveData <ValidationResultImpl> UsernameValidator  = new MutableLiveData <> ();
-    public MutableLiveData <ValidationResultImpl> EmailValidator     = new MutableLiveData <> ();
-    public MutableLiveData <ValidationResultImpl> PasswordValidator  = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> FirstNameValidator = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> LastNameValidator  = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> UsernameValidator  = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> EmailValidator     = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> PasswordValidator  = new MutableLiveData <> ();
 
 
     public MutableLiveData <String> getRegisterResponse () {

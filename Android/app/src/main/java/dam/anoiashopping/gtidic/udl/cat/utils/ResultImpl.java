@@ -1,13 +1,13 @@
 package dam.anoiashopping.gtidic.udl.cat.utils;
 
-public class ValidationResultImpl {
+public class ResultImpl {
 
     //TODO
 
     private final int msgError;
     private final boolean isValid;
 
-    public ValidationResultImpl (int msgError, boolean isValid) {
+    public ResultImpl(int msgError, boolean isValid) {
         this.msgError = msgError;
         this.isValid  = isValid;
     }

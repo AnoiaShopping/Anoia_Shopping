@@ -4,7 +4,7 @@ import dam.anoiashopping.gtidic.udl.cat.R;
 
 public class Validation {
 
-    public static ValidationResultImpl checkFirstName (String FirstName) {
+    public static ResultImpl checkFirstName (String FirstName) {
 
         boolean isValid = true;
         int msg_code = 0;
@@ -24,10 +24,10 @@ public class Validation {
 
         }
 
-        return new ValidationResultImpl (msg_code, isValid);
+        return new ResultImpl(msg_code, isValid);
     }
 
-    public static ValidationResultImpl checkLastName (String LastName) {
+    public static ResultImpl checkLastName (String LastName) {
 
         boolean isValid = true;
         int msg_code = 0;
@@ -47,10 +47,10 @@ public class Validation {
 
         }
 
-        return new ValidationResultImpl (msg_code, isValid);
+        return new ResultImpl(msg_code, isValid);
     }
 
-    public static ValidationResultImpl checkUsername (String Username) {
+    public static ResultImpl checkUsername (String Username) {
 
         boolean isValid = true;
         int msg_code = 0;
@@ -70,10 +70,10 @@ public class Validation {
 
         }
 
-        return new ValidationResultImpl (msg_code, isValid);
+        return new ResultImpl(msg_code, isValid);
     }
 
-    public static ValidationResultImpl checkEmail (String Email) {
+    public static ResultImpl checkEmail (String Email) {
 
         boolean isValid = true;
         int msg_code = 0;
@@ -93,10 +93,10 @@ public class Validation {
 
         }
 
-        return new ValidationResultImpl (msg_code, isValid);
+        return new ResultImpl(msg_code, isValid);
     }
 
-    public static ValidationResultImpl checkPasswords (String Password, String Password2) {
+    public static ResultImpl checkPasswords (String Password, String Password2) {
 
         boolean isValid = true;
         int msg_code = 0;
@@ -122,10 +122,10 @@ public class Validation {
 
         }
 
-        return new ValidationResultImpl (msg_code, isValid);
+        return new ResultImpl(msg_code, isValid);
     }
 
-    public static ValidationResultImpl checkPassword (String Password) {
+    public static ResultImpl checkPassword (String Password) {
 
         boolean isValid = true;
         int msg_code = 0;
@@ -146,7 +146,7 @@ public class Validation {
 
         }
 
-        return new ValidationResultImpl (msg_code, isValid);
+        return new ResultImpl(msg_code, isValid);
     }
 
 }
