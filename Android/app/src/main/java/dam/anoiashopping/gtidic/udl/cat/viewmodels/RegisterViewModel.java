@@ -1,23 +1,16 @@
 package dam.anoiashopping.gtidic.udl.cat.viewmodels;
 
-import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
-import android.widget.CheckBox;
-import android.widget.Checkable;
 
 import androidx.annotation.RequiresApi;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
-import dam.anoiashopping.gtidic.udl.cat.utils.Utils;
 import dam.anoiashopping.gtidic.udl.cat.utils.Validation;
 import dam.anoiashopping.gtidic.udl.cat.utils.ValidationResultImpl;
-import dam.anoiashopping.gtidic.udl.cat.views.RegisterActivity;
-import dam.anoiashopping.gtidic.udl.cat.views.RegisterConfirmationActivity;
 
 public class RegisterViewModel extends ViewModel {
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -9,132 +10,138 @@
             type="dam.anoiashopping.gtidic.udl.cat.viewmodels.RegisterViewModel" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:tools="http://schemas.android.com/tools"
+    <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.RegisterActivity">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/t_Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/singInTop"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.100000024" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".views.RegisterActivity">
 
-    <EditText
-        android:id="@+id/i_FirstName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:ems="10"
-        android:hint="@string/firstName"
-        android:text="@={viewModel.FirstName}"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/t_Register"
-        android:importantForAutofill="no" />
+            <TextView
+                android:id="@+id/t_Register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:text="@string/singInTop"
+                android:textSize="30sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/i_LastName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/lastName"
-        android:text="@={viewModel.LastName}"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/i_FirstName"
-        app:layout_constraintStart_toStartOf="@+id/i_FirstName"
-        app:layout_constraintTop_toBottomOf="@+id/i_FirstName"
-        android:importantForAutofill="no" />
+            <EditText
+                android:id="@+id/i_FirstName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:ems="10"
+                android:hint="@string/firstName"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.FirstName}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/t_Register" />
 
-    <EditText
-        android:id="@+id/i_UserName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/username"
-        android:text="@={viewModel.Username}"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/i_LastName"
-        app:layout_constraintStart_toStartOf="@+id/i_LastName"
-        app:layout_constraintTop_toBottomOf="@+id/i_LastName"
-        android:importantForAutofill="no" />
+            <EditText
+                android:id="@+id/i_LastName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/lastName"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.LastName}"
+                app:layout_constraintEnd_toEndOf="@+id/i_FirstName"
+                app:layout_constraintStart_toStartOf="@+id/i_FirstName"
+                app:layout_constraintTop_toBottomOf="@+id/i_FirstName" />
 
-    <EditText
-        android:id="@+id/i_Email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:text="@={viewModel.Email}"
-        android:importantForAutofill="no"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/i_UserName"
-        app:layout_constraintStart_toStartOf="@+id/i_UserName"
-        app:layout_constraintTop_toBottomOf="@+id/i_UserName" />
+            <EditText
+                android:id="@+id/i_UserName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/username"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.Username}"
+                app:layout_constraintEnd_toEndOf="@+id/i_LastName"
+                app:layout_constraintStart_toStartOf="@+id/i_LastName"
+                app:layout_constraintTop_toBottomOf="@+id/i_LastName" />
 
-    <EditText
-        android:id="@+id/i_Password1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/password"
-        android:text="@={viewModel.Password}"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/i_Email"
-        app:layout_constraintStart_toStartOf="@+id/i_Email"
-        app:layout_constraintTop_toBottomOf="@+id/i_Email"
-        android:importantForAutofill="no" />
+            <EditText
+                android:id="@+id/i_Email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/email"
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.Email}"
+                app:layout_constraintEnd_toEndOf="@+id/i_UserName"
+                app:layout_constraintStart_toStartOf="@+id/i_UserName"
+                app:layout_constraintTop_toBottomOf="@+id/i_UserName" />
 
-    <EditText
-        android:id="@+id/i_Password2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="@string/passwordRepeat"
-        android:text="@={viewModel.Password2}"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/i_Password1"
-        app:layout_constraintStart_toStartOf="@+id/i_Password1"
-        app:layout_constraintTop_toBottomOf="@+id/i_Password1"
-        android:importantForAutofill="no" />
+            <EditText
+                android:id="@+id/i_Password1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/password"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:text="@={viewModel.Password}"
+                app:layout_constraintEnd_toEndOf="@+id/i_Email"
+                app:layout_constraintStart_toStartOf="@+id/i_Email"
+                app:layout_constraintTop_toBottomOf="@+id/i_Email" />
 
-    <CheckBox
-        android:id="@+id/c_AcceptConditions"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/conditions"
-        app:layout_constraintEnd_toEndOf="@+id/i_Password2"
-        app:layout_constraintStart_toStartOf="@+id/i_Password2"
-        app:layout_constraintTop_toBottomOf="@+id/i_Password2" />
+            <EditText
+                android:id="@+id/i_Password2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="@string/passwordRepeat"
+                android:importantForAutofill="no"
+                android:inputType="textPassword"
+                android:text="@={viewModel.Password2}"
+                app:layout_constraintEnd_toEndOf="@+id/i_Password1"
+                app:layout_constraintStart_toStartOf="@+id/i_Password1"
+                app:layout_constraintTop_toBottomOf="@+id/i_Password1" />
 
-    <Button
-        android:id="@+id/b_registrarse"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/singInButton"
-        android:onClick="@{() -> viewModel.onRegister()}"
-        app:layout_constraintEnd_toEndOf="@+id/c_AcceptConditions"
-        app:layout_constraintStart_toStartOf="@+id/c_AcceptConditions"
-        app:layout_constraintTop_toBottomOf="@+id/c_AcceptConditions" />
+            <CheckBox
+                android:id="@+id/c_AcceptConditions"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/conditions"
+                app:layout_constraintEnd_toEndOf="@+id/i_Password2"
+                app:layout_constraintStart_toStartOf="@+id/i_Password2"
+                app:layout_constraintTop_toBottomOf="@+id/i_Password2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/b_registrarse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="64dp"
+                android:onClick="@{() -> viewModel.onRegister()}"
+                android:text="@string/singInButton"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/c_AcceptConditions"
+                app:layout_constraintStart_toStartOf="@+id/c_AcceptConditions"
+                app:layout_constraintTop_toBottomOf="@+id/c_AcceptConditions" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

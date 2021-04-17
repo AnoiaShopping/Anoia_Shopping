@@ -1,14 +1,11 @@
 package dam.anoiashopping.gtidic.udl.cat.services;
 
-import org.json.JSONObject;
-
 import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.models.Token;
 import dam.anoiashopping.gtidic.udl.cat.network.RetrofitClientInstance;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
-import retrofit2.http.POST;
 
 public class AccountServiceImpl implements AccountServiceI {
 

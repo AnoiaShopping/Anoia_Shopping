@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/settings_s"
-        android:title="Opcions"
+        android:title="Editar perfil"
         app:actionLayout="@layout/switch_item" />
     <item
         android:id="@+id/logout_s"

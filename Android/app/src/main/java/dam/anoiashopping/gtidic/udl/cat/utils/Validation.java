@@ -1,7 +1,5 @@
 package dam.anoiashopping.gtidic.udl.cat.utils;
 
-import java.util.regex.Pattern;
-
 import dam.anoiashopping.gtidic.udl.cat.R;
 
 public class Validation {

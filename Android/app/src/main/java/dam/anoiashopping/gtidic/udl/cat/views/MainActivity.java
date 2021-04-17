@@ -10,13 +10,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.json.JSONException;
-
 import dam.anoiashopping.gtidic.udl.cat.R;
-import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityLoginBinding;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityMainBinding;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
-import dam.anoiashopping.gtidic.udl.cat.viewmodels.LoginViewModel;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {

@@ -11,9 +11,7 @@ import androidx.lifecycle.ViewModel;
 import java.nio.charset.StandardCharsets;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
-import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
-import dam.anoiashopping.gtidic.udl.cat.utils.Validation;
 import dam.anoiashopping.gtidic.udl.cat.utils.ValidationResultImpl;
 
 public class LoginViewModel extends ViewModel {
@@ -26,6 +24,8 @@ public class LoginViewModel extends ViewModel {
 
     public MutableLiveData <ValidationResultImpl> emailValidator = new MutableLiveData <> ();
     public MutableLiveData <ValidationResultImpl> passwordValidator = new MutableLiveData <> ();
+
+    public MutableLiveData <Boolean> registerClick = new MutableLiveData <> ();
 
     public LoginViewModel() {
         this.accountRepo = new AccountRepo();
@@ -76,5 +76,8 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
+    public void onRegisterClick () {
+        this.registerClick.setValue(true);
+    }
 
 }

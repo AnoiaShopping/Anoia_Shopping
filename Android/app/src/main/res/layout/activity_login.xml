@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -9,8 +10,8 @@
             type="dam.anoiashopping.gtidic.udl.cat.viewmodels.LoginViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.LoginActivity">
 
@@ -69,21 +70,7 @@
         app:layout_constraintStart_toStartOf="@+id/i_Password"
         app:layout_constraintTop_toBottomOf="@+id/i_Password" />
 
-    <TextView
-        android:id="@+id/b_Registre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:clickable="true"
-        android:linksClickable="true"
-        android:longClickable="true"
-        android:text="@string/singIn"
-        app:layout_constraintEnd_toEndOf="@+id/b_LogIn1"
-        app:layout_constraintStart_toStartOf="@+id/b_LogIn1"
-        app:layout_constraintTop_toBottomOf="@+id/b_LogIn1"
-        android:focusable="true" />
-
-    <TextView
+        <TextView
         android:id="@+id/b_LostPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -94,5 +81,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/i_Password"
         app:layout_constraintTop_toBottomOf="@+id/i_Password" />
+
+        <Button
+            android:id="@+id/b_registre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/singInButton"
+            android:onClick="@{() -> viewModel.onRegisterClick()}"
+            app:layout_constraintEnd_toEndOf="@+id/b_LogIn1"
+            app:layout_constraintStart_toStartOf="@+id/b_LogIn1"
+            app:layout_constraintTop_toBottomOf="@+id/b_LogIn1" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

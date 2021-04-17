@@ -7,8 +7,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
@@ -19,7 +17,6 @@ import dam.anoiashopping.gtidic.udl.cat.viewmodels.LoginViewModel;
 public class LoginActivity extends AppCompatActivity {
 
     private final String TAG = "LoginActivity";
-    private TextView register;
     public LoginViewModel loginViewModel;
 
     @Override
@@ -37,9 +34,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        register = findViewById(R.id.b_Registre);
-        register.setOnClickListener(v -> startActivity (new Intent (LoginActivity.this, RegisterActivity.class)));
-
         initView();
     }
 
@@ -50,22 +44,19 @@ public class LoginActivity extends AppCompatActivity {
         activityLoginBinding.setLifecycleOwner (this);
         activityLoginBinding.setViewModel (loginViewModel);
 
+        loginViewModel.registerClick.observe(this, s -> {
+            startActivity (new Intent (LoginActivity.this, RegisterActivity.class));
+        });
+
         loginViewModel.getLoginResponse().observe(this, s -> {
-
             if (s) {
-
                 Log.d (TAG, "Login correcte");
                 Toast.makeText(getApplicationContext(), R.string.OkLogIn, Toast.LENGTH_SHORT).show();
                 startActivity (new Intent (LoginActivity.this, MainActivity.class));
-
             } else {
-
                 Log.d (TAG, "Login incorrecte");
                 Toast.makeText(getApplicationContext(), R.string.FailLogIn, Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
-
 }

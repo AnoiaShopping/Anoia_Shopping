@@ -4,8 +4,6 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
-import org.json.JSONObject;
-
 import java.io.IOException;
 
 import dam.anoiashopping.gtidic.udl.cat.models.Account;
