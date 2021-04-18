@@ -19,7 +19,8 @@ import retrofit2.Response;
 
 public class AccountRepo {
 
-    //TODO: implementar missatges d'error
+    // TODO: implementar missatges d'error
+    // TODO: Canviar a un missatge d'avís al usuari
 
     private final String TAG = "AccountRepo";
 
@@ -103,12 +104,10 @@ public class AccountRepo {
 
                 if (code == 200) {
 
-                    account = response.body(); // TODO: Error, falla el get
-
-                    Log.d (TAG, "Response: " + response.body().getEmail());
-                    Log.d (TAG, "Account: " + account.getEmail());
-
+                    account = response.body();
                     mResponseGetAccount.setValue (new ResultImpl (0, true));
+
+                    Log.d(TAG,  "getAccount() -> Usuari baixat correctament.");
 
                 } else {
 
@@ -210,7 +209,6 @@ public class AccountRepo {
                     PreferencesProvider.providePreferences().edit().remove("token").apply();
 
                     mResponseDeleteToken.setValue (new ResultImpl(-1, true));
-                    // TODO: Canviar a un missatge d'avís al usuari
 
                 } else {
 

@@ -37,6 +37,7 @@ public class ConfigurationViewModel extends ViewModel {
     }
 
     public void setAccount () {
+
         Account account = this.accountRepo.getAccount();
 
         Username.setValue  (account.getUsername());

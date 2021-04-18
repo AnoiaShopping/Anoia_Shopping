@@ -23,7 +23,8 @@ public interface AccountServiceI {
     @POST("/account/delete_token")
     Call <ResponseBody> delete_token (@Header("Authorization") String token, @Body Token bodyToken);
 
-    //@Multipart //TODO : Afegir uploadImage (Utilitzar @Multipart)
+    // TODO : Afegir uploadImage (Utilitzar @Multipart)
+    //@Multipart
     //@POST("/account/profile/update_profile_image")
     //Call <ResponseBody> uploade_image ();
 
@@ -32,6 +33,7 @@ public interface AccountServiceI {
     @GET("/account/profile")
     Call <Account> get_account (@Header("Authorization") String token);
 
+    // TODO: Acabar de fer la implementació
     @GET("/users/show/{username}")
     Call <Account> show_account (@Header("Authorization") String token);
 
