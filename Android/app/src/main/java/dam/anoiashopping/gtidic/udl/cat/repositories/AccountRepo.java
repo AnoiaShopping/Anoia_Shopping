@@ -45,7 +45,7 @@ public class AccountRepo {
     }
 
     public Account getAccount() {
-        return account;
+        return this.account;
     }
 
     public MutableLiveData <ResultImpl> getmResponseCreateToken() {
@@ -103,7 +103,10 @@ public class AccountRepo {
 
                 if (code == 200) {
 
-                    //account  = call; // TODO: Error, falla el get
+                    account = response.body(); // TODO: Error, falla el get
+
+                    Log.d (TAG, "Response: " + response.body().getEmail());
+                    Log.d (TAG, "Account: " + account.getEmail());
 
                     mResponseGetAccount.setValue (new ResultImpl (0, true));
 
@@ -123,7 +126,7 @@ public class AccountRepo {
                 String error_msg = "Error: " + t.getMessage();
                 Log.d(TAG,  "getAccount() onFailure() -> ha rebut el missatge:  " + error_msg);
 
-                mResponseCreateToken.setValue (new ResultImpl(0, false));
+                mResponseGetAccount.setValue (new ResultImpl(0, false));
 
             }
         });

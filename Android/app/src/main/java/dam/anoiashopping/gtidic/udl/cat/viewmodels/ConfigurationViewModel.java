@@ -1,11 +1,15 @@
 package dam.anoiashopping.gtidic.udl.cat.viewmodels;
 
+import android.util.Log;
+
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
+import dam.anoiashopping.gtidic.udl.cat.utils.ResultImpl;
 
 public class ConfigurationViewModel extends ViewModel {
 
@@ -18,6 +22,10 @@ public class ConfigurationViewModel extends ViewModel {
     public MutableLiveData <String> Email     = new MutableLiveData <> ();
     public MutableLiveData <String> Password  = new MutableLiveData <> ();
 
+    public MutableLiveData <ResultImpl> getAccountResponse () {
+        return this.accountRepo.getmResponseGetAccount();
+    }
+
     public ConfigurationViewModel () {
         this.accountRepo = new AccountRepo();
     }
@@ -26,16 +34,17 @@ public class ConfigurationViewModel extends ViewModel {
 
         this.accountRepo.getAccount(PreferencesProvider.providePreferences().getString("token", ""));
 
-        if (this.accountRepo.getmResponseGetAccount().getValue().isValid()) {
-            Account account = this.accountRepo.getAccount();
+    }
 
-            this.Username.setValue(account.getUsername());
-            this.FirstName.setValue(account.getFirstname());
-            this.LastName.setValue(account.getLastname());
-            this.Email.setValue(account.getEmail());
-            this.Password.setValue(account.getPassword());
-        } else {
-            // TODO
-        }
+    public void setAccount () {
+        Account account = this.accountRepo.getAccount();
+
+        Username.setValue  (account.getUsername());
+        FirstName.setValue (account.getFirstname());
+        LastName.setValue  (account.getLastname());
+        Email.setValue     (account.getEmail());
+        Password.setValue  (account.getPassword());
+
+        Log.d (TAG, "Password: " + Password.getValue());
     }
 }

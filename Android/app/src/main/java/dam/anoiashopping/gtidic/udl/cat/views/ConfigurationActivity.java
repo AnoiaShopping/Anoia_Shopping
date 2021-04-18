@@ -30,5 +30,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         activityConfigurationBinding.setViewModel (configurationViewModel);
 
         configurationViewModel.getAccount();
+
+        configurationViewModel.getAccountResponse().observe(this, accountResponse -> {
+            if (accountResponse.isValid()) {
+                configurationViewModel.setAccount();
+            }
+        });
     }
 }
