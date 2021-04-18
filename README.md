@@ -4,6 +4,8 @@
   <img src=".pictures/A2.jpg" width="300">
 </p>
 
+Anoia Shopping és un projecte creat per l'Abel, l'Héctor, la Clara i el Joan, quatre estudiants de 2n Curs al Grau en Tècniques d'Interacció Digital i Computació al Campus d'Igualada de la Universitat de Lleida.
+
 ## Taula de Continguts
 
 - [Integrants](#integrants)
@@ -14,7 +16,7 @@
 
 **[Abel Esteban Ferrer](https://github.com/abeelef)** -> Responsable de l'assignatura d'Especificació i Anàlisi de Sistemes Interactius
 
-**[Héctor Flecha Tamarit](https://github.com/Soc-Un-Zombi)** -> Responsable de l'assignatura d'Innovació a les TIC
+**[Héctor Flecha Tamarit](https://github.com/HFlecha86)** -> Responsable de l'assignatura d'Innovació a les TIC
 
 **[Clara Jiménez Sánchez](https://github.com/clarajsanchez)** -> Responsable de l'assignatura d'experiència d'Usuari
 
