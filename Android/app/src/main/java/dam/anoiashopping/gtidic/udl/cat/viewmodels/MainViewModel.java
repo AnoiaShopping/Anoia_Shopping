@@ -22,14 +22,14 @@ public class MainViewModel extends ViewModel {
         this.accountRepo = new AccountRepo ();
     }
 
-    public void delete_token (String s) {
+    public void delete_token (String token) {
 
-        Token token = new Token();
-        token.setToken(s);
+        Token tokenBody = new Token();
+        tokenBody.setToken(token);
 
-        Log.d(TAG, "Eliminant token: " + s);
+        Log.d(TAG, "Eliminant token: " + token);
 
-        this.accountRepo.deleteTokenUser(s, token);
+        this.accountRepo.deleteTokenUser(token, tokenBody);
 
     }
 }

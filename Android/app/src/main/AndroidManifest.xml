@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android"
         tools:targetApi="n">
-        <activity android:name=".views.ConfigurationActivity"></activity>
+        <activity android:name=".views.SearchUserActivity"></activity>
+        <activity android:name=".views.ConfigurationActivity" />
         <activity android:name=".views.MainActivity" />
         <activity android:name=".views.RegisterConfirmationActivity" />
         <activity

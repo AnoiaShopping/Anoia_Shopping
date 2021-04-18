@@ -92,8 +92,8 @@ public class AccountRepo {
 
     }
 
-    public void getAccount (String s) {
-        accountService.get_account(s).enqueue(new Callback <Account> () {
+    public void getAccount (String token) {
+        accountService.get_account(token).enqueue(new Callback <Account> () {
 
             @Override
             public void onResponse (Call <Account> call, Response<Account> response) {
@@ -103,7 +103,7 @@ public class AccountRepo {
 
                 if (code == 200) {
 
-                    account  = (Account) call; // TODO: Error, falla el get
+                    //account  = call; // TODO: Error, falla el get
 
                     mResponseGetAccount.setValue (new ResultImpl (0, true));
 
@@ -129,9 +129,9 @@ public class AccountRepo {
         });
     }
 
-    public void createTokenUser (String s) {
+    public void createTokenUser (String auth_token) {
 
-        accountService.create_token(s).enqueue(new Callback <ResponseBody> () {
+        accountService.create_token(auth_token).enqueue(new Callback <ResponseBody> () {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
 
@@ -181,9 +181,9 @@ public class AccountRepo {
         });
     }
 
-    public void deleteTokenUser (String s, Token token) {
+    public void deleteTokenUser (String token, Token tokenBody) {
 
-        accountService.delete_token(s, token).enqueue(new Callback <ResponseBody> () {
+        accountService.delete_token(token, tokenBody).enqueue(new Callback <ResponseBody> () {
 
             @Override
             public void onResponse (Call<ResponseBody> call, Response<ResponseBody> response) {

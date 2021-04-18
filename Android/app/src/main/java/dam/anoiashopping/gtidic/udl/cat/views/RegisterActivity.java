@@ -67,13 +67,15 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        registerViewModel.getRegisterResponse().observe(this, s -> {
+        registerViewModel.getRegisterResponse().observe(this, registerResponse -> {
 
-            if (s.isValid()) {
+            if (registerResponse.isValid()) {
                 startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
             }
         });
 
+
+        // TODO: Canviar a MutableLiveData
         Accept_Terms_conditions = findViewById (R.id.c_AcceptConditions);
         Accept_Terms_conditions.setOnCheckedChangeListener((buttonView, isChecked) -> {
             eula_dialog.show(R.id.c_AcceptConditions);

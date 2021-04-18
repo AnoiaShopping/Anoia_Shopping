@@ -7,22 +7,32 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 
 public interface AccountServiceI {
 
+    // POST CALLS
+
     @POST("/users/register")
     Call <ResponseBody> register (@Body Account account);
 
-    @GET("/account/profile")
-    Call <Account> get_account (@Header("Authorization") String s);
-
     @POST("/account/create_token")
-    Call <ResponseBody> create_token (@Header ("Authorization") String s);
+    Call <ResponseBody> create_token (@Header ("Authorization") String auth_token);
 
     @POST("/account/delete_token")
-    Call <ResponseBody> delete_token (@Header("Authorization") String s, @Body Token token);
+    Call <ResponseBody> delete_token (@Header("Authorization") String token, @Body Token bodyToken);
 
-    //TODO : Afegir uploadImage (Utilitzar @Multipart)
+    //@Multipart //TODO : Afegir uploadImage (Utilitzar @Multipart)
+    //@POST("/account/profile/update_profile_image")
+    //Call <ResponseBody> uploade_image ();
+
+    // GET CALLS
+
+    @GET("/account/profile")
+    Call <Account> get_account (@Header("Authorization") String token);
+
+    @GET("/users/show/{username}")
+    Call <Account> show_account (@Header("Authorization") String token);
 
 }

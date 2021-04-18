@@ -9,25 +9,34 @@ import retrofit2.Retrofit;
 
 public class AccountServiceImpl implements AccountServiceI {
 
-    private Retrofit refrotit = RetrofitClientInstance.getRetrofitInstance();
+    private Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
+
+    // POST CALLS
 
     @Override
     public Call<ResponseBody> register(Account account) {
-        return refrotit.create(AccountServiceI.class).register(account);
+        return retrofit.create(AccountServiceI.class).register(account);
     }
 
     @Override
-    public Call <Account> get_account (String s) {
-        return refrotit.create(AccountServiceI.class).get_account(s);
+    public Call<ResponseBody> create_token(String auth_token) {
+        return retrofit.create(AccountServiceI.class).create_token(auth_token);
     }
 
     @Override
-    public Call<ResponseBody> create_token(String s) {
-        return refrotit.create(AccountServiceI.class).create_token(s);
+    public Call<ResponseBody> delete_token(String token, Token tokenBody) {
+        return retrofit.create(AccountServiceI.class).delete_token(token, tokenBody);
+    }
+
+    // GET CALLS
+
+    @Override
+    public Call <Account> get_account (String token) {
+        return retrofit.create(AccountServiceI.class).get_account(token);
     }
 
     @Override
-    public Call<ResponseBody> delete_token(String s, Token token) {
-        return refrotit.create(AccountServiceI.class).delete_token(s, token);
+    public Call <Account> show_account (String token) {
+        return retrofit.create(AccountServiceI.class).show_account(token);
     }
 }

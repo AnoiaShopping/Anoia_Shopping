@@ -2,6 +2,7 @@
     <string name="app_name">Anoia Shopping</string>
 
     <!-- Screen Strings -->
+
     <string name="logIn">Iniciar Sessió</string>
     <string name="logIn2">INICIAR SESSIÓ</string>
     <string name="OkLogIn">Inici Correcte, Benvingut</string>
@@ -24,7 +25,14 @@
     <string name="actualize">Actualitzar compte</string>
     <string name="delete">Eliminar compte</string>
 
+    <string name="logOut">Tancar Sessió</string>
+    <string name="editProfile">Editar perfil</string>
+
+    <string name="searchUser">Buscar Usuari</string>
+    <string name="search">Buscar</string>
+
     <!-- Error Strings-->
+
     <string name="emptyUsername">Escriu un Nom d\'Usuari</string>
     <string name="wrongUsername">Nom d\'Usuari incorrecte. El Nom d\'Usuari només pot tenir majúscules, minúscules, guions i guions baixos</string>
 

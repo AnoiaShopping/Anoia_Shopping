@@ -47,13 +47,11 @@ public class LoginActivity extends AppCompatActivity {
         activityLoginBinding.setLifecycleOwner (this);
         activityLoginBinding.setViewModel (loginViewModel);
 
-        loginViewModel.registerClick.observe(this, s -> {
-            startActivity (new Intent (LoginActivity.this, RegisterActivity.class));
-        });
+        loginViewModel.registerClick.observe(this, registerClick -> startActivity (new Intent (LoginActivity.this, RegisterActivity.class)));
 
-        loginViewModel.getLoginResponse().observe(this, s -> {
+        loginViewModel.getLoginResponse().observe(this, loginResponse -> {
 
-            if (s.isValid()) {
+            if (loginResponse.isValid()) {
 
                 Log.d (TAG, "Login correcte");
                 Toast.makeText(getApplicationContext(), R.string.OkLogIn, Toast.LENGTH_SHORT).show();
