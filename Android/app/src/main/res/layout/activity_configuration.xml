@@ -31,9 +31,11 @@
                 android:focusable="false"
                 android:inputType="textPersonName"
                 android:text="@={viewModel.Username}"
+                android:hint="@string/username"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/t_firstname"
@@ -44,9 +46,11 @@
                 android:focusable="false"
                 android:inputType="textPersonName"
                 android:text="@={viewModel.FirstName}"
+                android:hint="@string/firstName"
                 app:layout_constraintEnd_toEndOf="@+id/t_username"
                 app:layout_constraintStart_toStartOf="@+id/t_username"
-                app:layout_constraintTop_toBottomOf="@+id/t_username" />
+                app:layout_constraintTop_toBottomOf="@+id/t_username"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/t_lastname"
@@ -57,9 +61,11 @@
                 android:focusable="false"
                 android:inputType="textPersonName"
                 android:text="@={viewModel.LastName}"
+                android:hint="@string/lastName"
                 app:layout_constraintEnd_toEndOf="@+id/t_firstname"
                 app:layout_constraintStart_toStartOf="@+id/t_firstname"
-                app:layout_constraintTop_toBottomOf="@+id/t_firstname" />
+                app:layout_constraintTop_toBottomOf="@+id/t_firstname"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/t_email"
@@ -70,9 +76,11 @@
                 android:focusable="false"
                 android:inputType="textEmailAddress"
                 android:text="@={viewModel.Email}"
+                android:hint="@string/email"
                 app:layout_constraintEnd_toEndOf="@+id/t_lastname"
                 app:layout_constraintStart_toStartOf="@+id/t_lastname"
-                app:layout_constraintTop_toBottomOf="@+id/t_lastname" />
+                app:layout_constraintTop_toBottomOf="@+id/t_lastname"
+                android:autofillHints="" />
 
             <Button
                 android:id="@+id/b_actualize"
@@ -94,6 +102,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/b_actualize"
                 app:layout_constraintStart_toStartOf="@+id/b_actualize"
                 app:layout_constraintTop_toBottomOf="@+id/b_actualize" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
