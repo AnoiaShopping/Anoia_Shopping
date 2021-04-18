@@ -1,25 +1,24 @@
 # Anoia Shopping
 
+<p align="center">
+  <img src=".pictures/A2.jpg" width="300">
+</p>
+
 ## Taula de Continguts
 
+- [Integrants](#integrants)
+- [Estructura Principal](#estructura-principal)
+- [Eines](#eines)
 
 ## Integrants
 
-### Abel Esteban Ferrer
+**[Abel Esteban Ferrer](https://github.com/abeelef)** -> Responsable de l'assignatura d'Especificació i Anàlisi de Sistemes Interactius
 
-Responsable de l'assignatura d'Especificació i Anàlisi de Sistemes Interactius
+**[Héctor Flecha Tamarit](https://github.com/Soc-Un-Zombi)** -> Responsable de l'assignatura d'Innovació a les TIC
 
-### Héctor Flecha Tamarit
+**[Clara Jiménez Sánchez](https://github.com/clarajsanchez)** -> Responsable de l'assignatura d'experiència d'Usuari
 
-Responsable de l'assignatura d'Innovació a les TIC
-
-### Clara Jiménez Sánchez
-
-Responsable de l'assignatura d'experiència d'Usuari
-
-### Joan Francesc Pedro García
-
-Responsable de l'assignatura d'Aplicacions per a Dispositius Mòbils
+**[Joan Francesc Pedro García](https://github.com/Soc-Un-Zombi)** -> Responsable de l'assignatura d'Aplicacions per a Dispositius Mòbils
 
 
 ## Estructura principal
