@@ -5,13 +5,21 @@
 
 ## Integrants
 
-Abel Esteban Ferrer
+### Abel Esteban Ferrer
 
-Héctor Flecha Tamarit
+Responsable de l'assignatura d'Especificació i Anàlisi de Sistemes Interactius
 
-Clara Jiménez Sánchez
+### Héctor Flecha Tamarit
 
-Joan Francesc Pedro García
+Responsable de l'assignatura d'Innovació a les TIC
+
+### Clara Jiménez Sánchez
+
+Responsable de l'assignatura d'experiència d'Usuari
+
+### Joan Francesc Pedro García
+
+Responsable de l'assignatura d'Aplicacions per a Dispositius Mòbils
 
 
 ## Estructura principal
@@ -36,4 +44,4 @@ Informació del backend al seu README.
 
 **[Docker](https://www.docker.com/)**
 
-#ANOIA SHOPPING
+**[Openvpn](https://openvpn.net/)**
