@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="dam.anoiashopping.gtidic.udl.cat.viewmodels.ConfigurationViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@android:dimen/thumbnail_width"
+                android:layout_height="@android:dimen/thumbnail_height"
+                android:layout_marginTop="64dp"
+                android:contentDescription="TODO"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_playstore" />
+
+            <EditText
+                android:id="@+id/t_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:autofillHints=""
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/username"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.Username}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+            <EditText
+                android:id="@+id/t_firstname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.FirstName}"
+                android:hint="@string/firstName"
+                app:layout_constraintEnd_toEndOf="@+id/t_username"
+                app:layout_constraintStart_toStartOf="@+id/t_username"
+                app:layout_constraintTop_toBottomOf="@+id/t_username"
+                android:autofillHints="" />
+
+            <EditText
+                android:id="@+id/t_lastname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.LastName}"
+                android:hint="@string/lastName"
+                app:layout_constraintEnd_toEndOf="@+id/t_firstname"
+                app:layout_constraintStart_toStartOf="@+id/t_firstname"
+                app:layout_constraintTop_toBottomOf="@+id/t_firstname"
+                android:autofillHints="" />
+
+            <EditText
+                android:id="@+id/t_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ems="10"
+                android:focusable="false"
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.Email}"
+                android:hint="@string/email"
+                app:layout_constraintEnd_toEndOf="@+id/t_lastname"
+                app:layout_constraintStart_toStartOf="@+id/t_lastname"
+                app:layout_constraintTop_toBottomOf="@+id/t_lastname"
+                android:autofillHints="" />
+
+            <Button
+                android:id="@+id/b_actualize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/actualize"
+                app:layout_constraintEnd_toEndOf="@+id/t_email"
+                app:layout_constraintStart_toStartOf="@+id/t_email"
+                app:layout_constraintTop_toBottomOf="@+id/t_email" />
+
+            <Button
+                android:id="@+id/b_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/delete"
+                app:backgroundTint="#B81212"
+                app:layout_constraintEnd_toEndOf="@+id/b_actualize"
+                app:layout_constraintStart_toStartOf="@+id/b_actualize"
+                app:layout_constraintTop_toBottomOf="@+id/b_actualize" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

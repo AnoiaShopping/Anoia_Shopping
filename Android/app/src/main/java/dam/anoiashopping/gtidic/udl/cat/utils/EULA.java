@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
-import android.icu.text.UnicodeSetIterator;
 import android.os.Build;
 import android.text.Html;
 import android.widget.CheckBox;

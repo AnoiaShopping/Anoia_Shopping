@@ -15,6 +15,7 @@ import java.util.Locale;
 public class Utils {
     @RequiresApi(api = Build.VERSION_CODES.O)
     private static String getEncodedHash(String password, String salt, int iterations) {
+
         PKCS5S2ParametersGenerator gen = new PKCS5S2ParametersGenerator(new SHA256Digest());
         gen.init(password.getBytes(StandardCharsets.UTF_8), salt.getBytes(), iterations);
         byte[] dk = ((KeyParameter) gen.generateDerivedParameters(256)).getKey();
@@ -24,6 +25,7 @@ public class Utils {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String encode(String password, String salt, int iterations) {
+
         String algorithm = "pbkdf2-sha256";
         String hash = getEncodedHash(password, salt, iterations);
         hash = hash.substring(0,hash.length()-1);

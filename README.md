@@ -1,17 +1,26 @@
 # Anoia Shopping
 
+<p align="center">
+  <img src=".pictures/A2.jpg" width="300">
+</p>
+
+Anoia Shopping és un projecte creat per l'Abel, l'Héctor, la Clara i el Joan, quatre estudiants de 2n Curs al Grau en Tècniques d'Interacció Digital i Computació al Campus d'Igualada de la Universitat de Lleida.
+
 ## Taula de Continguts
 
+- [Integrants](#integrants)
+- [Estructura Principal](#estructura-principal)
+- [Eines](#eines)
 
 ## Integrants
 
-Abel Esteban Ferrer
+**[Abel Esteban Ferrer](https://github.com/abeelef)** -> Responsable de l'assignatura d'Especificació i Anàlisi de Sistemes Interactius
 
-Héctor Flecha Tamarit
+**[Héctor Flecha Tamarit](https://github.com/HFlecha86)** -> Responsable de l'assignatura d'Innovació a les TIC
 
-Clara Jiménez Sánchez
+**[Clara Jiménez Sánchez](https://github.com/clarajsanchez)** -> Responsable de l'assignatura d'experiència d'Usuari
 
-Joan Francesc Pedro García
+**[Joan Francesc Pedro García](https://github.com/Soc-Un-Zombi)** -> Responsable de l'assignatura d'Aplicacions per a Dispositius Mòbils
 
 
 ## Estructura principal
@@ -36,4 +45,4 @@ Informació del backend al seu README.
 
 **[Docker](https://www.docker.com/)**
 
-#ANOIA SHOPPING
+**[Openvpn](https://openvpn.net/)**

@@ -78,9 +78,21 @@ if __name__ == "__main__":
     user_2.set_password("r45tgt")
     user_2.tokens.append(UserToken(token="0a821f8ce58965eadc5ef884cf6f7ad99e0e7f58f429f584b2"))
 
+    user_3 = User(
+        created_at=datetime.datetime(2020, 1, 1, 0, 1, 1),
+        username="socunzombi",
+        email="jfpedrog2000@gmail.com",
+        name="Joan Francesc",
+        surname="Pedro Garcia",
+        birthdate=datetime.datetime(2000, 3, 17),
+        genere=GenereEnum.male,
+    )
+    user_3.set_password("Aa@123456")
+
     db_session.add(user_admin)
     db_session.add(user_1)
     db_session.add(user_2)
+    db_session.add(user_3)
 
 
 

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
@@ -18,11 +17,6 @@ public class RegisterConfirmationActivity extends AppCompatActivity {
 
         Button LogIn =  findViewById(R.id.b_LogIn2);
 
-        LogIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity (new Intent(RegisterConfirmationActivity.this, LoginActivity.class));
-            }
-        });
+        LogIn.setOnClickListener(v -> startActivity (new Intent(RegisterConfirmationActivity.this, LoginActivity.class)));
     }
 }

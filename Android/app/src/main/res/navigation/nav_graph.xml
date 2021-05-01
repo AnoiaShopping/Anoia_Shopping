@@ -9,4 +9,9 @@
         android:name="dam.anoiashopping.gtidic.udl.cat.views.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/splashScreenActivity"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.SplashScreenActivity"
+        android:label="activity_splash_screen"
+        tools:layout="@layout/activity_splash_screen" />
 </navigation>
