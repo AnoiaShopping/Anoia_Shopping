@@ -24,9 +24,9 @@ public interface AccountServiceI {
     Call <ResponseBody> delete_token (@Header("Authorization") String token, @Body Token bodyToken);
 
     // TODO : Afegir uploadImage (Utilitzar @Multipart)
-    //@Multipart
-    //@POST("/account/profile/update_profile_image")
-    //Call <ResponseBody> uploade_image ();
+    @Multipart
+    @POST("/account/profile/update_profile_image")
+    Call <ResponseBody> upload_image ();
 
     // GET CALLS
 
