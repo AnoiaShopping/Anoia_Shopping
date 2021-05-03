@@ -22,17 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        PreferencesProvider.init(this);
-
-        if (!PreferencesProvider.providePreferences().getString("token", "").equals("")) {
-
-            Log.d (TAG, "L'usuari ja té token: " + PreferencesProvider.providePreferences().getString("token", ""));
-            startActivity (new Intent (LoginActivity.this, MainActivity.class));
-
-        } else {
-            Log.d (TAG, "L'usuari no té token.");
-        }
-
         setTheme(R.style.Theme_Android);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
