@@ -37,4 +37,7 @@ public interface AccountServiceI {
     @GET("/users/show/{username}")
     Call <Account> show_account (@Header("Authorization") String token);
 
+    // TODO: Fer recuperació de contrassenya
+    
+
 }
