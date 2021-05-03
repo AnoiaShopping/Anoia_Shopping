@@ -3,6 +3,18 @@
 
     <!-- Screen Strings -->
 
+    <string-array name="tipusDeBotigues">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+
     <string name="logIn">Iniciar Sessió</string>
     <string name="logIn2">INICIAR SESSIÓ</string>
     <string name="OkLogIn">Inici Correcte, Benvingut</string>

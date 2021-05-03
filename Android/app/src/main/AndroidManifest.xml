@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android"
         tools:targetApi="n">
-        <activity android:name=".PerfilUsuariPerfilEditar" />
+        <activity android:name=".PerfilUsuariPerfilEditarActivity" />
         <activity android:name=".views.SearchUserActivity" />
         <activity android:name=".views.ConfigurationActivity" />
         <activity android:name=".views.MainActivity" />
