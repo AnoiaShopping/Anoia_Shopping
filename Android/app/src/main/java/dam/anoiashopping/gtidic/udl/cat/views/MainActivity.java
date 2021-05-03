@@ -18,6 +18,7 @@ import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String TAG = "MainActivity";
     MainViewModel mainViewModel;
 
     @Override
