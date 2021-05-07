@@ -16,44 +16,44 @@ public class RegisterViewModel extends ViewModel {
 
     private AccountRepo accountRepo;
     private final String TAG = "SignUpVM";
-
-    public MutableLiveData <String> Username  = new MutableLiveData <> ();
-    public MutableLiveData <String> FirstName = new MutableLiveData <> ();
-    public MutableLiveData <String> LastName  = new MutableLiveData <> ();
-    public MutableLiveData <String> Email     = new MutableLiveData <> ();
-    public MutableLiveData <String> Password  = new MutableLiveData <> ();
-    public MutableLiveData <String> Password2 = new MutableLiveData <> ();
+    
+    public MutableLiveData <String> username  = new MutableLiveData <> ();
+    public MutableLiveData <String> firstName = new MutableLiveData <> ();
+    public MutableLiveData <String> lastName  = new MutableLiveData <> ();
+    public MutableLiveData <String> email     = new MutableLiveData <> ();
+    public MutableLiveData <String> password  = new MutableLiveData <> ();
+    public MutableLiveData <String> password2 = new MutableLiveData <> ();
 
     public boolean EULA_Check = false;
 
-    public MutableLiveData <ResultImpl> FirstNameValidator = new MutableLiveData <> ();
-    public MutableLiveData <ResultImpl> LastNameValidator  = new MutableLiveData <> ();
-    public MutableLiveData <ResultImpl> UsernameValidator  = new MutableLiveData <> ();
-    public MutableLiveData <ResultImpl> EmailValidator     = new MutableLiveData <> ();
-    public MutableLiveData <ResultImpl> PasswordValidator  = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> usernameValidator  = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> firstNameValidator = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> lastNameValidator  = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> emailValidator     = new MutableLiveData <> ();
+    public MutableLiveData <ResultImpl> passwordValidator  = new MutableLiveData <> ();
 
 
     public MutableLiveData <ResultImpl> getRegisterResponse () {
         return this.accountRepo.getmResponseRegister();
     }
 
-    public RegisterViewModel() {
+    public RegisterViewModel () {
         this.accountRepo = new AccountRepo();
     }
 
     public boolean isFormValid () {
 
-        FirstNameValidator.setValue (Validation.checkFirstName (FirstName.getValue()));
-        LastNameValidator.setValue  (Validation.checkLastName  (LastName.getValue()));
-        UsernameValidator.setValue  (Validation.checkUsername  (Username.getValue()));
-        EmailValidator.setValue     (Validation.checkEmail     (Email.getValue()));
-        PasswordValidator.setValue  (Validation.checkPasswords (Password.getValue(), Password2.getValue()));
+        firstNameValidator.setValue (Validation.checkFirstName (firstName.getValue()));
+        lastNameValidator.setValue  (Validation.checkLastName  (lastName.getValue()));
+        usernameValidator.setValue  (Validation.checkUsername  (username.getValue()));
+        emailValidator.setValue     (Validation.checkEmail     (email.getValue()));
+        passwordValidator.setValue  (Validation.checkPasswords (password.getValue(), password2.getValue()));
 
 
 
-        return (FirstNameValidator.getValue().isValid() && LastNameValidator.getValue().isValid() &&
-                UsernameValidator.getValue().isValid()  && EmailValidator.getValue().isValid()    &&
-                PasswordValidator.getValue().isValid()) && EULA_Check;
+        return (firstNameValidator.getValue().isValid() && lastNameValidator.getValue().isValid() &&
+                usernameValidator.getValue().isValid()  && emailValidator.getValue().isValid()    &&
+                passwordValidator.getValue().isValid()) && EULA_Check;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -63,11 +63,11 @@ public class RegisterViewModel extends ViewModel {
 
             Account account = new Account ();
 
-            account.setUsername(Username.getValue());
-            account.setFirstname(FirstName.getValue());
-            account.setLastname(LastName.getValue());
-            account.setEmail(Email.getValue());
-            account.setPassword(Password.getValue());
+            account.setUsername  (username.getValue());
+            account.setFirstname (firstName.getValue());
+            account.setLastname  (lastName.getValue());
+            account.setEmail     (email.getValue());
+            account.setPassword  (password.getValue());
 
             this.accountRepo.registerAccount(account);
 
