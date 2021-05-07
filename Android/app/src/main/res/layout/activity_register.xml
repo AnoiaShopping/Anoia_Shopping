@@ -43,7 +43,7 @@
                 android:hint="@string/firstName"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:text="@={viewModel.FirstName}"
+                android:text="@={viewModel.firstName}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/t_Register" />
@@ -57,7 +57,7 @@
                 android:hint="@string/lastName"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:text="@={viewModel.LastName}"
+                android:text="@={viewModel.lastName}"
                 app:layout_constraintEnd_toEndOf="@+id/i_FirstName"
                 app:layout_constraintStart_toStartOf="@+id/i_FirstName"
                 app:layout_constraintTop_toBottomOf="@+id/i_FirstName" />
@@ -71,7 +71,7 @@
                 android:hint="@string/username"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:text="@={viewModel.Username}"
+                android:text="@={viewModel.username}"
                 app:layout_constraintEnd_toEndOf="@+id/i_LastName"
                 app:layout_constraintStart_toStartOf="@+id/i_LastName"
                 app:layout_constraintTop_toBottomOf="@+id/i_LastName" />
@@ -85,7 +85,7 @@
                 android:hint="@string/email"
                 android:importantForAutofill="no"
                 android:inputType="textEmailAddress"
-                android:text="@={viewModel.Email}"
+                android:text="@={viewModel.email}"
                 app:layout_constraintEnd_toEndOf="@+id/i_UserName"
                 app:layout_constraintStart_toStartOf="@+id/i_UserName"
                 app:layout_constraintTop_toBottomOf="@+id/i_UserName" />
@@ -99,7 +99,7 @@
                 android:hint="@string/password"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
-                android:text="@={viewModel.Password}"
+                android:text="@={viewModel.password}"
                 app:layout_constraintEnd_toEndOf="@+id/i_Email"
                 app:layout_constraintStart_toStartOf="@+id/i_Email"
                 app:layout_constraintTop_toBottomOf="@+id/i_Email" />
@@ -113,7 +113,7 @@
                 android:hint="@string/passwordRepeat"
                 android:importantForAutofill="no"
                 android:inputType="textPassword"
-                android:text="@={viewModel.Password2}"
+                android:text="@={viewModel.password2}"
                 app:layout_constraintEnd_toEndOf="@+id/i_Password1"
                 app:layout_constraintStart_toStartOf="@+id/i_Password1"
                 app:layout_constraintTop_toBottomOf="@+id/i_Password1" />

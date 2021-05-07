@@ -16,7 +16,7 @@ public class RegisterViewModel extends ViewModel {
 
     private AccountRepo accountRepo;
     private final String TAG = "SignUpVM";
-    
+
     public MutableLiveData <String> username  = new MutableLiveData <> ();
     public MutableLiveData <String> firstName = new MutableLiveData <> ();
     public MutableLiveData <String> lastName  = new MutableLiveData <> ();
@@ -31,6 +31,7 @@ public class RegisterViewModel extends ViewModel {
     public MutableLiveData <ResultImpl> lastNameValidator  = new MutableLiveData <> ();
     public MutableLiveData <ResultImpl> emailValidator     = new MutableLiveData <> ();
     public MutableLiveData <ResultImpl> passwordValidator  = new MutableLiveData <> ();
+    //public MutableLiveData <ResultImpl> isEULAAccepted     = new MutableLiveData <> ();
 
 
     public MutableLiveData <ResultImpl> getRegisterResponse () {
@@ -79,5 +80,8 @@ public class RegisterViewModel extends ViewModel {
         }
     }
 
+    public void onEULAClick () {
+
+    }
 
 }
