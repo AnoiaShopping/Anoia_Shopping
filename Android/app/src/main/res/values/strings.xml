@@ -22,6 +22,7 @@
     <string name="welcome">BENVINGUT!!<br />GRÀCIES PER UTILITZAR LA NOSTRA PLATAFORMA</string>
     <string name="settings">Configuració</string>
 
+    <string name="update">Canviar foto</string>
     <string name="actualize">Actualitzar compte</string>
     <string name="delete">Eliminar compte</string>
 
@@ -51,9 +52,15 @@
 
     <string name="noError">Camp Correcte</string>
 
+    <string name="textview1">TextView</string>
+    <string name="textview">TextView</string>
+    <string name="botiga_negoci">Botiga/Negoci</string>
+    <string name="consumidor">Consumidor</string>
+    <string name="todo">TODO</string>
 
     <!-- EULA: Terms and conditions -->
     <string name="accept">Accept</string>
+
     <string name="eula_string"> <![CDATA[
         <h2>End-User License Agreement (EULA) of <span class="app_name">Anoia Shopping</span></h2>
 
@@ -102,11 +109,6 @@
         <p>This EULA agreement, and any dispute arising out of or in connection with this EULA agreement, shall be governed by and construed in accordance with the laws of <span class="country">es</span>.</p>
         ]]>
     </string>
-    <string name="textview1">TextView</string>
-    <string name="textview">TextView</string>
-    <string name="botiga_negoci">Botiga/Negoci</string>
-    <string name="consumidor">Consumidor</string>
-    <string name="todo">TODO</string>
 
 
 </resources>
