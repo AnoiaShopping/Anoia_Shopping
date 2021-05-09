@@ -25,21 +25,20 @@ public class PerfilUsuariPerfilEditarActivity extends AppCompatActivity {
         checkBoxConsumidor = findViewById(R.id.checkBoxConsumidor);
         buttonConfigurarPerfil = findViewById(R.id.bt_ActivarOpcionsPerfil);
         //INICIEM TOT EN DISABLED
-
         ////////////////////////////////////////////////////////////////////////////
         Spinner spinner = (Spinner) findViewById(R.id.spinnerBotigues);
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        String tipusBotiga = "";
+
+        //Creem l'adaptador que necessita el spinner
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipusDeBotigues, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
+        //Especifiquem la llista amb la seguent linea
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
+        // Apliquem l'adaptador
         spinner.setAdapter(adapter);
-
         spinner.setEnabled(true);
-        AdapterView.OnItemSelectedListener prova = spinner.getOnItemSelectedListener();
-        checkBoxBotiguer.setOnClickListener(v -> {
-            System.out.println(prova);
 
+        checkBoxBotiguer.setOnClickListener(v -> {
+            agafarTipusNegoci();
         });
 
     //NO FUNCIONA LA PART D'ASSOBRE DEL CLICK LISTENER DEL CHECKBOX PER AGAFAR EL SPINNER DONAT
@@ -48,5 +47,8 @@ public class PerfilUsuariPerfilEditarActivity extends AppCompatActivity {
     });
 
     }
-
+    private void agafarTipusNegoci(){
+        String text;
+        System.out.println(text = ((Spinner) findViewById(R.id.spinnerBotigues)).getSelectedItem().toString());
+    }
 }

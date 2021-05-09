@@ -4,14 +4,10 @@
     <!-- Screen Strings -->
 
     <string-array name="tipusDeBotigues">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+        <item>Informatica</item>
+        <item>Alimentacio</item>
+        <item>Roba</item>
+        <item>Electrodomestics</item>
     </string-array>
 
 
