@@ -39,6 +39,7 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
@@ -59,5 +60,40 @@
             android:layout_height="wrap_content"
             android:text="@string/botiga_negoci" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/txtTipusBotiga"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tipus_de_botiga"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerBotigues"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.183"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/txtTipusBotiga2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/definicio_botiga"
+        app:layout_constraintBottom_toTopOf="@+id/editDefinicioBotiga"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.176"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerBotigues"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/editDefinicioBotiga"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerBotigues"
+        app:layout_constraintVertical_bias="0.29" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

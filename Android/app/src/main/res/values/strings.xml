@@ -115,6 +115,8 @@
     <string name="botiga_negoci">Botiga/Negoci</string>
     <string name="consumidor">Consumidor</string>
     <string name="todo">TODO</string>
+    <string name="tipus_de_botiga">TIPUS DE BOTIGA</string>
+    <string name="definicio_botiga">definicio_botiga</string>
 
 
 </resources>
