@@ -20,86 +20,74 @@
             tools:context=".views.ConfigurationActivity">
 
             <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="@android:dimen/thumbnail_width"
-                android:layout_height="@android:dimen/thumbnail_height"
+                android:id="@+id/i_profile"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:layout_marginTop="64dp"
                 android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_playstore" />
+                tools:srcCompat="@drawable/avataricon6" />
 
             <Button
                 android:id="@+id/b_update"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="32dp"
-                android:layout_marginRight="32dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/update"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/i_profile" />
 
-            <EditText
+            <TextView
                 android:id="@+id/t_username"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="32dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:focusable="false"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
                 android:hint="@string/username"
-                android:inputType="textPersonName"
-                android:text="@={viewModel.username}"
-                app:layout_constraintEnd_toEndOf="@+id/b_update"
-                app:layout_constraintStart_toStartOf="@+id/b_update"
+                android:text="@{viewModel.username}"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/b_update" />
 
-            <EditText
+            <TextView
                 android:id="@+id/t_firstname"
-                android:layout_width="0dp"
+                android:layout_width="379dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:focusable="false"
+                android:layout_marginTop="16dp"
                 android:hint="@string/firstName"
-                android:inputType="textPersonName"
-                android:text="@={viewModel.firstName}"
+                android:text="@{viewModel.firstName}"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/t_username"
                 app:layout_constraintStart_toStartOf="@+id/t_username"
                 app:layout_constraintTop_toBottomOf="@+id/t_username" />
 
-            <EditText
+            <TextView
                 android:id="@+id/t_lastname"
-                android:layout_width="0dp"
+                android:layout_width="379dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:focusable="false"
+                android:layout_marginTop="16dp"
                 android:hint="@string/lastName"
-                android:inputType="textPersonName"
-                android:text="@={viewModel.lastName}"
+                android:text="@{viewModel.lastName}"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/t_firstname"
                 app:layout_constraintStart_toStartOf="@+id/t_firstname"
                 app:layout_constraintTop_toBottomOf="@+id/t_firstname" />
 
-            <EditText
+            <TextView
                 android:id="@+id/t_email"
-                android:layout_width="0dp"
+                android:layout_width="379dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:focusable="false"
+                android:layout_marginTop="16dp"
                 android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:text="@={viewModel.email}"
+                android:text="@{viewModel.email}"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="@+id/t_lastname"
                 app:layout_constraintStart_toStartOf="@+id/t_lastname"
                 app:layout_constraintTop_toBottomOf="@+id/t_lastname" />
@@ -118,13 +106,13 @@
                 android:id="@+id/b_delete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/delete"
-                app:backgroundTint="#B81212"
+                android:textSize="12sp"
+                app:backgroundTint="@color/design_default_color_error"
                 app:layout_constraintEnd_toEndOf="@+id/b_actualize"
                 app:layout_constraintStart_toStartOf="@+id/b_actualize"
                 app:layout_constraintTop_toBottomOf="@+id/b_actualize" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>
