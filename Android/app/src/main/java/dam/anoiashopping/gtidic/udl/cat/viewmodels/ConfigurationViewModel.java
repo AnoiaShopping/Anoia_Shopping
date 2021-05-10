@@ -16,11 +16,10 @@ public class ConfigurationViewModel extends ViewModel {
     private AccountRepo accountRepo;
     private final String TAG = "ConfigurationVM";
 
-    public MutableLiveData <String> Username  = new MutableLiveData <> ();
-    public MutableLiveData <String> FirstName = new MutableLiveData <> ();
-    public MutableLiveData <String> LastName  = new MutableLiveData <> ();
-    public MutableLiveData <String> Email     = new MutableLiveData <> ();
-    public MutableLiveData <String> Password  = new MutableLiveData <> ();
+    public MutableLiveData <String> username  = new MutableLiveData <> ();
+    public MutableLiveData <String> firstName = new MutableLiveData <> ();
+    public MutableLiveData <String> lastName  = new MutableLiveData <> ();
+    public MutableLiveData <String> email     = new MutableLiveData <> ();
 
     public MutableLiveData <ResultImpl> getAccountResponse () {
         return this.accountRepo.getmResponseGetAccount();
@@ -40,12 +39,9 @@ public class ConfigurationViewModel extends ViewModel {
 
         Account account = this.accountRepo.getAccount();
 
-        Username.setValue  (account.getUsername());
-        FirstName.setValue (account.getFirstname());
-        LastName.setValue  (account.getLastname());
-        Email.setValue     (account.getEmail());
-        Password.setValue  (account.getPassword());
-
-        Log.d (TAG, "Password: " + Password.getValue());
+        username.setValue  (account.getUsername());
+        firstName.setValue (account.getFirstname());
+        lastName.setValue  (account.getLastname());
+        email.setValue     (account.getEmail());
     }
 }
