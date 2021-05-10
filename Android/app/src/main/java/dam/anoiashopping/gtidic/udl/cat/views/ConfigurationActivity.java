@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-import dam.anoiashopping.gtidic.udl.cat.PerfilUsuariPerfilEditarActivity;
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityConfigurationBinding;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.ConfigurationViewModel;
@@ -27,7 +26,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         botoPerfils = findViewById(R.id.b_actualize);
         botoPerfils.setOnClickListener(v -> {
-            startActivity(new Intent(ConfigurationActivity.this, PerfilUsuariPerfilEditarActivity.class));
+            startActivity(new Intent(ConfigurationActivity.this, UserEditActivity.class));
         });
 
     }

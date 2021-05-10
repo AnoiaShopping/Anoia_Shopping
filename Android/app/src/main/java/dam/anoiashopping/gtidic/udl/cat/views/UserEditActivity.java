@@ -1,19 +1,19 @@
-package dam.anoiashopping.gtidic.udl.cat;
+package dam.anoiashopping.gtidic.udl.cat.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class PerfilUsuariPerfilEditarActivity extends AppCompatActivity {
+import dam.anoiashopping.gtidic.udl.cat.R;
+
+public class UserEditActivity extends AppCompatActivity {
 
     private CheckBox checkBoxBotiguer;
     private CheckBox checkBoxConsumidor;
@@ -25,7 +25,7 @@ public class PerfilUsuariPerfilEditarActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil_usuari_perfil_editar);
+        setContentView(R.layout.activity_user_edit);
         checkBoxBotiguer = findViewById(R.id.checkBoxBotiguer);
         checkBoxConsumidor = findViewById(R.id.checkBoxConsumidor);
         buttonConfigurarPerfil = findViewById(R.id.bt_ActivarOpcionsPerfil);
