@@ -29,7 +29,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/avataricon6"
-                android:contentDescription="@to" />
+                android:contentDescription="@string/todo" />
 
             <Button
                 android:id="@+id/b_update"

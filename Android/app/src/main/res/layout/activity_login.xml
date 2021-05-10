@@ -12,14 +12,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.LoginActivity">
+        android:layout_height="match_parent"
+        tools:context=".views.LoginActivity">
 
         <ImageView
             android:id="@+id/i_Logo"
-            android:layout_width="@android:dimen/thumbnail_width"
-            android:layout_height="@android:dimen/thumbnail_height"
-            android:contentDescription="App Logotipo"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:contentDescription="@string/applogotipo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,70 +28,68 @@
             app:srcCompat="@drawable/as1" />
 
         <EditText
-            android:id="@+id/i_Username"
+            android:id="@+id/i_loginusername"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:autofillHints=""
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
             android:ems="10"
             android:hint="@string/username"
-            android:text="@={viewModel.email}"
             android:inputType="textPersonName"
+            android:text="@={viewModel.email}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/i_Logo" />
+            app:layout_constraintTop_toBottomOf="@+id/i_Logo"
+            android:importantForAutofill="no" />
 
         <EditText
-            android:id="@+id/i_Password"
+            android:id="@+id/i_loginpassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:ems="10"
             android:hint="@string/password"
-            android:text="@={viewModel.password}"
             android:inputType="textPassword"
-            app:layout_constraintEnd_toEndOf="@+id/i_Username"
-            app:layout_constraintStart_toStartOf="@+id/i_Username"
-            app:layout_constraintTop_toBottomOf="@+id/i_Username"
+            android:text="@={viewModel.password}"
+            app:layout_constraintEnd_toEndOf="@+id/i_loginusername"
+            app:layout_constraintStart_toStartOf="@+id/i_loginusername"
+            app:layout_constraintTop_toBottomOf="@+id/i_loginusername"
             android:importantForAutofill="no" />
 
         <Button
-            android:id="@+id/b_LogIn1"
+            android:id="@+id/b_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="70dp"
-            android:text="@string/logIn2"
+            android:layout_marginTop="16dp"
             android:onClick="@{() -> viewModel.onLogin()}"
-            app:layout_constraintEnd_toEndOf="@+id/i_Password"
-            app:layout_constraintStart_toStartOf="@+id/i_Password"
-            app:layout_constraintTop_toBottomOf="@+id/i_Password" />
+            android:text="@string/logIn2"
+            app:layout_constraintEnd_toEndOf="@+id/i_loginpassword"
+            app:layout_constraintStart_toStartOf="@+id/i_loginpassword"
+            app:layout_constraintTop_toBottomOf="@+id/i_loginpassword" />
 
-            <TextView
-            android:id="@+id/b_LostPassword"
+        <Button
+            android:id="@+id/b_registre"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:text="@string/forgotPassword"
-            app:layout_constraintEnd_toEndOf="@+id/i_Password"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/i_Password"
-            app:layout_constraintTop_toBottomOf="@+id/i_Password" />
+            android:layout_marginTop="16dp"
+            android:onClick="@{() -> viewModel.onRegisterClick()}"
+            android:text="@string/singInButton"
+            app:layout_constraintEnd_toEndOf="@+id/b_login"
+            app:layout_constraintStart_toStartOf="@+id/b_login"
+            app:layout_constraintTop_toBottomOf="@+id/b_login" />
 
-            <Button
-                android:id="@+id/b_registre"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/singInButton"
-                android:onClick="@{() -> viewModel.onRegisterClick()}"
-                app:layout_constraintEnd_toEndOf="@+id/b_LogIn1"
-                app:layout_constraintStart_toStartOf="@+id/b_LogIn1"
-                app:layout_constraintTop_toBottomOf="@+id/b_LogIn1" />
+        <TextView
+            android:id="@+id/b_lostpassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/forgotPassword"
+            app:layout_constraintEnd_toEndOf="@+id/b_registre"
+            app:layout_constraintStart_toStartOf="@+id/b_registre"
+            app:layout_constraintTop_toBottomOf="@+id/b_registre" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
