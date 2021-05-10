@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
+import dam.anoiashopping.gtidic.udl.cat.PerfilUsuariPerfilEditarActivity;
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityConfigurationBinding;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.ConfigurationViewModel;
@@ -13,6 +16,7 @@ import dam.anoiashopping.gtidic.udl.cat.viewmodels.ConfigurationViewModel;
 public class ConfigurationActivity extends AppCompatActivity {
 
     ConfigurationViewModel configurationViewModel;
+    private Button botoPerfils;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +24,12 @@ public class ConfigurationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
         initView();
+
+        botoPerfils = findViewById(R.id.b_actualize);
+        botoPerfils.setOnClickListener(v -> {
+            startActivity(new Intent(ConfigurationActivity.this, PerfilUsuariPerfilEditarActivity.class));
+        });
+
     }
 
     private void initView () {

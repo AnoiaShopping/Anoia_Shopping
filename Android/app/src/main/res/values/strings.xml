@@ -3,6 +3,14 @@
 
     <!-- Screen Strings -->
 
+    <string-array name="tipusDeBotigues">
+        <item>Informatica</item>
+        <item>Alimentacio</item>
+        <item>Roba</item>
+        <item>Electrodomestics</item>
+    </string-array>
+
+
     <string name="logIn">Iniciar Sessió</string>
     <string name="logIn2">INICIAR SESSIÓ</string>
     <string name="OkLogIn">Inici Correcte, Benvingut</string>
