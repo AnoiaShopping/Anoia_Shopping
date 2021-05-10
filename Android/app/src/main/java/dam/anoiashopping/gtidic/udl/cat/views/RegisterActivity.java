@@ -37,38 +37,37 @@ public class RegisterActivity extends AppCompatActivity {
         activityRegisterBinding.setLifecycleOwner (this);
         activityRegisterBinding.setViewModel (registerViewModel);
 
-        registerViewModel.FirstNameValidator.observe(this, validationResult -> {
+        registerViewModel.firstNameValidator.observe(this, validationResult -> {
             if (!validationResult.isValid()) {
                 activityRegisterBinding.iFirstName.setError(getString(validationResult.getMsgError()));
             }
         });
 
-        registerViewModel.LastNameValidator.observe(this, validationResult -> {
+        registerViewModel.lastNameValidator.observe(this, validationResult -> {
             if (!validationResult.isValid()) {
                 activityRegisterBinding.iLastName.setError(getString(validationResult.getMsgError()));
             }
         });
 
-        registerViewModel.UsernameValidator.observe(this, validationResult -> {
+        registerViewModel.usernameValidator.observe(this, validationResult -> {
             if (!validationResult.isValid()) {
                 activityRegisterBinding.iUserName.setError(getString(validationResult.getMsgError()));
             }
         });
 
-        registerViewModel.EmailValidator.observe(this, validationResult -> {
+        registerViewModel.emailValidator.observe(this, validationResult -> {
             if (!validationResult.isValid()) {
                 activityRegisterBinding.iEmail.setError(getString(validationResult.getMsgError()));
             }
         });
 
-        registerViewModel.PasswordValidator.observe(this, validationResult -> {
+        registerViewModel.passwordValidator.observe(this, validationResult -> {
             if (!validationResult.isValid()) {
                 activityRegisterBinding.iPassword1.setError(getString(validationResult.getMsgError()));
             }
         });
 
         registerViewModel.getRegisterResponse().observe(this, registerResponse -> {
-
             if (registerResponse.isValid()) {
                 startActivity(new Intent(RegisterActivity.this, RegisterConfirmationActivity.class));
             }

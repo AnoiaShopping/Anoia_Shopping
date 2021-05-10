@@ -2,6 +2,7 @@ package dam.anoiashopping.gtidic.udl.cat;
 
 import android.app.Application;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
@@ -14,6 +15,7 @@ public class App extends Application {
 
     @Override
     public void onCreate() {
+
         super.onCreate();
         PreferencesProvider.init(this);
 

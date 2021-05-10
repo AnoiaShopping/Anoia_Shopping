@@ -3,6 +3,7 @@ package dam.anoiashopping.gtidic.udl.cat.services;
 import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.models.Token;
 import dam.anoiashopping.gtidic.udl.cat.network.RetrofitClientInstance;
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -29,8 +30,8 @@ public class AccountServiceImpl implements AccountServiceI {
     }
 
     @Override
-    public Call<ResponseBody> upload_image() {
-        return  retrofit.create(AccountServiceI.class).upload_image();
+    public Call<ResponseBody> upload_image(MultipartBody.Part image, String token) {
+        return  retrofit.create(AccountServiceI.class).upload_image(image, token);
     }
 
     // GET CALLS
