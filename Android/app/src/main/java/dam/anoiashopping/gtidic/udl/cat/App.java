@@ -19,21 +19,5 @@ public class App extends Application {
         super.onCreate();
         PreferencesProvider.init(this);
 
-        if (!PreferencesProvider.providePreferences().getString("token", "").equals("")) {
-
-            Log.d (TAG, "L'usuari ja té token: " + PreferencesProvider.providePreferences().getString("token", "") + ". Iniciant pantalla principal.");
-
-            Intent intent = new Intent (App.this, MainActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity (intent);
-
-        } else {
-
-            Log.d (TAG, "L'usuari no té token. Iniciant pantalla Inici de sessió.");
-
-            Intent intent = new Intent (App.this, LoginActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity (intent);
-        }
     }
 }

@@ -7,10 +7,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import dam.anoiashopping.gtidic.udl.cat.App;
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityMainBinding;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
@@ -23,6 +25,17 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        if (!PreferencesProvider.providePreferences().getString("token", "").equals("")) {
+
+            Log.d (TAG, "L'usuari ja té token: " + PreferencesProvider.providePreferences().getString("token", "") + ". Iniciant pantalla principal.");
+
+        } else {
+
+            Log.d (TAG, "L'usuari no té token. Iniciant pantalla Inici de sessió.");
+
+            startActivity (new Intent (MainActivity.this, LoginActivity.class));
+        }
 
         setTheme(R.style.Theme_Android);
         super.onCreate(savedInstanceState);
