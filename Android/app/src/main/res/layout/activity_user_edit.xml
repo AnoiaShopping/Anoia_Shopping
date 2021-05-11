@@ -27,16 +27,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/dibuixfotoperfil" />
 
+
     <Spinner
-        android:id="@+id/spinnerBotigues"
+        android:id="@+id/editSpinnerBotigues"
         android:layout_width="302dp"
         android:layout_height="68dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
-
+        app:layout_constraintVertical_bias="0.499" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -66,7 +67,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tipus_de_botiga"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerBotigues"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/editSpinnerBotigues"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.183"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,18 +76,18 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/txtTipusBotiga2"
+        android:id="@+id/txtDefinicioBotiga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/definicio_botiga"
+        android:text="@string/definici_botiga"
         app:layout_constraintBottom_toTopOf="@+id/editDefinicioBotiga"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.176"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerBotigues"
+        app:layout_constraintTop_toBottomOf="@+id/editSpinnerBotigues"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
+    <EditText
         android:id="@+id/editDefinicioBotiga"
         android:layout_width="300dp"
         android:layout_height="100dp"
@@ -93,7 +95,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerBotigues"
+        app:layout_constraintTop_toBottomOf="@+id/editSpinnerBotigues"
         app:layout_constraintVertical_bias="0.29" />
+
+    <Button
+        android:id="@+id/bt_actualitzar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/actualizar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.193"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDefinicioBotiga"
+        app:layout_constraintVertical_bias="0.318" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
