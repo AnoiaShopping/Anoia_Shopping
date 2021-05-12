@@ -9,7 +9,7 @@ from sqlalchemy.sql import text
 
 import db
 import settings
-from db.models import SQLAlchemyBase, User, GenereEnum, UserToken, Event, EventTypeEnum
+from db.models import SQLAlchemyBase, User, GenereEnum, UserToken, Event, EventTypeEnum, Business
 from settings import DEFAULT_LANGUAGE
 
 # LOGGING
