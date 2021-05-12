@@ -171,6 +171,7 @@ class User(SQLAlchemyBase, JSONModel):
     photo = Column(Unicode(255))
     events_owner = relationship("Event", back_populates="owner", cascade="all, delete-orphan")
     events_enrolled = relationship("Event", back_populates="registered")
+    business_owner = relationship("Business", back_populates="owner", cascade="all, delete-orphan")
 
     @hybrid_property
     def public_profile(self):
@@ -218,4 +219,24 @@ class User(SQLAlchemyBase, JSONModel):
                 settings.DATE_DEFAULT_FORMAT) if self.birthdate is not None else self.birthdate,
             "phone": self.phone,
             "photo": self.photo_url
+        }
+
+class Business(SQLAlchemyBase, JSONModel):
+    __tablename__ = "business"
+
+    id = Column(Integer, primary_key=True)
+    created_at = Column(DateTime, default=datetime.datetime.now, nullable=False)
+    name = Column(Unicode(50), nullable=False, unique=True)
+    type = Column(Unicode(50), nullable=False)
+    definition = Column(UnicodeText, nullable=False)
+    owner_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    owner = relationship("User", back_populates="business_owner")
+
+    @hybrid_property
+    def json_model(self):
+        return {
+            "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
+            "name": self.name,
+            "type": self.type,
+            "definition": self.definition,
         }

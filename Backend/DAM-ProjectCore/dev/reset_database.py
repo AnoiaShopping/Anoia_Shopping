@@ -95,6 +95,19 @@ if __name__ == "__main__":
     db_session.add(user_3)
 
 
+    # Creació de negoci
+
+    mylogger.info("Creating Business...")
+
+    businessTest = Business (
+        name="Anoia Shopping",
+        type="Negoci Online",
+        definition="Som una Start Up que impulsa el comerç local",
+        owner_id=2
+    )
+
+    db_session.add(businessTest)
+
 
     # -------------------- CREATE EVENTS --------------------
 
