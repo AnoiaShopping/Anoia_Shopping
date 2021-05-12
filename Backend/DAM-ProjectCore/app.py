@@ -8,7 +8,7 @@ import falcon
 import messages
 import middlewares
 from falcon_multipart.middleware import MultipartMiddleware
-from resources import account_resources, common_resources, user_resources, event_resources
+from resources import account_resources, common_resources, user_resources, event_resources, business_resources
 from settings import configure_logging
 
 # LOGGING
@@ -43,5 +43,7 @@ application.add_route("/users/show/{username}", user_resources.ResourceGetUserPr
 
 application.add_route("/events", event_resources.ResourceGetEvents())
 application.add_route("/events/show/{id:int}", event_resources.ResourceGetEvent())
+
+application.add_route("/business/create", business_resources.ResourceCreateBusiness())
 
 application.add_sink(handle_404, "")
