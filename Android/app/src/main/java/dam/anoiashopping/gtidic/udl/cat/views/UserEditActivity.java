@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -38,8 +39,22 @@ public class UserEditActivity extends AppCompatActivity {
         TextView txtDefinicioBotiga = findViewById(R.id.txtDefinicioBotiga);
         EditText editDefinicioBotiga = findViewById(R.id.editDefinicioBotiga);
         buttonActualitzar = findViewById(R.id.bt_actualitzar);
-        //INICIEM TOT EN DISABLED
-        ////////////////////////////////////////////////////////////////////////////
+
+
+        txtTipusBotiga.setVisibility(View.GONE); // FER DESAPAREIXER
+        txtTipusBotiga.setVisibility(View.GONE);
+        checkBoxBotiguer.setVisibility(View.GONE);
+        checkBoxConsumidor.setVisibility(View.GONE);
+        txtTipusBotiga.setVisibility(View.GONE); //FER TRANSPARENT INCLICABLE
+        txtDefinicioBotiga.setVisibility(View.GONE);
+        editDefinicioBotiga.setVisibility(View.GONE);
+        buttonActualitzar.setVisibility(View.GONE);
+
+
+        editDefinicioBotiga.setEnabled(false);
+
+        buttonActualitzar = findViewById(R.id.bt_actualitzar);
+        //PREPAREM SPINNER
         Spinner spinner = (Spinner) findViewById(R.id.editSpinnerBotigues);
         String tipusBotiga = "";
         //Creem l'adaptador que necessita el spinner
@@ -48,16 +63,18 @@ public class UserEditActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apliquem l'adaptador
         spinner.setAdapter(adapter);
+        //INICIEM TOT EN DISABLED
         checkBoxBotiguer.setEnabled(false);
         checkBoxConsumidor.setEnabled(false);
         txtTipusBotiga.setEnabled(false); //FER TRANSPARENT INCLICABLE
         txtDefinicioBotiga.setEnabled(false);
         spinner.setEnabled(false);
         editDefinicioBotiga.setEnabled(false);
+        spinner.setVisibility(View.GONE);
 
         //Seguents 3 linies pel toast
         Context context = getApplicationContext();
-        CharSequence text = "EPS! Només pots tenir una conta per rol.";
+        CharSequence text = "EPS! NOMÉS POTS TENIR UNA CONTA PER ROL";
         int duration = Toast.LENGTH_SHORT;
 
         checkBoxBotiguer.setOnClickListener(v -> {
@@ -65,11 +82,24 @@ public class UserEditActivity extends AppCompatActivity {
                 checkBoxBotiguer.setChecked(false);
                 //toast informatiu
                 Toast.makeText(context, text, duration).show();
-            }else{
+            }else if(checkBoxBotiguer.isChecked()) {
+                txtDefinicioBotiga.setVisibility(View.VISIBLE);
+                txtTipusBotiga.setVisibility(View.VISIBLE);
+                spinner.setVisibility(View.VISIBLE);
+                editDefinicioBotiga.setVisibility(View.VISIBLE);
+                buttonActualitzar.setVisibility(View.VISIBLE);
                 txtDefinicioBotiga.setEnabled(true);
                 txtTipusBotiga.setEnabled(true);
                 spinner.setEnabled(true);
                 editDefinicioBotiga.setEnabled(true);
+                buttonActualitzar.setEnabled(true);
+
+            }else{
+                txtDefinicioBotiga.setVisibility(View.GONE);
+                txtTipusBotiga.setVisibility(View.GONE);
+                spinner.setVisibility(View.GONE);
+                editDefinicioBotiga.setVisibility(View.GONE);
+                buttonActualitzar.setVisibility(View.GONE);
             }
         });
 
@@ -79,6 +109,12 @@ public class UserEditActivity extends AppCompatActivity {
                 checkBoxConsumidor.setChecked(false);
                 Toast.makeText(context, text, duration).show();
             }else{
+                //BUIDEM LA POSSIBLE OPCIO DELS BOTIGUERS
+                txtDefinicioBotiga.setVisibility(View.GONE);
+                txtTipusBotiga.setVisibility(View.GONE);
+                spinner.setVisibility(View.GONE);
+                editDefinicioBotiga.setVisibility(View.GONE);
+                buttonActualitzar.setVisibility(View.GONE);
 
             }
         });
@@ -87,6 +123,8 @@ public class UserEditActivity extends AppCompatActivity {
     buttonConfigurarPerfil.setOnClickListener(v -> {
         //txtTipusBotiga.setVisibility(View.GONE); // FER DESAPAREIXER
         //txtTipusBotiga.setVisibility(View.VISIBLE); // FER APAREIXER
+        checkBoxBotiguer.setVisibility(View.VISIBLE);
+        checkBoxConsumidor.setVisibility(View.VISIBLE);
         checkBoxBotiguer.setEnabled(true);
         checkBoxConsumidor.setEnabled(true);
     });
