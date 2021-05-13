@@ -31,19 +31,24 @@ app = application = falcon.API(
         MultipartMiddleware()
     ]
 )
+
 application.add_route("/", common_resources.ResourceHome())
 
-application.add_route("/account/profile", account_resources.ResourceAccountUserProfile())
-application.add_route("/account/profile/update_profile_image", account_resources.ResourceAccountUpdateProfileImage())
-application.add_route("/account/create_token", account_resources.ResourceCreateUserToken())
-application.add_route("/account/delete_token", account_resources.ResourceDeleteUserToken())
+application.add_route("/account/profile", account_resources.ResourceAccountUserProfile()) # per veure l'usuari
+application.add_route("/account/profile/update_profile_image", account_resources.ResourceAccountUpdateProfileImage()) # canviar imatge de perfil
+application.add_route("/account/create_token", account_resources.ResourceCreateUserToken()) # crear token / iniciar sessió a nou dispositiu
+application.add_route("/account/delete_token", account_resources.ResourceDeleteUserToken()) # eliminar token / tancar sessió
 
-application.add_route("/users/register", user_resources.ResourceRegisterUser())
-application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile())
+application.add_route("/users/register", user_resources.ResourceRegisterUser()) # crear usuari
+application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile()) # visualitzar usuari específic
 
 application.add_route("/events", event_resources.ResourceGetEvents())
 application.add_route("/events/show/{id:int}", event_resources.ResourceGetEvent())
 
-application.add_route("/business/create", business_resources.ResourceCreateBusiness())
+application.add_route("/business/create", business_resources.ResourceCreateBusiness()) # crear botiga / negoci
+
+application.add_route("/business/profile", business_resources.ResourceBusinessProfile()) ## TODO: per implementar
+application.add_route("/business/edit", business_resources.ResourceEditProfile()) ## TODO: per implementar
+application.add_route("/business/delete", business_resources.ResourceDeleteProfile()) ## TODO: per implementar
 
 application.add_sink(handle_404, "")
