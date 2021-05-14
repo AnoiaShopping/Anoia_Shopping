@@ -15,21 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android"
         tools:targetApi="n">
-        <activity android:name=".views.UserEditActivity" />
-        <activity android:name=".views.SearchUserActivity" />
-        <activity android:name=".views.ConfigurationActivity" />
-        <activity android:name=".views.MainActivity" >
+        <activity android:name=".views.ListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" /> <!-- Buscar solució per el onbackpressed -->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".views.UserEditActivity" />
+        <activity android:name=".views.SearchUserActivity" />
+        <activity android:name=".views.ConfigurationActivity" />
+        <activity android:name=".views.MainActivity">
+        </activity>
         <activity android:name=".views.RegisterConfirmationActivity" />
         <activity
             android:name=".views.LoginActivity"
             android:label="@string/app_name"
-            android:theme="@style/SplashTheme">
-        </activity>
+            android:theme="@style/SplashTheme"></activity>
         <activity android:name=".views.RegisterActivity" />
     </application>
 
