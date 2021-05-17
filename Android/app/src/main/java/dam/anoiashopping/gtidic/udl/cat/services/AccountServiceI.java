@@ -14,30 +14,29 @@ import retrofit2.http.Part;
 
 public interface AccountServiceI {
 
-    // POST CALLS
+    ////////// POST CALLS
 
-    @POST("/users/register")
+    @POST ("/users/register")
     Call <ResponseBody> register (@Body Account account);
 
-    @POST("/account/create_token")
+    @POST ("/account/create_token")
     Call <ResponseBody> create_token (@Header ("Authorization") String auth_token);
 
-    @POST("/account/delete_token")
-    Call <ResponseBody> delete_token (@Header("Authorization") String token, @Body Token bodyToken);
+    @POST ("/account/delete_token")
+    Call <ResponseBody> delete_token (@Header ("Authorization") String token, @Body Token bodyToken);
 
-    // TODO : Afegir uploadImage (Utilitzar @Multipart)
     @Multipart
-    @POST("/account/profile/update_profile_image")
-    Call <ResponseBody> upload_image (@Part MultipartBody.Part image, @Header("Authorization") String token);
+    @POST ("/account/profile/update_profile_image")
+    Call <ResponseBody> upload_image (@Part MultipartBody.Part image, @Header ("Authorization") String token);
 
-    // GET CALLS
+    ////////// GET CALLS
 
-    @GET("/account/profile")
-    Call <Account> get_account (@Header("Authorization") String token);
+    @GET ("/account/profile")
+    Call <Account> get_account (@Header ("Authorization") String token);
 
     // TODO: Acabar de fer la implementació
-    @GET("/users/show/{username}")
-    Call <Account> show_account (@Header("Authorization") String token);
+    @GET ("/users/show/{username}")
+    Call <Account> show_account (@Header ("Authorization") String token);
 
     // TODO: Fer recuperació de contrassenya
     
