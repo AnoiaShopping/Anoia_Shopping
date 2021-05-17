@@ -26,12 +26,14 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         botoPerfils = findViewById(R.id.b_actualize);
         botoPerfils.setOnClickListener(v -> {
-            startActivity(new Intent(ConfigurationActivity.this, UserEditActivity.class));
+            startActivity(new Intent(ConfigurationActivity.this, CreateBusinessActivity.class));
         });
 
     }
 
     private void initView () {
+
+
 
         configurationViewModel = new ViewModelProvider (this).get (ConfigurationViewModel.class);
         ActivityConfigurationBinding activityConfigurationBinding = DataBindingUtil.setContentView (this, R.layout.activity_configuration);

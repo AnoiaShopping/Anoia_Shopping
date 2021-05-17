@@ -15,12 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android"
         tools:targetApi="n">
-        <activity android:name=".views.UserEditActivity" />
+        <activity android:name=".views.CreateBusinessActivity" />
         <activity android:name=".views.SearchUserActivity" />
         <activity android:name=".views.ConfigurationActivity" />
         <activity android:name=".views.MainActivity" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" /> <!-- Buscar solució per el onbackpressed -->
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
