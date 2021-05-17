@@ -33,6 +33,8 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private void initView () {
 
+
+
         configurationViewModel = new ViewModelProvider (this).get (ConfigurationViewModel.class);
         ActivityConfigurationBinding activityConfigurationBinding = DataBindingUtil.setContentView (this, R.layout.activity_configuration);
         activityConfigurationBinding.setLifecycleOwner (this);

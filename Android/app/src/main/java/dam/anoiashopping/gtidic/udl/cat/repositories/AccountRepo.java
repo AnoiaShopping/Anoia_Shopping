@@ -79,7 +79,6 @@ public class AccountRepo {
 
                     mResponseRegister.setValue (new ResultImpl(0, false));
                 }
-
             }
 
             @Override
