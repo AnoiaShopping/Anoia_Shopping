@@ -26,7 +26,7 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         botoPerfils = findViewById(R.id.b_actualize);
         botoPerfils.setOnClickListener(v -> {
-            startActivity(new Intent(ConfigurationActivity.this, UserEditActivity.class));
+            startActivity(new Intent(ConfigurationActivity.this, CreateBusinessActivity.class));
         });
 
     }

@@ -16,7 +16,7 @@ import android.widget.Toast;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 
-public class UserEditActivity extends AppCompatActivity {
+public class CreateBusinessActivity extends AppCompatActivity {
 
     private CheckBox checkBoxBotiguer;
     private CheckBox checkBoxConsumidor;
@@ -29,7 +29,7 @@ public class UserEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_edit);
+        setContentView(R.layout.activity_create_business);
         checkBoxBotiguer = findViewById(R.id.checkBoxBotiguer);
         checkBoxConsumidor = findViewById(R.id.checkBoxConsumidor);
         buttonConfigurarPerfil = findViewById(R.id.bt_ActivarOpcionsPerfil);
