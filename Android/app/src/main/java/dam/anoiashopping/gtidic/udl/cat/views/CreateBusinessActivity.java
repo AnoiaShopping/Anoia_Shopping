@@ -18,41 +18,17 @@ import dam.anoiashopping.gtidic.udl.cat.R;
 
 public class CreateBusinessActivity extends AppCompatActivity {
 
-    private CheckBox checkBoxBotiguer;
-    private CheckBox checkBoxConsumidor;
-    private Button buttonConfigurarPerfil;
-    private Button buttonActualitzar;
+    private EditText txtEditNom = findViewById(R.id.txtEditNomBotiga);
+    private EditText txtEditWeb = findViewById(R.id.txtEditWebNegoci);
+    private EditText txtEditDefinicio = findViewById(R.id.txtEditDefinicioBotiga);
+    private EditText txtEditInstagram = findViewById(R.id.txtEditInstagram);
+    private EditText TxtEditFacebook  = findViewById(R.id.txtEditFacebook);
+    private EditText txtEditTwitter = findViewById(R.id.txtEditInstagram);
+    private Button btCrearBotiga = findViewById(R.id.btCrearBotiga);
 
-
-
-    @SuppressLint({"Range", "WrongConstant"})
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_business);
-        checkBoxBotiguer = findViewById(R.id.checkBoxBotiguer);
-        checkBoxConsumidor = findViewById(R.id.checkBoxConsumidor);
-        buttonConfigurarPerfil = findViewById(R.id.bt_ActivarOpcionsPerfil);
-        TextView txtTipusBotiga = findViewById(R.id.txtTipusBotiga);
-        TextView txtDefinicioBotiga = findViewById(R.id.txtDefinicioBotiga);
-        EditText editDefinicioBotiga = findViewById(R.id.txtEditNomBotiga);
-        buttonActualitzar = findViewById(R.id.bt_actualitzar);
-
-
-        txtTipusBotiga.setVisibility(View.GONE); // FER DESAPAREIXER
-        txtTipusBotiga.setVisibility(View.GONE);
-        checkBoxBotiguer.setVisibility(View.GONE);
-        checkBoxConsumidor.setVisibility(View.GONE);
-        txtTipusBotiga.setVisibility(View.GONE); //FER TRANSPARENT INCLICABLE
-        txtDefinicioBotiga.setVisibility(View.GONE);
-        editDefinicioBotiga.setVisibility(View.GONE);
-        buttonActualitzar.setVisibility(View.GONE);
-
-
-
-        editDefinicioBotiga.setEnabled(false);
-
-        buttonActualitzar = findViewById(R.id.bt_actualitzar);
         //PREPAREM SPINNER
         Spinner spinner = (Spinner) findViewById(R.id.spinnerEditTipusBotiga);
         String tipusBotiga = "";
@@ -62,83 +38,22 @@ public class CreateBusinessActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apliquem l'adaptador
         spinner.setAdapter(adapter);
-        //INICIEM TOT EN DISABLED
-        checkBoxBotiguer.setEnabled(false);
-        checkBoxConsumidor.setEnabled(false);
-        txtTipusBotiga.setEnabled(false); //FER TRANSPARENT INCLICABLE
-        txtDefinicioBotiga.setEnabled(false);
-        spinner.setEnabled(false);
-        editDefinicioBotiga.setEnabled(false);
-        spinner.setVisibility(View.GONE);
 
-        //Seguents 3 linies pel toast
+        //CREEM TOTS ELS BT/TXT...
+
+
+
+    btCrearBotiga.setOnClickListener(v -> {
+        //implementar regex
+
         Context context = getApplicationContext();
-        CharSequence text = "EPS! NOMÉS POTS TENIR UNA CONTA PER ROL";
+        CharSequence text = "BOTIGA REGISTRADA";
         int duration = Toast.LENGTH_SHORT;
-
-        checkBoxBotiguer.setOnClickListener(v -> {
-            if(checkBoxConsumidor.isChecked()){
-                checkBoxBotiguer.setChecked(false);
-                //toast informatiu
-                Toast.makeText(context, text, duration).show();
-            }else if(checkBoxBotiguer.isChecked()) {
-                txtDefinicioBotiga.setVisibility(View.VISIBLE);
-                txtTipusBotiga.setVisibility(View.VISIBLE);
-                spinner.setVisibility(View.VISIBLE);
-                editDefinicioBotiga.setVisibility(View.VISIBLE);
-                buttonActualitzar.setVisibility(View.VISIBLE);
-                txtDefinicioBotiga.setEnabled(true);
-                txtTipusBotiga.setEnabled(true);
-                spinner.setEnabled(true);
-                editDefinicioBotiga.setEnabled(true);
-                buttonActualitzar.setEnabled(true);
-
-            }else{
-                txtDefinicioBotiga.setVisibility(View.GONE);
-                txtTipusBotiga.setVisibility(View.GONE);
-                spinner.setVisibility(View.GONE);
-                editDefinicioBotiga.setVisibility(View.GONE);
-                buttonActualitzar.setVisibility(View.GONE);
-            }
-        });
-
-        checkBoxConsumidor.setOnClickListener(v -> {
-            //falta crear els botons i opcions dels clients
-            if(checkBoxBotiguer.isChecked()){
-                checkBoxConsumidor.setChecked(false);
-                Toast.makeText(context, text, duration).show();
-            }else{
-                //BUIDEM LA POSSIBLE OPCIO DELS BOTIGUERS
-                txtDefinicioBotiga.setVisibility(View.GONE);
-                txtTipusBotiga.setVisibility(View.GONE);
-                spinner.setVisibility(View.GONE);
-                editDefinicioBotiga.setVisibility(View.GONE);
-                buttonActualitzar.setVisibility(View.GONE);
-
-            }
-        });
-
-
-    buttonConfigurarPerfil.setOnClickListener(v -> {
-        //txtTipusBotiga.setVisibility(View.GONE); // FER DESAPAREIXER
-        //txtTipusBotiga.setVisibility(View.VISIBLE); // FER APAREIXER
-        checkBoxBotiguer.setVisibility(View.VISIBLE);
-        checkBoxConsumidor.setVisibility(View.VISIBLE);
-        checkBoxBotiguer.setEnabled(true);
-        checkBoxConsumidor.setEnabled(true);
+        Toast.makeText(context, text, duration).show();
     });
 
-    buttonActualitzar.setOnClickListener(v -> {
-        //ACTUALITZAR BASE DE DADES
-        if(checkBoxConsumidor.isChecked()){
-
-        }else{ //Botiguer
-            agafarTipusNegoci();
-            String definicio = String.valueOf(editDefinicioBotiga.getText());
-            System.out.println(definicio);
-        }
-    });
     }
+
     private void agafarTipusNegoci(){
         String text;
         System.out.println(text = ((Spinner) findViewById(R.id.spinnerEditTipusBotiga)).getSelectedItem().toString());

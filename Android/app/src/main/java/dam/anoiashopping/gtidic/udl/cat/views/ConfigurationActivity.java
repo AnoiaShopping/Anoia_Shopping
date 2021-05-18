@@ -29,6 +29,7 @@ public class ConfigurationActivity extends AppCompatActivity {
             startActivity(new Intent(ConfigurationActivity.this, CreateBusinessActivity.class));
         });
 
+
     }
 
     private void initView () {
