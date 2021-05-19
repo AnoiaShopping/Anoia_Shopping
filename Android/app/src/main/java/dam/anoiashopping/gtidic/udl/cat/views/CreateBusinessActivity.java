@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
+import dam.anoiashopping.gtidic.udl.cat.models.Business;
+import dam.anoiashopping.gtidic.udl.cat.viewmodels.BusinessViewModel;
 
 public class CreateBusinessActivity extends AppCompatActivity {
 
@@ -27,6 +29,7 @@ public class CreateBusinessActivity extends AppCompatActivity {
     private EditText TxtEditFacebook;
     private EditText txtEditTwitter;
     private Button btCrearBotiga;
+    private BusinessViewModel businessViewModel;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class CreateBusinessActivity extends AppCompatActivity {
         TxtEditFacebook  = findViewById(R.id.txtEditFacebook);
         txtEditTwitter = findViewById(R.id.txtEditInstagram);
         Button btCrearBotiga = findViewById(R.id.btCrearBotiga);
+        businessViewModel = new BusinessViewModel();
 
         //PREPAREM SPINNER
         Spinner spinner = (Spinner) findViewById(R.id.spinnerEditTipusBotiga);
@@ -52,6 +56,12 @@ public class CreateBusinessActivity extends AppCompatActivity {
 
         btCrearBotiga.setOnClickListener(v -> {
             //implementar regex
+            Business business = new Business();
+            business.setNom(txtEditNom.getText().toString());
+            business.setDefinicio(txtEditDefinicio.getText().toString());
+            business.setTipus(agafarTipusNegoci());
+
+            businessViewModel.createBusiness(business);
 
             Context context = getApplicationContext();
             CharSequence text = "BOTIGA REGISTRADA";
@@ -60,8 +70,9 @@ public class CreateBusinessActivity extends AppCompatActivity {
         });
     }
 
-    private void agafarTipusNegoci(){
+    private String agafarTipusNegoci(){
         String text;
-        System.out.println(text = ((Spinner) findViewById(R.id.spinnerEditTipusBotiga)).getSelectedItem().toString());
+        text = ((Spinner) findViewById(R.id.spinnerEditTipusBotiga)).getSelectedItem().toString();
+        return text;
     }
 }
