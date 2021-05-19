@@ -47,8 +47,8 @@ application.add_route("/events/show/{id:int}", event_resources.ResourceGetEvent(
 
 application.add_route("/business/create", business_resources.ResourceCreateBusiness()) # crear botiga / negoci
 
-application.add_route("/business/profile", business_resources.ResourceBusinessProfile()) ## TODO: per implementar
-application.add_route("/business/edit", business_resources.ResourceEditProfile()) ## TODO: per implementar
-application.add_route("/business/delete", business_resources.ResourceDeleteProfile()) ## TODO: per implementar
+##application.add_route("/business/profile", business_resources.ResourceBusinessProfile()) ## TODO: per implementar
+##application.add_route("/business/edit", business_resources.ResourceEditProfile()) ## TODO: per implementar
+##application.add_route("/business/delete", business_resources.ResourceDeleteProfile()) ## TODO: per implementar
 
 application.add_sink(handle_404, "")

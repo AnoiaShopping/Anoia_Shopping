@@ -6,8 +6,6 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.io.File;
-
 import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
@@ -45,10 +43,5 @@ public class ConfigurationViewModel extends ViewModel {
         firstName.setValue (account.getFirstname());
         lastName.setValue  (account.getLastname());
         email.setValue     (account.getEmail());
-    }
-
-    public void uploadAccountImage(File imageFile){
-        Log.d("VM", "uploading image... using repo");
-        this.accountRepo.uploadImage(PreferencesProvider.providePreferences().getString("token", ""), imageFile);
     }
 }
