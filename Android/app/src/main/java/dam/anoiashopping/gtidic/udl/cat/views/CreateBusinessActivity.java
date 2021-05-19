@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,17 +20,26 @@ import dam.anoiashopping.gtidic.udl.cat.R;
 
 public class CreateBusinessActivity extends AppCompatActivity {
 
-    private EditText txtEditNom = findViewById(R.id.txtEditNomBotiga);
-    private EditText txtEditWeb = findViewById(R.id.txtEditWebNegoci);
-    private EditText txtEditDefinicio = findViewById(R.id.txtEditDefinicioBotiga);
-    private EditText txtEditInstagram = findViewById(R.id.txtEditInstagram);
-    private EditText TxtEditFacebook  = findViewById(R.id.txtEditFacebook);
-    private EditText txtEditTwitter = findViewById(R.id.txtEditInstagram);
-    private Button btCrearBotiga = findViewById(R.id.btCrearBotiga);
+    private EditText txtEditNom;
+    private EditText txtEditWeb;
+    private EditText txtEditDefinicio;
+    private EditText txtEditInstagram;
+    private EditText TxtEditFacebook;
+    private EditText txtEditTwitter;
+    private Button btCrearBotiga;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_business);
+
+        txtEditNom = findViewById(R.id.txtEditNomBotiga);
+        txtEditWeb = findViewById(R.id.txtEditWebNegoci);
+        txtEditDefinicio = findViewById(R.id.txtEditDefinicioBotiga);
+        txtEditInstagram = findViewById(R.id.txtEditInstagram);
+        TxtEditFacebook  = findViewById(R.id.txtEditFacebook);
+        txtEditTwitter = findViewById(R.id.txtEditInstagram);
+        Button btCrearBotiga = findViewById(R.id.btCrearBotiga);
+
         //PREPAREM SPINNER
         Spinner spinner = (Spinner) findViewById(R.id.spinnerEditTipusBotiga);
         String tipusBotiga = "";
@@ -39,19 +50,14 @@ public class CreateBusinessActivity extends AppCompatActivity {
         // Apliquem l'adaptador
         spinner.setAdapter(adapter);
 
-        //CREEM TOTS ELS BT/TXT...
+        btCrearBotiga.setOnClickListener(v -> {
+            //implementar regex
 
-
-
-    btCrearBotiga.setOnClickListener(v -> {
-        //implementar regex
-
-        Context context = getApplicationContext();
-        CharSequence text = "BOTIGA REGISTRADA";
-        int duration = Toast.LENGTH_SHORT;
-        Toast.makeText(context, text, duration).show();
-    });
-
+            Context context = getApplicationContext();
+            CharSequence text = "BOTIGA REGISTRADA";
+            int duration = Toast.LENGTH_SHORT;
+            Toast.makeText(context, text, duration).show();
+        });
     }
 
     private void agafarTipusNegoci(){
