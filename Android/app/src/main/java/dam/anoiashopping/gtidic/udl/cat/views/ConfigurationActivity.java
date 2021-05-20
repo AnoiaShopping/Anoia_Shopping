@@ -14,9 +14,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -37,7 +39,12 @@ public class ConfigurationActivity extends AppCompatActivity {
 
     private final String TAG = "MainActivity";
     ConfigurationViewModel configurationViewModel;
-    private Button botoPerfils;
+    private Button botoCrearConta;
+    private Button botoActualitzarCompte;
+    /*private EditText txtNomUser;
+    private EditText txtCognom;
+    private EditText txtNomReal;
+    private EditText txtCorreu;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +52,11 @@ public class ConfigurationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_configuration);
         initView();
+        botoActualitzarCompte = findViewById(R.id.bt_actualitzarcompte);
+        botoActualitzarCompte.setEnabled(false);
 
-        botoPerfils = findViewById(R.id.b_actualize);
-        botoPerfils.setOnClickListener(v -> {
+        botoCrearConta = findViewById(R.id.btAnarCrearBotiga);
+        botoCrearConta.setOnClickListener(v -> {
             startActivity(new Intent(ConfigurationActivity.this, CreateBusinessActivity.class));
         });
 
@@ -140,4 +149,23 @@ public class ConfigurationActivity extends AppCompatActivity {
         }
         return uri.getPath();
     }
+
+    /*public void txtChanger(EditText edit){
+        edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                botoActualitzarCompte.setEnabled(true);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }*/
 }
