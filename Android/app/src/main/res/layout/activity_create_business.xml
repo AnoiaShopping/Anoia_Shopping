@@ -18,14 +18,16 @@
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="169dp"
-                android:layout_height="128dp"
-                android:layout_marginTop="40dp"
+                android:layout_width="194dp"
+                android:layout_height="143dp"
+                android:layout_marginTop="24dp"
                 android:contentDescription="@string/todo"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/dibuixfotoperfil" />
+                app:srcCompat="@drawable/dibuixfotoperfil"
+                android:clickable="true"/>
 
             <EditText
                 android:id="@+id/txtEditNomBotiga"
@@ -36,13 +38,13 @@
                 android:layout_marginEnd="45dp"
                 android:layout_marginRight="45dp"
                 android:hint="Nom Botiga"
-                android:inputType="TODO"
+                android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2"
-                app:layout_constraintVertical_bias="0.075" />
+                app:layout_constraintVertical_bias="0.051" />
 
             <Spinner
                 android:id="@+id/spinnerEditTipusBotiga"
@@ -52,7 +54,7 @@
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-            <TextView
+            <EditText
                 android:id="@+id/txtEditWebNegoci"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -72,61 +74,112 @@
                 app:layout_constraintStart_toStartOf="@+id/txtEditNomBotiga"
                 app:layout_constraintTop_toBottomOf="@+id/txtEditNomBotiga" />
 
-            <TextView
+            <EditText
                 android:id="@+id/txtEditDefinicioBotiga"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="24dp"
                 android:hint="Definicio del que ofereixes"
                 app:layout_constraintEnd_toEndOf="@+id/txtEditWebNegoci"
                 app:layout_constraintStart_toStartOf="@+id/txtEditWebNegoci"
                 app:layout_constraintTop_toBottomOf="@+id/txtEditWebNegoci" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btCrearBotiga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="25dp"
                 android:text="Crear NEGOCI"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                app:layout_constraintTop_toBottomOf="@+id/txtEditTwitter" />
 
-            <TextView
-                android:id="@+id/textView7"
+            <EditText
+                android:id="@+id/txtEditInstagram"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="22dp"
                 android:hint="Instagram"
                 app:layout_constraintEnd_toEndOf="@+id/txtEditDefinicioBotiga"
                 app:layout_constraintStart_toStartOf="@+id/txtEditDefinicioBotiga"
                 app:layout_constraintTop_toBottomOf="@+id/txtEditDefinicioBotiga" />
 
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
+            <EditText
+                android:id="@+id/txtEditFacebook"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="15dp"
                 android:hint="Facebook"
+                app:layout_constraintEnd_toEndOf="@+id/txtEditDefinicioBotiga"
                 app:layout_constraintStart_toStartOf="@+id/txtEditDefinicioBotiga"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintTop_toBottomOf="@+id/txtEditInstagram" />
 
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/txtEditTwitter"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="15dp"
                 android:hint="Twitter"
+                app:layout_constraintEnd_toEndOf="@+id/txtEditDefinicioBotiga"
                 app:layout_constraintStart_toStartOf="@+id/txtEditDefinicioBotiga"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                app:layout_constraintTop_toBottomOf="@+id/txtEditFacebook" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="35dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtEditInstagram"
+                app:layout_constraintEnd_toStartOf="@+id/txtEditInstagram"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEditDefinicioBotiga"
+                app:srcCompat="@drawable/instagram" />
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="95dp"
+                android:layout_height="140dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEditTwitter"
+                app:srcCompat="@drawable/as1" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="37dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="75dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtEditFacebook"
+                app:layout_constraintEnd_toStartOf="@+id/txtEditFacebook"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEditDefinicioBotiga"
+                app:srcCompat="@drawable/facebook" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="37dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="135dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtEditTwitter"
+                app:layout_constraintEnd_toStartOf="@+id/txtEditTwitter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtEditDefinicioBotiga"
+                app:srcCompat="@drawable/twitter" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
