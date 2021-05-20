@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
+import dam.anoiashopping.gtidic.udl.cat.models.Business;
+import dam.anoiashopping.gtidic.udl.cat.viewmodels.BusinessViewModel;
 
 public class CreateBusinessActivity extends AppCompatActivity {
 
