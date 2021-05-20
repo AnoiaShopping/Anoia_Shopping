@@ -19,6 +19,7 @@
         <activity android:name=".views.CreateBusinessActivity" />
         <activity android:name=".views.SearchUserActivity" />
         <activity android:name=".views.ConfigurationActivity" />
+        <activity android:name=".views.ListActivity" />
         <activity android:name=".views.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
