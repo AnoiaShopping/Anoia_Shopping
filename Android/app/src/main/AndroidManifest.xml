@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="dam.anoiashopping.gtidic.udl.cat">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -18,6 +19,7 @@
         <activity android:name=".views.CreateBusinessActivity" />
         <activity android:name=".views.SearchUserActivity" />
         <activity android:name=".views.ConfigurationActivity" />
+        <activity android:name=".views.ListActivity" />
         <activity android:name=".views.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -31,6 +29,9 @@ public class CreateBusinessActivity extends AppCompatActivity {
     private Button btCrearBotiga;
     private BusinessViewModel businessViewModel;
 
+
+    @SuppressLint({"Range", "WrongConstant"})
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_business);
