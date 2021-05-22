@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
@@ -80,6 +82,8 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         profileImage = findViewById (R.id.im_profile);
         updateImageButton = findViewById (R.id.b_update);
+
+        Picasso.get().load("http://192.168.101.87:8001/static/media/users/4/photo/1621700066879.jpeg").into(this.profileImage);
 
         updateImageButton.setOnClickListener(v -> {
             checkExternalStoragePermission();

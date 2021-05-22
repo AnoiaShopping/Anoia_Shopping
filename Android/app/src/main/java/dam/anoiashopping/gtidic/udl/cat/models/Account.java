@@ -21,6 +21,8 @@ public class Account {
     private String email;
     @SerializedName("password")
     private String password;
+    @SerializedName("photo")
+    private String photoURL;
 
     public Account() {
     }
@@ -67,4 +69,11 @@ public class Account {
         this.password = Utils.encode(password, "16", 29000);
     }
 
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
 }

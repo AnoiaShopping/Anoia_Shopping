@@ -6,8 +6,11 @@ import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 
+import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
@@ -22,6 +25,7 @@ public class ConfigurationViewModel extends ViewModel {
     public MutableLiveData <String> firstName = new MutableLiveData <> ();
     public MutableLiveData <String> lastName  = new MutableLiveData <> ();
     public MutableLiveData <String> email     = new MutableLiveData <> ();
+    public MutableLiveData <String> photoURL  = new MutableLiveData <> ();
 
     public MutableLiveData <ResultImpl> getAccountResponse () {
         return this.accountRepo.getmResponseGetAccount();
@@ -45,6 +49,9 @@ public class ConfigurationViewModel extends ViewModel {
         firstName.setValue (account.getFirstname());
         lastName.setValue  (account.getLastname());
         email.setValue     (account.getEmail());
+        photoURL.setValue  (account.getPhotoURL());
+
+        Log.d(TAG, photoURL.getValue());
     }
 
     public void uploadAccountImage(File imageFile){
