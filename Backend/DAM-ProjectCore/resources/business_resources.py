@@ -24,10 +24,12 @@ class ResourceCreateBusiness(DAMCoreResource):
         aux_business = Business()
 
         try:
-
             aux_business.name = req.media["name"]
             aux_business.type = req.media["type"]
             aux_business.definition = req.media["definition"]
+	    aux_business.instagram = req.media["instagram"]
+	    aux_business.facebook = req.media["facebook"]
+	    aux_business.twitter = req.media["twitter"]
             aux_business.owner_id = req.context["auth_user"].id
 
             self.db_session.add(aux_business)

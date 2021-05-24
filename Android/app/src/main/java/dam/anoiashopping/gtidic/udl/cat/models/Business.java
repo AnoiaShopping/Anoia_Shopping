@@ -10,11 +10,21 @@ public class Business {
     String tipus;
     @SerializedName("definition")
     String definicio;
+    @SerializedName("facebook")
+    String facebook;
+    @SerializedName("instagram")
+    String instagram;
+    @SerializedName("twitter")
+    String twitter;
 
-    public Business(String nom, String tipus, String definicio) {
+    public Business(String nom, String tipus, String definicio, String facebook, String instagram, String twitter) {
         this.nom = nom;
         this.tipus = tipus;
         this.definicio = definicio;
+        this.instagram = instagram;
+        this.facebook = facebook;
+        this.twitter = twitter;
+
     }
 
     public Business() {
@@ -42,5 +52,29 @@ public class Business {
 
     public void setDefinicio(String definicio) {
         this.definicio = definicio;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
     }
 }

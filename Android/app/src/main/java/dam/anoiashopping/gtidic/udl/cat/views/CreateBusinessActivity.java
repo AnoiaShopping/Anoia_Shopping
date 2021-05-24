@@ -114,31 +114,19 @@ public class CreateBusinessActivity extends AppCompatActivity {
 
             if(validadorRegex ==5){
 
-
-
                 Business business = new Business();
-
                 business.setNom(txtEditNom.getText().toString());
-
                 business.setDefinicio(txtEditDefinicio.getText().toString());
-
                 business.setTipus(agafarTipusNegoci());
-
-
 
                 businessViewModel.createBusiness(business);
 
-
-
                 Context context = getApplicationContext();
-
                 CharSequence text = "BOTIGA REGISTRADA";
-
                 int duration = Toast.LENGTH_SHORT;
-
                 Toast.makeText(context, text, duration).show();
-
             }
+
             Business business = new Business();
             business.setNom(txtEditNom.getText().toString());
             business.setDefinicio(txtEditDefinicio.getText().toString());
