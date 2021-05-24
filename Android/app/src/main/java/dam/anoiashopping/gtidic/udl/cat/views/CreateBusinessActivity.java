@@ -118,6 +118,9 @@ public class CreateBusinessActivity extends AppCompatActivity {
                 business.setNom(txtEditNom.getText().toString());
                 business.setDefinicio(txtEditDefinicio.getText().toString());
                 business.setTipus(agafarTipusNegoci());
+                business.setFacebook(txtEditFacebook.getText().toString());
+                business.setInstagram(txtEditInstagram.getText().toString());
+                business.setTwitter(txtEditTwitter.getText().toString());
 
                 businessViewModel.createBusiness(business);
 
@@ -126,18 +129,6 @@ public class CreateBusinessActivity extends AppCompatActivity {
                 int duration = Toast.LENGTH_SHORT;
                 Toast.makeText(context, text, duration).show();
             }
-
-            Business business = new Business();
-            business.setNom(txtEditNom.getText().toString());
-            business.setDefinicio(txtEditDefinicio.getText().toString());
-            business.setTipus(agafarTipusNegoci());
-
-            businessViewModel.createBusiness(business);
-
-            Context context = getApplicationContext();
-            CharSequence text = "BOTIGA REGISTRADA";
-            int duration = Toast.LENGTH_SHORT;
-            Toast.makeText(context, text, duration).show();
         });
     }
 
