@@ -1,5 +1,4 @@
 package dam.anoiashopping.gtidic.udl.cat.views;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -43,10 +42,10 @@ public class ConfigurationActivity extends AppCompatActivity {
     ConfigurationViewModel configurationViewModel;
     private Button botoCrearConta;
     private Button botoActualitzarCompte;
-    /*private EditText txtNomUser;
-    private EditText txtCognom;
-    private EditText txtNomReal;
-    private EditText txtCorreu;*/
+    //private EditText txtNomUser;
+    //private EditText txtCognom;
+    //private EditText txtNomReal;
+    //private EditText txtCorreu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +76,12 @@ public class ConfigurationActivity extends AppCompatActivity {
         configurationViewModel.getAccountResponse().observe(this, accountResponse -> {
             if (accountResponse.isValid()) {
                 configurationViewModel.setAccount();
+                Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
             }
         });
 
         profileImage = findViewById (R.id.im_profile);
         updateImageButton = findViewById (R.id.b_update);
-
-        Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
 
         updateImageButton.setOnClickListener(v -> {
             checkExternalStoragePermission();

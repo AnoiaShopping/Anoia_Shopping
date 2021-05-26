@@ -5,160 +5,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-
-        android:id="@+id/eventStatusColourInfo"
-
-        android:layout_width="9dp"
-
-        android:layout_height="0dp"
-
-        android:background="@android:color/holo_green_light"
-
-        android:gravity="center"
-
-        android:text=""
-
-        android:textColor="@android:color/holo_green_light"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
     <ImageView
-
-        android:id="@+id/eventTypeIconInfo"
-
-        android:layout_width="48dp"
-
-        android:layout_height="60dp"
-
-        android:layout_marginEnd="4dp"
-
-        android:layout_weight="1"
-
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent"
-
-        app:srcCompat="@drawable/dibuixfotoperfil"
-
-        android:contentDescription="@string/todo"
-        android:layout_marginRight="4dp" />
-
-
-
-    <TextView
-
-        android:id="@+id/eventNameInfo"
-
-        android:layout_width="238dp"
-
-        android:layout_height="wrap_content"
-
-        android:text=""
-
-        android:textSize="24sp"
-
-        app:layout_constraintEnd_toStartOf="@+id/eventTypeIconInfo"
-
-        app:layout_constraintHorizontal_bias="0.428"
-
-        app:layout_constraintStart_toEndOf="@+id/eventPosterInfo"
-
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-    <TextView
-
-        android:id="@+id/eventDescriptionInfo"
-
-        android:layout_width="238dp"
-
-        android:layout_height="wrap_content"
-
-        android:text=""
-
-        app:layout_constraintEnd_toStartOf="@+id/eventTypeIconInfo"
-
-        app:layout_constraintHorizontal_bias="0.428"
-
-        app:layout_constraintStart_toEndOf="@+id/eventPosterInfo"
-
-        app:layout_constraintTop_toBottomOf="@+id/eventNameInfo" />
-
-
-
-    <ImageView
-
-        android:id="@+id/eventPosterInfo"
-
-        android:layout_width="55dp"
-
-        android:layout_height="53dp"
-
-        android:layout_marginStart="24dp"
-
+        android:id="@+id/im_empresa"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="8dp"
-
-        android:contentDescription="@string/todo"
-
-        app:layout_constraintStart_toStartOf="parent"
-
-        app:layout_constraintTop_toTopOf="parent"
-
-        app:srcCompat="@drawable/dibuixfotoperfil"
-        android:layout_marginLeft="24dp" />
-
-
-
-    <TextView
-
-        android:id="@+id/eventDistanceToInfo"
-
-        android:layout_width="129dp"
-
-        android:layout_height="wrap_content"
-
-        android:layout_marginEnd="4dp"
-
-        android:layout_weight="1"
-
-        android:gravity="end|bottom"
-
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintTop_toBottomOf="@+id/eventPosterInfo"
-        android:layout_marginRight="4dp" />
-
-
+        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avataricon6" />
 
     <TextView
-
-        android:id="@+id/eventStatusInfo"
-
-        android:layout_width="223dp"
-
+        android:id="@+id/nom_empresa"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="PROVA"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/im_empresa"
+        app:layout_constraintTop_toTopOf="@+id/im_empresa" />
 
-        android:layout_marginEnd="1dp"
-
-        android:text="hola"
-
-        app:layout_constraintEnd_toStartOf="@+id/eventDistanceToInfo"
-
-        app:layout_constraintHorizontal_bias="0.555"
-
-        app:layout_constraintStart_toEndOf="@+id/eventStatusColourInfo"
-
-        app:layout_constraintTop_toBottomOf="@+id/eventPosterInfo"
-
-        tools:text="Status"
-        android:layout_marginRight="1dp" />
-
+    <TextView
+        android:id="@+id/descripció"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/nom_empresa"
+        app:layout_constraintStart_toStartOf="@+id/nom_empresa"
+        app:layout_constraintTop_toBottomOf="@+id/nom_empresa" />
 </androidx.constraintlayout.widget.ConstraintLayout>
