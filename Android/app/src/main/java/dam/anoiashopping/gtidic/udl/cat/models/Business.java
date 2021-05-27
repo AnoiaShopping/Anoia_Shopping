@@ -11,6 +11,8 @@ public class Business {
     @SerializedName("definition")
     String definicio;
 
+    // TODO : afegir foto
+
     public Business(String nom, String tipus, String definicio) {
         this.nom = nom;
         this.tipus = tipus;

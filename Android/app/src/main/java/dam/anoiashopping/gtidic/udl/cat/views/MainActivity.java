@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,14 +16,20 @@ import android.widget.Button;
 
 import dam.anoiashopping.gtidic.udl.cat.App;
 import dam.anoiashopping.gtidic.udl.cat.R;
+import dam.anoiashopping.gtidic.udl.cat.adapters.EventAdapter;
+import dam.anoiashopping.gtidic.udl.cat.adapters.EventDiffCallback;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityMainBinding;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
+import dam.anoiashopping.gtidic.udl.cat.viewmodels.ListViewModel;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
     private final String TAG = "MainActivity";
     MainViewModel mainViewModel;
+
+    private RecyclerView recyclerView;
+    EventAdapter eventAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
         setTheme(R.style.Theme_Android);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        recyclerView = findViewById(R.id.eventslist);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        eventAdapter = new EventAdapter(new EventDiffCallback());
+        recyclerView.setAdapter (eventAdapter);
 
         initView();
     }
