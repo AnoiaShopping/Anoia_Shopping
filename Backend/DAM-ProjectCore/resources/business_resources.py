@@ -49,7 +49,7 @@ class ResourceGetBusiness(DAMCoreResource):
         super(ResourceGetBusiness, self).on_get(req, resp, *args, **kwargs)
 
         current_user=req.context["auth_user"]
-        cursor = self.db_session.qwery(Business).filter(Business.owner_id != current_user.id)
+        cursor = self.db_session.query(Business).filter(Business.owner_id != current_user.id)
 
         business = list()
 
