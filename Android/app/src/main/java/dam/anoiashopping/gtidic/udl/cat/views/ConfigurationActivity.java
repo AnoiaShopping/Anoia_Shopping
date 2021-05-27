@@ -1,4 +1,5 @@
 package dam.anoiashopping.gtidic.udl.cat.views;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -28,6 +29,8 @@ import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityConfigurationBinding;
 import dam.anoiashopping.gtidic.udl.cat.manager.PermissionManager;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.ConfigurationViewModel;
+
+// TODO : etiquetes
 
 public class ConfigurationActivity extends AppCompatActivity {
 
@@ -82,6 +85,8 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         profileImage = findViewById (R.id.im_profile);
         updateImageButton = findViewById (R.id.b_update);
+
+        Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
 
         updateImageButton.setOnClickListener(v -> {
             checkExternalStoragePermission();
