@@ -29,13 +29,13 @@ public class BusinessCommonHolder {
         businessDescription = itemView.findViewById(R.id.description);
         businessPhoto = itemView.findViewById(R.id.im_empresa);
 
-        businessName.setText("sdsfsdfsfd");
+        //businessName.setText("sdsfsdfsfd");
     }
 
     public void bindHolder(Business b) {
 
 
-        this.businessName.setText("hhhhhhhh");
+        this.businessName.setText(b.getNom());
         this.businessDescription.setText(b.getDefinicio());
         Log.d(TAG, "bindHolder() -> Busssine: " + b);
 
