@@ -32,7 +32,7 @@
         app:layout_constraintTop_toTopOf="@+id/im_empresa" />
 
     <TextView
-        android:id="@+id/descripció"
+        android:id="@+id/description"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"

@@ -12,15 +12,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
-import dam.anoiashopping.gtidic.udl.cat.App;
 import dam.anoiashopping.gtidic.udl.cat.R;
-import dam.anoiashopping.gtidic.udl.cat.adapters.EventAdapter;
-import dam.anoiashopping.gtidic.udl.cat.adapters.EventDiffCallback;
+import dam.anoiashopping.gtidic.udl.cat.adapters.BusinessAdapter;
+import dam.anoiashopping.gtidic.udl.cat.adapters.BusinessDiffCallback;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityMainBinding;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
-import dam.anoiashopping.gtidic.udl.cat.viewmodels.ListViewModel;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,14 +26,20 @@ public class MainActivity extends AppCompatActivity {
     MainViewModel mainViewModel;
 
     private RecyclerView recyclerView;
-    EventAdapter eventAdapter;
+    BusinessAdapter businessAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_Android);
+        //setContentView(R.layout.activity_main);
+
         if (!PreferencesProvider.providePreferences().getString("token", "").equals("")) {
 
             Log.d (TAG, "L'usuari ja té token: " + PreferencesProvider.providePreferences().getString("token", "") + ". Iniciant pantalla principal.");
+
+            initView();
 
         } else {
 
@@ -44,19 +47,6 @@ public class MainActivity extends AppCompatActivity {
 
             startActivity (new Intent (MainActivity.this, LoginActivity.class));
         }
-
-        setTheme(R.style.Theme_Android);
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        recyclerView = findViewById(R.id.eventslist);
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        eventAdapter = new EventAdapter(new EventDiffCallback());
-        recyclerView.setAdapter (eventAdapter);
-
-        initView();
     }
 
     public void initView () {
@@ -65,10 +55,23 @@ public class MainActivity extends AppCompatActivity {
         activityMainBinding.setLifecycleOwner (this);
         activityMainBinding.setViewModel (mainViewModel);
 
+        recyclerView = findViewById(R.id.eventslist);
+
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        businessAdapter = new BusinessAdapter(new BusinessDiffCallback());
+        recyclerView.setAdapter (businessAdapter);
+
         mainViewModel.getDeleteResponse().observe(this, deleteResponse -> {
             if (deleteResponse.isValid()) {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
+        });
+
+        mainViewModel.getBusiness();
+
+        mainViewModel.returnBusiness().observe(this, business -> {
+            businessAdapter.submitList(business);
         });
     }
 

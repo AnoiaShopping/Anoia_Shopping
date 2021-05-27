@@ -4,6 +4,8 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
+
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.services.BusinessServiceI;
@@ -16,15 +18,17 @@ import retrofit2.Response;
 
 public class BusinessRepo {
 
-    private MutableLiveData<ResultImpl> mResponseRegister;
     private final String TAG = "BusinessRepo";
-
+    private MutableLiveData<ResultImpl> mResponseCreateBusiness;
+    private MutableLiveData<ResultImpl> mResponseGetBusiness;
+    private MutableLiveData<List<Business>> mResponseBusinessList;
     private final BusinessServiceI businessService;
 
 
     public BusinessRepo() {
         this.businessService = new BusinessServiceImpl();
-        this.mResponseRegister = new MutableLiveData<>();
+        this.mResponseCreateBusiness = new MutableLiveData<>();
+        this.mResponseBusinessList = new MutableLiveData<>();
     }
 
     public void createBusiness(Business business){
@@ -36,13 +40,13 @@ public class BusinessRepo {
                 Log.d(TAG,"CreateBusiness() -> ha rebut el codi: " +  return_code);
 
                 if (return_code == 200){
-                    mResponseRegister.setValue (new ResultImpl(0, true));
+                    mResponseCreateBusiness.setValue (new ResultImpl(0, true));
                 }else{
 
                     String error_msg = "Error: " + response.errorBody();
                     Log.d (TAG, error_msg);
 
-                    mResponseRegister.setValue (new ResultImpl(0, false));
+                    mResponseCreateBusiness.setValue (new ResultImpl(0, false));
                 }
             }
 
@@ -51,5 +55,36 @@ public class BusinessRepo {
 
             }
         });
+    }
+
+    public void getBusiness(){
+        String token = PreferencesProvider.providePreferences().getString("token", "");
+        this.businessService.get_business(token).enqueue(new Callback<List<Business>>() {
+            @Override
+            public void onResponse(Call<List<Business>> call, Response<List<Business>> response) {
+                int return_code = response.code();  //200, 404, 401,...
+                Log.d(TAG,"CreateBusiness() -> ha rebut el codi: " +  return_code);
+
+                if (return_code == 200){
+                    //mResponseGetBusiness.setValue (new ResultImpl(0, true));
+                    mResponseBusinessList.setValue(response.body());
+                }else{
+
+                    String error_msg = "Error: " + response.errorBody();
+                    Log.d (TAG, error_msg);
+
+                    //mResponseGetBusiness.setValue (new ResultImpl(0, false));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Business>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public MutableLiveData<List<Business>> getmResponseBusinessList() {
+        return mResponseBusinessList;
     }
 }

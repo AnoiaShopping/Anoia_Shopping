@@ -2,6 +2,8 @@ package dam.anoiashopping.gtidic.udl.cat.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Business {
 
     @SerializedName("name")
@@ -44,5 +46,11 @@ public class Business {
 
     public void setDefinicio(String definicio) {
         this.definicio = definicio;
+    }
+
+    @NotNull
+    @Override
+    public String toString(){
+        return "name:"+nom+" "+" definicio:"+definicio;
     }
 }
