@@ -1,10 +1,13 @@
 package dam.anoiashopping.gtidic.udl.cat.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.jetbrains.annotations.NotNull;
 
-public class Business {
+public class Business implements Parcelable {
 
     @SerializedName("name")
     String nom;
@@ -34,6 +37,27 @@ public class Business {
 
     public Business() {
     }
+
+    protected Business(Parcel in) {
+        nom = in.readString();
+        tipus = in.readString();
+        definicio = in.readString();
+        facebook = in.readString();
+        instagram = in.readString();
+        twitter = in.readString();
+    }
+
+    public static final Creator<Business> CREATOR = new Creator<Business>() {
+        @Override
+        public Business createFromParcel(Parcel in) {
+            return new Business(in);
+        }
+
+        @Override
+        public Business[] newArray(int size) {
+            return new Business[size];
+        }
+    };
 
     public String getNom() {
         return nom;
@@ -87,5 +111,21 @@ public class Business {
     @Override
     public String toString(){
         return "name:"+nom+" "+" definicio:"+definicio;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        //dest.write
+        dest.writeString(nom);
+        dest.writeString(tipus);
+        dest.writeString(definicio);
+        dest.writeString(facebook);
+        dest.writeString(instagram);
+        dest.writeString(twitter);
     }
 }

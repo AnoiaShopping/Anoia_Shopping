@@ -17,6 +17,7 @@ import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.adapters.BusinessAdapter;
 import dam.anoiashopping.gtidic.udl.cat.adapters.BusinessDiffCallback;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityMainBinding;
+import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
 
@@ -73,6 +74,20 @@ public class MainActivity extends AppCompatActivity {
         mainViewModel.returnBusiness().observe(this, business -> {
             businessAdapter.submitList(business);
         });
+
+        businessAdapter.businessListener(business -> {
+             // Fer nova activitat per veure info
+             Bundle b = new Bundle();
+             b.putParcelable("business", business);
+        });
+
+
+        // Per el que reb el business
+        //Bundle b = getArguments();
+        //if (b != null){
+        //    Jocs joc = b.getParcelable("joc");
+        //    displayReceivedGame(joc);
+        //}
     }
 
     @Override
