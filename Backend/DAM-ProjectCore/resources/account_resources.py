@@ -205,7 +205,7 @@ class ResourceUpdatePassword(DAMCoreResource):
         code = req.media["code"]
         
         try:
-            user = self.db_session.query(User).filter(User.email==email, User.recovery_code==code).one()  //accedim a la informacio del user
+            user = self.db_session.query(User).filter(User.email==email, User.recovery_code==code).one()  #accedim a la informacio del user
             user.password = password
             user.recovery_code = code
             self.db_session.commit()
