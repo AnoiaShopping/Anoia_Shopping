@@ -43,3 +43,21 @@ class ResourceCreateBusiness(DAMCoreResource):
             raise falcon.HTTPBadRequest(description=messages.parameters_invalid)
 
         resp.status = falcon.HTTP_200
+
+@falcon.before(requires_auth)
+class ResourceGetBusiness(DAMCoreResource):
+
+    def on_get(self, req, resp, *args, **kwargs):
+        super(ResourceGetBusiness, self).on_get(req, resp, *args, **kwargs)
+
+        current_user=req.context["auth_user"]
+        cursor = self.db_session.query(Business).filter(Business.owner_id != current_user.id)
+
+        business = list()
+
+        for b in cursor.all():
+            business.append(b.json_model)
+
+        resp.media = business
+
+        resp.status = falcon.HTTP_200

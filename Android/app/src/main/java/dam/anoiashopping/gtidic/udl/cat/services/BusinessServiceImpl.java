@@ -1,5 +1,7 @@
 package dam.anoiashopping.gtidic.udl.cat.services;
 
+import java.util.List;
+
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.models.Token;
 import dam.anoiashopping.gtidic.udl.cat.network.RetrofitClientInstance;
@@ -14,5 +16,10 @@ public class BusinessServiceImpl implements BusinessServiceI {
     @Override
     public Call<ResponseBody> create_business(String token, Business business) {
         return retrofit.create(BusinessServiceI.class).create_business(token, business);
+    }
+
+    @Override
+    public Call<List<Business>> get_business (String token) {
+        return retrofit.create(BusinessServiceI.class).get_business(token);
     }
 }

@@ -2,6 +2,8 @@ package dam.anoiashopping.gtidic.udl.cat.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Business {
 
     @SerializedName("name")
@@ -16,8 +18,11 @@ public class Business {
     String instagram;
     @SerializedName("twitter")
     String twitter;
-
+  
     public Business(String nom, String tipus, String definicio, String facebook, String instagram, String twitter) {
+        
+        // TODO : afegir foto
+
         this.nom = nom;
         this.tipus = tipus;
         this.definicio = definicio;
@@ -76,5 +81,11 @@ public class Business {
 
     public void setTwitter(String twitter) {
         this.twitter = twitter;
+    }
+  
+    @NotNull
+    @Override
+    public String toString(){
+        return "name:"+nom+" "+" definicio:"+definicio;
     }
 }

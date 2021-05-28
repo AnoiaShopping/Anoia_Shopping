@@ -229,11 +229,16 @@ class Business(SQLAlchemyBase, JSONModel):
     name = Column(Unicode(50), nullable=False, unique=True)
     type = Column(Unicode(50), nullable=False)
     definition = Column(UnicodeText, nullable=False)
+    photo = Column(Unicode(255), nullable=True)
     owner_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
     facebook = Column(Unicode(60), nullable=True)
     instagram = Column(Unicode(60), nullable=True)
     twitter = Column(Unicode(60), nullable=True)
     owner = relationship("User", back_populates="business_owner")
+
+    @hybrid_property
+    def photo_url(self):
+        return _generate_media_url(self, "photo")
 
     @hybrid_property
     def json_model(self):
@@ -242,7 +247,8 @@ class Business(SQLAlchemyBase, JSONModel):
             "name": self.name,
             "type": self.type,
             "definition": self.definition,
-	    "facebook": self.facebook,
-	    "instagram": self.instagram,
-	    "twitter": self.twitter,
+	          "facebook": self.facebook,
+	          "instagram": self.instagram,
+	          "twitter": self.twitter,
+            "photo": self.photo_url
         }

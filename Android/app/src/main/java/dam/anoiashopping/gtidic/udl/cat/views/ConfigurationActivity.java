@@ -30,6 +30,8 @@ import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityConfigurationBinding
 import dam.anoiashopping.gtidic.udl.cat.manager.PermissionManager;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.ConfigurationViewModel;
 
+// TODO : etiquetes
+
 public class ConfigurationActivity extends AppCompatActivity {
 
     // upload Image
@@ -43,10 +45,10 @@ public class ConfigurationActivity extends AppCompatActivity {
     ConfigurationViewModel configurationViewModel;
     private Button botoCrearConta;
     private Button botoActualitzarCompte;
-    /*private EditText txtNomUser;
-    private EditText txtCognom;
-    private EditText txtNomReal;
-    private EditText txtCorreu;*/
+    //private EditText txtNomUser;
+    //private EditText txtCognom;
+    //private EditText txtNomReal;
+    //private EditText txtCorreu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         configurationViewModel.getAccountResponse().observe(this, accountResponse -> {
             if (accountResponse.isValid()) {
                 configurationViewModel.setAccount();
+                Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
             }
         });
 
