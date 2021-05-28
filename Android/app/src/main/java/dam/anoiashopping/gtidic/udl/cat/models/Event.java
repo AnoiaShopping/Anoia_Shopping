@@ -1,110 +1,59 @@
 package dam.anoiashopping.gtidic.udl.cat.models;
-
 import com.google.gson.annotations.SerializedName;
 
 public class Event {
 
         @SerializedName("id")
-
         private String id;
-
         @SerializedName("name")
-
         private String name;
-
         @SerializedName("description")
-
         private String description;
-
         @SerializedName("latitude")
-
         private double latitude;
-
         @SerializedName("longitude")
-
         private double longitude;
-
         @SerializedName("poster_url")
-
         private String poster_url;
-
         @SerializedName("start_date")
-
         private String start_date;
-
         @SerializedName("finish_date")
-
         private String finish_date;
-
         @SerializedName("type")
-
         private EventType type;
-
         @SerializedName("status")
-
         private EventStatus status;
 
         public Event() {
-
         }
-
-
 
         public String getId() {
-
             return id;
-
         }
-
-
 
         public void setId(String id) {
-
             this.id = id;
-
         }
-
-
 
         public String getName() {
-
             return name;
-
         }
-
-
 
         public void setName(String name) {
-
             this.name = name;
-
         }
-
-
 
         public String getDescription() {
-
             return description;
-
         }
-
-
 
         public void setDescription(String description) {
-
             this.description = description;
-
         }
-
-
 
         public double getLatitude() {
-
             return latitude;
-
         }
-
-
 
         public void setLatitude(double latitude) {
             this.latitude = latitude;
@@ -149,8 +98,6 @@ public class Event {
         public void setType(EventType type) {
             this.type = type;
         }
-
-
 
         public EventStatus getStatus() {
             return status;

@@ -21,12 +21,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import java.io.File;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityConfigurationBinding;
 import dam.anoiashopping.gtidic.udl.cat.manager.PermissionManager;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.ConfigurationViewModel;
+
+// TODO : etiquetes
 
 public class ConfigurationActivity extends AppCompatActivity {
 
@@ -41,10 +45,10 @@ public class ConfigurationActivity extends AppCompatActivity {
     ConfigurationViewModel configurationViewModel;
     private Button botoCrearConta;
     private Button botoActualitzarCompte;
-    /*private EditText txtNomUser;
-    private EditText txtCognom;
-    private EditText txtNomReal;
-    private EditText txtCorreu;*/
+    //private EditText txtNomUser;
+    //private EditText txtCognom;
+    //private EditText txtNomReal;
+    //private EditText txtCorreu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,11 +79,19 @@ public class ConfigurationActivity extends AppCompatActivity {
         configurationViewModel.getAccountResponse().observe(this, accountResponse -> {
             if (accountResponse.isValid()) {
                 configurationViewModel.setAccount();
+
+                if (configurationViewModel.photoURL.getValue() != null) {
+                    Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
+                } else {
+                    profileImage.setImageResource(R.drawable.avataricon6);
+                }
             }
         });
 
         profileImage = findViewById (R.id.im_profile);
         updateImageButton = findViewById (R.id.b_update);
+
+        Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
 
         updateImageButton.setOnClickListener(v -> {
             checkExternalStoragePermission();

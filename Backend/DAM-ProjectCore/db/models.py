@@ -169,6 +169,7 @@ class User(SQLAlchemyBase, JSONModel):
     genere = Column(Enum(GenereEnum))
     phone = Column(Unicode(50))
     photo = Column(Unicode(255))
+    recovery_code = Column(Unicode(6), nullable=True, unique=True)
     events_owner = relationship("Event", back_populates="owner", cascade="all, delete-orphan")
     events_enrolled = relationship("Event", back_populates="registered")
     business_owner = relationship("Business", back_populates="owner", cascade="all, delete-orphan")
@@ -229,8 +230,17 @@ class Business(SQLAlchemyBase, JSONModel):
     name = Column(Unicode(50), nullable=False, unique=True)
     type = Column(Unicode(50), nullable=False)
     definition = Column(UnicodeText, nullable=False)
+    web = Column(Unicode(50))
+    facebook = Column(Unicode(60))
+    instagram = Column(Unicode(60))
+    twitter = Column(Unicode(60))
+    photo = Column(Unicode(255), nullable=True) # TODO: posar a false quan estigui preparat
     owner_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
     owner = relationship("User", back_populates="business_owner")
+
+    @hybrid_property
+    def photo_url(self):
+        return _generate_media_url(self, "photo")
 
     @hybrid_property
     def json_model(self):
@@ -239,4 +249,9 @@ class Business(SQLAlchemyBase, JSONModel):
             "name": self.name,
             "type": self.type,
             "definition": self.definition,
+            "web": self.web,
+	        "facebook": self.facebook,
+	        "instagram": self.instagram,
+	        "twitter": self.twitter,
+            "photo": self.photo_url
         }

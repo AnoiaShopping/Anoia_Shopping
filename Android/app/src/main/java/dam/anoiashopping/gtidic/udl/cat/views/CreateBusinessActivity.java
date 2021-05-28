@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,11 +22,13 @@ import dam.anoiashopping.gtidic.udl.cat.viewmodels.BusinessViewModel;
 
 public class CreateBusinessActivity extends AppCompatActivity {
 
+    private static final String TAG = "CreateBusinessActivity";
+
     private EditText txtEditNom;
     private EditText txtEditWeb;
     private EditText txtEditDefinicio;
     private EditText txtEditInstagram;
-    private EditText TxtEditFacebook;
+    private EditText txtEditFacebook;
     private EditText txtEditTwitter;
     private Button btCrearBotiga;
     private BusinessViewModel businessViewModel;
@@ -40,8 +44,8 @@ public class CreateBusinessActivity extends AppCompatActivity {
         txtEditWeb = findViewById(R.id.txtEditWebNegoci);
         txtEditDefinicio = findViewById(R.id.txtEditDefinicioBotiga);
         txtEditInstagram = findViewById(R.id.txtEditInstagram);
-        TxtEditFacebook  = findViewById(R.id.txtEditFacebook);
-        txtEditTwitter = findViewById(R.id.txtEditInstagram);
+        txtEditFacebook  = findViewById(R.id.txtEditFacebook);
+        txtEditTwitter = findViewById(R.id.txtEditTwitter);
         Button btCrearBotiga = findViewById(R.id.btCrearBotiga);
         businessViewModel = new BusinessViewModel();
 
@@ -57,17 +61,88 @@ public class CreateBusinessActivity extends AppCompatActivity {
 
         btCrearBotiga.setOnClickListener(v -> {
             //implementar regex
-            Business business = new Business();
-            business.setNom(txtEditNom.getText().toString());
-            business.setDefinicio(txtEditDefinicio.getText().toString());
-            business.setTipus(agafarTipusNegoci());
+            String provadorRegex = String.valueOf(txtEditNom.getText());
 
-            businessViewModel.createBusiness(business);
+            int validadorRegex = 0;
 
-            Context context = getApplicationContext();
-            CharSequence text = "BOTIGA REGISTRADA";
-            int duration = Toast.LENGTH_SHORT;
-            Toast.makeText(context, text, duration).show();
+            if (!provadorRegex.matches("^{2,20}(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
+
+                txtEditNom.setError("Nom no vàlid, ha d'incoure lletres nomes i un tamany de màxim 25 caràcters i mínim 2");
+
+            }else{validadorRegex++;}
+
+            provadorRegex = String.valueOf(txtEditDefinicio.getText()); //qualsevol lletra, espais i enters permesos.
+            if (!provadorRegex.matches("^(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
+
+                txtEditDefinicio.setError("Definició no valida. Ha d'incloure caracters");
+
+            }else{validadorRegex++;}
+
+            provadorRegex = String.valueOf(txtEditWeb.getText()); //Inici amb http o https
+            if (!provadorRegex.matches("^https?:\\/\\/(.*)")){
+                if(provadorRegex.isEmpty()){
+                    validadorRegex++;
+                }else{
+                    txtEditWeb.setError("Si no teniu web deixeu buit el camp, si en teniu, utilitza el format https://nomweb");
+                }
+            }else{validadorRegex++;}
+
+
+
+            provadorRegex = String.valueOf(txtEditInstagram.getText());  //https://www.instagram.com/username
+            if (!provadorRegex.matches("^{2,25}[a-zA-Z._-]+\\.?")){
+
+                if(provadorRegex.isEmpty()){
+                    validadorRegex++;
+                }else{
+                    txtEditInstagram.setError("Instagram incorrecte, has d'incloure només el nom d'usuari (lletres i guions/barres baixes");
+                }
+            }else{validadorRegex++;}
+
+            provadorRegex = String.valueOf(txtEditTwitter.getText()); // http://twitter.com/username
+            if (!provadorRegex.matches("^{2,25}[a-zA-Z._-]+\\.?")){
+
+                if(provadorRegex.isEmpty()){
+                    validadorRegex++;
+                }else{
+                    txtEditTwitter.setError("Twitter incorrecte, has d'incloure només el nom (lletres,guions i barres baixes");
+                }
+            }else{validadorRegex++;}
+
+            provadorRegex = String.valueOf(txtEditFacebook.getText());  //http://www.facebook.com/someusername
+            if (!provadorRegex.matches("^{2,30}(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
+                if(provadorRegex.isEmpty()){
+                    validadorRegex++;
+                }else{
+                    txtEditFacebook.setError("Facebook incorrecte, has d'incloure el nom d'usuari incluint nomes lletres");                }
+            }else{validadorRegex++;}
+
+
+
+            if(validadorRegex ==6){
+                Business business = new Business();
+                business.setNom(txtEditNom.getText().toString());
+                business.setDefinicio(txtEditDefinicio.getText().toString());
+                business.setTipus(agafarTipusNegoci());
+
+                String facebook = "https://www.facebook.com/" + txtEditFacebook.getText().toString();
+                System.out.print(facebook);
+                business.setFacebook(facebook);
+                String instagram = "https://www.instagram.com/" + txtEditInstagram.getText().toString();
+                System.out.print(instagram);
+                business.setInstagram(instagram);
+                String twitter = "https://www.twitter.com/" + txtEditTwitter.getText().toString();
+                Log.d(TAG, twitter);
+                business.setTwitter(twitter);
+                business.setWeb(txtEditWeb.getText().toString());
+
+                businessViewModel.createBusiness(business);
+
+                Context context = getApplicationContext();
+                CharSequence text = "BOTIGA REGISTRADA";
+                int duration = Toast.LENGTH_SHORT;
+                Toast.makeText(context, text, duration).show();
+            }
         });
     }
 

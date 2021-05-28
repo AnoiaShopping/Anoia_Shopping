@@ -35,7 +35,7 @@ DATETIME_DEFAULT_FORMAT = "{date} {time}".format(date=DATE_DEFAULT_FORMAT, time=
 MAX_USER_TOKENS = 5
 
 # Static files settings
-STATIC_HOSTNAME = "127.0.0.1:8001"
+STATIC_HOSTNAME = "192.168.101.87:8001"
 STATIC_DIRECTORY = os.path.join(os.path.abspath(__file__), "../../static", )
 STATIC_URL = "static/"
 MEDIA_PREFIX = "media/"

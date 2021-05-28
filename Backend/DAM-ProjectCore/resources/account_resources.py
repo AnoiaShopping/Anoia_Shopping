@@ -5,6 +5,9 @@ import base64
 import datetime
 import logging
 import os
+import random
+import string
+import smtplib
 
 import falcon
 from falcon.media.validators import jsonschema
@@ -17,6 +20,19 @@ from resources import utils
 from resources.base_resources import DAMCoreResource
 from resources.schemas import SchemaUserToken
 from settings import STATIC_DIRECTORY
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from sqlalchemy.orm.exc import NoResultFound
+
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
+from email.mime.base import MIMEBase
+from email import encoders
+
+
+
+from jinja2 import Environment 
 
 mylogger = logging.getLogger(__name__)
 
@@ -110,3 +126,93 @@ class ResourceAccountUpdateProfileImage(DAMCoreResource):
         self.db_session.commit()
 
         resp.status = falcon.HTTP_200
+   
+   
+class ResourceAccountRecovery(DAMCoreResource):
+    def on_post(self, req, resp, *args, **kwargs):
+        super(ResourceAccountRecovery, self).on_post(req, resp, *args, **kwargs)
+        email = req.media["email"]
+        code = ''.join(random.choices(string.ascii_uppercase + string.digits,k=6))
+        print(email)
+        try:
+            aux_user = self.db_session.query(User).filter(User.email == email).one_or_none()
+            aux_user.recovery_code = code
+            self.db_session.add(aux_user)
+            self.db_session.commit()
+            print(aux_user.json_model)
+            #send mail
+            smpt_server = "smtp.gmail.com"
+            sender_email = "anoia.shopping.tic@gmail.com"
+            password = "myzhvpeedjgdtqgo"
+            
+            html = """\
+
+            <html>
+            <head></head>
+            <body>
+                <p>Hi!<br>
+                Your requested code to recover your account is:<br>
+                """ +str(code)+ """
+                </p>
+            </body>
+            </html>
+            """
+           
+            message = MIMEMultipart('alternative')
+            message["Subject"]:'[ANOIA-SHOPPING] Recovery account instructions'
+            message["From"]:sender_email
+            message["To"]:email
+            
+            
+            image = "resources/images/Anoia-Shopping-1.png"
+            logo = os.path.join(os.getcwd(),image)
+            
+            # to add an attachment is just add a MIMEBase object to read a picture locally.
+            with open(logo, 'rb') as f:
+                # set attachment mime and file name, the image type is png
+                mime = MIMEBase('image', 'png', filename='logo')
+                # add required header data:
+                mime.add_header('Content-Disposition', 'attachment', filename='logo')
+                mime.add_header('X-Attachment-Id', '0')
+                mime.add_header('Content-ID', '<0>')
+                # read attachment file content into the MIMEBase object
+                mime.set_payload(f.read())
+                # encode with base64
+                encoders.encode_base64(mime)
+      
+            message.attach(MIMEText(html,"html"))
+            
+            try:
+                print(message.as_string())
+                server = smtplib.SMTP_SSL(smpt_server, 465)
+                server.login(sender_email,password)
+                server.sendmail(sender_email, email, message.as_string())
+                server.quit()
+            except Exception as e:
+                print(e)
+            
+            
+        except NoResultFound:
+            resp.status = falcon.HTTP_200
+        resp.status = falcon.HTTP_200
+        
+class ResourceUpdatePassword(DAMCoreResource):
+    def on_post(self, req, resp, *args, **kwargs):
+        super(ResourceUpdatePassword, self).on_post(req, resp, *args, **kwargs)
+        
+        email = req.media["email"] 
+        password = req.media["password"]
+        code = req.media["code"]
+        
+        try:
+            user = self.db_session.query(User).filter(User.email==email, User.recovery_code==code).one()  # accedim a la informacio del user
+            user.password = password
+            user.recovery_code = code
+            self.db_session.commit()
+        
+        
+        except Exception as e:
+            print(e)
+        
+        resp.status = falcon.HTTP_200
+        

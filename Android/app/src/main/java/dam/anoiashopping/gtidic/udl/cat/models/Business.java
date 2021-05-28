@@ -1,8 +1,13 @@
 package dam.anoiashopping.gtidic.udl.cat.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
 
-public class Business {
+import org.jetbrains.annotations.NotNull;
+
+public class Business implements Parcelable {
 
     @SerializedName("name")
     String nom;
@@ -10,15 +15,52 @@ public class Business {
     String tipus;
     @SerializedName("definition")
     String definicio;
+    @SerializedName("facebook")
+    String facebook;
+    @SerializedName("instagram")
+    String instagram;
+    @SerializedName("twitter")
+    String twitter;
+    @SerializedName("web")
+    String web;
+  
+    public Business(String nom, String tipus, String definicio, String facebook, String instagram, String twitter) {
+        
+        // TODO : afegir foto
 
-    public Business(String nom, String tipus, String definicio) {
         this.nom = nom;
         this.tipus = tipus;
         this.definicio = definicio;
+        this.instagram = instagram;
+        this.facebook = facebook;
+        this.twitter = twitter;
+        this.web = web;
+
     }
 
     public Business() {
     }
+
+    protected Business(Parcel in) {
+        nom = in.readString();
+        tipus = in.readString();
+        definicio = in.readString();
+        facebook = in.readString();
+        instagram = in.readString();
+        twitter = in.readString();
+    }
+
+    public static final Creator<Business> CREATOR = new Creator<Business>() {
+        @Override
+        public Business createFromParcel(Parcel in) {
+            return new Business(in);
+        }
+
+        @Override
+        public Business[] newArray(int size) {
+            return new Business[size];
+        }
+    };
 
     public String getNom() {
         return nom;
@@ -42,5 +84,59 @@ public class Business {
 
     public void setDefinicio(String definicio) {
         this.definicio = definicio;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
+    }
+
+    public String getWeb() {
+        return web;
+    }
+
+    public void setWeb(String web) {
+        this.web = web;
+    }
+
+    @NotNull
+    @Override
+    public String toString(){
+        return "name:"+nom+" "+" definicio:"+definicio;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        //dest.write
+        dest.writeString(nom);
+        dest.writeString(tipus);
+        dest.writeString(definicio);
+        dest.writeString(facebook);
+        dest.writeString(instagram);
+        dest.writeString(twitter);
     }
 }
