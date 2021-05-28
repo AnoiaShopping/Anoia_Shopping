@@ -39,6 +39,10 @@ application.add_route("/account/profile/update_profile_image", account_resources
 application.add_route("/account/create_token", account_resources.ResourceCreateUserToken()) # crear token / iniciar sessió a nou dispositiu
 application.add_route("/account/delete_token", account_resources.ResourceDeleteUserToken()) # eliminar token / tancar sessió
 
+application.add_route("/account/recovery", account_resources.ResourceAccountRecovery()) #acc verification
+application.add_route("/account/update_password", account_resources.ResourceUpdatePassword()) #acc verification
+
+
 application.add_route("/users/register", user_resources.ResourceRegisterUser()) # crear usuari
 application.add_route("/users/show/{username}", user_resources.ResourceGetUserProfile()) # visualitzar usuari específic
 

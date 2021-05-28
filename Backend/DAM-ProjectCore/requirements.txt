@@ -6,3 +6,4 @@ gunicorn
 pymysql
 jsonschema
 falcon-multipart
+jinja2
