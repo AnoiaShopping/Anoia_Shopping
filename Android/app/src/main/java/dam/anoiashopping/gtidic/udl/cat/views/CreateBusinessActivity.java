@@ -69,7 +69,6 @@ public class CreateBusinessActivity extends AppCompatActivity {
             }
 
             provadorRegex = String.valueOf(txtEditDefinicio.getText()); //qualsevol lletra, espais i enters permesos.
-
             if (!provadorRegex.matches("^(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
 
                 txtEditDefinicio.setError("Definició no valida. Ha d'incloure   ");
@@ -77,79 +76,60 @@ public class CreateBusinessActivity extends AppCompatActivity {
             }else{validadorRegex++;}
 
             provadorRegex = String.valueOf(txtEditInstagram.getText());  //https://www.instagram.com/username
-
             if (!provadorRegex.matches("/(?:(?:http|https):\\/\\/)?(?:www\\.)?(?:instagram\\.com|instagr\\.am)\\/([A-Za-z0-9-_\\.]+)/im")){
 
-                txtEditInstagram.setError("Instagram incorrecte, has d'incloure el link que redirecciona al perfil");
+                if(provadorRegex.isEmpty()){
+                    validadorRegex++;
+                }else{
+                    txtEditInstagram.setError("Instagram incorrecte, has d'incloure el link que redirecciona al perfil");
+                }
 
             }else{validadorRegex++;}
 
-            provadorRegex = String.valueOf(txtEditTwitter.getText()); // http://twitter.com/barackobama
-
+            provadorRegex = String.valueOf(txtEditTwitter.getText()); // http://twitter.com/username
             if (!provadorRegex.matches("/^(?:https|http:\\/\\/)?(?:www\\.)?twitter\\.com\\/(#!\\/)?[a-zA-Z0-9_]+$/i")){
 
-                txtEditTwitter.setError("Instagram incorrecte, has d'incloure el link que redirecciona al perfil");
-
+                if(provadorRegex.isEmpty()){
+                    validadorRegex++;
+                }else{
+                    txtEditTwitter.setError("Instagram incorrecte, has d'incloure el link que redirecciona al perfil");
+                }
             }else{validadorRegex++;}
 
             provadorRegex = String.valueOf(txtEditWeb.getText()); //Inici amb http o https
-
             if (!provadorRegex.matches("^https?:\\/\\/(.*)")){
 
                 txtEditWeb.setError("El teu link ha d'incloure un inici https");
-
-
-
             }else{validadorRegex++;}
 
             provadorRegex = String.valueOf(txtEditFacebook.getText());  //http://www.facebook.com/someusername
-
             if (!provadorRegex.matches("(?:http|https:\\/\\/)?(?:www.)?facebook.com\\/(?:(?:\\w)*#!\\/)?(?:pages\\/)?(?:[?\\w\\-]*\\/)?(?:profile.php\\?id=(\\d.*))?([\\w\\-]*)?")){
 
-                txtEditFacebook.setError("Instagram incorrecte, has d'incloure el link que redirecciona al perfil");
 
+                if(provadorRegex.isEmpty()){
+                    validadorRegex++;
+                }else{
+                    txtEditFacebook.setError("Instagram incorrecte, has d'incloure el link que redirecciona al perfil");                }
             }else{validadorRegex++;}
 
 
 
             if(validadorRegex ==5){
-
-
-
                 Business business = new Business();
-
                 business.setNom(txtEditNom.getText().toString());
-
                 business.setDefinicio(txtEditDefinicio.getText().toString());
-
                 business.setTipus(agafarTipusNegoci());
-
-
+                business.setFacebook(txtEditFacebook.getText().toString());
+                business.setInstagram(txtEditInstagram.getText().toString());
+                business.setTwitter(txtEditTwitter.getText().toString());
 
                 businessViewModel.createBusiness(business);
 
-
-
                 Context context = getApplicationContext();
-
                 CharSequence text = "BOTIGA REGISTRADA";
-
                 int duration = Toast.LENGTH_SHORT;
-
                 Toast.makeText(context, text, duration).show();
-
             }
-            Business business = new Business();
-            business.setNom(txtEditNom.getText().toString());
-            business.setDefinicio(txtEditDefinicio.getText().toString());
-            business.setTipus(agafarTipusNegoci());
-
-            businessViewModel.createBusiness(business);
-
-            Context context = getApplicationContext();
-            CharSequence text = "BOTIGA REGISTRADA";
-            int duration = Toast.LENGTH_SHORT;
-            Toast.makeText(context, text, duration).show();
         });
     }
 
