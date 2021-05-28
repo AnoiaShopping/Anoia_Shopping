@@ -39,6 +39,8 @@ public interface AccountServiceI {
     Call <Account> show_account (@Header ("Authorization") String token);
 
     // TODO: Fer recuperació de contrassenya
+    @POST ("account/recovery")
+    Call <ResponseBody> recoverypassword ()
     
 
 }

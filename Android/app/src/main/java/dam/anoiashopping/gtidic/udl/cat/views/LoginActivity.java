@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
@@ -35,9 +36,12 @@ public class LoginActivity extends AppCompatActivity {
         ActivityLoginBinding activityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         activityLoginBinding.setLifecycleOwner (this);
         activityLoginBinding.setViewModel (loginViewModel);
+        TextView b_lostpassword = findViewById(R.id.b_lostpassword);
 
         loginViewModel.registerClick.observe(this, registerClick -> startActivity (new Intent (LoginActivity.this, RegisterActivity.class)));
-
+        b_lostpassword.setOnClickListener(v -> {
+            startActivity (new Intent (LoginActivity.this, RecuperarContaActivity.class));
+        });
         loginViewModel.getLoginResponse().observe(this, loginResponse -> {
 
             if (loginResponse.isValid()) {

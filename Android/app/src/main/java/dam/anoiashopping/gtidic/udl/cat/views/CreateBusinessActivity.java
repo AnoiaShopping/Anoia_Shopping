@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -125,23 +126,40 @@ public class CreateBusinessActivity extends AppCompatActivity {
                 business.setDefinicio(txtEditDefinicio.getText().toString());
                 business.setTipus(agafarTipusNegoci());
 
-                String facebook = "https://www.facebook.com/" + txtEditFacebook.getText().toString();
-                System.out.print(facebook);
-                business.setFacebook(facebook);
-                String instagram = "https://www.instagram.com/" + txtEditInstagram.getText().toString();
-                System.out.print(instagram);
-                business.setInstagram(instagram);
-                String twitter = "https://www.twitter.com/" + txtEditTwitter.getText().toString();
-                Log.d(TAG, twitter);
-                business.setTwitter(twitter);
-                business.setWeb(txtEditWeb.getText().toString());
+                if(!txtEditInstagram.getText().toString().isEmpty()){
+                    String instagram = "https://www.instagram.com/" + txtEditInstagram.getText().toString();
+                    System.out.print(instagram);
+                    business.setInstagram(instagram);
+                }else{
+                    business.setInstagram("");
+                }
+                if(!txtEditFacebook.getText().toString().isEmpty()){
+                    String facebook = "https://www.facebook.com/" + txtEditFacebook.getText().toString();
+                    System.out.print(facebook);
+                    business.setFacebook(facebook);
+                }else{
+                    business.setFacebook("");
+                }
+                if(!txtEditTwitter.getText().toString().isEmpty()){
+                    String twitter = "https://www.twitter.com/" + txtEditTwitter.getText().toString();
+                    Log.d(TAG, twitter);
+                    business.setTwitter(twitter);
+                }else{
+                    business.setTwitter("");
+                }
 
-                businessViewModel.createBusiness(business);
+                if(!txtEditWeb.getText().toString().isEmpty()){
+                    business.setWeb(txtEditWeb.getText().toString());
+                }else{
+                    business.setWeb("");
+                }
 
                 Context context = getApplicationContext();
                 CharSequence text = "BOTIGA REGISTRADA";
                 int duration = Toast.LENGTH_SHORT;
                 Toast.makeText(context, text, duration).show();
+
+                startActivity (new Intent(CreateBusinessActivity.this, MainActivity.class));
             }
         });
     }
