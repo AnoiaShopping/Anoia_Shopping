@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,6 +21,8 @@ import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.BusinessViewModel;
 
 public class CreateBusinessActivity extends AppCompatActivity {
+
+    private static final String TAG = "CreateBusinessActivity";
 
     private EditText txtEditNom;
     private EditText txtEditWeb;
@@ -122,15 +125,16 @@ public class CreateBusinessActivity extends AppCompatActivity {
                 business.setDefinicio(txtEditDefinicio.getText().toString());
                 business.setTipus(agafarTipusNegoci());
 
-                String facebook = "http://www.facebook.com/" + txtEditFacebook.getText().toString();
+                String facebook = "https://www.facebook.com/" + txtEditFacebook.getText().toString();
                 System.out.print(facebook);
                 business.setFacebook(facebook);
-                String instagram = "http://www.instagram.com/" + txtEditInstagram.getText().toString();
+                String instagram = "https://www.instagram.com/" + txtEditInstagram.getText().toString();
                 System.out.print(instagram);
-                business.setInstagram(txtEditInstagram.getText().toString());
-                String twitter = "http://www.twitter.com/" + txtEditTwitter.getText().toString();
-                System.out.print(twitter);
-                business.setTwitter(txtEditTwitter.getText().toString());
+                business.setInstagram(instagram);
+                String twitter = "https://www.twitter.com/" + txtEditTwitter.getText().toString();
+                Log.d(TAG, twitter);
+                business.setTwitter(twitter);
+                business.setWeb(txtEditWeb.getText().toString());
 
                 businessViewModel.createBusiness(business);
 

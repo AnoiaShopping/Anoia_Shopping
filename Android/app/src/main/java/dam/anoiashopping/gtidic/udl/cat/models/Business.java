@@ -21,6 +21,8 @@ public class Business implements Parcelable {
     String instagram;
     @SerializedName("twitter")
     String twitter;
+    @SerializedName("web")
+    String web;
   
     public Business(String nom, String tipus, String definicio, String facebook, String instagram, String twitter) {
         
@@ -32,6 +34,7 @@ public class Business implements Parcelable {
         this.instagram = instagram;
         this.facebook = facebook;
         this.twitter = twitter;
+        this.web = web;
 
     }
 
@@ -106,7 +109,15 @@ public class Business implements Parcelable {
     public void setTwitter(String twitter) {
         this.twitter = twitter;
     }
-  
+
+    public String getWeb() {
+        return web;
+    }
+
+    public void setWeb(String web) {
+        this.web = web;
+    }
+
     @NotNull
     @Override
     public String toString(){
