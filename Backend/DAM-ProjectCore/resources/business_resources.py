@@ -27,6 +27,7 @@ class ResourceCreateBusiness(DAMCoreResource):
             aux_business.name = req.media["name"]
             aux_business.type = req.media["type"]
             aux_business.definition = req.media["definition"]
+            aux_business.web = req.media["web"]
             aux_business.instagram = req.media["instagram"]
             aux_business.facebook = req.media["facebook"]
             aux_business.twitter = req.media["twitter"]

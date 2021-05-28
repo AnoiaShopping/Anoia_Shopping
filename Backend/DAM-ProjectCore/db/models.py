@@ -230,11 +230,12 @@ class Business(SQLAlchemyBase, JSONModel):
     name = Column(Unicode(50), nullable=False, unique=True)
     type = Column(Unicode(50), nullable=False)
     definition = Column(UnicodeText, nullable=False)
-    photo = Column(Unicode(255), nullable=True)
+    web = Column(Unicode(50))
+    facebook = Column(Unicode(60))
+    instagram = Column(Unicode(60))
+    twitter = Column(Unicode(60))
+    photo = Column(Unicode(255), nullable=True) # TODO: posar a false quan estigui preparat
     owner_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
-    facebook = Column(Unicode(60), nullable=True)
-    instagram = Column(Unicode(60), nullable=True)
-    twitter = Column(Unicode(60), nullable=True)
     owner = relationship("User", back_populates="business_owner")
 
     @hybrid_property
@@ -248,6 +249,7 @@ class Business(SQLAlchemyBase, JSONModel):
             "name": self.name,
             "type": self.type,
             "definition": self.definition,
+            "web": self.web,
 	        "facebook": self.facebook,
 	        "instagram": self.instagram,
 	        "twitter": self.twitter,
