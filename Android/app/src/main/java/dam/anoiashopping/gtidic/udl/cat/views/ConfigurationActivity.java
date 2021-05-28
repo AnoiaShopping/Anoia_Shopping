@@ -79,7 +79,12 @@ public class ConfigurationActivity extends AppCompatActivity {
         configurationViewModel.getAccountResponse().observe(this, accountResponse -> {
             if (accountResponse.isValid()) {
                 configurationViewModel.setAccount();
-                Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
+
+                if (configurationViewModel.photoURL.getValue() != null) {
+                    Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
+                } else {
+                    profileImage.setImageResource(R.drawable.avataricon6);
+                }
             }
         });
 

@@ -36,9 +36,7 @@ public class ConfigurationViewModel extends ViewModel {
     }
 
     public void getAccount () {
-
         this.accountRepo.getAccount(PreferencesProvider.providePreferences().getString("token", ""));
-
     }
 
     public void setAccount () {
@@ -49,9 +47,11 @@ public class ConfigurationViewModel extends ViewModel {
         firstName.setValue (account.getFirstname());
         lastName.setValue  (account.getLastname());
         email.setValue     (account.getEmail());
-        photoURL.setValue  (account.getPhotoURL());
 
-        Log.d(TAG, photoURL.getValue());
+        if (account.getPhotoURL() != null) {
+            photoURL.setValue(account.getPhotoURL());
+            Log.d(TAG, photoURL.getValue());
+        }
     }
 
     public void uploadAccountImage(File imageFile){
