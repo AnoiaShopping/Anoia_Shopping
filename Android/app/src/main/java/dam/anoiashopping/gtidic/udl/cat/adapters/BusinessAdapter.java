@@ -3,6 +3,7 @@ package dam.anoiashopping.gtidic.udl.cat.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -18,6 +19,8 @@ import dam.anoiashopping.gtidic.udl.cat.models.Event;
 public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.BusinessHolder> {
 
     private BusinessCommonHolder businessCommonHolder;
+
+    private OnItemClickListener businessItemListener;
 
     public BusinessAdapter(@NonNull @NotNull DiffUtil.ItemCallback<Business> diffCallback) {
         super(diffCallback);
@@ -43,7 +46,21 @@ public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.Busi
         public BusinessHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             businessCommonHolder = new BusinessCommonHolder(itemView);
+
+            itemView.setOnClickListener(v -> {
+                int position = getBindingAdapterPosition();
+                if (businessItemListener != null && position != RecyclerView.NO_POSITION) {
+                    businessItemListener.onItemClick(getItem(position));
+                }
+            });
         }
     }
 
+    public interface OnItemClickListener {
+        void onItemClick(Business business);
+    }
+
+    public void businessListener(OnItemClickListener listener) {
+        this.businessItemListener = listener;
+    }
 }
