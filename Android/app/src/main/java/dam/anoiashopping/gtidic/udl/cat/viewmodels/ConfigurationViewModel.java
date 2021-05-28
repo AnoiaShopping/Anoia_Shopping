@@ -51,7 +51,7 @@ public class ConfigurationViewModel extends ViewModel {
         email.setValue     (account.getEmail());
         photoURL.setValue  (account.getPhotoURL());
 
-        //Log.d(TAG, photoURL.getValue());
+        Log.d(TAG, photoURL.getValue());
     }
 
     public void uploadAccountImage(File imageFile){

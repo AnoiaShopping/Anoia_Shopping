@@ -37,15 +37,10 @@ public class MainActivity extends AppCompatActivity {
         //setContentView(R.layout.activity_main);
 
         if (!PreferencesProvider.providePreferences().getString("token", "").equals("")) {
-
             Log.d (TAG, "L'usuari ja té token: " + PreferencesProvider.providePreferences().getString("token", "") + ". Iniciant pantalla principal.");
-
             initView();
-
         } else {
-
             Log.d (TAG, "L'usuari no té token. Iniciant pantalla Inici de sessió.");
-
             startActivity (new Intent (MainActivity.this, LoginActivity.class));
         }
     }
@@ -79,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
              // Fer nova activitat per veure info
              Bundle b = new Bundle();
              b.putParcelable("business", business);
+             startActivity(new Intent(MainActivity.this, ConfigurationActivity.class));
         });
 
 
