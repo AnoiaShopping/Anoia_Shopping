@@ -31,7 +31,7 @@
                 app:srcCompat="@drawable/avataricon6"
                 android:contentDescription="@string/todo"
                 app:civ_border_width="2dp"
-                app:civ_border_color="#FF00b3ff"/>
+                app:civ_border_color="#FF304294"/>
 
             <Button
                 android:id="@+id/b_update"
@@ -55,7 +55,7 @@
                 android:fontFamily="monospace"
                 android:hint="@string/username"
                 android:text="@{viewModel.username}"
-                android:textColor="@color/C5"
+                android:textColor="@android:color/primary_text_dark_nodisable"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
                 android:fontFamily="monospace"
                 android:hint="@string/firstName"
                 android:text="@{viewModel.firstName}"
-                android:textColor="@color/C5"
+                android:textColor="@android:color/primary_text_dark_nodisable"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="@+id/t_username"
                 app:layout_constraintStart_toStartOf="@+id/t_username"
@@ -85,7 +85,7 @@
                 android:fontFamily="serif"
                 android:hint="@string/lastName"
                 android:text="@{viewModel.lastName}"
-                android:textColor="@color/C5"
+                android:textColor="@android:color/primary_text_dark_nodisable"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="@+id/t_firstname"
                 app:layout_constraintStart_toStartOf="@+id/t_firstname"
