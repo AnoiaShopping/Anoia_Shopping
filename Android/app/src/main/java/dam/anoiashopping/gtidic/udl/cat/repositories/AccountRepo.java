@@ -213,6 +213,7 @@ public class AccountRepo {
             public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
                 String error_msg = "Error: " + t.getMessage();
                 Log.d(TAG,"uploadPhoto() -> ERROR: " +  error_msg);
+                mResponseUploadImage.setValue(new ResultImpl (0, false));
             }
         });
     }
