@@ -28,7 +28,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/avataricon6"
+                app:srcCompat="@drawable/user500"
                 android:contentDescription="@string/todo"
                 app:civ_border_width="2dp"
                 app:civ_border_color="#FF304294"/>

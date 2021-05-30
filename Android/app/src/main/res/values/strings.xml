@@ -20,6 +20,7 @@
     <string name="singInButton">Registrar-se</string>
     <string name="singInTop">REGISTRE</string>
     <string name="username">Nom d\'Usuari</string>
+    <string name="username2">Nom d\'Usuari o Email</string>
     <string name="password">Contrassenya</string>
     <string name="passwordRepeat">Repetir Contrassenya</string>
     <string name="firstName">Nom</string>

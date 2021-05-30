@@ -83,7 +83,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                 if (configurationViewModel.photoURL.getValue() != null) {
                     Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
                 } else {
-                    profileImage.setImageResource(R.drawable.avataricon6);
+                    profileImage.setImageResource(R.drawable.user500);
                 }
             }
         });
