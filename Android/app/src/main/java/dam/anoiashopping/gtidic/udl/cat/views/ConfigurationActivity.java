@@ -110,11 +110,16 @@ public class ConfigurationActivity extends AppCompatActivity {
 
             @Override
             public void onPermissionPreviouslyDenied() {
-                        Log.d(TAG,"Permission denied");
+                Log.d(TAG,"Permission denied");
+
+                ActivityCompat.requestPermissions(ConfigurationActivity.this,
+                        new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_EXTERNAL_STORAGE);
             }
 
             @Override
             public void onPermissionPreviouslyDeniedWithNeverAskAgain() {
+
                 Log.d(TAG,"Permission denied never ask again");
             }
 

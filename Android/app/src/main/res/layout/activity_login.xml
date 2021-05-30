@@ -66,6 +66,8 @@
             android:layout_marginTop="32dp"
             android:onClick="@{() -> viewModel.onLogin()}"
             android:text="@string/logIn2"
+            android:textColor="#4788C7"
+            app:backgroundTint="#98CCFD"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/i_loginpassword" />
@@ -77,6 +79,8 @@
             android:layout_marginTop="16dp"
             android:onClick="@{() -> viewModel.onRegisterClick()}"
             android:text="@string/singInButton"
+            android:textColor="#4788C7"
+            app:backgroundTint="#98CCFD"
             app:layout_constraintEnd_toEndOf="@+id/b_login"
             app:layout_constraintStart_toStartOf="@+id/b_login"
             app:layout_constraintTop_toBottomOf="@+id/b_login" />

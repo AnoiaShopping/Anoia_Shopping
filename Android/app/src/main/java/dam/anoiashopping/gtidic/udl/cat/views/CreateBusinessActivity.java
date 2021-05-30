@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.util.Log;
@@ -63,85 +64,92 @@ public class CreateBusinessActivity extends AppCompatActivity {
             //implementar regex
             String provadorRegex = String.valueOf(txtEditNom.getText());
 
-            int validadorRegex = 0;
+            boolean validadorRegex = true;
 
             if (!provadorRegex.matches("^{2,20}(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
 
                 txtEditNom.setError("Nom no vàlid, ha d'incoure lletres nomes i un tamany de màxim 25 caràcters i mínim 2");
+                validadorRegex = false;
 
-            }else{validadorRegex++;}
+            }
 
             provadorRegex = String.valueOf(txtEditDefinicio.getText()); //qualsevol lletra, espais i enters permesos.
             if (!provadorRegex.matches("^(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
 
                 txtEditDefinicio.setError("Definició no valida. Ha d'incloure caracters");
+                validadorRegex = false;
 
-            }else{validadorRegex++;}
+            }
 
             provadorRegex = String.valueOf(txtEditWeb.getText()); //Inici amb http o https
             if (!provadorRegex.matches("^https?:\\/\\/(.*)")){
-                if(provadorRegex.isEmpty()){
-                    validadorRegex++;
-                }else{
+                if(!provadorRegex.isEmpty()){
+                    validadorRegex = false;
                     txtEditWeb.setError("Si no teniu web deixeu buit el camp, si en teniu, utilitza el format https://nomweb");
                 }
-            }else{validadorRegex++;}
+            }
 
 
 
             provadorRegex = String.valueOf(txtEditInstagram.getText());  //https://www.instagram.com/username
             if (!provadorRegex.matches("^{2,25}[a-zA-Z._-]+\\.?")){
-
-                if(provadorRegex.isEmpty()){
-                    validadorRegex++;
-                }else{
+                if(!provadorRegex.isEmpty()){
+                    validadorRegex = false;
                     txtEditInstagram.setError("Instagram incorrecte, has d'incloure només el nom d'usuari (lletres i guions/barres baixes");
                 }
-            }else{validadorRegex++;}
+            }
 
             provadorRegex = String.valueOf(txtEditTwitter.getText()); // http://twitter.com/username
             if (!provadorRegex.matches("^{2,25}[a-zA-Z._-]+\\.?")){
-
-                if(provadorRegex.isEmpty()){
-                    validadorRegex++;
-                }else{
+                if(!provadorRegex.isEmpty()){
+                    validadorRegex = false;
                     txtEditTwitter.setError("Twitter incorrecte, has d'incloure només el nom (lletres,guions i barres baixes");
                 }
-            }else{validadorRegex++;}
+            }
 
             provadorRegex = String.valueOf(txtEditFacebook.getText());  //http://www.facebook.com/someusername
             if (!provadorRegex.matches("^{2,30}(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
-                if(provadorRegex.isEmpty()){
-                    validadorRegex++;
-                }else{
+                if(!provadorRegex.isEmpty()){
+                    validadorRegex = false;
                     txtEditFacebook.setError("Facebook incorrecte, has d'incloure el nom d'usuari incluint nomes lletres");                }
-            }else{validadorRegex++;}
+            }
 
 
 
-            if(validadorRegex ==6){
+            if(validadorRegex){
                 Business business = new Business();
                 business.setNom(txtEditNom.getText().toString());
                 business.setDefinicio(txtEditDefinicio.getText().toString());
                 business.setTipus(agafarTipusNegoci());
 
-                String facebook = "https://www.facebook.com/" + txtEditFacebook.getText().toString();
-                System.out.print(facebook);
+                String facebook = "";
+                if (!txtEditFacebook.getText().toString().isEmpty()) {
+                    facebook = "https://www.facebook.com/" + txtEditFacebook.getText().toString();
+                }
                 business.setFacebook(facebook);
-                String instagram = "https://www.instagram.com/" + txtEditInstagram.getText().toString();
-                System.out.print(instagram);
+
+                String instagram = "";
+                if (!txtEditInstagram.getText().toString().isEmpty()) {
+                    instagram = "https://www.instagram.com/" + txtEditInstagram.getText().toString();
+                }
                 business.setInstagram(instagram);
-                String twitter = "https://www.twitter.com/" + txtEditTwitter.getText().toString();
-                Log.d(TAG, twitter);
+
+                String twitter = "";
+                if (!txtEditTwitter.getText().toString().isEmpty()) {
+                    twitter = "https://www.twitter.com/" + txtEditTwitter.getText().toString();
+                }
                 business.setTwitter(twitter);
+
                 business.setWeb(txtEditWeb.getText().toString());
 
                 businessViewModel.createBusiness(business);
 
-                Context context = getApplicationContext();
-                CharSequence text = "BOTIGA REGISTRADA";
-                int duration = Toast.LENGTH_SHORT;
-                Toast.makeText(context, text, duration).show();
+                businessViewModel.createBusinessResponse().observe(this, business1 -> {
+                    if (business1.isValid()) {
+                        Toast.makeText(getApplicationContext(), "Negoci registrat correctament", Toast.LENGTH_SHORT).show();
+                        startActivity (new Intent(CreateBusinessActivity.this, MainActivity.class));
+                    }
+                });
             }
         });
     }
