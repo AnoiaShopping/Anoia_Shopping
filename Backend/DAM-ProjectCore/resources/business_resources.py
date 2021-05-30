@@ -62,3 +62,28 @@ class ResourceGetBusiness(DAMCoreResource):
         resp.media = business
 
         resp.status = falcon.HTTP_200
+
+
+# TODO : Acabar d'implementar
+@falcon.before(requires_auth)
+class ResourceBusinessUploadPhoto(DAMCoreResource):
+    def on_post(self, req, resp, *args, **kwargs):
+        super(ResourceBusinessUploadPhoto, self).on_post(req, resp, *args, **kwargs)
+
+
+        # Get the user from the token
+        current_user = req.context["auth_user"]
+        resource_path = current_user.photo_path
+
+        # Get the file from form
+        incoming_file = req.get_param("image_file")
+
+        # Run the common part for storing
+        filename = utils.save_static_media_file(incoming_file, resource_path)
+
+        # Update db model
+        current_user.photo = filename
+        self.db_session.add(current_user)
+        self.db_session.commit()
+
+        resp.status = falcon.HTTP_200

@@ -74,4 +74,13 @@
 
     <string name="actualizar">Actualizar</string>
     <string name="definici_botiga">DEFINICIÓ BOTIGA</string>
+    <string name="insertar_foto">INSERTAR FOTO</string>
+    <string name="nom_botiga">Nom Botiga</string>
+    <string name="web_negoci_si_en_teniu">Web negoci (si en teniu)</string>
+    <string name="tipus_de_negoci">Tipus de Negoci</string>
+    <string name="definicio_del_que_ofereixes">Definicio del que ofereixes</string>
+    <string name="crear_negoci">CREAR NEGOCI</string>
+    <string name="instagram">Instagram</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
 </resources>
