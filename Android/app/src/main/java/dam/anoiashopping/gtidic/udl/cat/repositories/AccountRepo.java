@@ -37,9 +37,12 @@ public class AccountRepo {
     private final MutableLiveData <ResultImpl> mResponseCreateToken;
     private final MutableLiveData <ResultImpl> mResponseDeleteToken;
     private final MutableLiveData <ResultImpl> mResponseUploadImage;
+    private final MutableLiveData <String>     mResponseRecoveryCode;
+
     private Account account;
 
-    public AccountRepo() {
+    public AccountRepo(MutableLiveData<String> mResponseRecovery) {
+        this.mResponseRecoveryCode= new MutableLiveData<>();
         this.accountService       = new AccountServiceImpl ();
         this.mResponseRegister    = new MutableLiveData <> ();
         this.mResponseGetAccount  = new MutableLiveData <> ();
@@ -70,6 +73,8 @@ public class AccountRepo {
     }
 
     public MutableLiveData <ResultImpl> getmResponseUploadImage() {return mResponseUploadImage;}
+
+    public MutableLiveData<String> getmResponseRecoveryCode(){return mResponseRecoveryCode;}
 
     public void registerAccount(Account account){
 
@@ -260,6 +265,23 @@ public class AccountRepo {
                 Log.d(TAG,  "deleteTokenUser() onFailure() -> ha rebut el missatge:  " + error_msg);
 
                 mResponseDeleteToken.setValue (new ResultImpl(0, false));
+            }
+        });
+    }
+
+    public void recovery_password(String email){
+        accountService.recovery_password(email).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                int return_code = response.code();
+                Log.d(TAG,  "Recovery_password(SendCode)() -> ha rebut el codi:  " + return_code);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+
             }
         });
     }

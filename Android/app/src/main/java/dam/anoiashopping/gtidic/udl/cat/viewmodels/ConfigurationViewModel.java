@@ -2,15 +2,11 @@ package dam.anoiashopping.gtidic.udl.cat.viewmodels;
 
 import android.util.Log;
 
-import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.squareup.picasso.Picasso;
-
 import java.io.File;
 
-import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
@@ -32,7 +28,7 @@ public class ConfigurationViewModel extends ViewModel {
     }
 
     public ConfigurationViewModel () {
-        this.accountRepo = new AccountRepo();
+        this.accountRepo = new AccountRepo(mResponseRecovery);
     }
 
     public void getAccount () {

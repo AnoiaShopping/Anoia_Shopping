@@ -6,6 +6,7 @@ import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
@@ -40,7 +41,7 @@ public interface AccountServiceI {
 
     // TODO: Fer recuperació de contrassenya
     @POST ("account/recovery")
-    Call <ResponseBody> recoverypassword ()
+    Call<ResponseBody> recovery_password(@Header("email") String email);
     
 
 }
