@@ -149,9 +149,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="95dp"
                 android:layout_height="140dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginRight="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txtEditTwitter"
                 app:layout_constraintTop_toBottomOf="@+id/txtEditTwitter"
                 app:srcCompat="@drawable/as1" />
 
