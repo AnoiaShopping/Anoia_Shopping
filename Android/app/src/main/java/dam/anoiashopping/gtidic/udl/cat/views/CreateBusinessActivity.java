@@ -3,6 +3,7 @@ package dam.anoiashopping.gtidic.udl.cat.views;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
@@ -140,7 +141,11 @@ public class CreateBusinessActivity extends AppCompatActivity {
                 }
                 business.setTwitter(twitter);
 
-                business.setWeb(txtEditWeb.getText().toString());
+                String web = "";
+                if (!txtEditWeb.getText().toString().isEmpty()) {
+                    web = txtEditWeb.getText().toString();
+                }
+                business.setWeb(web);
 
                 createBusinessViewModel.createBusiness(business);
 
