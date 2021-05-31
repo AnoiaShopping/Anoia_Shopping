@@ -3,6 +3,7 @@ package dam.anoiashopping.gtidic.udl.cat.views;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.bouncycastle.util.Strings;
+
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
 import dam.anoiashopping.gtidic.udl.cat.utils.Utils;
+import dam.anoiashopping.gtidic.udl.cat.utils.Validation;
 
 public class RecoveryCodeActivity extends AppCompatActivity {
     private AccountRepo account = new AccountRepo();
@@ -43,11 +47,20 @@ public class RecoveryCodeActivity extends AppCompatActivity {
         });
 
         btCanviarContrasenya.setOnClickListener(v -> {
+            String contra1 = txtEditContrasenya1.getText().toString();
+            String contra2 = txtEditContrasenya2.getText().toString();
 
-            //Validar contrasenya regex
-            if(txtEditContrasenya1.getText().equals(txtEditContrasenya2)) {
-                account.update_password(txtEditCorreu.getText().toString(), Utils.encode(txtEditContrasenya1.getText().toString(), "16", 29000), txtEditCode.getText().toString()); //canvi
+            if(contra1.equals(contra2)) {
+                if(contra1.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$")){
+                    account.update_password(txtEditCorreu.getText().toString(), Utils.encode(txtEditContrasenya1.getText().toString(), "16", 29000), txtEditCode.getText().toString());
+                    startActivity(new Intent(RecoveryCodeActivity.this, LoginActivity.class));
+                }else{
+                    txtEditContrasenya1.setError(getString(R.string.wrongPassword));
+                }
+            }else{
+                txtEditContrasenya2.setError(getString(R.string.samePassword));
             }
+
         });
 
 
