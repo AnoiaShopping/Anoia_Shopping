@@ -38,7 +38,6 @@ class ResourceCreateBusiness(DAMCoreResource):
 
             try:
                 self.db_session.commit()
-                resp.media(aux_business.json_model)
             except IntegrityError:
                 raise falcon.HTTPBadRequest(description=messages.business_exists)
 
