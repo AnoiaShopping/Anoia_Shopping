@@ -65,7 +65,6 @@ class ResourceGetBusiness(DAMCoreResource):
         resp.status = falcon.HTTP_200
 
 
-# TODO : Acabar d'implementar
 @falcon.before(requires_auth)
 class ResourceBusinessUploadPhoto(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
@@ -73,8 +72,12 @@ class ResourceBusinessUploadPhoto(DAMCoreResource):
 
         current_user = req.context["auth_user"]
 
-        if "name" in kwargs:
-            business = self.db_session.query(Business).filter(Business.name == kwargs["name"], Business.owner_id == current_user.id).one_or_none()
+        # Get the file from form
+        name = req.get_param("name")
+
+        if name is not None:
+
+            business = self.db_session.query(Business).filter(Business.name == name, Business.owner_id == current_user.id).one_or_none()
             
             if business is not None:
 

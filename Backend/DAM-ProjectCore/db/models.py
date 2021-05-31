@@ -243,6 +243,10 @@ class Business(SQLAlchemyBase, JSONModel):
         return _generate_media_url(self, "photo")
 
     @hybrid_property
+    def photo_path(self):
+        return _generate_media_path(self, "photo")
+
+    @hybrid_property
     def json_model(self):
         return {
             "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
