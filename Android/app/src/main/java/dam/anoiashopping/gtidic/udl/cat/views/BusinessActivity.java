@@ -13,4 +13,10 @@ public class BusinessActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business);
     }
+
+    // Per el que reb el business
+    //Bundle b = getArguments();
+    //if (b != null){
+    //    Business business = b.getParcelable("business");
+    //}
 }

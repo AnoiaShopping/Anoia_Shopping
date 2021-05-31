@@ -76,14 +76,6 @@ public class MainActivity extends AppCompatActivity {
              b.putParcelable("business", business);
              startActivity(new Intent(MainActivity.this, BusinessActivity.class));
         });
-
-
-        // Per el que reb el business
-        //Bundle b = getArguments();
-        //if (b != null){
-        //    Jocs joc = b.getParcelable("joc");
-        //    displayReceivedGame(joc);
-        //}
     }
 
     @Override
