@@ -230,11 +230,11 @@ class Business(SQLAlchemyBase, JSONModel):
     name = Column(Unicode(50), nullable=False, unique=True)
     type = Column(Unicode(50), nullable=False)
     definition = Column(UnicodeText, nullable=False)
-    web = Column(Unicode(50))
-    facebook = Column(Unicode(60))
-    instagram = Column(Unicode(60))
-    twitter = Column(Unicode(60))
-    photo = Column(Unicode(255), nullable=True) # TODO: posar a false quan estigui preparat
+    web = Column(Unicode(50), default="")
+    facebook = Column(Unicode(60), default="")
+    instagram = Column(Unicode(60), default="")
+    twitter = Column(Unicode(60), default="")
+    photo = Column(Unicode(255))
     owner_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
     owner = relationship("User", back_populates="business_owner")
 
