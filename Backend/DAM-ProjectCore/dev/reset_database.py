@@ -104,6 +104,7 @@ if __name__ == "__main__":
     db_session.add(user_1)
     db_session.add(user_2)
     db_session.add(user_3)
+    db_session.add(user_4)
 
 
     # Creació de negoci
