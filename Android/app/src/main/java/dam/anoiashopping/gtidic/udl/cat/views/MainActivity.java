@@ -74,16 +74,8 @@ public class MainActivity extends AppCompatActivity {
              // Fer nova activitat per veure info
              Bundle b = new Bundle();
              b.putParcelable("business", business);
-             startActivity(new Intent(MainActivity.this, ConfigurationActivity.class));
+             startActivity(new Intent(MainActivity.this, BusinessActivity.class));
         });
-
-
-        // Per el que reb el business
-        //Bundle b = getArguments();
-        //if (b != null){
-        //    Jocs joc = b.getParcelable("joc");
-        //    displayReceivedGame(joc);
-        //}
     }
 
     @Override

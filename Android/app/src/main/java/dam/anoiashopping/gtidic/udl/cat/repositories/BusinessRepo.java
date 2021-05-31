@@ -25,6 +25,10 @@ public class BusinessRepo {
     private final BusinessServiceI businessService;
 
 
+    public MutableLiveData<ResultImpl> getmResponseCreateBusiness() {
+        return mResponseCreateBusiness;
+    }
+
     public BusinessRepo() {
         this.businessService = new BusinessServiceImpl();
         this.mResponseCreateBusiness = new MutableLiveData<>();

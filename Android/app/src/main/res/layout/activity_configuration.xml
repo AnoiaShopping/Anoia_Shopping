@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             tools:context=".views.ConfigurationActivity">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/im_profile"
                 android:layout_width="200dp"
                 android:layout_height="200dp"
@@ -28,8 +28,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/avataricon6"
-                android:contentDescription="@string/todo" />
+                app:srcCompat="@drawable/user500"
+                android:contentDescription="@string/todo"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#98CCFD"/>
 
             <Button
                 android:id="@+id/b_update"
@@ -39,9 +41,11 @@
                 android:text="@string/update"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/im_profile" />
+                app:layout_constraintTop_toBottomOf="@+id/im_profile"
+                android:textColor="#4788C7"
+                app:backgroundTint="#98CCFD"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/t_username"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -53,13 +57,14 @@
                 android:fontFamily="monospace"
                 android:hint="@string/username"
                 android:text="@{viewModel.username}"
-                android:textColor="@color/C5"
+                android:textColor="@color/black"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/b_update" />
+                app:layout_constraintTop_toBottomOf="@+id/b_update"
+                android:inputType="textPersonName" />
 
-            <TextView
+            <EditText
                 android:id="@+id/t_firstname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -67,13 +72,14 @@
                 android:fontFamily="monospace"
                 android:hint="@string/firstName"
                 android:text="@{viewModel.firstName}"
-                android:textColor="@color/C5"
+                android:textColor="@color/black"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="@+id/t_username"
                 app:layout_constraintStart_toStartOf="@+id/t_username"
-                app:layout_constraintTop_toBottomOf="@+id/t_username" />
+                app:layout_constraintTop_toBottomOf="@+id/t_username"
+                android:inputType="textPersonName" />
 
-            <TextView
+            <EditText
                 android:id="@+id/t_lastname"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -81,13 +87,14 @@
                 android:fontFamily="serif"
                 android:hint="@string/lastName"
                 android:text="@{viewModel.lastName}"
-                android:textColor="@color/C5"
+                android:textColor="@color/black"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="@+id/t_firstname"
                 app:layout_constraintStart_toStartOf="@+id/t_firstname"
-                app:layout_constraintTop_toBottomOf="@+id/t_firstname" />
+                app:layout_constraintTop_toBottomOf="@+id/t_firstname"
+                android:inputType="textPersonName" />
 
-            <TextView
+            <EditText
                 android:id="@+id/t_email"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -95,11 +102,12 @@
                 android:fontFamily="monospace"
                 android:hint="@string/email"
                 android:text="@{viewModel.email}"
-                android:textColor="@color/C5"
+                android:textColor="@color/black"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="@+id/t_lastname"
                 app:layout_constraintStart_toStartOf="@+id/t_lastname"
-                app:layout_constraintTop_toBottomOf="@+id/t_lastname" />
+                app:layout_constraintTop_toBottomOf="@+id/t_lastname"
+                android:inputType="textEmailAddress" />
 
             <Button
                 android:id="@+id/btAnarCrearBotiga"
@@ -108,7 +116,9 @@
                 android:text="Crear Botiga"
                 app:layout_constraintEnd_toEndOf="@+id/bt_actualitzarcompte"
                 app:layout_constraintStart_toStartOf="@+id/bt_actualitzarcompte"
-                app:layout_constraintTop_toBottomOf="@+id/bt_actualitzarcompte" />
+                app:layout_constraintTop_toBottomOf="@+id/bt_actualitzarcompte"
+                android:textColor="#4788C7"
+                app:backgroundTint="#98CCFD"/>
 
             <Button
                 android:id="@+id/b_delete"
@@ -116,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/delete"
                 android:textSize="12sp"
-                app:backgroundTint="@color/design_default_color_error"
+                app:backgroundTint="@android:color/holo_red_dark"
                 app:layout_constraintEnd_toEndOf="@+id/btAnarCrearBotiga"
                 app:layout_constraintStart_toStartOf="@+id/btAnarCrearBotiga"
                 app:layout_constraintTop_toBottomOf="@+id/btAnarCrearBotiga" />
@@ -129,7 +139,9 @@
                 android:text="Actualitzar"
                 app:layout_constraintEnd_toEndOf="@+id/t_email"
                 app:layout_constraintStart_toStartOf="@+id/t_email"
-                app:layout_constraintTop_toBottomOf="@+id/t_email" />
+                app:layout_constraintTop_toBottomOf="@+id/t_email"
+                android:textColor="#4788C7"
+                app:backgroundTint="#98CCFD"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

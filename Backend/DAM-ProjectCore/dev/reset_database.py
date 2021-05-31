@@ -89,10 +89,22 @@ if __name__ == "__main__":
     )
     user_3.set_password("Aa@123456")
 
+    user_4 = User(
+        created_at=datetime.datetime(2020, 1, 1, 0, 1, 1),
+        username="abelesteban",
+        email="abelestebanferrer4@gmail.com",
+        name="Abel",
+        surname="Esteban Ferrer",
+        birthdate=datetime.datetime(2000, 3, 17),
+        genere=GenereEnum.male,
+    )
+    user_4.set_password("Aa@123456")
+
     db_session.add(user_admin)
     db_session.add(user_1)
     db_session.add(user_2)
     db_session.add(user_3)
+    db_session.add(user_4)
 
 
     # Creació de negoci

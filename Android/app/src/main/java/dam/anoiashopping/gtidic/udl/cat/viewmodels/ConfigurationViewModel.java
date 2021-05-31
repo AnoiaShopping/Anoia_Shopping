@@ -54,4 +54,8 @@ public class ConfigurationViewModel extends ViewModel {
         Log.d("VM", "uploading image... using repo");
         this.accountRepo.uploadImage(PreferencesProvider.providePreferences().getString("token", ""), imageFile);
     }
+
+    public MutableLiveData<ResultImpl> getAccountImageResponse () {
+        return accountRepo.getmResponseUploadImage();
+    }
 }

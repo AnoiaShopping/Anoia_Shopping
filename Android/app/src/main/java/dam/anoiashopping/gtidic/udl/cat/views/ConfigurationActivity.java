@@ -1,6 +1,7 @@
 package dam.anoiashopping.gtidic.udl.cat.views;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
@@ -12,6 +13,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.Editable;
@@ -20,6 +22,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -50,6 +53,7 @@ public class ConfigurationActivity extends AppCompatActivity {
     //private EditText txtNomReal;
     //private EditText txtCorreu;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -58,6 +62,8 @@ public class ConfigurationActivity extends AppCompatActivity {
         initView();
         botoActualitzarCompte = findViewById(R.id.bt_actualitzarcompte);
         botoActualitzarCompte.setEnabled(false);
+        botoActualitzarCompte.setBackgroundColor(getColor(R.color.C3));
+        botoActualitzarCompte.setTextColor(getColor(R.color.white));
 
         botoCrearConta = findViewById(R.id.btAnarCrearBotiga);
         botoCrearConta.setOnClickListener(v -> {
@@ -83,7 +89,7 @@ public class ConfigurationActivity extends AppCompatActivity {
                 if (configurationViewModel.photoURL.getValue() != null) {
                     Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
                 } else {
-                    profileImage.setImageResource(R.drawable.avataricon6);
+                    profileImage.setImageResource(R.drawable.user500);
                 }
             }
         });
@@ -95,6 +101,14 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         updateImageButton.setOnClickListener(v -> {
             checkExternalStoragePermission();
+        });
+
+        configurationViewModel.getAccountImageResponse().observe(this, response -> {
+            if (response.isValid()) {
+                Toast.makeText(getApplicationContext(), "La foto ha estat actualitzada correctament.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Ha hagut un error al canviar la foto.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -110,11 +124,16 @@ public class ConfigurationActivity extends AppCompatActivity {
 
             @Override
             public void onPermissionPreviouslyDenied() {
-                        Log.d(TAG,"Permission denied");
+                Log.d(TAG,"Permission denied");
+
+                ActivityCompat.requestPermissions(ConfigurationActivity.this,
+                        new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_EXTERNAL_STORAGE);
             }
 
             @Override
             public void onPermissionPreviouslyDeniedWithNeverAskAgain() {
+
                 Log.d(TAG,"Permission denied never ask again");
             }
 

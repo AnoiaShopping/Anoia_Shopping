@@ -23,8 +23,10 @@ public class Business implements Parcelable {
     String twitter;
     @SerializedName("web")
     String web;
+    @SerializedName("photo")
+    String photoURL;
   
-    public Business(String nom, String tipus, String definicio, String facebook, String instagram, String twitter) {
+    public Business(String nom, String tipus, String definicio, String facebook, String instagram, String twitter, String web, String photoURL) {
         
         // TODO : afegir foto
 
@@ -35,32 +37,12 @@ public class Business implements Parcelable {
         this.facebook = facebook;
         this.twitter = twitter;
         this.web = web;
+        this.photoURL = photoURL;
 
     }
 
     public Business() {
     }
-
-    protected Business(Parcel in) {
-        nom = in.readString();
-        tipus = in.readString();
-        definicio = in.readString();
-        facebook = in.readString();
-        instagram = in.readString();
-        twitter = in.readString();
-    }
-
-    public static final Creator<Business> CREATOR = new Creator<Business>() {
-        @Override
-        public Business createFromParcel(Parcel in) {
-            return new Business(in);
-        }
-
-        @Override
-        public Business[] newArray(int size) {
-            return new Business[size];
-        }
-    };
 
     public String getNom() {
         return nom;
@@ -118,6 +100,14 @@ public class Business implements Parcelable {
         this.web = web;
     }
 
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
+
     @NotNull
     @Override
     public String toString(){
@@ -139,4 +129,25 @@ public class Business implements Parcelable {
         dest.writeString(instagram);
         dest.writeString(twitter);
     }
+
+    protected Business(Parcel in) {
+        nom = in.readString();
+        tipus = in.readString();
+        definicio = in.readString();
+        facebook = in.readString();
+        instagram = in.readString();
+        twitter = in.readString();
+    }
+
+    public static final Creator<Business> CREATOR = new Creator<Business>() {
+        @Override
+        public Business createFromParcel(Parcel in) {
+            return new Business(in);
+        }
+
+        @Override
+        public Business[] newArray(int size) {
+            return new Business[size];
+        }
+    };
 }

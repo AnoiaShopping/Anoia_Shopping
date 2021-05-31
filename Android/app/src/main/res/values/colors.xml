@@ -3,7 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="C1">#FF304294</color> <!-- Blau primari -->
+    <color name="C1">#FF98CCFD</color> <!-- Blau primari -->
+    <color name="C7">#FF4788C7</color> <!-- Blau secundari -->
     <color name="C2">#FF4C61C5</color> <!-- Blau mes clar -->
     <color name="C3">#FF515151</color> <!-- Gris -->
     <color name="C4">#FF777777</color> <!-- Gris mes clar -->
