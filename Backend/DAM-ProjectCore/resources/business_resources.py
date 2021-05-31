@@ -9,6 +9,7 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm.exc import NoResultFound
 
 import messages
+from resources import utils
 from db.models import User, Business
 from hooks import requires_auth
 from resources.base_resources import DAMCoreResource
@@ -37,6 +38,7 @@ class ResourceCreateBusiness(DAMCoreResource):
 
             try:
                 self.db_session.commit()
+                resp.media(aux_business.id)
             except IntegrityError:
                 raise falcon.HTTPBadRequest(description=messages.business_exists)
 
@@ -70,20 +72,24 @@ class ResourceBusinessUploadPhoto(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceBusinessUploadPhoto, self).on_post(req, resp, *args, **kwargs)
 
-
-        # Get the user from the token
         current_user = req.context["auth_user"]
-        resource_path = current_user.photo_path
 
-        # Get the file from form
-        incoming_file = req.get_param("image_file")
+        if "id" in kwargs:
+            business = self.db_session.query(Business).filter(Business.id == kwargs["id"], Business.owner_id == current_user.id).one_or_none()
+            
+            if business is not None:
 
-        # Run the common part for storing
-        filename = utils.save_static_media_file(incoming_file, resource_path)
+                resource_path = business.photo_path
 
-        # Update db model
-        current_user.photo = filename
-        self.db_session.add(current_user)
-        self.db_session.commit()
+                # Get the file from form
+                incoming_file = req.get_param("image_file")
+
+                # Run the common part for storing
+                filename = utils.save_static_media_file(incoming_file, resource_path)
+
+                # Update db model
+                business.photo = filename
+                # self.db_session.add(business)
+                self.db_session.commit()
 
         resp.status = falcon.HTTP_200
