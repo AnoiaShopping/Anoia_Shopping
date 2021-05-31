@@ -38,7 +38,7 @@ class ResourceCreateBusiness(DAMCoreResource):
 
             try:
                 self.db_session.commit()
-                resp.media(aux_business.id)
+                resp.media(aux_business.json_model)
             except IntegrityError:
                 raise falcon.HTTPBadRequest(description=messages.business_exists)
 
@@ -74,8 +74,8 @@ class ResourceBusinessUploadPhoto(DAMCoreResource):
 
         current_user = req.context["auth_user"]
 
-        if "id" in kwargs:
-            business = self.db_session.query(Business).filter(Business.id == kwargs["id"], Business.owner_id == current_user.id).one_or_none()
+        if "name" in kwargs:
+            business = self.db_session.query(Business).filter(Business.name == kwargs["name"], Business.owner_id == current_user.id).one_or_none()
             
             if business is not None:
 
