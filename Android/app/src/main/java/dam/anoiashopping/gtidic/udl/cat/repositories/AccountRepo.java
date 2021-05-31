@@ -37,9 +37,14 @@ public class AccountRepo {
     private final MutableLiveData <ResultImpl> mResponseCreateToken;
     private final MutableLiveData <ResultImpl> mResponseDeleteToken;
     private final MutableLiveData <ResultImpl> mResponseUploadImage;
+    private final MutableLiveData <ResultImpl> mResponseRecoveryCode;
+    private final MutableLiveData <ResultImpl> mResponseUpdatePassword;
+
+
     private Account account;
 
     public AccountRepo() {
+        this.mResponseRecoveryCode= new MutableLiveData<>();
         this.accountService       = new AccountServiceImpl ();
         this.mResponseRegister    = new MutableLiveData <> ();
         this.mResponseGetAccount  = new MutableLiveData <> ();
@@ -47,6 +52,7 @@ public class AccountRepo {
         this.mResponseCreateToken = new MutableLiveData <> ();
         this.mResponseDeleteToken = new MutableLiveData <> ();
         this.mResponseUploadImage = new MutableLiveData <> ();
+        this.mResponseUpdatePassword = new MutableLiveData<>();
     }
 
     public MutableLiveData <ResultImpl> getmResponseRegister() {
@@ -65,11 +71,13 @@ public class AccountRepo {
         return mResponseDeleteToken;
     }
 
-    public MutableLiveData <ResultImpl> getmResponseGetAccount() {
-        return mResponseGetAccount;
-    }
+    public MutableLiveData <ResultImpl> getmResponseGetAccount()  { return mResponseGetAccount; }
 
     public MutableLiveData <ResultImpl> getmResponseUploadImage() {return mResponseUploadImage;}
+
+    public MutableLiveData<ResultImpl> getmResponseRecoveryCode()  {return mResponseRecoveryCode;}
+
+    public MutableLiveData<ResultImpl> getmResponseUpdatePassword() {return mResponseUpdatePassword;}
 
     public void registerAccount(Account account){
 
@@ -261,6 +269,43 @@ public class AccountRepo {
                 Log.d(TAG,  "deleteTokenUser() onFailure() -> ha rebut el missatge:  " + error_msg);
 
                 mResponseDeleteToken.setValue (new ResultImpl(0, false));
+            }
+        });
+    }
+
+
+
+    public void recovery_password(String email){
+        accountService.recovery_password(email).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                int return_code = response.code();
+                Log.d(TAG,  "Recovery_password(SendCode)() -> ha rebut el codi:  " + return_code);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,"recovery Code -> ERROR: " +  error_msg);
+            }
+        });
+    }
+    public void update_password(String email, String password, String code){
+        accountService.update_password(email,password,code).enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                int return_code = response.code();
+                Log.d(TAG,  "UpdatePassword() -> ha rebut el codi:  " + return_code);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,"Update_Password -> ERROR: " +  error_msg);
             }
         });
     }
