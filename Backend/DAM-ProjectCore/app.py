@@ -51,7 +51,7 @@ application.add_route("/events/show/{id:int}", event_resources.ResourceGetEvent(
 
 application.add_route("/business/create", business_resources.ResourceCreateBusiness()) # crear botiga / negoci
 application.add_route("/business", business_resources.ResourceGetBusiness()) # Per llistar els negocis
-application.add_route("/business/uploadphoto/{name}", business_resources.ResourceBusinessUploadPhoto()) # Per pujar la foto
+application.add_route("/business/uploadphoto", business_resources.ResourceBusinessUploadPhoto()) # Per pujar la foto
 
 ##application.add_route("/business/profile", business_resources.ResourceBusinessProfile()) ## TODO: per implementar
 ##application.add_route("/business/edit", business_resources.ResourceEditProfile()) ## TODO: per implementar
