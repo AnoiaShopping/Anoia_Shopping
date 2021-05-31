@@ -72,9 +72,11 @@ public class MainActivity extends AppCompatActivity {
 
         businessAdapter.businessListener(business -> {
              // Fer nova activitat per veure info
-             Bundle b = new Bundle();
-             b.putParcelable("business", business);
-             startActivity(new Intent(MainActivity.this, BusinessActivity.class));
+             Intent intent = new Intent(MainActivity.this, BusinessActivity.class);
+             intent.putExtra("business", business);
+             /*Bundle b = new Bundle();
+             b.putParcelable("business", business);*/
+             startActivity(intent);
         });
     }
 
