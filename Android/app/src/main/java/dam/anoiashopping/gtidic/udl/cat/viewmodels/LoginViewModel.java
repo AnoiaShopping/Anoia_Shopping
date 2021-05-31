@@ -28,7 +28,7 @@ public class LoginViewModel extends ViewModel {
     public MutableLiveData <Boolean> registerClick = new MutableLiveData <> ();
 
     public LoginViewModel() {
-        this.accountRepo = new AccountRepo(mResponseRecovery);
+        this.accountRepo = new AccountRepo();
     }
 
     public MutableLiveData <ResultImpl> getLoginResponse () {

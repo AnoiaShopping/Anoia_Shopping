@@ -45,4 +45,15 @@ public class AccountServiceImpl implements AccountServiceI {
     public Call <Account> show_account (String token) {
         return retrofit.create(AccountServiceI.class).show_account(token);
     }
+
+    @Override
+    public Call<ResponseBody> recovery_password(String email) {
+        return retrofit.create(AccountServiceI.class).recovery_password(email);
+    }
+
+    @Override
+    public Call<ResponseBody> update_password(String email, String password, String code) {
+        return retrofit.create(AccountServiceI.class).update_password(email,password,code);
+    }
+
 }

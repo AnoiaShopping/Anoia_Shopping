@@ -39,7 +39,7 @@ public class RegisterViewModel extends ViewModel {
     }
 
     public RegisterViewModel () {
-        this.accountRepo = new AccountRepo(mResponseRecovery);
+        this.accountRepo = new AccountRepo();
     }
 
     public boolean isFormValid () {

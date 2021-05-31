@@ -28,7 +28,7 @@ public class ConfigurationViewModel extends ViewModel {
     }
 
     public ConfigurationViewModel () {
-        this.accountRepo = new AccountRepo(mResponseRecovery);
+        this.accountRepo = new AccountRepo();
     }
 
     public void getAccount () {

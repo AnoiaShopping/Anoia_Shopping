@@ -24,7 +24,7 @@ public class MainViewModel extends ViewModel {
     }
 
     public MainViewModel () {
-        this.accountRepo = new AccountRepo (mResponseRecovery);
+        this.accountRepo = new AccountRepo ();
         this.businessRepo = new BusinessRepo ();
     }
 

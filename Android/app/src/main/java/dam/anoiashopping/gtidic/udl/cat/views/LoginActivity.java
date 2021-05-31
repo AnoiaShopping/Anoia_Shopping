@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityLoginBinding;
-import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.LoginViewModel;
 
 public class LoginActivity extends AppCompatActivity {
@@ -40,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         loginViewModel.registerClick.observe(this, registerClick -> startActivity (new Intent (LoginActivity.this, RegisterActivity.class)));
         b_lostpassword.setOnClickListener(v -> {
-            startActivity (new Intent (LoginActivity.this, RecuperarContaActivity.class));
+            startActivity (new Intent (LoginActivity.this, RecoveryCodeActivity.class));
         });
         loginViewModel.getLoginResponse().observe(this, loginResponse -> {
 
