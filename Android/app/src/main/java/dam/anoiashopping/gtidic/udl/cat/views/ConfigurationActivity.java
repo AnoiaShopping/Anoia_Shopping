@@ -82,6 +82,9 @@ public class ConfigurationActivity extends AppCompatActivity {
 
         configurationViewModel.getAccount();
 
+        profileImage = findViewById (R.id.im_profile);
+        updateImageButton = findViewById (R.id.b_update);
+
         configurationViewModel.getAccountResponse().observe(this, accountResponse -> {
             if (accountResponse.isValid()) {
                 configurationViewModel.setAccount();
@@ -93,11 +96,6 @@ public class ConfigurationActivity extends AppCompatActivity {
                 }
             }
         });
-
-        profileImage = findViewById (R.id.im_profile);
-        updateImageButton = findViewById (R.id.b_update);
-
-        Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
 
         updateImageButton.setOnClickListener(v -> {
             checkExternalStoragePermission();

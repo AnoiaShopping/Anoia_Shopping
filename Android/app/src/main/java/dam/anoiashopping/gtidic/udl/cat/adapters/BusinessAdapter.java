@@ -3,7 +3,6 @@ package dam.anoiashopping.gtidic.udl.cat.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
@@ -14,7 +13,6 @@ import org.jetbrains.annotations.NotNull;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
-import dam.anoiashopping.gtidic.udl.cat.models.Event;
 
 public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.BusinessHolder> {
 
