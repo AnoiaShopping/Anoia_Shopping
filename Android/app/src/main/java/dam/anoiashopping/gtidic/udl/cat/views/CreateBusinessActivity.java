@@ -37,6 +37,7 @@ public class CreateBusinessActivity extends AppCompatActivity {
     private final int PICK_IMAGE_REQUEST = 14;
     ImageView photopreview;
     File photo;
+    Button selectPhoto;
 
     private EditText txtEditNom;
     private EditText txtEditWeb;
@@ -50,8 +51,10 @@ public class CreateBusinessActivity extends AppCompatActivity {
     @SuppressLint({"Range", "WrongConstant"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_business);
+        permissionManager = new PermissionManager();
 
         txtEditNom = findViewById(R.id.txtEditNomBotiga);
         txtEditWeb = findViewById(R.id.txtEditWebNegoci);
@@ -61,6 +64,7 @@ public class CreateBusinessActivity extends AppCompatActivity {
         txtEditTwitter = findViewById(R.id.txtEditTwitter);
         btCrearBotiga = findViewById(R.id.btCrearBotiga);
         photopreview = findViewById(R.id.im_businessphotopreview);
+        selectPhoto = findViewById(R.id.b_chooseimage);
 
         createBusinessViewModel = new CreateBusinessViewModel();
 
@@ -74,18 +78,28 @@ public class CreateBusinessActivity extends AppCompatActivity {
         // Apliquem l'adaptador
         spinner.setAdapter(adapter);
 
+        selectPhoto.setOnClickListener(v -> {
+            checkExternalStoragePermission();
+        });
+
         btCrearBotiga.setOnClickListener(v -> {
             if(validate()){
                 register();
             }
-        });
 
-        createBusinessViewModel.createBusinessResponse().observe(this, business1 -> {
-            if (business1.isValid()) {
-                // TODO : implementar foto
-                Toast.makeText(getApplicationContext(), "Negoci registrat correctament", Toast.LENGTH_SHORT).show();
-                startActivity (new Intent(CreateBusinessActivity.this, MainActivity.class));
-            }
+            createBusinessViewModel.createBusinessResponse().observe(this, business1 -> {
+                if (business1.isValid()) {
+                    // TODO : implementar foto
+                    createBusinessViewModel.uploadPhoto(photo, txtEditNom.getText().toString());
+                }
+
+                createBusinessViewModel.uploadPhotoBusinessResponse().observe(this, response -> {
+                    if (response.isValid()) {
+                        Toast.makeText(getApplicationContext(), "Negoci registrat correctament", Toast.LENGTH_SHORT).show();
+                        startActivity (new Intent(CreateBusinessActivity.this, MainActivity.class));
+                    }
+                });
+            });
         });
     }
 
