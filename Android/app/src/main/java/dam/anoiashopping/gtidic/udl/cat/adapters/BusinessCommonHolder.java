@@ -1,20 +1,15 @@
 package dam.anoiashopping.gtidic.udl.cat.adapters;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 import com.squareup.picasso.Picasso;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
-import dam.anoiashopping.gtidic.udl.cat.models.Event;
-import dam.anoiashopping.gtidic.udl.cat.models.EventStatus;
-import dam.anoiashopping.gtidic.udl.cat.models.EventType;
 
 public class BusinessCommonHolder {
 

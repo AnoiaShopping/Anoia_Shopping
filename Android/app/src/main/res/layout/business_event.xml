@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/im_empresa"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
+        app:civ_border_color="#98CCFD"
+        app:civ_border_width="2dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/avataricon6" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nom_empresa"
