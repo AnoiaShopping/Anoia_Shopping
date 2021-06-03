@@ -37,6 +37,7 @@ public class BusinessCommonHolder {
 
         this.businessName.setText(b.getNom());
         this.businessDescription.setText(b.getDefinicio());
+        Picasso.get().load(b.getPhotoURL()).into(this.businessPhoto);
         //Log.d(TAG, "bindHolder() -> Busssines: " + b);
 
         //Log.d(TAG, "onBindViewHolder() -> cEvent: " + e.getPoster_url());
