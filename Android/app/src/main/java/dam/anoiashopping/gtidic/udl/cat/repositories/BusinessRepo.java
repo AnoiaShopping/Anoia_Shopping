@@ -23,10 +23,10 @@ import retrofit2.Response;
 public class BusinessRepo {
 
     private final String TAG = "BusinessRepo";
-    private MutableLiveData<ResultImpl> mResponseCreateBusiness;
+    private final MutableLiveData<ResultImpl> mResponseCreateBusiness;
     //private MutableLiveData<ResultImpl> mResponseGetBusiness;
-    private MutableLiveData<ResultImpl> mResponseUploadPhoto;
-    private MutableLiveData<List<Business>> mResponseBusinessList;
+    private final MutableLiveData<ResultImpl> mResponseUploadPhoto;
+    private final MutableLiveData<List<Business>> mResponseBusinessList;
     private final BusinessServiceI businessService;
 
 
@@ -46,6 +46,7 @@ public class BusinessRepo {
         this.businessService = new BusinessServiceImpl();
         this.mResponseCreateBusiness = new MutableLiveData<>();
         this.mResponseBusinessList = new MutableLiveData<>();
+        this.mResponseUploadPhoto = new MutableLiveData<>();
     }
 
     public void createBusiness(Business business){
@@ -102,22 +103,27 @@ public class BusinessRepo {
         });
     }
 
-    public void uploadPhoto (String name, File image) {
+    public void uploadBusinessPhoto (File image, String name) {
         String token = PreferencesProvider.providePreferences().getString("token", "");
 
         RequestBody reqBody = RequestBody.create(image, MediaType.parse("image/*"));
-        MultipartBody.Part imageMultipart = MultipartBody.Part.createFormData("image_file", image.getName(), reqBody);
+        //MultipartBody.Part multipart = MultipartBody.Part.createFormData("image_file", image.getName(), reqBody);
 
-        this.businessService.business_photo(imageMultipart, token, name).enqueue(new Callback<ResponseBody>() {
+        MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+        builder.addFormDataPart("image_file", image.getName(),reqBody);
+        builder.addFormDataPart("name", name);
+        RequestBody requestBody = builder.build();
+
+        this.businessService.upload_business_photo(requestBody, token).enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 int code = response.code();
                 Log.d(TAG,"uploadPhoto() -> ha rebut el codi: " +  code);
 
                 if (code == 200) {
-                    mResponseCreateBusiness.setValue(new ResultImpl(0, true));
+                    mResponseUploadPhoto.setValue(new ResultImpl(0, true));
                 } else {
-                    mResponseCreateBusiness.setValue(new ResultImpl(0, false));
+                    mResponseUploadPhoto.setValue(new ResultImpl(0, false));
                 }
 
             }

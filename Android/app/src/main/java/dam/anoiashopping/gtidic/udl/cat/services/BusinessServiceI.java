@@ -5,6 +5,7 @@ import java.util.List;
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.models.Token;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,8 +23,7 @@ public interface BusinessServiceI {
     @GET("/business")
     Call<List<Business>> get_business (@Header("Authorization") String token);
 
-    @Multipart
     @POST ("/business/uploadphoto")
-    Call <ResponseBody> business_photo (@Part MultipartBody.Part image, @Header ("Authorization") String token, @Body String name);
+    Call <ResponseBody> upload_business_photo (@Body RequestBody builder, @Header ("Authorization") String token);
 
 }

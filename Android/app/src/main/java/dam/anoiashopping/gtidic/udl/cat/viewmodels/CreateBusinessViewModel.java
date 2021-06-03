@@ -20,7 +20,7 @@ public class CreateBusinessViewModel extends ViewModel {
         this.businessRepo.createBusiness(business);
     }
 
-    public void uploadPhoto (File image, String name) {this.businessRepo.uploadPhoto(name, image);}
+    public void uploadBusinessPhoto (File image, String name) {this.businessRepo.uploadBusinessPhoto(image, name);}
 
     public MutableLiveData<ResultImpl> createBusinessResponse () {return this.businessRepo.getmResponseCreateBusiness();}
 

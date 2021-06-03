@@ -46,6 +46,7 @@ public class CreateBusinessActivity extends AppCompatActivity {
     private EditText txtEditFacebook;
     private EditText txtEditTwitter;
     private Button btCrearBotiga;
+    Spinner spinner;
     private CreateBusinessViewModel createBusinessViewModel;
 
     @SuppressLint({"Range", "WrongConstant"})
@@ -68,15 +69,7 @@ public class CreateBusinessActivity extends AppCompatActivity {
 
         createBusinessViewModel = new CreateBusinessViewModel();
 
-        //PREPAREM SPINNER
-        Spinner spinner = (Spinner) findViewById(R.id.spinnerEditTipusBotiga);
-        String tipusBotiga = "";
-        //Creem l'adaptador que necessita el spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipusDeBotigues, android.R.layout.simple_spinner_item);
-        //Especifiquem la llista amb la seguent linea
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apliquem l'adaptador
-        spinner.setAdapter(adapter);
+        spinner();
 
         selectPhoto.setOnClickListener(v -> {
             checkExternalStoragePermission();
@@ -86,21 +79,32 @@ public class CreateBusinessActivity extends AppCompatActivity {
             if(validate()){
                 register();
             }
-
-            createBusinessViewModel.createBusinessResponse().observe(this, business1 -> {
-                if (business1.isValid()) {
-                    // TODO : implementar foto
-                    createBusinessViewModel.uploadPhoto(photo, txtEditNom.getText().toString());
-                }
-
-                createBusinessViewModel.uploadPhotoBusinessResponse().observe(this, response -> {
-                    if (response.isValid()) {
-                        Toast.makeText(getApplicationContext(), "Negoci registrat correctament", Toast.LENGTH_SHORT).show();
-                        startActivity (new Intent(CreateBusinessActivity.this, MainActivity.class));
-                    }
-                });
-            });
         });
+
+        createBusinessViewModel.createBusinessResponse().observe(this, business1 -> {
+            if (business1.isValid()) {
+                Log.d (TAG, txtEditNom.getText().toString());
+                createBusinessViewModel.uploadBusinessPhoto(photo, txtEditNom.getText().toString());
+            }
+        });
+
+        createBusinessViewModel.uploadPhotoBusinessResponse().observe(this, response -> {
+            if (response.isValid()) {
+                Toast.makeText(getApplicationContext(), "Negoci registrat correctament", Toast.LENGTH_SHORT).show();
+                startActivity (new Intent(CreateBusinessActivity.this, MainActivity.class));
+            }
+        });
+    }
+
+    private void spinner () {
+        //PREPAREM SPINNER
+        spinner = (Spinner) findViewById(R.id.spinnerEditTipusBotiga);
+        //Creem l'adaptador que necessita el spinner
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipusDeBotigues, android.R.layout.simple_spinner_item);
+        //Especifiquem la llista amb la seguent linea
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apliquem l'adaptador
+        spinner.setAdapter(adapter);
     }
 
     private boolean validate () {
