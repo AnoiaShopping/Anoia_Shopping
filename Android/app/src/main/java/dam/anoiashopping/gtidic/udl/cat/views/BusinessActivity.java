@@ -73,7 +73,6 @@ public class BusinessActivity extends AppCompatActivity {
 
         recyclerView.setHasFixedSize(true);
 
-
         List<String> listItems = new ArrayList<>();
         listItems.add("Item1");
         listItems.add("Item2");
@@ -83,6 +82,7 @@ public class BusinessActivity extends AppCompatActivity {
         listItems.add("Item6");
         listItems.add("Item7");
         listItems.add("Item8");
+        listItems.add(business.getNom());
 
         recyclerView.setAdapter(new RvProductsAdapter(listItems));
 

@@ -8,7 +8,7 @@ import falcon
 import messages
 import middlewares
 from falcon_multipart.middleware import MultipartMiddleware
-from resources import account_resources, common_resources, user_resources, event_resources, business_resources
+from resources import account_resources, common_resources, user_resources, event_resources, business_resources, product_resources
 from settings import configure_logging
 
 # LOGGING
@@ -56,5 +56,13 @@ application.add_route("/business/uploadphoto", business_resources.ResourceBusine
 ##application.add_route("/business/profile", business_resources.ResourceBusinessProfile()) ## TODO: per implementar
 ##application.add_route("/business/edit", business_resources.ResourceEditProfile()) ## TODO: per implementar
 ##application.add_route("/business/delete", business_resources.ResourceDeleteProfile()) ## TODO: per implementar
+
+application.add_route("/product/create", product_resources.ResourcesCreateProduct()) #create POST
+application.add_route("/product/show", product_resources.ResourcesFindProductByOwner()) #show GET
+
+
+application.add_route("/product", product_resources.ResourcesGetProducts()) #show GET
+
+
 
 application.add_sink(handle_404, "")

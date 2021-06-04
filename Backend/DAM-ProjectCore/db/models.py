@@ -173,6 +173,7 @@ class User(SQLAlchemyBase, JSONModel):
     events_owner = relationship("Event", back_populates="owner", cascade="all, delete-orphan")
     events_enrolled = relationship("Event", back_populates="registered")
     business_owner = relationship("Business", back_populates="owner", cascade="all, delete-orphan")
+    products_owner = relationship("Business", back_populates="owner", cascade="all, delete-orphan")
 
     @hybrid_property
     def public_profile(self):
@@ -221,7 +222,7 @@ class User(SQLAlchemyBase, JSONModel):
             "phone": self.phone,
             "photo": self.photo_url
         }
-
+#Negocis
 class Business(SQLAlchemyBase, JSONModel):
     __tablename__ = "business"
 
@@ -237,6 +238,7 @@ class Business(SQLAlchemyBase, JSONModel):
     photo = Column(Unicode(255))
     owner_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
     owner = relationship("User", back_populates="business_owner")
+    products_owner = relationship("Product", back_populates="owner", cascade="all, delete-orphan")
 
     @hybrid_property
     def photo_url(self):
@@ -259,3 +261,35 @@ class Business(SQLAlchemyBase, JSONModel):
 	        "twitter": self.twitter,
             "photo": self.photo_url
         }
+        
+#PRODUCTES
+class Product(SQLAlchemyBase, JSONModel):
+    __tablename__ = "products"
+    
+    id = Column(Integer, primary_key=True)
+    name = Column(Unicode(100), nullable=False)
+    photo = Column(Unicode(255))
+    description = Column(UnicodeText, default="")
+    owner_id = Column(Integer, ForeignKey("business.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    owner = relationship("Business", back_populates="products_owner")
+    
+    @hybrid_property
+    def photo_url(self):
+        return _generate_media_url(self, "photo")
+
+    @hybrid_property
+    def photo_path(self):
+        return _generate_media_path(self, "photo")
+    
+    @hybrid_property
+    def json_model(self):
+        return{
+            "name": self.name,
+            "photo" : self.photo_url
+        }
+        
+        
+    
+    
+    
+    
