@@ -1,11 +1,12 @@
 package dam.anoiashopping.gtidic.udl.cat.adapters;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+
+import com.squareup.picasso.Picasso;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
@@ -31,7 +32,8 @@ public class BusinessCommonHolder {
 
         this.businessName.setText(b.getNom());
         this.businessDescription.setText(b.getDefinicio());
-        Log.d(TAG, "bindHolder() -> Busssine: " + b);
+        Picasso.get().load(b.getPhotoURL()).into(this.businessPhoto);
+        //Log.d(TAG, "bindHolder() -> Busssines: " + b);
 
         //Log.d(TAG, "onBindViewHolder() -> cEvent: " + e.getPoster_url());
         //Picasso.get().load(e.getPoster_url()).into(this.eventPoster);

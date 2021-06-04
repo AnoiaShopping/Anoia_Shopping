@@ -6,6 +6,9 @@ import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.models.Products;
 import dam.anoiashopping.gtidic.udl.cat.models.Token;
 import dam.anoiashopping.gtidic.udl.cat.network.RetrofitClientInstance;
+import dam.anoiashopping.gtidic.udl.cat.views.BusinessActivity;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -23,6 +26,10 @@ public class BusinessServiceImpl implements BusinessServiceI {
     public Call<List<Business>> get_business (String token) {
         return retrofit.create(BusinessServiceI.class).get_business(token);
     }
+
+    @Override
+    public Call<ResponseBody> upload_business_photo (RequestBody builder, String token) {
+        return  retrofit.create(BusinessServiceI.class).upload_business_photo(builder, token);
 
     @Override
     public Call<List<Products>> get_productList(int id) {

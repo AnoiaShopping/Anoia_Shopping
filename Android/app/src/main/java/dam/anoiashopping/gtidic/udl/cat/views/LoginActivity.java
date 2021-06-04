@@ -41,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         b_lostpassword.setOnClickListener(v -> {
             startActivity (new Intent (LoginActivity.this, RecoveryCodeActivity.class));
         });
+
         loginViewModel.getLoginResponse().observe(this, loginResponse -> {
 
             if (loginResponse.isValid()) {
