@@ -25,11 +25,13 @@ public class Business implements Parcelable {
     String web;
     @SerializedName("photo")
     String photoURL;
+    @SerializedName("id")
+    String id;
   
-    public Business(String nom, String tipus, String definicio, String facebook, String instagram, String twitter, String web, String photoURL) {
+    public Business(String id, String nom, String tipus, String definicio, String facebook, String instagram, String twitter, String web, String photoURL) {
         
         // TODO : afegir foto
-
+        this.id = id;
         this.nom = nom;
         this.tipus = tipus;
         this.definicio = definicio;
@@ -42,6 +44,14 @@ public class Business implements Parcelable {
     }
 
     public Business() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -128,6 +138,7 @@ public class Business implements Parcelable {
         dest.writeString(facebook);
         dest.writeString(instagram);
         dest.writeString(twitter);
+        dest.writeString(id);
     }
 
     protected Business(Parcel in) {
@@ -137,6 +148,7 @@ public class Business implements Parcelable {
         facebook = in.readString();
         instagram = in.readString();
         twitter = in.readString();
+        id = in.readString();
     }
 
     public static final Creator<Business> CREATOR = new Creator<Business>() {

@@ -9,7 +9,7 @@ from sqlalchemy.sql import text
 
 import db
 import settings
-from db.models import SQLAlchemyBase, User, GenereEnum, UserToken, Event, EventTypeEnum, Business
+from db.models import SQLAlchemyBase, User, GenereEnum, UserToken, Event, EventTypeEnum, Business, Product
 from settings import DEFAULT_LANGUAGE
 
 # LOGGING
@@ -163,7 +163,21 @@ if __name__ == "__main__":
     db_session.add(event_livecoding)
     db_session.add(event_lanparty)
 
-
-
     db_session.commit()
+    
+    
+    # ---------------------Crear Productes -------------------
+    mylogger.info("creant productes")
+    
+    for i in range(1,5):
+        product = Product(
+            owner_id = 1,
+            id=i,
+            name="Producte"+str(i) 
+        )
+        db_session.add(product)
+    db_session.commit()
+    
+    
     db_session.close()
+    mylogger.info("All is ok :)")

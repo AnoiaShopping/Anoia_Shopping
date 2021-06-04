@@ -3,6 +3,7 @@ package dam.anoiashopping.gtidic.udl.cat.services;
 import java.util.List;
 
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
+import dam.anoiashopping.gtidic.udl.cat.models.Products;
 import dam.anoiashopping.gtidic.udl.cat.models.Token;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -14,6 +15,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.Query;
 
 public interface BusinessServiceI {
 
@@ -26,4 +28,6 @@ public interface BusinessServiceI {
     @POST ("/business/uploadphoto")
     Call <ResponseBody> upload_business_photo (@Body RequestBody builder, @Header ("Authorization") String token);
 
+    @GET("/product")
+    Call<List<Products>> get_productList (@Query("business_id") int id);
 }
