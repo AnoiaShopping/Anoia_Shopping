@@ -259,7 +259,8 @@ class Business(SQLAlchemyBase, JSONModel):
 	        "facebook": self.facebook,
 	        "instagram": self.instagram,
 	        "twitter": self.twitter,
-            "photo": self.photo_url
+            "photo": self.photo_url,
+            "id": self.id 
         }
         
 #PRODUCTES
