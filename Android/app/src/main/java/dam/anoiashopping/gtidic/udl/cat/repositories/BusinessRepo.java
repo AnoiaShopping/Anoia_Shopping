@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
+import dam.anoiashopping.gtidic.udl.cat.models.Products;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.services.BusinessServiceI;
 import dam.anoiashopping.gtidic.udl.cat.services.BusinessServiceImpl;
@@ -22,6 +23,8 @@ public class BusinessRepo {
     private MutableLiveData<ResultImpl> mResponseCreateBusiness;
     private MutableLiveData<ResultImpl> mResponseGetBusiness;
     private MutableLiveData<List<Business>> mResponseBusinessList;
+    private MutableLiveData<List<Products>> mResponseProductList;
+
     private final BusinessServiceI businessService;
 
 
@@ -30,6 +33,7 @@ public class BusinessRepo {
     }
 
     public BusinessRepo() {
+        this.mResponseProductList = new MutableLiveData<>();
         this.businessService = new BusinessServiceImpl();
         this.mResponseCreateBusiness = new MutableLiveData<>();
         this.mResponseBusinessList = new MutableLiveData<>();
@@ -90,5 +94,36 @@ public class BusinessRepo {
 
     public MutableLiveData<List<Business>> getmResponseBusinessList() {
         return mResponseBusinessList;
+    }
+
+    public void getProductList(int id){
+        this.businessService.get_productList(id).enqueue(new Callback<List<Products>>() {
+            @Override
+            public void onResponse(Call<List<Products>> call, Response<List<Products>> response) {
+                int return_code = response.code();  //200, 404, 401,...
+                Log.d(TAG,"GetProductList() -> ha rebut el codi: " +  return_code);
+
+                if (return_code == 200){
+                    //mResponseGetBusiness.setValue (new ResultImpl(0, true));
+                    mResponseProductList.setValue(response.body());
+                    Log.d(TAG, "returned product list from id: " + id);
+                }else{
+
+                    String error_msg = "Error: " + response.errorBody();
+                    Log.d (TAG, error_msg);
+
+                    //mResponseProductList.setValue (new ResultImpl(0, false));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Products>> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public MutableLiveData<List<Products>> getmResponseProductList() {
+        return mResponseProductList;
     }
 }

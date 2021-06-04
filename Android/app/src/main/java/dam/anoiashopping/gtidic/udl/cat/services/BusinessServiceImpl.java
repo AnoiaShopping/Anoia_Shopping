@@ -3,6 +3,7 @@ package dam.anoiashopping.gtidic.udl.cat.services;
 import java.util.List;
 
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
+import dam.anoiashopping.gtidic.udl.cat.models.Products;
 import dam.anoiashopping.gtidic.udl.cat.models.Token;
 import dam.anoiashopping.gtidic.udl.cat.network.RetrofitClientInstance;
 import okhttp3.ResponseBody;
@@ -21,5 +22,10 @@ public class BusinessServiceImpl implements BusinessServiceI {
     @Override
     public Call<List<Business>> get_business (String token) {
         return retrofit.create(BusinessServiceI.class).get_business(token);
+    }
+
+    @Override
+    public Call<List<Products>> get_productList(int id) {
+        return retrofit.create(BusinessServiceI.class).get_productList(id);
     }
 }
