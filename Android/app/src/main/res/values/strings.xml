@@ -2,14 +2,38 @@
     <string name="app_name">Anoia Shopping</string>
 
     <!-- Screen Strings -->
+    <string-array name="bens">
+        <item>Selecciona el teu tipus de negoci …</item>
+        <!--Bens-->
+        <item>Informàtica</item>
+        <item>Moda</item>
+        <item>Electrodomèstics</item>
+        <item>Concessionari</item>
+        <item>Llibreria</item>
+        <item>Papereria</item>
+        <item>Mecànic</item>
+        <item>Esports</item>
+        <item>Joieria</item>
+        <item>Carnisseria</item>
+        <item>Peixateria</item>
+        <item>Fruiteria</item>
+        <item>Precuinats</item>
+        <item>Farmàcia</item>
+        <item>Productes naturals</item>
+        <item>Forn de pà</item>
+        <item>Pastisseria</item>
 
-    <string-array name="tipusDeBotigues">
-        <item>Informatica</item>
-        <item>Alimentacio</item>
-        <item>Roba</item>
-        <item>Electrodomestics</item>
+        <!--Serveis-->
+        <item>Perruqueria</item>
+        <item>Centre d\'Estética</item>
+        <item>Bufet</item>
+        <item>Restaurant</item>
+        <item>Viatges</item>
+        <item>Fisioterapia</item>
+        <item>Gimnàs</item>
+
+        <item>Altres …</item>
     </string-array>
-
 
     <string name="logIn">Iniciar Sessió</string>
     <string name="logIn2">INICIAR SESSIÓ</string>

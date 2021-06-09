@@ -13,6 +13,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,9 +53,13 @@ public class CreateBusinessActivity extends AppCompatActivity {
     @SuppressLint({"Range", "WrongConstant"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_business);
+        initView();
+    }
+
+    private void initView () {
+        createBusinessViewModel = new CreateBusinessViewModel();
         permissionManager = new PermissionManager();
 
         txtEditNom = findViewById(R.id.txtEditNomBotiga);
@@ -66,9 +72,10 @@ public class CreateBusinessActivity extends AppCompatActivity {
         photopreview = findViewById(R.id.im_businessphotopreview);
         selectPhoto = findViewById(R.id.b_chooseimage);
 
-        createBusinessViewModel = new CreateBusinessViewModel();
-
-        spinner();
+        spinner = (Spinner) findViewById(R.id.spinnerEditTipusBotiga);
+        ArrayAdapter <CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.bens, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
 
         selectPhoto.setOnClickListener(v -> {
             checkExternalStoragePermission();
@@ -93,17 +100,6 @@ public class CreateBusinessActivity extends AppCompatActivity {
                 startActivity (new Intent(CreateBusinessActivity.this, MainActivity.class));
             }
         });
-    }
-
-    private void spinner () {
-        //PREPAREM SPINNER
-        spinner = (Spinner) findViewById(R.id.spinnerEditTipusBotiga);
-        //Creem l'adaptador que necessita el spinner
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.tipusDeBotigues, android.R.layout.simple_spinner_item);
-        //Especifiquem la llista amb la seguent linea
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apliquem l'adaptador
-        spinner.setAdapter(adapter);
     }
 
     private boolean validate () {
@@ -162,6 +158,11 @@ public class CreateBusinessActivity extends AppCompatActivity {
             validadorRegex = false;
         }
 
+        if (getBusinessType().equals("Selecciona el teu tipus de negoci …")) {
+            Toast.makeText(getApplicationContext(), "Has de seleccionar el tipus de negoci.", Toast.LENGTH_SHORT).show();
+            validadorRegex = false;
+        }
+
         return validadorRegex;
     }
 
@@ -169,7 +170,7 @@ public class CreateBusinessActivity extends AppCompatActivity {
         Business business = new Business();
         business.setNom(txtEditNom.getText().toString());
         business.setDefinicio(txtEditDefinicio.getText().toString());
-        business.setTipus(agafarTipusNegoci());
+        business.setTipus(getBusinessType());
 
         String facebook = "";
         if (!txtEditFacebook.getText().toString().isEmpty()) {
@@ -198,7 +199,7 @@ public class CreateBusinessActivity extends AppCompatActivity {
         createBusinessViewModel.createBusiness(business);
     }
 
-    private String agafarTipusNegoci(){
+    private String getBusinessType(){
         String text;
         text = ((Spinner) findViewById(R.id.spinnerEditTipusBotiga)).getSelectedItem().toString();
         return text;
