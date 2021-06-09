@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.search_s:
-                startActivity (new Intent (MainActivity.this, SearchUserActivity.class));
                 return true;
             case R.id.settings_s:
                 startActivity (new Intent(MainActivity.this, ConfigurationActivity.class));

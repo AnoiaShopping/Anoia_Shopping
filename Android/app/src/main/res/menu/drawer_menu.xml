@@ -21,7 +21,7 @@
             android:title="Perfil" />
     </group>
 
-    <item android:title="TODO">
+    <item android:title="SESSIÓ">
         <menu>
             <item android:id="@+id/nav_logout"
                 android:icon="@drawable/signout500"
