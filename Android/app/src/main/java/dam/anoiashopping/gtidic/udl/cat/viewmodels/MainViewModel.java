@@ -29,14 +29,10 @@ public class MainViewModel extends ViewModel {
     }
 
     public void delete_token (String token) {
-
         Token tokenBody = new Token();
         tokenBody.setToken(token);
-
         Log.d(TAG, "Eliminant token: " + token);
-
         this.accountRepo.deleteTokenUser(token, tokenBody);
-
     }
 
     public void getBusiness () {
