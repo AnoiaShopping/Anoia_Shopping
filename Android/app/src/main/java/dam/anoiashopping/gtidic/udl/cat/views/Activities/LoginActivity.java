@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityLoginBinding;
+import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.LoginViewModel;
 import dam.anoiashopping.gtidic.udl.cat.views.Fragments.MainActivity;
 
@@ -23,11 +24,18 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        initView();
+        if (!PreferencesProvider.providePreferences().getString("token", "").equals("")) {
+            Log.d (TAG, "L'usuari ja té token: " + PreferencesProvider.providePreferences().getString("token", "") + ". Iniciant pantalla principal.");
+            startActivity (new Intent (LoginActivity.this, MenuActivity.class));
+            setTheme(R.style.AppTheme);
+        } else {
+            Log.d (TAG, "L'usuari no té token. Iniciant pantalla Inici de sessió.");
+            setTheme(R.style.AppTheme);
+            setContentView(R.layout.activity_login);
+            initView();
+        }
     }
 
     private void initView () {
@@ -49,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 Log.d (TAG, "Login correcte");
                 Toast.makeText(getApplicationContext(), R.string.OkLogIn, Toast.LENGTH_SHORT).show();
-                startActivity (new Intent (LoginActivity.this, MainActivity.class));
+                startActivity (new Intent (LoginActivity.this, MenuActivity.class));
 
             } else {
 
