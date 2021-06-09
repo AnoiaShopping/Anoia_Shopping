@@ -16,8 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
+            app:titleTextColor="@color/white"
             app:popupTheme="@style/AppTheme" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <include layout="@layout/content_main" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
