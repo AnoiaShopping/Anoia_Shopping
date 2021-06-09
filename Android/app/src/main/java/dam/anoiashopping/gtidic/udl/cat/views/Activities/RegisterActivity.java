@@ -1,8 +1,7 @@
-  package dam.anoiashopping.gtidic.udl.cat.views;
+  package dam.anoiashopping.gtidic.udl.cat.views.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.CheckBox;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,7 +13,7 @@ import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityRegisterBinding;
 import dam.anoiashopping.gtidic.udl.cat.utils.EULA;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.RegisterViewModel;
 
-public class RegisterActivity extends AppCompatActivity {
+  public class RegisterActivity extends AppCompatActivity {
 
     private final String TAG = "RegisterActivity";
 

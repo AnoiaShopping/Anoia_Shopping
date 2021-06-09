@@ -28,7 +28,7 @@ public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.Busi
     @NotNull
     @Override
     public BusinessAdapter.BusinessHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.business_event, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reciclerview_business, null, false);
         return new BusinessHolder(view);
     }
 

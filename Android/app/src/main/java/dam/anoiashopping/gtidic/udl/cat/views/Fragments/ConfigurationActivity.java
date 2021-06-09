@@ -1,4 +1,4 @@
-package dam.anoiashopping.gtidic.udl.cat.views;
+package dam.anoiashopping.gtidic.udl.cat.views.Fragments;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -16,11 +16,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 

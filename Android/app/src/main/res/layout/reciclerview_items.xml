@@ -8,17 +8,17 @@
         android:orientation="vertical">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
         android:paddingLeft="5dp"
         android:paddingTop="10dp"
         android:paddingRight="5dp"
-        android:src="@drawable/avataricon6" />
+        android:src="@drawable/product500" />
 
     <TextView
         android:id="@+id/tv_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:textSize="24dp" />
+        android:textSize="20dp" />
 </LinearLayout>

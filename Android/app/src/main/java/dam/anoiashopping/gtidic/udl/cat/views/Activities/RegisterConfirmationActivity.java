@@ -1,4 +1,4 @@
-package dam.anoiashopping.gtidic.udl.cat.views;
+package dam.anoiashopping.gtidic.udl.cat.views.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package dam.anoiashopping.gtidic.udl.cat.views;
+package dam.anoiashopping.gtidic.udl.cat.views.Fragments;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,6 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;

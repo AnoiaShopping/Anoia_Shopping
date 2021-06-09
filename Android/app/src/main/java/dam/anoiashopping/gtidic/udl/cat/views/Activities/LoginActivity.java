@@ -1,4 +1,4 @@
-package dam.anoiashopping.gtidic.udl.cat.views;
+package dam.anoiashopping.gtidic.udl.cat.views.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityLoginBinding;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.LoginViewModel;
+import dam.anoiashopping.gtidic.udl.cat.views.Fragments.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

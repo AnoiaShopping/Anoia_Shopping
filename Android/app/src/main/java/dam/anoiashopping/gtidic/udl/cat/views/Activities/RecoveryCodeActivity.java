@@ -1,4 +1,4 @@
-package dam.anoiashopping.gtidic.udl.cat.views;
+package dam.anoiashopping.gtidic.udl.cat.views.Activities;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,17 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.bouncycastle.util.Strings;
-
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
 import dam.anoiashopping.gtidic.udl.cat.utils.Utils;
-import dam.anoiashopping.gtidic.udl.cat.utils.Validation;
 
 public class RecoveryCodeActivity extends AppCompatActivity {
     private AccountRepo account = new AccountRepo();

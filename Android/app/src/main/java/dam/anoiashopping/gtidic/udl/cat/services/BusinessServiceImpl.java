@@ -4,10 +4,7 @@ import java.util.List;
 
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.models.Products;
-import dam.anoiashopping.gtidic.udl.cat.models.Token;
 import dam.anoiashopping.gtidic.udl.cat.network.RetrofitClientInstance;
-import dam.anoiashopping.gtidic.udl.cat.views.BusinessActivity;
-import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;

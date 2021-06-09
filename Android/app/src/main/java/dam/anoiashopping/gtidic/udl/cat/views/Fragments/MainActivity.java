@@ -1,4 +1,4 @@
-package dam.anoiashopping.gtidic.udl.cat.views;
+package dam.anoiashopping.gtidic.udl.cat.views.Fragments;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,9 +17,9 @@ import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.adapters.BusinessAdapter;
 import dam.anoiashopping.gtidic.udl.cat.adapters.BusinessDiffCallback;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityMainBinding;
-import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
+import dam.anoiashopping.gtidic.udl.cat.views.Activities.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -71,11 +71,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         businessAdapter.businessListener(business -> {
-             // Fer nova activitat per veure info
              Intent intent = new Intent(MainActivity.this, BusinessActivity.class);
              intent.putExtra("business", business);
-             /*Bundle b = new Bundle();
-             b.putParcelable("business", business);*/
+
+             //Bundle b = new Bundle();
+             //b.putParcelable("business", business);
+
              startActivity(intent);
         });
     }
