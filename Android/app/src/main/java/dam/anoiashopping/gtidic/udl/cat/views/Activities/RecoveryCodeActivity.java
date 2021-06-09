@@ -15,6 +15,7 @@ import dam.anoiashopping.gtidic.udl.cat.repositories.AccountRepo;
 import dam.anoiashopping.gtidic.udl.cat.utils.Utils;
 
 public class RecoveryCodeActivity extends AppCompatActivity {
+
     private AccountRepo account = new AccountRepo();
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

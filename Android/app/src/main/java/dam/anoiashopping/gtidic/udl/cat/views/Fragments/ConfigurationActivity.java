@@ -59,7 +59,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         initView();
         botoActualitzarCompte = findViewById(R.id.bt_actualitzarcompte);
         botoActualitzarCompte.setEnabled(false);
-        botoActualitzarCompte.setBackgroundColor(getColor(R.color.C3));
+        botoActualitzarCompte.setBackgroundColor(getColor(android.R.color.darker_gray));
         botoActualitzarCompte.setTextColor(getColor(R.color.white));
 
         botoCrearConta = findViewById(R.id.btAnarCrearBotiga);

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setTheme(R.style.Theme_Android);
+        setTheme(R.style.AppTheme);
         //setContentView(R.layout.activity_main);
 
         if (!PreferencesProvider.providePreferences().getString("token", "").equals("")) {

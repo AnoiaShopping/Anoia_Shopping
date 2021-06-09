@@ -14,14 +14,13 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/anoiashoppinglogo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Android"
+        android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".views.Activities.MenuActivity"></activity>
+        <activity android:name=".views.Activities.MenuActivity" />
         <activity android:name=".views.Activities.RecoveryCodeActivity" />
         <activity android:name=".views.Fragments.CreateBusinessActivity" />
         <activity android:name=".views.Fragments.SearchUserActivity" />
         <activity android:name=".views.Fragments.ConfigurationActivity" />
-        <activity android:name=".views.ListActivity" />
         <activity android:name=".views.Fragments.BusinessActivity" />
         <activity
             android:name=".views.Fragments.MainActivity"
