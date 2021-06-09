@@ -1,66 +1,282 @@
 package dam.anoiashopping.gtidic.udl.cat.views.Fragments;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
+import dam.anoiashopping.gtidic.udl.cat.manager.PermissionManager;
+import dam.anoiashopping.gtidic.udl.cat.models.Business;
+import dam.anoiashopping.gtidic.udl.cat.viewmodels.CreateBusinessViewModel;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CreateBusinessFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CreateBusinessFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private View root;
+    private final String TAG = "CreateBusinessFragment";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    PermissionManager permissionManager;
+    private final int REQUEST_EXTERNAL_STORAGE = 13;
+    private final int PICK_IMAGE_REQUEST = 14;
+    ImageView photopreview;
+    File photo;
+    Button selectPhoto;
 
-    public CreateBusinessFragment() {
-        // Required empty public constructor
+    private EditText txtEditNom;
+    private EditText txtEditWeb;
+    private EditText txtEditDefinicio;
+    private EditText txtEditInstagram;
+    private EditText txtEditFacebook;
+    private EditText txtEditTwitter;
+    private Button btCrearBotiga;
+    Spinner spinner;
+    private CreateBusinessViewModel createBusinessViewModel;
+
+    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        root = inflater.inflate(R.layout.fragment_configuration, container, false);
+
+        initView();
+
+        return root;
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CreateBusinessFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CreateBusinessFragment newInstance(String param1, String param2) {
-        CreateBusinessFragment fragment = new CreateBusinessFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private void initView () {
+        createBusinessViewModel = new CreateBusinessViewModel();
+        permissionManager = new PermissionManager();
+
+        txtEditNom = root.findViewById(R.id.txtEditNomBotiga);
+        txtEditWeb = root.findViewById(R.id.txtEditWebNegoci);
+        txtEditDefinicio = root.findViewById(R.id.txtEditDefinicioBotiga);
+        txtEditInstagram = root.findViewById(R.id.txtEditInstagram);
+        txtEditFacebook  = root.findViewById(R.id.txtEditFacebook);
+        txtEditTwitter = root.findViewById(R.id.txtEditTwitter);
+        btCrearBotiga = root.findViewById(R.id.btCrearBotiga);
+        photopreview = root.findViewById(R.id.im_businessphotopreview);
+        selectPhoto = root.findViewById(R.id.b_chooseimage);
+
+        spinner = (Spinner) root.findViewById(R.id.spinnerEditTipusBotiga);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.bens, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        selectPhoto.setOnClickListener(v -> {
+            checkExternalStoragePermission();
+        });
+
+        btCrearBotiga.setOnClickListener(v -> {
+            if(validate()){
+                register();
+            }
+        });
+
+        createBusinessViewModel.createBusinessResponse().observe(this, business1 -> {
+            if (business1.isValid()) {
+                Log.d (TAG, txtEditNom.getText().toString());
+                createBusinessViewModel.uploadBusinessPhoto(photo, txtEditNom.getText().toString());
+            }
+        });
+
+        createBusinessViewModel.uploadPhotoBusinessResponse().observe(this, response -> {
+            if (response.isValid()) {
+                Toast.makeText(getActivity(), "Negoci registrat correctament", Toast.LENGTH_SHORT).show();
+                //startActivity (new Intent(CreateBusinessActivity.this, MainActivity.class));
+            }
+        });
+    }
+
+    private boolean validate () {
+
+        boolean validadorRegex = true;
+
+        String provadorRegex = String.valueOf(txtEditNom.getText());
+        if (!provadorRegex.matches("^{2,20}(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
+
+            txtEditNom.setError("Nom no vàlid, ha d'incoure lletres nomes i un tamany de màxim 25 caràcters i mínim 2");
+            validadorRegex = false;
+
+        }
+
+        provadorRegex = String.valueOf(txtEditDefinicio.getText()); //qualsevol lletra, espais i enters permesos.
+        if (!provadorRegex.matches("^(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
+
+            txtEditDefinicio.setError("Definició no valida. Ha d'incloure caracters");
+            validadorRegex = false;
+
+        }
+
+        provadorRegex = String.valueOf(txtEditWeb.getText()); //Inici amb http o https
+        if (!provadorRegex.matches("^https?:\\/\\/(.*)")){
+            if(!provadorRegex.isEmpty()){
+                validadorRegex = false;
+                txtEditWeb.setError("Si no teniu web deixeu buit el camp, si en teniu, utilitza el format https://nomweb");
+            }
+        }
+
+        provadorRegex = String.valueOf(txtEditInstagram.getText());  //https://www.instagram.com/username
+        if (!provadorRegex.matches("^{2,25}[a-zA-Z._-]+\\.?")){
+            if(!provadorRegex.isEmpty()){
+                validadorRegex = false;
+                txtEditInstagram.setError("Instagram incorrecte, has d'incloure només el nom d'usuari (lletres i guions/barres baixes");
+            }
+        }
+
+        provadorRegex = String.valueOf(txtEditTwitter.getText()); // http://twitter.com/username
+        if (!provadorRegex.matches("^{2,25}[a-zA-Z._-]+\\.?")){
+            if(!provadorRegex.isEmpty()){
+                validadorRegex = false;
+                txtEditTwitter.setError("Twitter incorrecte, has d'incloure només el nom (lletres,guions i barres baixes");
+            }
+        }
+
+        provadorRegex = String.valueOf(txtEditFacebook.getText());  //http://www.facebook.com/someusername
+        if (!provadorRegex.matches("^{2,30}(.|\\s)*[a-zA-Z]+(.|\\s)*$")){
+            if(!provadorRegex.isEmpty()){
+                validadorRegex = false;
+                txtEditFacebook.setError("Facebook incorrecte, has d'incloure el nom d'usuari incluint nomes lletres");                }
+        }
+
+        if (photo == null) {
+            Toast.makeText(getActivity(), "Has de seleccionar la foto del negoci.", Toast.LENGTH_SHORT).show();
+            validadorRegex = false;
+        }
+
+        if (getBusinessType().equals("Selecciona el teu tipus de negoci …")) {
+            Toast.makeText(getActivity(), "Has de seleccionar el tipus de negoci.", Toast.LENGTH_SHORT).show();
+            validadorRegex = false;
+        }
+
+        return validadorRegex;
+    }
+
+    private void register () {
+        Business business = new Business();
+        business.setNom(txtEditNom.getText().toString());
+        business.setDefinicio(txtEditDefinicio.getText().toString());
+        business.setTipus(getBusinessType());
+
+        String facebook = "";
+        if (!txtEditFacebook.getText().toString().isEmpty()) {
+            facebook = "https://www.facebook.com/" + txtEditFacebook.getText().toString();
+        }
+        business.setFacebook(facebook);
+
+        String instagram = "";
+        if (!txtEditInstagram.getText().toString().isEmpty()) {
+            instagram = "https://www.instagram.com/" + txtEditInstagram.getText().toString();
+        }
+        business.setInstagram(instagram);
+
+        String twitter = "";
+        if (!txtEditTwitter.getText().toString().isEmpty()) {
+            twitter = "https://www.twitter.com/" + txtEditTwitter.getText().toString();
+        }
+        business.setTwitter(twitter);
+
+        String web = "";
+        if (!txtEditWeb.getText().toString().isEmpty()) {
+            web = txtEditWeb.getText().toString();
+        }
+        business.setWeb(web);
+
+        createBusinessViewModel.createBusiness(business);
+    }
+
+    private String getBusinessType(){
+        String text;
+        text = ((Spinner) root.findViewById(R.id.spinnerEditTipusBotiga)).getSelectedItem().toString();
+        return text;
+    }
+
+    public void checkExternalStoragePermission(){
+        permissionManager.checkPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE, new PermissionManager.PermissionAskListener(){
+
+            @Override
+            public void onNeedPermission() {
+                ActivityCompat.requestPermissions(CreateBusinessActivity.this,
+                        new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_EXTERNAL_STORAGE);
+            }
+
+            @Override
+            public void onPermissionPreviouslyDenied() {
+                Log.d(TAG,"Permission denied");
+
+                ActivityCompat.requestPermissions(CreateBusinessActivity.this,
+                        new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE},
+                        REQUEST_EXTERNAL_STORAGE);
+            }
+
+            @Override
+            public void onPermissionPreviouslyDeniedWithNeverAskAgain() {
+
+                Log.d(TAG,"Permission denied never ask again");
+            }
+
+            @Override
+            public void onPermissionGranted() {
+                Log.d(TAG,"Permission granted");
+                pick();
+            }
+        });
+
+    }
+
+    public void pick() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(Intent.createChooser(intent, "Open Gallery"), PICK_IMAGE_REQUEST);
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG, "Dialog result: " + resultCode);
+
+        if (resultCode == RESULT_OK) {
+            Uri path = data.getData();
+            File image = new File(getRealPathFromURI(path, this));
+            photopreview.setImageURI(path);
+            photo = image;
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_business, container, false);
+    public String getRealPathFromURI(Uri uri, Activity activity) {
+        if (uri == null) {
+            return null;
+        }
+        String[] projection = {MediaStore.Images.Media.DATA};
+        @SuppressLint("Recycle") Cursor cursor = activity.getContentResolver().query(uri,
+                projection, null, null, null);
+        if (cursor != null) {
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }
+        return uri.getPath();
     }
 }

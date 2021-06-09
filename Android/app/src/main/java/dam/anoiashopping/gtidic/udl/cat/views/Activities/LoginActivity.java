@@ -14,7 +14,6 @@ import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityLoginBinding;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.LoginViewModel;
-import dam.anoiashopping.gtidic.udl.cat.views.Fragments.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 

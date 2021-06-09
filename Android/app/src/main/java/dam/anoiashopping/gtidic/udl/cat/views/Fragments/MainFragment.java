@@ -23,9 +23,7 @@ import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
 public class MainFragment extends Fragment {
 
     private View root;
-
     private MainViewModel mainViewModel;
-
     private final String TAG = "MainFragment";
 
     private RecyclerView recyclerView;

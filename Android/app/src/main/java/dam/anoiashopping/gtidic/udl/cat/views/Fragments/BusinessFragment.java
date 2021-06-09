@@ -1,66 +1,138 @@
 package dam.anoiashopping.gtidic.udl.cat.views.Fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
+import dam.anoiashopping.gtidic.udl.cat.adapters.RvProductsAdapter;
+import dam.anoiashopping.gtidic.udl.cat.models.Business;
+import dam.anoiashopping.gtidic.udl.cat.models.Products;
+import dam.anoiashopping.gtidic.udl.cat.repositories.BusinessRepo;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BusinessFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class BusinessFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private View root;
+    private final String TAG = "BusinessFragment";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private ImageView imageBusiness;
+    private TextView txtNomBusiness;
+    private TextView txtDefinitionBusiness;
+    private ImageView imInstagram;
+    private TextView txtTipusBusiness;
+    RecyclerView recyclerView;
+    private BusinessRepo businessRepo;
+    private ImageView businessphoto;
 
-    public BusinessFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BusinessFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BusinessFragment newInstance(String param1, String param2) {
-        BusinessFragment fragment = new BusinessFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
+    @Nullable
+    @org.jetbrains.annotations.Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        root = inflater.inflate(R.layout.fragment_configuration, container, false);
+
+        businessRepo = new BusinessRepo();
+
+        recyclerView = root.findViewById(R.id.rv_products);
+        imageBusiness = root.findViewById(R.id.im_botiga);
+        txtNomBusiness = root.findViewById(R.id.nom_empresa1);
+        txtDefinitionBusiness = root.findViewById(R.id.txtDefinicio);
+        imInstagram = root.findViewById(R.id.imInstagram);
+        txtTipusBusiness = root.findViewById(R.id.txtTipusBusiness);
+
+        //Business business = getIntent().getExtras().getParcelable("business");
+
+        final Bundle b = getArguments();
+        Business business = new Business();
+        if (b != null){
+            business = b.getParcelable("business");
         }
+
+        businessRepo.getProductList(Integer.parseInt(business.getId()));
+
+        businessRepo.getmResponseProductList().observe(this, products -> {
+
+            //recyclerView.setAdapter(new RvProductsAdapter(products));
+            List<String> listItems = new ArrayList<>();
+
+            for(Products p: products){
+
+                System.out.println("Name: " + p.getNom());
+                System.out.println("URL: " + p.getPhotoURL());
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+                linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+                recyclerView.setLayoutManager(linearLayoutManager);
+
+                recyclerView.setHasFixedSize(true);
+
+                listItems.add(p.getNom());
+
+                recyclerView.setAdapter(new RvProductsAdapter(listItems));
+            }
+
+
+        });
+
+        txtNomBusiness.setText(business.getNom());
+        txtDefinitionBusiness.setText(business.getDefinicio());
+        txtTipusBusiness.setText(business.getTipus());
+
+        //Picasso.get().load(business.getPhotoURL()).into(this.imageBusiness);
+        //Log.d (TAG, business.getPhotoURL());
+
+        /*if (business.getPhotoURL() != null) {
+            Picasso.get().load(business.getPhotoURL()).into(this.imageBusiness);
+        } else {
+            imageBusiness.setImageResource(R.drawable.smallbusiness500);
+        }*/
+
+
+        Business finalBusiness = business;
+        imInstagram.setOnClickListener(v -> {
+            if(!finalBusiness.getInstagram().matches("")){
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(finalBusiness.getInstagram()));
+                startActivity(intent);
+            }
+        });
+
+        //RECYCLERVIEW
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        recyclerView.setHasFixedSize(true);
+
+        List<String> listItems = new ArrayList<>();
+        listItems.add("Item8");
+        listItems.add(business.getNom());
+
+        recyclerView.setAdapter(new RvProductsAdapter(listItems));
+
+        // Per el que reb el business
+        //Bundle b = getArguments();
+        //if (b != null){
+        //    Business business = b.getParcelable("business");
+        //}
+
+        return root;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_business, container, false);
-    }
 }
