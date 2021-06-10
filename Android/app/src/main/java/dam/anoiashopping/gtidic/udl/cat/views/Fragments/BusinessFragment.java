@@ -61,13 +61,11 @@ public class BusinessFragment extends Fragment {
 
         final Bundle b = getArguments();
         Business business = new Business();
-        if (b != null){
-            business = b.getParcelable("business");
-        }
+        business = b.getParcelable("business");
 
-        businessRepo.getProductList(Integer.parseInt(business.getId()));
+        //businessRepo.getProductList(Integer.parseInt(business.getId()));
 
-        businessRepo.getmResponseProductList().observe(this, products -> {
+        /*businessRepo.getmResponseProductList().observe(getViewLifecycleOwner(), products -> {
 
             //recyclerView.setAdapter(new RvProductsAdapter(products));
             List<String> listItems = new ArrayList<>();
@@ -76,7 +74,7 @@ public class BusinessFragment extends Fragment {
 
                 System.out.println("Name: " + p.getNom());
                 System.out.println("URL: " + p.getPhotoURL());
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
                 linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
                 recyclerView.setLayoutManager(linearLayoutManager);
 
@@ -88,7 +86,7 @@ public class BusinessFragment extends Fragment {
             }
 
 
-        });
+        });*/
 
         txtNomBusiness.setText(business.getNom());
         txtDefinitionBusiness.setText(business.getDefinicio());
@@ -114,7 +112,7 @@ public class BusinessFragment extends Fragment {
         });
 
         //RECYCLERVIEW
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
 

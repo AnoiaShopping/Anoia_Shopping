@@ -20,7 +20,7 @@ public class BusinessCommonHolder {
 
     public BusinessCommonHolder(@NonNull View itemView) {
 
-        this.businessName = itemView.findViewById(R.id.nom_empresa);
+        businessName = itemView.findViewById(R.id.nom_empresa);
         businessDescription = itemView.findViewById(R.id.description);
         businessPhoto = itemView.findViewById(R.id.im_empresa);
 

@@ -23,6 +23,8 @@ public class ConfigurationViewModel extends ViewModel {
     public MutableLiveData <String> email     = new MutableLiveData <> ();
     public MutableLiveData <String> photoURL  = new MutableLiveData <> ();
 
+    public MutableLiveData <Account> accountMutableLiveData = new MutableLiveData<>();
+
     public MutableLiveData <ResultImpl> getAccountResponse () {
         return this.accountRepo.getmResponseGetAccount();
     }
@@ -37,17 +39,9 @@ public class ConfigurationViewModel extends ViewModel {
 
     public void setAccount () {
 
-        Account account = this.accountRepo.getAccount();
+        accountMutableLiveData.setValue(this.accountRepo.getAccount());
 
-        username.setValue  (account.getUsername());
-        firstName.setValue (account.getFirstname());
-        lastName.setValue  (account.getLastname());
-        email.setValue     (account.getEmail());
-
-        if (account.getPhotoURL() != null) {
-            photoURL.setValue(account.getPhotoURL());
-            Log.d(TAG, photoURL.getValue());
-        }
+        Log.d (TAG, accountMutableLiveData.getValue().getEmail());
     }
 
     public void uploadAccountImage(File imageFile){

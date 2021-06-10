@@ -39,9 +39,6 @@ public class CreateBusinessFragment extends Fragment {
     private View root;
     private final String TAG = "CreateBusinessFragment";
 
-    PermissionManager permissionManager;
-    private final int REQUEST_EXTERNAL_STORAGE = 13;
-    private final int PICK_IMAGE_REQUEST = 14;
     ImageView photopreview;
     File photo;
     Button selectPhoto;
@@ -57,7 +54,7 @@ public class CreateBusinessFragment extends Fragment {
     private CreateBusinessViewModel createBusinessViewModel;
 
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_configuration, container, false);
+        root = inflater.inflate(R.layout.fragment_create_business, container, false);
 
         initView();
 
@@ -66,7 +63,6 @@ public class CreateBusinessFragment extends Fragment {
 
     private void initView () {
         createBusinessViewModel = new CreateBusinessViewModel();
-        permissionManager = new PermissionManager();
 
         txtEditNom = root.findViewById(R.id.txtEditNomBotiga);
         txtEditWeb = root.findViewById(R.id.txtEditWebNegoci);
@@ -79,12 +75,12 @@ public class CreateBusinessFragment extends Fragment {
         selectPhoto = root.findViewById(R.id.b_chooseimage);
 
         spinner = (Spinner) root.findViewById(R.id.spinnerEditTipusBotiga);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.bens, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.bens, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         selectPhoto.setOnClickListener(v -> {
-            checkExternalStoragePermission();
+            // TODO checkExternalStoragePermission();
         });
 
         btCrearBotiga.setOnClickListener(v -> {
@@ -93,14 +89,14 @@ public class CreateBusinessFragment extends Fragment {
             }
         });
 
-        createBusinessViewModel.createBusinessResponse().observe(this, business1 -> {
+        createBusinessViewModel.createBusinessResponse().observe(getViewLifecycleOwner(), business1 -> {
             if (business1.isValid()) {
                 Log.d (TAG, txtEditNom.getText().toString());
                 createBusinessViewModel.uploadBusinessPhoto(photo, txtEditNom.getText().toString());
             }
         });
 
-        createBusinessViewModel.uploadPhotoBusinessResponse().observe(this, response -> {
+        createBusinessViewModel.uploadPhotoBusinessResponse().observe(getViewLifecycleOwner(), response -> {
             if (response.isValid()) {
                 Toast.makeText(getActivity(), "Negoci registrat correctament", Toast.LENGTH_SHORT).show();
                 //startActivity (new Intent(CreateBusinessActivity.this, MainActivity.class));
@@ -209,74 +205,5 @@ public class CreateBusinessFragment extends Fragment {
         String text;
         text = ((Spinner) root.findViewById(R.id.spinnerEditTipusBotiga)).getSelectedItem().toString();
         return text;
-    }
-
-    public void checkExternalStoragePermission(){
-        permissionManager.checkPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE, new PermissionManager.PermissionAskListener(){
-
-            @Override
-            public void onNeedPermission() {
-                ActivityCompat.requestPermissions(CreateBusinessActivity.this,
-                        new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_EXTERNAL_STORAGE);
-            }
-
-            @Override
-            public void onPermissionPreviouslyDenied() {
-                Log.d(TAG,"Permission denied");
-
-                ActivityCompat.requestPermissions(CreateBusinessActivity.this,
-                        new String[]{ Manifest.permission.READ_EXTERNAL_STORAGE},
-                        REQUEST_EXTERNAL_STORAGE);
-            }
-
-            @Override
-            public void onPermissionPreviouslyDeniedWithNeverAskAgain() {
-
-                Log.d(TAG,"Permission denied never ask again");
-            }
-
-            @Override
-            public void onPermissionGranted() {
-                Log.d(TAG,"Permission granted");
-                pick();
-            }
-        });
-
-    }
-
-    public void pick() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(Intent.createChooser(intent, "Open Gallery"), PICK_IMAGE_REQUEST);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d(TAG, "Dialog result: " + resultCode);
-
-        if (resultCode == RESULT_OK) {
-            Uri path = data.getData();
-            File image = new File(getRealPathFromURI(path, this));
-            photopreview.setImageURI(path);
-            photo = image;
-        }
-    }
-
-    public String getRealPathFromURI(Uri uri, Activity activity) {
-        if (uri == null) {
-            return null;
-        }
-        String[] projection = {MediaStore.Images.Media.DATA};
-        @SuppressLint("Recycle") Cursor cursor = activity.getContentResolver().query(uri,
-                projection, null, null, null);
-        if (cursor != null) {
-            int column_index = cursor
-                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        }
-        return uri.getPath();
     }
 }
