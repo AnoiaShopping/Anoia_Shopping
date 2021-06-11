@@ -35,9 +35,9 @@ public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.Busi
     public BusinessAdapter.BusinessHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.business_event, null, false);
 
-        businessEventBinding = BusinessEventBinding.inflate(LayoutInflater.from(parent.getContext()), parent,false);
+        businessEventBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.business_event, parent,false);
 
-        return new BusinessHolder(view);
+        return new BusinessHolder(businessEventBinding);
     }
 
     @Override
@@ -47,13 +47,16 @@ public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.Busi
         businessCommonHolder.bindHolder(business);
         businessEventBinding.setBusiness(business);
 
+        //holder.
+
 
     }
 
     public class BusinessHolder extends RecyclerView.ViewHolder {
 
-        public BusinessHolder(@NonNull @NotNull View itemView) {
-            super(itemView);
+        public BusinessHolder(@NonNull @NotNull BusinessEventBinding binding) {
+
+            super(binding.getRoot());
             businessCommonHolder = new BusinessCommonHolder(itemView);
 
             itemView.setOnClickListener(v -> {

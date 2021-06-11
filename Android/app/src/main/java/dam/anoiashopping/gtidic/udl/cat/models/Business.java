@@ -3,6 +3,8 @@ package dam.anoiashopping.gtidic.udl.cat.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.databinding.Bindable;
+
 import com.google.gson.annotations.SerializedName;
 
 import org.jetbrains.annotations.NotNull;
