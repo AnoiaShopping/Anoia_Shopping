@@ -1,10 +1,13 @@
 package dam.anoiashopping.gtidic.udl.cat.adapters;
 
+import android.renderscript.ScriptGroup;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,13 +15,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.jetbrains.annotations.NotNull;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
+import dam.anoiashopping.gtidic.udl.cat.databinding.BusinessEventBinding;
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
 
 public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.BusinessHolder> {
 
     private BusinessCommonHolder businessCommonHolder;
-
     private OnItemClickListener businessItemListener;
+
+    BusinessEventBinding businessEventBinding;
 
     public BusinessAdapter(@NonNull @NotNull DiffUtil.ItemCallback<Business> diffCallback) {
         super(diffCallback);
@@ -29,6 +34,9 @@ public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.Busi
     @Override
     public BusinessAdapter.BusinessHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.business_event, null, false);
+
+        businessEventBinding = BusinessEventBinding.inflate(LayoutInflater.from(parent.getContext()), parent,false);
+
         return new BusinessHolder(view);
     }
 
@@ -37,6 +45,9 @@ public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.Busi
 
         Business business = getItem(position);
         businessCommonHolder.bindHolder(business);
+        businessEventBinding.setBusiness(business);
+
+
     }
 
     public class BusinessHolder extends RecyclerView.ViewHolder {

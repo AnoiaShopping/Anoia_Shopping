@@ -14,22 +14,22 @@ import dam.anoiashopping.gtidic.udl.cat.models.Business;
 public class BusinessCommonHolder {
 
     private static final String TAG = "EventCommonHolder";
-    private TextView businessName;
-    private TextView businessDescription;
+    //private TextView businessName;
+    //private TextView businessDescription;
     private ImageView businessPhoto;
 
     public BusinessCommonHolder(@NonNull View itemView) {
 
-        this.businessName = itemView.findViewById(R.id.nom_empresa);
-        businessDescription = itemView.findViewById(R.id.description);
+        //this.businessName = itemView.findViewById(R.id.nom_empresa);
+        //businessDescription = itemView.findViewById(R.id.description);
         businessPhoto = itemView.findViewById(R.id.im_empresa);
 
     }
 
     public void bindHolder(Business b) {
 
-        this.businessName.setText(b.getNom());
-        this.businessDescription.setText(b.getDefinicio());
+        //this.businessName.setText(b.getNom());
+        //this.businessDescription.setText(b.getDefinicio());
         Picasso.get().load(b.getPhotoURL()).into(this.businessPhoto);
         //Log.d(TAG, "bindHolder() -> Busssines: " + b);
 

@@ -17,6 +17,7 @@ import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.adapters.BusinessAdapter;
 import dam.anoiashopping.gtidic.udl.cat.adapters.BusinessDiffCallback;
 import dam.anoiashopping.gtidic.udl.cat.databinding.ActivityMainBinding;
+import dam.anoiashopping.gtidic.udl.cat.databinding.BusinessEventBinding;
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initView () {
+
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView (this, R.layout.activity_main);
         activityMainBinding.setLifecycleOwner (this);
