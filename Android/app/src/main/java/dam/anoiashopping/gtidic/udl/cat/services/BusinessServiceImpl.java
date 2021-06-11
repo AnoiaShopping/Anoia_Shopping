@@ -29,7 +29,8 @@ public class BusinessServiceImpl implements BusinessServiceI {
 
     @Override
     public Call<ResponseBody> upload_business_photo (RequestBody builder, String token) {
-        return  retrofit.create(BusinessServiceI.class).upload_business_photo(builder, token);
+        return retrofit.create(BusinessServiceI.class).upload_business_photo(builder, token);
+    }
 
     @Override
     public Call<List<Products>> get_productList(int id) {
