@@ -27,18 +27,25 @@ import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
 
 public class BusinessListFragment extends Fragment {
 
+    private final String TAG = "MainFragment";
     private View root;
     private BusinessListViewModel businessListViewModel;
-    private final String TAG = "MainFragment";
-
     private RecyclerView recyclerView;
     BusinessAdapter businessAdapter;
+    FloatingActionButton floatingActionButton;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.fragment_business_list, container, false);
+
+        floatingActionButton = root.findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(v -> {
+            NavHostFragment.findNavController(BusinessListFragment.this)
+                    .navigate(R.id.action_nav_business_to_createBusinessFragment);
+        });
+
         initView();
         return root;
     }

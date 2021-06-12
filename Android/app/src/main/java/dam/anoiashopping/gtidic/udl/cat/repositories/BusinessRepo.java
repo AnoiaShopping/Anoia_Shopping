@@ -91,7 +91,7 @@ public class BusinessRepo {
             @Override
             public void onResponse(Call<List<Business>> call, Response<List<Business>> response) {
                 int return_code = response.code();  //200, 404, 401,...
-                Log.d(TAG,"CreateBusiness() -> ha rebut el codi: " +  return_code);
+                Log.d(TAG,"getBusiness() -> ha rebut el codi: " +  return_code);
 
                 if (return_code == 200){
                     //mResponseGetBusiness.setValue (new ResultImpl(0, true));
@@ -119,7 +119,7 @@ public class BusinessRepo {
             @Override
             public void onResponse(Call<List<Business>> call, Response<List<Business>> response) {
                 int return_code = response.code();  //200, 404, 401,...
-                Log.d(TAG,"CreateBusiness() -> ha rebut el codi: " +  return_code);
+                Log.d(TAG,"getOwnBusiness() -> ha rebut el codi: " +  return_code);
 
                 if (return_code == 200){
                     mResponseBusinessOwnList.setValue(response.body());
