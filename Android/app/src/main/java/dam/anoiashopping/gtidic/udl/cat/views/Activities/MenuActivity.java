@@ -20,6 +20,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -40,24 +41,17 @@ public class MenuActivity extends AppCompatActivity {
     PermissionManager permissionManager;
     private final int REQUEST_EXTERNAL_STORAGE = 13;
     private final int PICK_IMAGE_REQUEST = 14;
-    Button imAccountUpdate;
+
     File imageFile;
+
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        init();
         initToolbar();
-        //initAccount();
-    }
-
-    public void init () {
-
-        menuViewModel = new MenuViewModel ();
-
-        permissionManager = new PermissionManager();
     }
 
     public void initToolbar () {

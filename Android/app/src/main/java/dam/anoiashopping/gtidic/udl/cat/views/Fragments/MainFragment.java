@@ -56,15 +56,12 @@ public class MainFragment extends Fragment {
         });
 
         businessAdapter.businessListener(business -> {
-            // Fer nova activitat per veure info
-            //Intent intent = new Intent(MainActivity.this, BusinessActivity.class);
-            //intent.putExtra("business", business);
+
             Bundle b = new Bundle();
             b.putParcelable("business", business);
             Log.d(TAG, business.getNom());
 
             NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_nav_home_to_businessFragment);
-            //startActivity(intent);
         });
     }
 }

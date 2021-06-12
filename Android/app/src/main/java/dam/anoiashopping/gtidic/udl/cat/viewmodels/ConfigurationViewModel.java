@@ -35,12 +35,12 @@ public class ConfigurationViewModel extends ViewModel {
         this.accountRepo.getAccount(PreferencesProvider.providePreferences().getString("token", ""));
     }
 
-    public void uploadAccountImage(File imageFile){
-        Log.d("VM", "uploading image... using repo");
-        this.accountRepo.uploadImage(PreferencesProvider.providePreferences().getString("token", ""), imageFile);
-    }
-
     public MutableLiveData<ResultImpl> getAccountImageResponse () {
         return accountRepo.getmResponseUploadImage();
+    }
+
+    public void uploadAccountImage(File imageFile) {
+        Log.d("VM", "uploading image... using repo");
+        this.accountRepo.uploadImage(PreferencesProvider.providePreferences().getString("token", ""), imageFile);
     }
 }

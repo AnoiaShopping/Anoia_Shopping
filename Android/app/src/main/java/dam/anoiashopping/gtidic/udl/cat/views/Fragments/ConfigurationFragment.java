@@ -44,7 +44,6 @@ public class ConfigurationFragment extends Fragment {
     FragmentConfigurationBinding fragmentConfigurationBinding;
 
     ConfigurationViewModel configurationViewModel;
-    private Button buttonUpdatePhoto;
     ImageView photoAccount;
 
     @Nullable
@@ -63,17 +62,13 @@ public class ConfigurationFragment extends Fragment {
     }
 
     private void initView () {
-
         configurationViewModel.getAccount();
 
-        buttonUpdatePhoto = fragmentConfigurationBinding.getRoot().findViewById(R.id.b_updateImage);
         photoAccount = fragmentConfigurationBinding.getRoot().findViewById(R.id.im_profile);
 
         configurationViewModel.getAccountResponse().observe(getViewLifecycleOwner(), accountResponse -> {
 
             configurationViewModel.accountMutableLiveData.setValue(accountResponse);
-
-            Log.d(TAG, configurationViewModel.accountMutableLiveData.getValue().getEmail());
 
             if (configurationViewModel.accountMutableLiveData.getValue().getPhotoURL() != null) {
                 Picasso.get().load(configurationViewModel.accountMutableLiveData.getValue().getPhotoURL()).into(this.photoAccount);

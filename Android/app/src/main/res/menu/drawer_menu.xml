@@ -3,23 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_home"
-            android:icon="@drawable/home500"
-            android:title="Inici" />
-        <item android:id="@+id/nav_chats"
-            android:icon="@drawable/chatbubble500"
-            android:title="Xats" />
-        <item android:id="@+id/nav_business"
-            android:icon="@drawable/smallbusiness500"
-            android:title="Els Meus Negocis" />
-        <item android:id="@+id/nav_cart"
-            android:icon="@drawable/cart500"
-            android:title="Les Meves Compres" />
-        <item android:id="@+id/nav_profile"
-            android:icon="@drawable/user500"
-            android:title="Perfil" />
-    </group>
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/home500"
+        android:title="Inici" />
+    <item
+        android:id="@+id/nav_chats"
+        android:icon="@drawable/chatbubble500"
+        android:title="Xats" />
+    <item
+        android:id="@+id/nav_business"
+        android:icon="@drawable/smallbusiness500"
+        android:title="Els Meus Negocis" />
+    <item
+        android:id="@+id/nav_cart"
+        android:icon="@drawable/cart500"
+        android:title="Les Meves Compres" />
+    <item
+        android:id="@+id/nav_profile"
+        android:icon="@drawable/user500"
+        android:title="Perfil" />
 
     <item android:title="SESSIÓ">
         <menu>
