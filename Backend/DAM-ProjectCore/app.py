@@ -54,9 +54,10 @@ application.add_route("/business/own_business", business_resources.ResourceGetOw
 application.add_route("/business/create", business_resources.ResourceCreateBusiness())
 application.add_route("/business/uploadphoto", business_resources.ResourceBusinessUploadPhoto())
 
-##application.add_route("/business/profile", business_resources.ResourceBusinessProfile()) ## TODO: per implementar
-##application.add_route("/business/edit", business_resources.ResourceEditProfile()) ## TODO: per implementar
-##application.add_route("/business/delete", business_resources.ResourceDeleteProfile()) ## TODO: per implementar
+#  TODO: per implementar
+#  application.add_route("/business/profile", business_resources.ResourceBusinessProfile())
+#  application.add_route("/business/edit", business_resources.ResourceEditProfile())
+#  application.add_route("/business/delete", business_resources.ResourceDeleteProfile())
 
 application.add_route("/product/create", product_resources.ResourcesCreateProduct())  # create POST
 application.add_route("/product/show", product_resources.ResourcesFindProductByOwner())  # show GET

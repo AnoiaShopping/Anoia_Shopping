@@ -53,8 +53,8 @@ class ResourceGetBusiness(DAMCoreResource):
     def on_get(self, req, resp, *args, **kwargs):
         super(ResourceGetBusiness, self).on_get(req, resp, *args, **kwargs)
 
-        current_user=req.context["auth_user"]
-        cursor = self.db_session.query(Business).filter(Business.owner_id != current_user.id)
+        current_user = req.context["auth_user"]
+        cursor = self.db_session.query(Business).filter(Business.owner_id != current_user.id).order_by(Business.name.asc())
 
         business = list()
 
@@ -73,7 +73,7 @@ class ResourceGetOwnBusiness(DAMCoreResource):
         super(ResourceGetOwnBusiness, self).on_get(req, resp, *args, **kwargs)
 
         current_user = req.context["auth_user"]
-        cursor = self.db_session.query(Business).filter(Business.owner_id == current_user.id)
+        cursor = self.db_session.query(Business).filter(Business.owner_id == current_user.id).order_by(Business.name.asc())
 
         business = list()
 
