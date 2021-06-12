@@ -19,15 +19,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.widget.Button;
+import android.view.MenuItem;
 import android.widget.ImageView;
 
+import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.File;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.manager.PermissionManager;
+import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.MenuViewModel;
 
 public class MenuActivity extends AppCompatActivity {
@@ -36,7 +38,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private final String TAG = "MenuActivity";
 
-    MenuViewModel menuViewModel;
+    MenuViewModel menuViewModel = new MenuViewModel();
 
     PermissionManager permissionManager;
     private final int REQUEST_EXTERNAL_STORAGE = 13;
@@ -52,6 +54,12 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         initToolbar();
+
+        menuViewModel.getDeleteResponse().observe(this, deleteResponse -> {
+            if (deleteResponse.isValid()) {
+                startActivity(new Intent(MenuActivity.this, LoginActivity.class));
+            }
+        });
     }
 
     public void initToolbar () {
@@ -77,6 +85,16 @@ public class MenuActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public void onNavigationItemSelected (NavigationMenuItemView item) {
+        if (item.getId() == R.id.nav_logout) {
+            logout();
+        }
+    }
+
+    public void logout () {
+        menuViewModel.delete_token(PreferencesProvider.providePreferences().getString("token", ""));
     }
 
     public void checkExternalStoragePermission(){

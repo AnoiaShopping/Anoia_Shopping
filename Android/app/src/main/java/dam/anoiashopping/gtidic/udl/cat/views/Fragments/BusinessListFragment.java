@@ -21,18 +21,8 @@ public class BusinessListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         root = inflater.inflate(R.layout.fragment_business_list, container, false);
-
-        //NavHostFragment.findNavController(XXXXFragment.this) // TODO per anar a una altre fragment
-        //        .navigate(R.id.X);
-
-        floatingActionButton = root.findViewById(R.id.fab);
-
-        floatingActionButton.setOnClickListener(v -> {
-            NavHostFragment.findNavController(BusinessListFragment.this)
-                    .navigate(R.id.action_nav_business_to_createBusinessFragment);
-        });
 
         return root;
     }

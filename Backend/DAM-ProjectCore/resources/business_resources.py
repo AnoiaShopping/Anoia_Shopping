@@ -67,6 +67,25 @@ class ResourceGetBusiness(DAMCoreResource):
 
 
 @falcon.before(requires_auth)
+class ResourceGetOwnBusiness(DAMCoreResource):
+
+    def on_get(self, req, resp, *args, **kwargs):
+        super(ResourceGetOwnBusiness, self).on_get(req, resp, *args, **kwargs)
+
+        current_user = req.context["auth_user"]
+        cursor = self.db_session.query(Business).filter(Business.owner_id == current_user.id)
+
+        business = list()
+
+        for b in cursor.all():
+            business.append(b.json_model)
+
+        resp.media = business
+
+        resp.status = falcon.HTTP_200
+
+
+@falcon.before(requires_auth)
 class ResourceBusinessUploadPhoto(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceBusinessUploadPhoto, self).on_post(req, resp, *args, **kwargs)
