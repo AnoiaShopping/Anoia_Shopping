@@ -33,22 +33,19 @@ public class AccountRepo {
     private final AccountServiceI accountService;
 
     private final MutableLiveData <ResultImpl> mResponseRegister;
-    private final MutableLiveData <ResultImpl> mResponseGetAccount;
+    //private final MutableLiveData <ResultImpl> mResponseGetAccount;
     private final MutableLiveData <ResultImpl> mResponseCreateToken;
     private final MutableLiveData <ResultImpl> mResponseDeleteToken;
     private final MutableLiveData <ResultImpl> mResponseUploadImage;
     private final MutableLiveData <ResultImpl> mResponseRecoveryCode;
     private final MutableLiveData <ResultImpl> mResponseUpdatePassword;
-
-
-    private Account account;
+    private final MutableLiveData <Account> mResponseGetAccount;
 
     public AccountRepo() {
         this.mResponseRecoveryCode= new MutableLiveData<>();
         this.accountService       = new AccountServiceImpl ();
         this.mResponseRegister    = new MutableLiveData <> ();
         this.mResponseGetAccount  = new MutableLiveData <> ();
-        this.account              = new Account();
         this.mResponseCreateToken = new MutableLiveData <> ();
         this.mResponseDeleteToken = new MutableLiveData <> ();
         this.mResponseUploadImage = new MutableLiveData <> ();
@@ -59,10 +56,6 @@ public class AccountRepo {
         return mResponseRegister;
     }
 
-    public Account getAccount() {
-        return this.account;
-    }
-
     public MutableLiveData <ResultImpl> getmResponseCreateToken() {
         return mResponseCreateToken;
     }
@@ -71,7 +64,7 @@ public class AccountRepo {
         return mResponseDeleteToken;
     }
 
-    public MutableLiveData <ResultImpl> getmResponseGetAccount()  { return mResponseGetAccount; }
+    public MutableLiveData <Account> getmResponseGetAccount()  { return mResponseGetAccount; }
 
     public MutableLiveData <ResultImpl> getmResponseUploadImage() {return mResponseUploadImage;}
 
@@ -121,8 +114,7 @@ public class AccountRepo {
 
                 if (return_code == 200) {
 
-                    account = response.body();
-                    mResponseGetAccount.setValue (new ResultImpl (0, true));
+                    mResponseGetAccount.setValue (response.body());
 
                     Log.d(TAG,  "getAccount() -> Usuari baixat correctament.");
 
@@ -130,8 +122,6 @@ public class AccountRepo {
 
                     String error_msg = "Error: " + response.errorBody();
                     Log.d (TAG, "getAccount() -> ha rebut l'error:" + error_msg);
-
-                    mResponseGetAccount.setValue (new ResultImpl (0, false));
 
                 }
             }
@@ -141,8 +131,6 @@ public class AccountRepo {
 
                 String error_msg = "Error: " + t.getMessage();
                 Log.d(TAG,  "getAccount() onFailure() -> ha rebut el missatge:  " + error_msg);
-
-                mResponseGetAccount.setValue (new ResultImpl(0, false));
 
             }
         });

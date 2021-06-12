@@ -46,7 +46,7 @@ public class BusinessFragment extends Fragment {
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_configuration, container, false);
+        root = inflater.inflate(R.layout.fragment_business, container, false);
 
         businessRepo = new BusinessRepo();
 
@@ -88,9 +88,9 @@ public class BusinessFragment extends Fragment {
 
         });*/
 
-        txtNomBusiness.setText(business.getNom());
-        txtDefinitionBusiness.setText(business.getDefinicio());
-        txtTipusBusiness.setText(business.getTipus());
+        //txtNomBusiness.setText(business.getNom());
+        //txtDefinitionBusiness.setText(business.getDefinicio());
+        //txtTipusBusiness.setText(business.getTipus());
 
         //Picasso.get().load(business.getPhotoURL()).into(this.imageBusiness);
         //Log.d (TAG, business.getPhotoURL());
@@ -101,28 +101,27 @@ public class BusinessFragment extends Fragment {
             imageBusiness.setImageResource(R.drawable.smallbusiness500);
         }*/
 
-
-        Business finalBusiness = business;
-        imInstagram.setOnClickListener(v -> {
-            if(!finalBusiness.getInstagram().matches("")){
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(finalBusiness.getInstagram()));
-                startActivity(intent);
-            }
-        });
+        //Business finalBusiness = business;
+        //imInstagram.setOnClickListener(v -> {
+        //    if(!finalBusiness.getInstagram().matches("")){
+        //        Intent intent = new Intent(Intent.ACTION_VIEW);
+        //        intent.setData(Uri.parse(finalBusiness.getInstagram()));
+        //        startActivity(intent);
+        //    }
+        //});
 
         //RECYCLERVIEW
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(RecyclerView.HORIZONTAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        //recyclerView.setLayoutManager(linearLayoutManager);
 
-        recyclerView.setHasFixedSize(true);
+        //recyclerView.setHasFixedSize(true);
 
-        List<String> listItems = new ArrayList<>();
-        listItems.add("Item8");
-        listItems.add(business.getNom());
+        //List<String> listItems = new ArrayList<>();
+        //listItems.add("Item8");
+        //listItems.add(business.getNom());
 
-        recyclerView.setAdapter(new RvProductsAdapter(listItems));
+        //recyclerView.setAdapter(new RvProductsAdapter(listItems));
 
         // Per el que reb el business
         //Bundle b = getArguments();

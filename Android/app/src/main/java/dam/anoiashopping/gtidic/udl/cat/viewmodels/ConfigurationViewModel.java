@@ -1,9 +1,13 @@
 package dam.anoiashopping.gtidic.udl.cat.viewmodels;
 
 import android.util.Log;
+import android.widget.ImageView;
 
+import androidx.databinding.BindingAdapter;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 
@@ -17,15 +21,9 @@ public class ConfigurationViewModel extends ViewModel {
     private AccountRepo accountRepo;
     private final String TAG = "ConfigurationVM";
 
-    public MutableLiveData <String> username  = new MutableLiveData <> ();
-    public MutableLiveData <String> firstName = new MutableLiveData <> ();
-    public MutableLiveData <String> lastName  = new MutableLiveData <> ();
-    public MutableLiveData <String> email     = new MutableLiveData <> ();
-    public MutableLiveData <String> photoURL  = new MutableLiveData <> ();
-
     public MutableLiveData <Account> accountMutableLiveData = new MutableLiveData<>();
 
-    public MutableLiveData <ResultImpl> getAccountResponse () {
+    public MutableLiveData <Account> getAccountResponse () {
         return this.accountRepo.getmResponseGetAccount();
     }
 
@@ -35,13 +33,6 @@ public class ConfigurationViewModel extends ViewModel {
 
     public void getAccount () {
         this.accountRepo.getAccount(PreferencesProvider.providePreferences().getString("token", ""));
-    }
-
-    public void setAccount () {
-
-        accountMutableLiveData.setValue(this.accountRepo.getAccount());
-
-        Log.d (TAG, accountMutableLiveData.getValue().getEmail());
     }
 
     public void uploadAccountImage(File imageFile){

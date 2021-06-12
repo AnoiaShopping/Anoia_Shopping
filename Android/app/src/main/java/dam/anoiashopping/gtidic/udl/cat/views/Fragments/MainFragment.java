@@ -10,6 +10,7 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class MainFragment extends Fragment {
             //intent.putExtra("business", business);
             Bundle b = new Bundle();
             b.putParcelable("business", business);
+            Log.d(TAG, business.getNom());
 
             NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_nav_home_to_businessFragment);
             //startActivity(intent);

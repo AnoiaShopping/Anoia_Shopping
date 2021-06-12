@@ -44,10 +44,9 @@ public class ConfigurationFragment extends Fragment {
 
 
     private Button updateImageButton;
-    private ImageView profileImage;
+    //private ImageView profileImage;
 
     ConfigurationViewModel configurationViewModel;
-    private Button botoCrearConta;
     private Button botoActualitzarCompte;
 
     @Nullable
@@ -68,26 +67,27 @@ public class ConfigurationFragment extends Fragment {
         //botoActualitzarCompte.setBackgroundColor(getActivity().getColor(android.R.color.darker_gray));
         //botoActualitzarCompte.setTextColor(getColor(R.color.white));
 
-        return root;
+        return fragmentConfigurationBinding.getRoot();
     }
 
     private void initView () {
 
         configurationViewModel.getAccount();
 
-        profileImage = root.findViewById (R.id.im_profile);
+        //profileImage = root.findViewById (R.id.im_profile);
         updateImageButton = root.findViewById (R.id.b_update);
 
         configurationViewModel.getAccountResponse().observe(getViewLifecycleOwner(), accountResponse -> {
-            if (accountResponse.isValid()) {
-                configurationViewModel.setAccount();
 
-                if (configurationViewModel.photoURL.getValue() != null) {
-                    Picasso.get().load(configurationViewModel.photoURL.getValue()).into(this.profileImage);
-                } else {
-                    profileImage.setImageResource(R.drawable.user500);
-                }
-            }
+            configurationViewModel.accountMutableLiveData.setValue(accountResponse);
+
+            Log.d(TAG, configurationViewModel.accountMutableLiveData.getValue().getEmail());
+
+            //if (configurationViewModel.accountMutableLiveData.getValue().getPhotoURL() != null) {
+            //    Picasso.get().load(configurationViewModel.accountMutableLiveData.getValue().getPhotoURL()).into(this.profileImage);
+            //} else {
+            //    profileImage.setImageResource(R.drawable.user500);
+            //}
         });
 
         updateImageButton.setOnClickListener(v -> {
