@@ -46,6 +46,7 @@ class ResourceCreateBusiness(DAMCoreResource):
 
         resp.status = falcon.HTTP_200
 
+
 @falcon.before(requires_auth)
 class ResourceGetBusiness(DAMCoreResource):
 
@@ -95,4 +96,3 @@ class ResourceBusinessUploadPhoto(DAMCoreResource):
                 self.db_session.commit()
 
         resp.status = falcon.HTTP_200
-        

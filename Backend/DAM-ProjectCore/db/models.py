@@ -222,7 +222,9 @@ class User(SQLAlchemyBase, JSONModel):
             "phone": self.phone,
             "photo": self.photo_url
         }
-#Negocis
+
+
+# Negocis
 class Business(SQLAlchemyBase, JSONModel):
     __tablename__ = "business"
 
@@ -256,24 +258,25 @@ class Business(SQLAlchemyBase, JSONModel):
             "type": self.type,
             "definition": self.definition,
             "web": self.web,
-	        "facebook": self.facebook,
-	        "instagram": self.instagram,
-	        "twitter": self.twitter,
+            "facebook": self.facebook,
+            "instagram": self.instagram,
+            "twitter": self.twitter,
             "photo": self.photo_url,
-            "id": self.id 
+            "id": self.id
         }
-        
-#PRODUCTES
+
+
+# PRODUCTES
 class Product(SQLAlchemyBase, JSONModel):
     __tablename__ = "products"
-    
+
     id = Column(Integer, primary_key=True)
     name = Column(Unicode(100), nullable=False)
     photo = Column(Unicode(255))
     description = Column(UnicodeText, default="")
     owner_id = Column(Integer, ForeignKey("business.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
     owner = relationship("Business", back_populates="products_owner")
-    
+
     @hybrid_property
     def photo_url(self):
         return _generate_media_url(self, "photo")
@@ -281,16 +284,10 @@ class Product(SQLAlchemyBase, JSONModel):
     @hybrid_property
     def photo_path(self):
         return _generate_media_path(self, "photo")
-    
+
     @hybrid_property
     def json_model(self):
-        return{
+        return {
             "name": self.name,
-            "photo" : self.photo_url
+            "photo": self.photo_url
         }
-        
-        
-    
-    
-    
-    
