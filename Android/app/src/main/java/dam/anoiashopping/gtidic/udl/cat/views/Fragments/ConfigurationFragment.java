@@ -39,33 +39,25 @@ import dam.anoiashopping.gtidic.udl.cat.views.Activities.MenuActivity;
 
 public class ConfigurationFragment extends Fragment {
 
-    private View root;
     private final String TAG = "MainFragment";
 
-
-    private Button updateImageButton;
-    //private ImageView profileImage;
+    FragmentConfigurationBinding fragmentConfigurationBinding;
 
     ConfigurationViewModel configurationViewModel;
-    private Button botoActualitzarCompte;
+    private Button buttonUpdatePhoto;
+    ImageView photoAccount;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.fragment_configuration, container, false);
 
-        configurationViewModel = new ViewModelProvider(this).get (ConfigurationViewModel.class);
-        FragmentConfigurationBinding fragmentConfigurationBinding = DataBindingUtil.inflate (inflater, R.layout.fragment_configuration, container, false);
+        configurationViewModel = new ViewModelProvider(this).get(ConfigurationViewModel.class);
+        fragmentConfigurationBinding = DataBindingUtil.inflate (inflater, R.layout.fragment_configuration, container, false);
         fragmentConfigurationBinding.setLifecycleOwner (this);
         fragmentConfigurationBinding.setViewModel (configurationViewModel);
 
         initView();
-
-        botoActualitzarCompte = root.findViewById(R.id.bt_actualitzarcompte);
-        botoActualitzarCompte.setEnabled(false);
-        //botoActualitzarCompte.setBackgroundColor(getActivity().getColor(android.R.color.darker_gray));
-        //botoActualitzarCompte.setTextColor(getColor(R.color.white));
 
         return fragmentConfigurationBinding.getRoot();
     }
@@ -74,8 +66,8 @@ public class ConfigurationFragment extends Fragment {
 
         configurationViewModel.getAccount();
 
-        //profileImage = root.findViewById (R.id.im_profile);
-        updateImageButton = root.findViewById (R.id.b_update);
+        buttonUpdatePhoto = fragmentConfigurationBinding.getRoot().findViewById(R.id.b_updateImage);
+        photoAccount = fragmentConfigurationBinding.getRoot().findViewById(R.id.im_profile);
 
         configurationViewModel.getAccountResponse().observe(getViewLifecycleOwner(), accountResponse -> {
 
@@ -83,15 +75,11 @@ public class ConfigurationFragment extends Fragment {
 
             Log.d(TAG, configurationViewModel.accountMutableLiveData.getValue().getEmail());
 
-            //if (configurationViewModel.accountMutableLiveData.getValue().getPhotoURL() != null) {
-            //    Picasso.get().load(configurationViewModel.accountMutableLiveData.getValue().getPhotoURL()).into(this.profileImage);
-            //} else {
-            //    profileImage.setImageResource(R.drawable.user500);
-            //}
-        });
-
-        updateImageButton.setOnClickListener(v -> {
-            // MenuActivity.checkExternalStoragePermission();
+            if (configurationViewModel.accountMutableLiveData.getValue().getPhotoURL() != null) {
+                Picasso.get().load(configurationViewModel.accountMutableLiveData.getValue().getPhotoURL()).into(this.photoAccount);
+            } else {
+                photoAccount.setImageResource(R.drawable.user500);
+            }
         });
 
         configurationViewModel.getAccountImageResponse().observe(getViewLifecycleOwner(), response -> {

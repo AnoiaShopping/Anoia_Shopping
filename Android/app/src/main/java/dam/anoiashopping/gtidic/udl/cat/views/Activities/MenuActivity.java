@@ -19,6 +19,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -26,6 +27,7 @@ import java.io.File;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.manager.PermissionManager;
+import dam.anoiashopping.gtidic.udl.cat.viewmodels.MenuViewModel;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -33,15 +35,32 @@ public class MenuActivity extends AppCompatActivity {
 
     private final String TAG = "MenuActivity";
 
+    MenuViewModel menuViewModel;
+
     PermissionManager permissionManager;
     private final int REQUEST_EXTERNAL_STORAGE = 13;
     private final int PICK_IMAGE_REQUEST = 14;
+    Button imAccountUpdate;
+    File imageFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        init();
+        initToolbar();
+        //initAccount();
+    }
+
+    public void init () {
+
+        menuViewModel = new MenuViewModel ();
+
+        permissionManager = new PermissionManager();
+    }
+
+    public void initToolbar () {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -57,8 +76,6 @@ public class MenuActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        permissionManager = new PermissionManager();
     }
 
     @Override
@@ -115,9 +132,10 @@ public class MenuActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK) {
             Uri path = data.getData();
-            File image = new File(getRealPathFromURI(path, this));
-            // profileImage.setImageURI(path); // TODO adaptar a variable
-            // configurationViewModel.uploadAccountImage(image);
+            //File image = new File(getRealPathFromURI(path, this));
+            //profileImage.setImageURI(path); // TODO adaptar a variable
+            //configurationViewModel.uploadAccountImage(image);
+            imageFile = new File(getRealPathFromURI(path, this));
         }
     }
 
