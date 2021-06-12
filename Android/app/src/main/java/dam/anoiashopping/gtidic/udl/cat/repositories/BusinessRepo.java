@@ -28,6 +28,7 @@ public class BusinessRepo {
     //private MutableLiveData<ResultImpl> mResponseGetBusiness;
     private final MutableLiveData<ResultImpl> mResponseUploadPhoto;
     private final MutableLiveData<List<Business>> mResponseBusinessList;
+    private final MutableLiveData<List<Business>> mResponseBusinessOwnList;
     private MutableLiveData<List<Products>> mResponseProductList;
 
     private final BusinessServiceI businessService;
@@ -41,6 +42,10 @@ public class BusinessRepo {
         return mResponseBusinessList;
     }
 
+    public MutableLiveData<List<Business>> getmResponseBusinessOwnList() {
+        return mResponseBusinessOwnList;
+    }
+
     public MutableLiveData<ResultImpl> getmResponseUploadPhoto() {
         return mResponseUploadPhoto;
     }
@@ -50,6 +55,7 @@ public class BusinessRepo {
         this.businessService = new BusinessServiceImpl();
         this.mResponseCreateBusiness = new MutableLiveData<>();
         this.mResponseBusinessList = new MutableLiveData<>();
+        this.mResponseBusinessOwnList = new MutableLiveData<>();
         this.mResponseUploadPhoto = new MutableLiveData<>();
     }
 
@@ -96,6 +102,30 @@ public class BusinessRepo {
                     Log.d (TAG, error_msg);
 
                     //mResponseGetBusiness.setValue (new ResultImpl(0, false));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Business>> call, Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "createTokenUser() onFailure() -> ha rebut el missatge:  " + error_msg);
+            }
+        });
+    }
+
+    public void getOwnBusiness(){
+        String token = PreferencesProvider.providePreferences().getString("token", "");
+        this.businessService.get_own_business(token).enqueue(new Callback<List<Business>>() {
+            @Override
+            public void onResponse(Call<List<Business>> call, Response<List<Business>> response) {
+                int return_code = response.code();  //200, 404, 401,...
+                Log.d(TAG,"CreateBusiness() -> ha rebut el codi: " +  return_code);
+
+                if (return_code == 200){
+                    mResponseBusinessOwnList.setValue(response.body());
+                }else{
+                    String error_msg = "Error: " + response.errorBody();
+                    Log.d (TAG, error_msg);
                 }
             }
 

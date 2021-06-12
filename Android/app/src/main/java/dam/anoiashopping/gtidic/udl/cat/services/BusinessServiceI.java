@@ -25,6 +25,9 @@ public interface BusinessServiceI {
     @GET("/business")
     Call<List<Business>> get_business (@Header("Authorization") String token);
 
+    @GET("/business/own_business")
+    Call<List<Business>> get_own_business (@Header("Authorization") String token);
+
     @POST ("/business/uploadphoto")
     Call <ResponseBody> upload_business_photo (@Body RequestBody builder, @Header ("Authorization") String token);
 
