@@ -52,6 +52,8 @@ public class MainFragment extends Fragment {
         mainViewModel.getBusiness();
 
         mainViewModel.returnBusiness().observe(getViewLifecycleOwner(), business -> {
+            Log.d(TAG, String.valueOf(business.size()));
+            Log.d(TAG, business.toString());
             businessAdapter.submitList(business);
         });
 
@@ -61,7 +63,7 @@ public class MainFragment extends Fragment {
             b.putParcelable("business", business);
             Log.d(TAG, business.getNom());
 
-            NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_nav_home_to_businessFragment);
+            NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_nav_home_to_businessFragment, b);
         });
     }
 }

@@ -221,22 +221,31 @@ class ResourceAccountUpdateProfile(DAMCoreResource):
     def on_put(self, req, resp, *args, **kwargs):
         super(ResourceAccountUpdateProfile, self).on_put(req, resp, *args, **kwargs)
 
-        # Get the user from the token
-        user_id = req.media["id"]
-        username = req.media["username"]
-        name = req.media["name"]
-        surname = req.media["surname"]
-        email = req.media["email"]
+        try:
+            user_id = req.media["id"]
+            username = req.media["username"]
+            name = req.media["name"]
+            surname = req.media["surname"]
+            email = req.media["email"]
 
-        if user_id is not None:
-            user = self.db_session.query(User).filter(User.id == user_id).one_or_none()
+            if user_id is not None:
+                user = self.db_session.query(User).filter(User.id == user_id).one_or_none()
 
-            if user is not None:
-                user.username = username
-                user.name = name
-                user.surname = surname
-                user.email = email
-                self.db_session.commit()
+                if user is not None:
+                    user.username = username
+                    user.name = name
+                    user.surname = surname
+                    user.email = email
+                    self.db_session.commit()
+
+                else:
+                    raise falcon.HTTPBadRequest("Aquest usuari no existeix")
+            else:
+                raise falcon.HTTPBadRequest("Necessito la id")
+        except KeyError:
+            raise falcon.HTTPBadRequest("El body ha de contenir la informació necessaria")
+
+
 
         resp.status = falcon.HTTP_200
 

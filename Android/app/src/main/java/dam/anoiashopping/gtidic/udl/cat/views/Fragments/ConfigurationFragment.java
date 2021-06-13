@@ -1,22 +1,13 @@
 package dam.anoiashopping.gtidic.udl.cat.views.Fragments;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.Intent;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +23,7 @@ import java.io.File;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.FragmentConfigurationBinding;
-import dam.anoiashopping.gtidic.udl.cat.manager.PermissionManager;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.ConfigurationViewModel;
-import dam.anoiashopping.gtidic.udl.cat.viewmodels.MainViewModel;
 import dam.anoiashopping.gtidic.udl.cat.views.Activities.MenuActivity;
 
 public class ConfigurationFragment extends Fragment {
@@ -45,6 +34,9 @@ public class ConfigurationFragment extends Fragment {
 
     ConfigurationViewModel configurationViewModel;
     ImageView photoAccount;
+
+    Button button;
+    File imageFile;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -83,6 +75,12 @@ public class ConfigurationFragment extends Fragment {
             } else {
                 Toast.makeText(getActivity(), "Ha hagut un error al canviar la foto.", Toast.LENGTH_SHORT).show();
             }
+        });
+
+        button = fragmentConfigurationBinding.getRoot().findViewById(R.id.b_updateImage);
+
+        button.setOnClickListener(v -> {
+            ((MenuActivity)getActivity()).checkExternalStoragePermission();
         });
     }
 }

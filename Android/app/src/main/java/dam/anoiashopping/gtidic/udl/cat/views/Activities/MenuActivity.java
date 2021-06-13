@@ -1,5 +1,6 @@
 package dam.anoiashopping.gtidic.udl.cat.views.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -7,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
@@ -25,34 +27,39 @@ import android.widget.ImageView;
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.manager.PermissionManager;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.MenuViewModel;
+import dam.anoiashopping.gtidic.udl.cat.views.Fragments.ConfigurationFragment;
 
-public class MenuActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private AppBarConfiguration mAppBarConfiguration;
 
     private final String TAG = "MenuActivity";
 
-    MenuViewModel menuViewModel = new MenuViewModel();
+    MenuViewModel menuViewModel;
 
     PermissionManager permissionManager;
     private final int REQUEST_EXTERNAL_STORAGE = 13;
     private final int PICK_IMAGE_REQUEST = 14;
 
-    File imageFile;
+    NavController navController;
+    DrawerLayout drawer;
 
-    ImageView imageView;
+    File imageFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
+        init();
         initToolbar();
 
         menuViewModel.getDeleteResponse().observe(this, deleteResponse -> {
@@ -62,11 +69,16 @@ public class MenuActivity extends AppCompatActivity {
         });
     }
 
+    public void init () {
+        menuViewModel = new MenuViewModel();
+        permissionManager = new PermissionManager();
+    }
+
     public void initToolbar () {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -75,9 +87,10 @@ public class MenuActivity extends AppCompatActivity {
                 .setDrawerLayout(drawer)
                 .build();
 
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -87,15 +100,32 @@ public class MenuActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public boolean onNavigationItemSelected (MenuItem item) {
-        if (item.getItemId() == R.id.nav_logout) {
-            logout();
+    @Override
+    public boolean onNavigationItemSelected (@NonNull @NotNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_home:
+                navController.navigate(R.id.nav_home);
+                drawer.closeDrawers();
+                break;
+            case R.id.nav_chats:
+                navController.navigate(R.id.nav_chats);
+                drawer.closeDrawers();
+                break;
+            case R.id.nav_business:
+                navController.navigate(R.id.nav_business);
+                drawer.closeDrawers();
+                break;
+            case R.id.nav_profile:
+                navController.navigate(R.id.nav_profile);
+                drawer.closeDrawers();
+                break;
+            case R.id.nav_logout:
+                menuViewModel.delete_token(PreferencesProvider.providePreferences().getString("token", ""));
+                break;
+            default:
+                break;
         }
-        return true;
-    }
-
-    public void logout () {
-        menuViewModel.delete_token(PreferencesProvider.providePreferences().getString("token", ""));
+        return false;
     }
 
     public void checkExternalStoragePermission(){
