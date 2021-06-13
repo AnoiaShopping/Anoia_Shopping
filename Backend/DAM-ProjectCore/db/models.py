@@ -212,6 +212,7 @@ class User(SQLAlchemyBase, JSONModel):
     @hybrid_property
     def json_model(self):
         return {
+            "id": self.id,
             "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
             "username": self.username,
             "email": self.email,
