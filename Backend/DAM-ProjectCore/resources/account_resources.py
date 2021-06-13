@@ -222,14 +222,14 @@ class ResourceAccountUpdateProfile(DAMCoreResource):
         super(ResourceAccountUpdateProfile, self).on_put(req, resp, *args, **kwargs)
 
         try:
-            user_id = req.media["id"]
+            account_id = req.media["id"]
             username = req.media["username"]
             name = req.media["name"]
             surname = req.media["surname"]
             email = req.media["email"]
 
-            if user_id is not None:
-                user = self.db_session.query(User).filter(User.id == user_id).one_or_none()
+            if account_id is not None:
+                user = self.db_session.query(User).filter(User.id == account_id).one_or_none()
 
                 if user is not None:
                     user.username = username
@@ -244,8 +244,6 @@ class ResourceAccountUpdateProfile(DAMCoreResource):
                 raise falcon.HTTPBadRequest("Necessito la id")
         except KeyError:
             raise falcon.HTTPBadRequest("El body ha de contenir la informació necessaria")
-
-
 
         resp.status = falcon.HTTP_200
 
