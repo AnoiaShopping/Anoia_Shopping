@@ -39,6 +39,7 @@ application.add_route("/account/profile", account_resources.ResourceAccountUserP
 application.add_route("/account/profile/update_profile_image", account_resources.ResourceAccountUpdateProfileImage())
 application.add_route("/account/create_token", account_resources.ResourceCreateUserToken())
 application.add_route("/account/delete_token", account_resources.ResourceDeleteUserToken())
+application.add_route("/account/update", account_resources.ResourceAccountUpdateProfile())
 
 application.add_route("/account/recovery", account_resources.ResourceAccountRecovery())
 application.add_route("/account/update_password", account_resources.ResourceUpdatePassword())

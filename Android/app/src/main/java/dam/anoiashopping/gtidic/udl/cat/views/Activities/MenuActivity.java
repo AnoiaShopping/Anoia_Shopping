@@ -87,10 +87,11 @@ public class MenuActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void onNavigationItemSelected (NavigationMenuItemView item) {
-        if (item.getId() == R.id.nav_logout) {
+    public boolean onNavigationItemSelected (MenuItem item) {
+        if (item.getItemId() == R.id.nav_logout) {
             logout();
         }
+        return true;
     }
 
     public void logout () {
