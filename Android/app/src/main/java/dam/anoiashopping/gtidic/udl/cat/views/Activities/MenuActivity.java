@@ -5,7 +5,10 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
+import androidx.databinding.BindingAdapter;
+import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -23,6 +26,8 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
@@ -32,6 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 
 import dam.anoiashopping.gtidic.udl.cat.R;
+import dam.anoiashopping.gtidic.udl.cat.databinding.NavHeaderBinding;
 import dam.anoiashopping.gtidic.udl.cat.manager.PermissionManager;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.MenuViewModel;
@@ -54,6 +60,9 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     File imageFile;
 
+    //TextView username;
+    //TextView email;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,17 +70,28 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         init();
         initToolbar();
+    }
+
+    public void init () {
+        menuViewModel = new ViewModelProvider(this).get(MenuViewModel.class);
+
+        permissionManager = new PermissionManager();
+
+        //username = findViewById(R.id.navusername);
+        //email = findViewById(R.id.navemail);
+
+        //menuViewModel.getAccount(PreferencesProvider.providePreferences().getString("token", ""));
 
         menuViewModel.getDeleteResponse().observe(this, deleteResponse -> {
             if (deleteResponse.isValid()) {
                 startActivity(new Intent(MenuActivity.this, LoginActivity.class));
             }
         });
-    }
 
-    public void init () {
-        menuViewModel = new MenuViewModel();
-        permissionManager = new PermissionManager();
+        //menuViewModel.getAccountResponse().observe(this, account -> {
+        //    username.setText(account.getUsername());
+        //    email.setText(account.getEmail());
+        //});
     }
 
     public void initToolbar () {
@@ -91,6 +111,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header, navigationView, false);
+        //navHeaderBinding.setLifecycleOwner(this);
+        //navHeaderBinding.setViewModel(menuViewModel);
+
+
     }
 
     @Override
@@ -126,6 +152,25 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         return false;
+    }
+
+    public void userUpdate () {
+        imageFile = null;
+        checkExternalStoragePermission();
+
+        while (imageFile == null) {}
+
+        menuViewModel.uploadAccountImage(imageFile);
+
+        menuViewModel.getAccountImageResponse().observe(this, response -> {
+            if (response.isValid()){
+                Toast.makeText(this, "Foto pujada Correctament", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void businessUpdate () {
+
     }
 
     public void checkExternalStoragePermission(){

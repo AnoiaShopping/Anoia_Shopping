@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -91,11 +93,11 @@ public class BusinessFragment extends Fragment {
 
         });*/
 
-        //txtNomBusiness.setText(business.getNom());
-        //txtDefinitionBusiness.setText(business.getDefinicio());
-        //txtTipusBusiness.setText(business.getTipus());
+        txtNomBusiness.setText(business.getNom());
+        txtDefinitionBusiness.setText(business.getDefinicio());
+        txtTipusBusiness.setText(business.getTipus());
 
-        //Picasso.get().load(business.getPhotoURL()).into(this.imageBusiness);
+        Picasso.get().load(business.getPhotoURL()).into(this.imageBusiness);
         //Log.d (TAG, business.getPhotoURL());
 
         /*if (business.getPhotoURL() != null) {

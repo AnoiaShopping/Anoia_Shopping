@@ -54,8 +54,8 @@ application.add_route("/business", business_resources.ResourceGetBusiness())
 application.add_route("/business/own_business", business_resources.ResourceGetOwnBusiness())
 application.add_route("/business/create", business_resources.ResourceCreateBusiness())
 application.add_route("/business/uploadphoto", business_resources.ResourceBusinessUploadPhoto())
+application.add_route("/business/update", business_resources.ResourceBusinessUpdate())
 
-#  TODO: per implementar
 #  application.add_route("/business/profile", business_resources.ResourceBusinessProfile())
 #  application.add_route("/business/edit", business_resources.ResourceEditProfile())
 #  application.add_route("/business/delete", business_resources.ResourceDeleteProfile())

@@ -80,7 +80,7 @@ public class ConfigurationFragment extends Fragment {
         button = fragmentConfigurationBinding.getRoot().findViewById(R.id.b_updateImage);
 
         button.setOnClickListener(v -> {
-            ((MenuActivity)getActivity()).checkExternalStoragePermission();
+            ((MenuActivity)getActivity()).userUpdate();
         });
     }
 }

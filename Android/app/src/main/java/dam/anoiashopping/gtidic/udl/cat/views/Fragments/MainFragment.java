@@ -52,8 +52,8 @@ public class MainFragment extends Fragment {
         mainViewModel.getBusiness();
 
         mainViewModel.returnBusiness().observe(getViewLifecycleOwner(), business -> {
-            Log.d(TAG, String.valueOf(business.size()));
-            Log.d(TAG, business.toString());
+            //Log.d(TAG, String.valueOf(business.size()));
+            //Log.d(TAG, business.toString());
             businessAdapter.submitList(business);
         });
 

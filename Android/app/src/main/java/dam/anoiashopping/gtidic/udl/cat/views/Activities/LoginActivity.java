@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         ActivityLoginBinding activityLoginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         activityLoginBinding.setLifecycleOwner (this);
         activityLoginBinding.setViewModel (loginViewModel);
+
         TextView b_lostpassword = findViewById(R.id.b_lostpassword);
 
         loginViewModel.registerClick.observe(this, registerClick -> startActivity (new Intent (LoginActivity.this, RegisterActivity.class)));

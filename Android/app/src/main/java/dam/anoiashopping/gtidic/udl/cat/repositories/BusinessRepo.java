@@ -101,7 +101,7 @@ public class BusinessRepo {
                 if (return_code == 200){
                     //mResponseGetBusiness.setValue (new ResultImpl(0, true));
                     mResponseBusinessList.setValue(response.body());
-                    Log.d (TAG, response.body().toString());
+                    //Log.d (TAG, response.body().toString());
                 }else{
                     String error_msg = "Error: " + response.errorBody();
                     Log.d (TAG, error_msg);
