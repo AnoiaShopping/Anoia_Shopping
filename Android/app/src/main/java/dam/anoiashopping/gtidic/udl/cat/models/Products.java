@@ -20,7 +20,6 @@ public class Products implements Parcelable {
         this.nom = nom;
         this.definition = definition;
         this.photoURL = photoURL;
-
     }
 
     public Products(){}

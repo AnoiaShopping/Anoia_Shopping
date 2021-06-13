@@ -33,7 +33,6 @@ public class RegisterViewModel extends ViewModel {
     public MutableLiveData <ResultImpl> passwordValidator  = new MutableLiveData <> ();
     //public MutableLiveData <ResultImpl> isEULAAccepted     = new MutableLiveData <> ();
 
-
     public MutableLiveData <ResultImpl> getRegisterResponse () {
         return this.accountRepo.getmResponseRegister();
     }
@@ -49,8 +48,6 @@ public class RegisterViewModel extends ViewModel {
         usernameValidator.setValue  (Validation.checkUsername  (username.getValue()));
         emailValidator.setValue     (Validation.checkEmail     (email.getValue()));
         passwordValidator.setValue  (Validation.checkPasswords (password.getValue(), password2.getValue()));
-
-
 
         return (firstNameValidator.getValue().isValid() && lastNameValidator.getValue().isValid() &&
                 usernameValidator.getValue().isValid()  && emailValidator.getValue().isValid()    &&
@@ -75,13 +72,7 @@ public class RegisterViewModel extends ViewModel {
             Log.d (TAG, "Valid Form");
 
         } else {
-
             Log.d (TAG, "Invalid form");
         }
     }
-
-    public void onEULAClick () {
-
-    }
-
 }

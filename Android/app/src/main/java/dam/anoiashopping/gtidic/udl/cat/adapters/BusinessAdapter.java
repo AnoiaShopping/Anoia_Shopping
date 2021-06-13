@@ -1,6 +1,5 @@
 package dam.anoiashopping.gtidic.udl.cat.adapters;
 
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import dam.anoiashopping.gtidic.udl.cat.models.Business;
 public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.BusinessHolder> {
 
     private BusinessCommonHolder businessCommonHolder;
-
     private OnItemClickListener businessItemListener;
 
     public BusinessAdapter(@NonNull @NotNull DiffUtil.ItemCallback<Business> diffCallback) {
@@ -35,13 +33,11 @@ public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.Busi
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull BusinessAdapter.BusinessHolder holder, int position) {
-
         Business business = getItem(position);
         businessCommonHolder.bindHolder(business);
     }
 
     public class BusinessHolder extends RecyclerView.ViewHolder {
-
         public BusinessHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             businessCommonHolder = new BusinessCommonHolder(itemView);

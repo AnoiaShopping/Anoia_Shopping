@@ -36,10 +36,6 @@ public interface AccountServiceI {
     @GET ("/account/profile")
     Call <Account> get_account (@Header ("Authorization") String token);
 
-    // TODO: Acabar de fer la implementació
-    @GET ("/users/show/{username}")
-    Call <Account> show_account (@Header ("Authorization") String token);
-
     @FormUrlEncoded
     @POST ("account/recovery")
     Call<ResponseBody> recovery_password(@Field("email") String email);

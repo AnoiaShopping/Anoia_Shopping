@@ -29,8 +29,6 @@ public class Business implements Parcelable {
     String id;
   
     public Business(String id, String nom, String tipus, String definicio, String facebook, String instagram, String twitter, String web, String photoURL) {
-        
-        // TODO : afegir foto
         this.id = id;
         this.nom = nom;
         this.tipus = tipus;
@@ -40,7 +38,6 @@ public class Business implements Parcelable {
         this.twitter = twitter;
         this.web = web;
         this.photoURL = photoURL;
-
     }
 
     public Business() {

@@ -19,24 +19,15 @@ public class BusinessCommonHolder {
     private ImageView businessPhoto;
 
     public BusinessCommonHolder(@NonNull View itemView) {
-
         businessName = itemView.findViewById(R.id.nom_empresa);
         businessDescription = itemView.findViewById(R.id.description);
         businessPhoto = itemView.findViewById(R.id.im_empresa);
-
-        //businessName.setText("sdsfsdfsfd");
     }
 
     public void bindHolder(Business b) {
-
-
         this.businessName.setText(b.getNom());
         this.businessDescription.setText(b.getDefinicio());
         Picasso.get().load(b.getPhotoURL()).into(this.businessPhoto);
-        //Log.d(TAG, "bindHolder() -> Busssines: " + b);
-
-        //Log.d(TAG, "onBindViewHolder() -> cEvent: " + e.getPoster_url());
-        //Picasso.get().load(e.getPoster_url()).into(this.eventPoster);
     }
 
 }

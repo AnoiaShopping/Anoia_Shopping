@@ -11,6 +11,8 @@ import dam.anoiashopping.gtidic.udl.cat.utils.Utils;
 
 public class Account {
 
+    @SerializedName("id")
+    private int id;
     @SerializedName("username")
     private String username;
     @SerializedName("name")
@@ -27,6 +29,13 @@ public class Account {
     public Account() {
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUsername() {
         return username;

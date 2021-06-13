@@ -64,7 +64,7 @@ public class LoginViewModel extends ViewModel {
             auth_token = Base64.encodeToString(data, Base64.DEFAULT);
             auth_token = ("Authentication " + auth_token).trim();
 
-            // Ha de ser commit, ens hem d'assegurar que i són per l'interceptor.
+            // Ha de ser commit, ens hem d'assegurar que hi són per l'interceptor.
             // De moment aquest PreferencesProvider no es necessari
             //PreferencesProvider.providePreferences().edit().putString("token", auth_token).commit();
 

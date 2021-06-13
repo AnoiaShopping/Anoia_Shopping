@@ -6,29 +6,29 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/home500"
+        android:icon="@drawable/ic_baseline_home_24"
         android:title="Inici" />
     <item
         android:id="@+id/nav_chats"
-        android:icon="@drawable/chatbubble500"
+        android:icon="@drawable/ic_baseline_chat_24"
         android:title="Xats" />
     <item
         android:id="@+id/nav_business"
-        android:icon="@drawable/smallbusiness500"
+        android:icon="@drawable/ic_baseline_store_24"
         android:title="Els Meus Negocis" />
     <item
         android:id="@+id/nav_cart"
-        android:icon="@drawable/cart500"
+        android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="Les Meves Compres" />
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/user500"
+        android:icon="@drawable/ic_baseline_account_circle_24"
         android:title="Perfil" />
 
     <item android:title="SESSIÓ">
         <menu>
             <item android:id="@+id/nav_logout"
-                android:icon="@drawable/signout500"
+                android:icon="@drawable/ic_baseline_login_24"
                 android:title="Tancar Sessió" />
         </menu>
     </item>
