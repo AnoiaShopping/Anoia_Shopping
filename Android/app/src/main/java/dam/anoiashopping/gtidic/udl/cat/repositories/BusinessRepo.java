@@ -50,6 +50,10 @@ public class BusinessRepo {
         return mResponseUploadPhoto;
     }
 
+    public MutableLiveData<List<Products>> getmResponseProductList() {
+        return mResponseProductList;
+    }
+
     public BusinessRepo() {
         this.mResponseProductList = new MutableLiveData<>();
         this.businessService = new BusinessServiceImpl();
@@ -97,10 +101,8 @@ public class BusinessRepo {
                     //mResponseGetBusiness.setValue (new ResultImpl(0, true));
                     mResponseBusinessList.setValue(response.body());
                 }else{
-
                     String error_msg = "Error: " + response.errorBody();
                     Log.d (TAG, error_msg);
-
                     //mResponseGetBusiness.setValue (new ResultImpl(0, false));
                 }
             }
@@ -139,10 +141,8 @@ public class BusinessRepo {
 
     public void uploadBusinessPhoto (File image, String name) {
         String token = PreferencesProvider.providePreferences().getString("token", "");
-
         RequestBody reqBody = RequestBody.create(image, MediaType.parse("image/*"));
         //MultipartBody.Part multipart = MultipartBody.Part.createFormData("image_file", image.getName(), reqBody);
-
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         builder.addFormDataPart("image_file", image.getName(),reqBody);
         builder.addFormDataPart("name", name);
@@ -153,13 +153,11 @@ public class BusinessRepo {
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 int code = response.code();
                 Log.d(TAG,"uploadPhoto() -> ha rebut el codi: " +  code);
-
                 if (code == 200) {
                     mResponseUploadPhoto.setValue(new ResultImpl(0, true));
                 } else {
                     mResponseUploadPhoto.setValue(new ResultImpl(0, false));
                 }
-
             }
 
             @Override
@@ -176,28 +174,22 @@ public class BusinessRepo {
             public void onResponse(Call<List<Products>> call, Response<List<Products>> response) {
                 int return_code = response.code();  //200, 404, 401,...
                 Log.d(TAG,"GetProductList() -> ha rebut el codi: " +  return_code);
-
                 if (return_code == 200){
                     //mResponseGetBusiness.setValue (new ResultImpl(0, true));
                     mResponseProductList.setValue(response.body());
                     Log.d(TAG, "returned product list from id: " + id);
                 }else{
-
                     String error_msg = "Error: " + response.errorBody();
                     Log.d (TAG, error_msg);
-
                     //mResponseProductList.setValue (new ResultImpl(0, false));
                 }
             }
 
             @Override
             public void onFailure(Call<List<Products>> call, Throwable t) {
-
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "getProductList() onFailure() -> ha rebut el missatge:  " + error_msg);
             }
         });
-    }
-
-    public MutableLiveData<List<Products>> getmResponseProductList() {
-        return mResponseProductList;
     }
 }
