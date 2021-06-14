@@ -50,9 +50,17 @@
     <fragment
         android:id="@+id/createBusinessFragment"
         android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.CreateBusinessFragment"
-        tools:layout="@layout/fragment_create_business" />
+        tools:layout="@layout/fragment_create_business" >
+        <action
+            android:id="@+id/action_createBusinessFragment_to_updateImageFragment"
+            app:destination="@id/updateImageFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editBusinessFragment"
         android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.EditBusinessFragment"
         android:label="EditBusinessFragment" />
+    <fragment
+        android:id="@+id/updateImageFragment"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.UpdateImageFragment"
+        android:label="UpdateImageFragment" />
 </navigation>

@@ -16,10 +16,12 @@ import dam.anoiashopping.gtidic.udl.cat.utils.ResultImpl;
 
 public class MenuViewModel extends ViewModel {
     private AccountRepo accountRepo;
+    private BusinessRepo businessRepo;
     private final String TAG = "MainVM";
 
     public MenuViewModel () {
         this.accountRepo = new AccountRepo ();
+        this.businessRepo = new BusinessRepo ();
     }
 
     public void delete_token (String token) {
@@ -45,9 +47,17 @@ public class MenuViewModel extends ViewModel {
         return accountRepo.getmResponseUploadImage();
     }
 
-    public void uploadAccountImage(File imageFile) {
+    public void uploadAccountImage (File imageFile) {
         Log.d("VM", "uploading image... using repo");
         this.accountRepo.uploadImage(PreferencesProvider.providePreferences().getString("token", ""), imageFile);
+    }
+
+    public MutableLiveData<ResultImpl> getBusinessImageResponse () {
+        return businessRepo.getmResponseUploadPhoto();
+    }
+
+    public void uploadBusinessImage (File imageFile, String name) {
+        this.businessRepo.uploadBusinessPhoto(imageFile, name);
     }
 
 }

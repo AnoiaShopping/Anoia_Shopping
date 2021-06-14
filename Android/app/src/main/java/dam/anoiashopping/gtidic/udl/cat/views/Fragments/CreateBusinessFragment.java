@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.provider.MediaStore;
 import android.util.Log;
@@ -38,10 +39,6 @@ public class CreateBusinessFragment extends Fragment {
 
     private View root;
     private final String TAG = "CreateBusinessFragment";
-
-    ImageView photopreview;
-    File photo;
-    Button selectPhoto;
 
     private EditText txtEditNom;
     private EditText txtEditWeb;
@@ -71,17 +68,11 @@ public class CreateBusinessFragment extends Fragment {
         txtEditFacebook  = root.findViewById(R.id.txtEditFacebook);
         txtEditTwitter = root.findViewById(R.id.txtEditTwitter);
         btCrearBotiga = root.findViewById(R.id.btCrearBotiga);
-        photopreview = root.findViewById(R.id.im_businessphotopreview);
-        selectPhoto = root.findViewById(R.id.b_chooseimage);
 
         spinner = (Spinner) root.findViewById(R.id.spinnerEditTipusBotiga);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(), R.array.bens, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
-        selectPhoto.setOnClickListener(v -> {
-            // TODO checkExternalStoragePermission();
-        });
 
         btCrearBotiga.setOnClickListener(v -> {
             if(validate()){
@@ -92,7 +83,9 @@ public class CreateBusinessFragment extends Fragment {
         createBusinessViewModel.createBusinessResponse().observe(getViewLifecycleOwner(), business1 -> {
             if (business1.isValid()) {
                 Log.d (TAG, txtEditNom.getText().toString());
-                createBusinessViewModel.uploadBusinessPhoto(photo, txtEditNom.getText().toString());
+                Bundle b = new Bundle();
+                b.putString("nom", txtEditNom.getText().toString());
+                NavHostFragment.findNavController(CreateBusinessFragment.this).navigate(R.id.action_createBusinessFragment_to_updateImageFragment, b);
             }
         });
 
@@ -153,11 +146,6 @@ public class CreateBusinessFragment extends Fragment {
             if(!provadorRegex.isEmpty()){
                 validadorRegex = false;
                 txtEditFacebook.setError("Facebook incorrecte, has d'incloure el nom d'usuari incluint nomes lletres");                }
-        }
-
-        if (photo == null) {
-            Toast.makeText(getActivity(), "Has de seleccionar la foto del negoci.", Toast.LENGTH_SHORT).show();
-            validadorRegex = false;
         }
 
         if (getBusinessType().equals("Selecciona el teu tipus de negoci …")) {

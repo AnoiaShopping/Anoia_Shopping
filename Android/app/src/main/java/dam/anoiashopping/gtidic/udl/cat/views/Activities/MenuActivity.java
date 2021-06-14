@@ -8,6 +8,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -31,6 +32,7 @@ import android.widget.Toast;
 
 import com.google.android.material.internal.NavigationMenuItemView;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -50,6 +52,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private final String TAG = "MenuActivity";
 
     MenuViewModel menuViewModel;
+    NavigationView navigationView;
 
     PermissionManager permissionManager;
     private final int REQUEST_EXTERNAL_STORAGE = 13;
@@ -58,10 +61,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     NavController navController;
     DrawerLayout drawer;
 
-    File imageFile;
-
-    //TextView username;
-    //TextView email;
+    MutableLiveData <File> imageFile = new MutableLiveData<>();
+    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,18 +70,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_menu);
 
         init();
-        initToolbar();
     }
 
     public void init () {
         menuViewModel = new ViewModelProvider(this).get(MenuViewModel.class);
-
         permissionManager = new PermissionManager();
 
-        //username = findViewById(R.id.navusername);
-        //email = findViewById(R.id.navemail);
-
-        //menuViewModel.getAccount(PreferencesProvider.providePreferences().getString("token", ""));
+        navigationView = findViewById(R.id.nav_view);
+        NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header, navigationView, true);
+        navHeaderBinding.setLifecycleOwner(this);
 
         menuViewModel.getDeleteResponse().observe(this, deleteResponse -> {
             if (deleteResponse.isValid()) {
@@ -88,10 +86,18 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        //menuViewModel.getAccountResponse().observe(this, account -> {
-        //    username.setText(account.getUsername());
-        //    email.setText(account.getEmail());
-        //});
+
+        imageView = navHeaderBinding.getRoot().findViewById(R.id.fotomenu);
+        menuViewModel.getAccount(PreferencesProvider.providePreferences().getString("token", ""));
+        menuViewModel.getAccountResponse().observe(this, account -> {
+            navHeaderBinding.setAccount(account);
+            Log.d (TAG, account.getEmail());
+            initToolbar();
+
+            if (account.getPhotoURL() != null) {
+                Picasso.get().load(account.getPhotoURL()).into(this.imageView);
+            }
+        });
     }
 
     public void initToolbar () {
@@ -99,7 +105,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
 
         drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_chats,   R.id.nav_business,
@@ -111,12 +116,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //NavHeaderBinding navHeaderBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.nav_header, navigationView, false);
-        //navHeaderBinding.setLifecycleOwner(this);
-        //navHeaderBinding.setViewModel(menuViewModel);
-
-
     }
 
     @Override
@@ -155,12 +154,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void userUpdate () {
-        imageFile = null;
         checkExternalStoragePermission();
 
-        while (imageFile == null) {}
-
-        menuViewModel.uploadAccountImage(imageFile);
+        imageFile.observe(this, file -> {
+            menuViewModel.uploadAccountImage(file);
+        });
 
         menuViewModel.getAccountImageResponse().observe(this, response -> {
             if (response.isValid()){
@@ -169,8 +167,33 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
-    public void businessUpdate () {
+    public void businessCreate (String name) {
+        checkExternalStoragePermission();
 
+        imageFile.observe(this, file -> {
+            menuViewModel.uploadBusinessImage(file, name);
+        });
+
+        menuViewModel.getBusinessImageResponse().observe(this, response -> {
+            if (response.isValid()){
+                Toast.makeText(this, "Foto pujada Correctament, ja tens el teu negoci creat correctament.", Toast.LENGTH_SHORT).show();
+                navController.navigate(R.id.nav_business);
+            }
+        });
+    }
+
+    public void businessUpdate (String name) {
+        checkExternalStoragePermission();
+
+        imageFile.observe(this, file -> {
+            menuViewModel.uploadBusinessImage(file, name);
+        });
+
+        menuViewModel.getBusinessImageResponse().observe(this, response -> {
+            if (response.isValid()){
+                Toast.makeText(this, "Foto pujada Correctament.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void checkExternalStoragePermission(){
@@ -223,7 +246,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             //File image = new File(getRealPathFromURI(path, this));
             //profileImage.setImageURI(path); // TODO adaptar a variable
             //configurationViewModel.uploadAccountImage(image);
-            imageFile = new File(getRealPathFromURI(path, this));
+            imageFile.setValue(new File(getRealPathFromURI(path, this)));
         }
     }
 

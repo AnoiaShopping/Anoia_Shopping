@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -18,6 +19,7 @@ import dam.anoiashopping.gtidic.udl.cat.R;
 import dam.anoiashopping.gtidic.udl.cat.databinding.FragmentEditBusinessBinding;
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.viewmodels.BusinessViewModel;
+import dam.anoiashopping.gtidic.udl.cat.views.Activities.MenuActivity;
 
 public class EditBusinessFragment extends Fragment {
 
@@ -51,10 +53,11 @@ public class EditBusinessFragment extends Fragment {
             }
         });
 
+        Button button = fragmentEditBusinessBinding.getRoot().findViewById(R.id.canviarfoto);
+        button.setOnClickListener(v -> {
+            ((MenuActivity)getActivity()).businessUpdate(businessViewModel.businessMutableLiveData.getValue().getNom());
+        });
+
         return fragmentEditBusinessBinding.getRoot();
-    }
-
-    public void initView () {
-
     }
 }

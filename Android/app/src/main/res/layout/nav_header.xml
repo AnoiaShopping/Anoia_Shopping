@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="viewModel"
-            type="dam.anoiashopping.gtidic.udl.cat.viewmodels.MenuViewModel" />
+            name="account"
+            type="dam.anoiashopping.gtidic.udl.cat.models.Account" />
     </data>
 
     <LinearLayout
@@ -34,13 +34,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="NOM" />
+            android:text="@{account.username}" />
 
         <TextView
             android:id="@+id/navemail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="3dp"
-            android:text="EMAIL" />
+            android:text="@{account.email}" />
     </LinearLayout>
 </layout>
