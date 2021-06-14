@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 
 import java.io.IOException;
 
-import dam.anoiashopping.gtidic.udl.cat.views.RegisterActivity;
+import dam.anoiashopping.gtidic.udl.cat.views.Activities.RegisterActivity;
 
 import static org.junit.Assert.assertNull;
 

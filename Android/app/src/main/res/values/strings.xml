@@ -2,14 +2,38 @@
     <string name="app_name">Anoia Shopping</string>
 
     <!-- Screen Strings -->
+    <string-array name="bens">
+        <item>Selecciona el teu tipus de negoci …</item>
+        <!--Bens-->
+        <item>Informàtica</item>
+        <item>Moda</item>
+        <item>Electrodomèstics</item>
+        <item>Concessionari</item>
+        <item>Llibreria</item>
+        <item>Papereria</item>
+        <item>Mecànic</item>
+        <item>Esports</item>
+        <item>Joieria</item>
+        <item>Carnisseria</item>
+        <item>Peixateria</item>
+        <item>Fruiteria</item>
+        <item>Precuinats</item>
+        <item>Farmàcia</item>
+        <item>Productes naturals</item>
+        <item>Forn de pà</item>
+        <item>Pastisseria</item>
 
-    <string-array name="tipusDeBotigues">
-        <item>Informatica</item>
-        <item>Alimentacio</item>
-        <item>Roba</item>
-        <item>Electrodomestics</item>
+        <!--Serveis-->
+        <item>Perruqueria</item>
+        <item>Centre d\'Estética</item>
+        <item>Bufet</item>
+        <item>Restaurant</item>
+        <item>Viatges</item>
+        <item>Fisioterapia</item>
+        <item>Gimnàs</item>
+
+        <item>Altres …</item>
     </string-array>
-
 
     <string name="logIn">Iniciar Sessió</string>
     <string name="logIn2">INICIAR SESSIÓ</string>
@@ -20,6 +44,7 @@
     <string name="singInButton">Registrar-se</string>
     <string name="singInTop">REGISTRE</string>
     <string name="username">Nom d\'Usuari</string>
+    <string name="username2">Nom d\'Usuari o Email</string>
     <string name="password">Contrassenya</string>
     <string name="passwordRepeat">Repetir Contrassenya</string>
     <string name="firstName">Nom</string>
@@ -73,4 +98,17 @@
 
     <string name="actualizar">Actualizar</string>
     <string name="definici_botiga">DEFINICIÓ BOTIGA</string>
+    <string name="insertar_foto">INSERTAR FOTO</string>
+    <string name="nom_botiga">Nom Botiga</string>
+    <string name="web_negoci_si_en_teniu">Web negoci (si en teniu)</string>
+    <string name="tipus_de_negoci">Tipus de Negoci</string>
+    <string name="definicio_del_que_ofereixes">Definicio del que ofereixes</string>
+    <string name="crear_negoci">CREAR NEGOCI</string>
+    <string name="instagram">Instagram</string>
+    <string name="facebook">Facebook</string>
+    <string name="twitter">Twitter</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nom_empresa">Nom Empresa</string>
+    <string name="definici_botiga1">Definició botiga</string>
 </resources>

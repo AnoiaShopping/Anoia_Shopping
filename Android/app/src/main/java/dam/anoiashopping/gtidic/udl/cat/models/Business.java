@@ -23,11 +23,13 @@ public class Business implements Parcelable {
     String twitter;
     @SerializedName("web")
     String web;
+    @SerializedName("photo")
+    String photoURL;
+    @SerializedName("id")
+    String id;
   
-    public Business(String nom, String tipus, String definicio, String facebook, String instagram, String twitter) {
-        
-        // TODO : afegir foto
-
+    public Business(String id, String nom, String tipus, String definicio, String facebook, String instagram, String twitter, String web, String photoURL) {
+        this.id = id;
         this.nom = nom;
         this.tipus = tipus;
         this.definicio = definicio;
@@ -35,32 +37,19 @@ public class Business implements Parcelable {
         this.facebook = facebook;
         this.twitter = twitter;
         this.web = web;
-
+        this.photoURL = photoURL;
     }
 
     public Business() {
     }
 
-    protected Business(Parcel in) {
-        nom = in.readString();
-        tipus = in.readString();
-        definicio = in.readString();
-        facebook = in.readString();
-        instagram = in.readString();
-        twitter = in.readString();
+    public String getId() {
+        return id;
     }
 
-    public static final Creator<Business> CREATOR = new Creator<Business>() {
-        @Override
-        public Business createFromParcel(Parcel in) {
-            return new Business(in);
-        }
-
-        @Override
-        public Business[] newArray(int size) {
-            return new Business[size];
-        }
-    };
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNom() {
         return nom;
@@ -118,10 +107,18 @@ public class Business implements Parcelable {
         this.web = web;
     }
 
+    public String getPhotoURL() {
+        return photoURL;
+    }
+
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
+    }
+
     @NotNull
     @Override
     public String toString(){
-        return "name:"+nom+" "+" definicio:"+definicio;
+        return "name:"+nom+" "+" definicio:"+definicio+" "+" id:"+id;
     }
 
     @Override
@@ -138,5 +135,28 @@ public class Business implements Parcelable {
         dest.writeString(facebook);
         dest.writeString(instagram);
         dest.writeString(twitter);
+        dest.writeString(id);
     }
+
+    protected Business(Parcel in) {
+        nom = in.readString();
+        tipus = in.readString();
+        definicio = in.readString();
+        facebook = in.readString();
+        instagram = in.readString();
+        twitter = in.readString();
+        id = in.readString();
+    }
+
+    public static final Creator<Business> CREATOR = new Creator<Business>() {
+        @Override
+        public Business createFromParcel(Parcel in) {
+            return new Business(in);
+        }
+
+        @Override
+        public Business[] newArray(int size) {
+            return new Business[size];
+        }
+    };
 }

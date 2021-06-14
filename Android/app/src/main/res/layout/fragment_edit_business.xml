@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="dam.anoiashopping.gtidic.udl.cat.viewmodels.BusinessViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="372dp"
+        tools:layout_editor_absoluteY="187dp" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".views.Fragments.CreateBusinessActivity">
+
+
+            <ImageView
+                android:id="@+id/imatgenegoci"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="32dp"
+                android:contentDescription="@string/todo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/smallbusiness500" />
+
+            <Button
+                android:id="@+id/canviarfoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/insertar_foto"
+                android:textColor="#4788C7"
+                app:backgroundTint="#98CCFD"
+                app:layout_constraintEnd_toEndOf="@+id/imatgenegoci"
+                app:layout_constraintStart_toStartOf="@+id/imatgenegoci"
+                app:layout_constraintTop_toBottomOf="@+id/imatgenegoci" />
+
+            <EditText
+                android:id="@+id/nomPIME"
+                android:text="@={viewModel.businessMutableLiveData.nom}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:hint="@string/nom_botiga"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/canviarfoto" />
+
+            <EditText
+                android:id="@+id/tipusPIME"
+                android:text="@={viewModel.businessMutableLiveData.tipus}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:hint="@string/tipus_de_negoci"
+                app:layout_constraintEnd_toEndOf="@+id/nomPIME"
+                app:layout_constraintStart_toStartOf="@+id/nomPIME"
+                app:layout_constraintTop_toBottomOf="@+id/nomPIME" />
+
+            <EditText
+                android:id="@+id/webPIME"
+                android:text="@={viewModel.businessMutableLiveData.web}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:hint="@string/web_negoci_si_en_teniu"
+                app:layout_constraintEnd_toEndOf="@+id/tipusPIME"
+                app:layout_constraintStart_toEndOf="@+id/imageView7"
+                app:layout_constraintTop_toBottomOf="@+id/tipusPIME" />
+
+            <EditText
+                android:id="@+id/definicioPIME"
+                android:text="@={viewModel.businessMutableLiveData.definicio}"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="32dp"
+                android:hint="@string/definicio_del_que_ofereixes"
+                app:layout_constraintEnd_toEndOf="@+id/webPIME"
+                app:layout_constraintStart_toStartOf="@+id/imageView7"
+                app:layout_constraintTop_toBottomOf="@+id/webPIME" />
+
+            <Button
+                android:id="@+id/actualitzarPIME"
+                android:onClick="@{() -> viewModel.updateBusiness()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:text="@string/actualizar"
+                android:textColor="#4788C7"
+                app:backgroundTint="#98CCFD"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txtEditTwitter"
+                app:layout_constraintStart_toStartOf="@+id/imageView6"
+                app:layout_constraintTop_toBottomOf="@+id/txtEditTwitter" />
+
+            <EditText
+                android:id="@+id/txtEditInstagram"
+                android:text="@={viewModel.businessMutableLiveData.instagram}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="32dp"
+                android:hint="@string/instagram"
+                app:layout_constraintEnd_toEndOf="@+id/definicioPIME"
+                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/definicioPIME" />
+
+            <EditText
+                android:id="@+id/txtEditFacebook"
+                android:text="@={viewModel.businessMutableLiveData.facebook}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:hint="@string/facebook"
+                app:layout_constraintEnd_toEndOf="@+id/txtEditInstagram"
+                app:layout_constraintStart_toStartOf="@+id/txtEditInstagram"
+                app:layout_constraintTop_toBottomOf="@+id/txtEditInstagram" />
+
+            <EditText
+                android:id="@+id/txtEditTwitter"
+                android:text="@={viewModel.businessMutableLiveData.twitter}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:hint="@string/twitter"
+                app:layout_constraintEnd_toEndOf="@+id/txtEditFacebook"
+                app:layout_constraintStart_toStartOf="@+id/txtEditFacebook"
+                app:layout_constraintTop_toBottomOf="@+id/txtEditFacebook" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="@android:dimen/app_icon_size"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtEditInstagram"
+                app:layout_constraintStart_toStartOf="@+id/definicioPIME"
+                app:layout_constraintTop_toTopOf="@+id/txtEditInstagram"
+                app:srcCompat="@drawable/instagram500" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtEditFacebook"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toTopOf="@+id/txtEditFacebook"
+                app:srcCompat="@drawable/facebook500" />
+
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/txtEditTwitter"
+                app:layout_constraintEnd_toEndOf="@+id/imageView5"
+                app:layout_constraintStart_toStartOf="@+id/imageView5"
+                app:layout_constraintTop_toTopOf="@+id/txtEditTwitter"
+                app:srcCompat="@drawable/twitter500" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="48dp"
+                android:layout_height="45dp"
+                app:layout_constraintBottom_toBottomOf="@+id/webPIME"
+                app:layout_constraintStart_toStartOf="@+id/tipusPIME"
+                app:layout_constraintTop_toTopOf="@+id/webPIME"
+                app:srcCompat="@drawable/website500" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

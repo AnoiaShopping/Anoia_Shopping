@@ -173,6 +173,7 @@ class User(SQLAlchemyBase, JSONModel):
     events_owner = relationship("Event", back_populates="owner", cascade="all, delete-orphan")
     events_enrolled = relationship("Event", back_populates="registered")
     business_owner = relationship("Business", back_populates="owner", cascade="all, delete-orphan")
+    products_owner = relationship("Business", back_populates="owner", cascade="all, delete-orphan")
 
     @hybrid_property
     def public_profile(self):
@@ -211,6 +212,7 @@ class User(SQLAlchemyBase, JSONModel):
     @hybrid_property
     def json_model(self):
         return {
+            "id": self.id,
             "created_at": self.created_at.strftime(settings.DATETIME_DEFAULT_FORMAT),
             "username": self.username,
             "email": self.email,
@@ -222,6 +224,8 @@ class User(SQLAlchemyBase, JSONModel):
             "photo": self.photo_url
         }
 
+
+# Negocis
 class Business(SQLAlchemyBase, JSONModel):
     __tablename__ = "business"
 
@@ -230,17 +234,22 @@ class Business(SQLAlchemyBase, JSONModel):
     name = Column(Unicode(50), nullable=False, unique=True)
     type = Column(Unicode(50), nullable=False)
     definition = Column(UnicodeText, nullable=False)
-    web = Column(Unicode(50))
-    facebook = Column(Unicode(60))
-    instagram = Column(Unicode(60))
-    twitter = Column(Unicode(60))
-    photo = Column(Unicode(255), nullable=True) # TODO: posar a false quan estigui preparat
+    web = Column(Unicode(50), default="")
+    facebook = Column(Unicode(60), default="")
+    instagram = Column(Unicode(60), default="")
+    twitter = Column(Unicode(60), default="")
+    photo = Column(Unicode(255))
     owner_id = Column(Integer, ForeignKey("users.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
     owner = relationship("User", back_populates="business_owner")
+    products_owner = relationship("Product", back_populates="owner", cascade="all, delete-orphan")
 
     @hybrid_property
     def photo_url(self):
         return _generate_media_url(self, "photo")
+
+    @hybrid_property
+    def photo_path(self):
+        return _generate_media_path(self, "photo")
 
     @hybrid_property
     def json_model(self):
@@ -250,8 +259,36 @@ class Business(SQLAlchemyBase, JSONModel):
             "type": self.type,
             "definition": self.definition,
             "web": self.web,
-	        "facebook": self.facebook,
-	        "instagram": self.instagram,
-	        "twitter": self.twitter,
+            "facebook": self.facebook,
+            "instagram": self.instagram,
+            "twitter": self.twitter,
+            "photo": self.photo_url,
+            "id": self.id
+        }
+
+
+# PRODUCTES
+class Product(SQLAlchemyBase, JSONModel):
+    __tablename__ = "products"
+
+    id = Column(Integer, primary_key=True)
+    name = Column(Unicode(100), nullable=False)
+    photo = Column(Unicode(255))
+    description = Column(UnicodeText, default="")
+    owner_id = Column(Integer, ForeignKey("business.id", onupdate="CASCADE", ondelete="CASCADE"), nullable=False)
+    owner = relationship("Business", back_populates="products_owner")
+
+    @hybrid_property
+    def photo_url(self):
+        return _generate_media_url(self, "photo")
+
+    @hybrid_property
+    def photo_path(self):
+        return _generate_media_path(self, "photo")
+
+    @hybrid_property
+    def json_model(self):
+        return {
+            "name": self.name,
             "photo": self.photo_url
         }

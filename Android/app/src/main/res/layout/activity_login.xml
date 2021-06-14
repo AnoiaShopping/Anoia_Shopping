@@ -13,7 +13,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".views.LoginActivity">
+        tools:context=".views.Activities.LoginActivity">
 
         <ImageView
             android:id="@+id/i_Logo"
@@ -31,43 +31,45 @@
             android:id="@+id/i_loginusername"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginRight="32dp"
             android:ems="10"
-            android:hint="@string/username"
+            android:hint="@string/username2"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:text="@={viewModel.email}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/i_Logo"
-            android:importantForAutofill="no" />
+            app:layout_constraintStart_toEndOf="@+id/im_userlogin"
+            app:layout_constraintTop_toBottomOf="@+id/i_Logo" />
 
         <EditText
             android:id="@+id/i_loginpassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:ems="10"
             android:hint="@string/password"
+            android:importantForAutofill="no"
             android:inputType="textPassword"
             android:text="@={viewModel.password}"
             app:layout_constraintEnd_toEndOf="@+id/i_loginusername"
             app:layout_constraintStart_toStartOf="@+id/i_loginusername"
-            app:layout_constraintTop_toBottomOf="@+id/i_loginusername"
-            android:importantForAutofill="no" />
+            app:layout_constraintTop_toBottomOf="@+id/i_loginusername" />
 
         <Button
             android:id="@+id/b_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:onClick="@{() -> viewModel.onLogin()}"
             android:text="@string/logIn2"
-            app:layout_constraintEnd_toEndOf="@+id/i_loginpassword"
-            app:layout_constraintStart_toStartOf="@+id/i_loginpassword"
+            android:textColor="#4788C7"
+            app:backgroundTint="#98CCFD"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/i_loginpassword" />
 
         <Button
@@ -77,6 +79,8 @@
             android:layout_marginTop="16dp"
             android:onClick="@{() -> viewModel.onRegisterClick()}"
             android:text="@string/singInButton"
+            android:textColor="#4788C7"
+            app:backgroundTint="#98CCFD"
             app:layout_constraintEnd_toEndOf="@+id/b_login"
             app:layout_constraintStart_toStartOf="@+id/b_login"
             app:layout_constraintTop_toBottomOf="@+id/b_login" />
@@ -90,6 +94,27 @@
             app:layout_constraintEnd_toEndOf="@+id/b_registre"
             app:layout_constraintStart_toStartOf="@+id/b_registre"
             app:layout_constraintTop_toBottomOf="@+id/b_registre" />
+
+        <ImageView
+            android:id="@+id/im_userlogin"
+            android:layout_width="@android:dimen/app_icon_size"
+            android:layout_height="0dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            app:layout_constraintBottom_toBottomOf="@+id/i_loginusername"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/i_loginusername"
+            app:srcCompat="@drawable/testaccount500" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="@android:dimen/app_icon_size"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@+id/i_loginpassword"
+            app:layout_constraintEnd_toEndOf="@+id/im_userlogin"
+            app:layout_constraintStart_toStartOf="@+id/im_userlogin"
+            app:layout_constraintTop_toTopOf="@+id/i_loginpassword"
+            app:srcCompat="@drawable/password500" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

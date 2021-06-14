@@ -15,17 +15,17 @@ public class AccountServiceImpl implements AccountServiceI {
     // POST CALLS
 
     @Override
-    public Call <ResponseBody> register(Account account) {
+    public Call<ResponseBody> register(Account account) {
         return retrofit.create(AccountServiceI.class).register(account);
     }
 
     @Override
-    public Call <ResponseBody> create_token(String auth_token) {
+    public Call<ResponseBody> create_token(String auth_token) {
         return retrofit.create(AccountServiceI.class).create_token(auth_token);
     }
 
     @Override
-    public Call <ResponseBody> delete_token(String token, Token tokenBody) {
+    public Call<ResponseBody> delete_token(String token, Token tokenBody) {
         return retrofit.create(AccountServiceI.class).delete_token(token, tokenBody);
     }
 
@@ -34,15 +34,27 @@ public class AccountServiceImpl implements AccountServiceI {
         return  retrofit.create(AccountServiceI.class).upload_image(image, token);
     }
 
-    // GET CALLS
-
     @Override
-    public Call <Account> get_account (String token) {
-        return retrofit.create(AccountServiceI.class).get_account(token);
+    public Call<ResponseBody> recovery_password(String email) {
+        return retrofit.create(AccountServiceI.class).recovery_password(email);
     }
 
     @Override
-    public Call <Account> show_account (String token) {
-        return retrofit.create(AccountServiceI.class).show_account(token);
+    public Call<ResponseBody> update_password(String email, String password, String code) {
+        return retrofit.create(AccountServiceI.class).update_password(email,password,code);
+    }
+
+    // GET CALLS
+
+    @Override
+    public Call<Account> get_account (String token) {
+        return retrofit.create(AccountServiceI.class).get_account(token);
+    }
+
+    // PUT CALLS
+
+    @Override
+    public  Call <ResponseBody> update_account (String token, Account account) {
+        return retrofit.create(AccountServiceI.class).update_account(token, account);
     }
 }
