@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="@+id/ownBusinessList"
             app:layout_constraintTop_toTopOf="@+id/ownBusinessList"
             app:layout_constraintVertical_bias="0.98"
-            app:srcCompat="@drawable/plus500" />
+            android:src="@drawable/ic_baseline_add_business_24" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/ownBusinessList"
