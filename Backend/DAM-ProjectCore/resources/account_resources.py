@@ -104,11 +104,11 @@ class ResourceAccountUserProfile(DAMCoreResource):
         resp.media = current_user.json_model
         resp.status = falcon.HTTP_200
 
+
 @falcon.before(requires_auth)
 class ResourceAccountUpdateProfileImage(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceAccountUpdateProfileImage, self).on_post(req, resp, *args, **kwargs)
-
 
         # Get the user from the token
         current_user = req.context["auth_user"]
@@ -162,8 +162,7 @@ class ResourceAccountRecovery(DAMCoreResource):
             message["Subject"]:'[ANOIA-SHOPPING] Recovery account instructions'
             message["From"]:sender_email
             message["To"]:email
-            
-            
+
             image = "resources/images/Anoia-Shopping-1.png"
             logo = os.path.join(os.getcwd(),image)
             
@@ -195,7 +194,8 @@ class ResourceAccountRecovery(DAMCoreResource):
         except NoResultFound:
             resp.status = falcon.HTTP_200
         resp.status = falcon.HTTP_200
-        
+
+
 class ResourceUpdatePassword(DAMCoreResource):
     def on_post(self, req, resp, *args, **kwargs):
         super(ResourceUpdatePassword, self).on_post(req, resp, *args, **kwargs)
@@ -209,10 +209,41 @@ class ResourceUpdatePassword(DAMCoreResource):
             user.password = password
             user.recovery_code = code
             self.db_session.commit()
-        
-        
+
         except Exception as e:
             print(e)
         
         resp.status = falcon.HTTP_200
-        
+
+
+@falcon.before(requires_auth)
+class ResourceAccountUpdateProfile(DAMCoreResource):
+    def on_put(self, req, resp, *args, **kwargs):
+        super(ResourceAccountUpdateProfile, self).on_put(req, resp, *args, **kwargs)
+
+        try:
+            account_id = req.media["id"]
+            username = req.media["username"]
+            name = req.media["name"]
+            surname = req.media["surname"]
+            email = req.media["email"]
+
+            if account_id is not None:
+                user = self.db_session.query(User).filter(User.id == account_id).one_or_none()
+
+                if user is not None:
+                    user.username = username
+                    user.name = name
+                    user.surname = surname
+                    user.email = email
+                    self.db_session.commit()
+
+                else:
+                    raise falcon.HTTPBadRequest("Aquest usuari no existeix")
+            else:
+                raise falcon.HTTPBadRequest("Necessito la id")
+        except KeyError:
+            raise falcon.HTTPBadRequest("El body ha de contenir la informació necessaria")
+
+        resp.status = falcon.HTTP_200
+

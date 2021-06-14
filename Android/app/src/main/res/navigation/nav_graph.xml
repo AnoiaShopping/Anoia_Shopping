@@ -2,4 +2,57 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph" />
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/nav_home">
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.MainFragment"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_nav_home_to_businessFragment"
+            app:destination="@id/businessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/businessFragment"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.BusinessFragment"
+        tools:layout="@layout/fragment_business" >
+        <action
+            android:id="@+id/action_businessFragment_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_business"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.BusinessListFragment"
+        tools:layout="@layout/fragment_business_list" >
+        <action
+            android:id="@+id/action_nav_business_to_createBusinessFragment"
+            app:destination="@id/createBusinessFragment" />
+        <action
+            android:id="@+id/action_nav_business_to_editBusinessFragment"
+            app:destination="@id/editBusinessFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.ChatFragment"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/nav_chats"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.ChatListFragment"
+        tools:layout="@layout/fragment_chat_list" >
+        <action
+            android:id="@+id/action_nav_chats_to_chatFragment"
+            app:destination="@id/chatFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.ConfigurationFragment"
+        tools:layout="@layout/fragment_configuration" />
+    <fragment
+        android:id="@+id/createBusinessFragment"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.CreateBusinessFragment"
+        tools:layout="@layout/fragment_create_business" />
+    <fragment
+        android:id="@+id/editBusinessFragment"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.EditBusinessFragment"
+        android:label="EditBusinessFragment" />
+</navigation>

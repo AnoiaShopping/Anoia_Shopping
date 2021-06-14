@@ -10,6 +10,7 @@ import dam.anoiashopping.gtidic.udl.cat.repositories.BusinessRepo;
 import dam.anoiashopping.gtidic.udl.cat.utils.ResultImpl;
 
 public class CreateBusinessViewModel extends ViewModel {
+
     private BusinessRepo businessRepo;
 
     public CreateBusinessViewModel() {

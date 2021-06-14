@@ -17,7 +17,6 @@ import dam.anoiashopping.gtidic.udl.cat.models.Business;
 public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.BusinessHolder> {
 
     private BusinessCommonHolder businessCommonHolder;
-
     private OnItemClickListener businessItemListener;
 
     public BusinessAdapter(@NonNull @NotNull DiffUtil.ItemCallback<Business> diffCallback) {
@@ -28,19 +27,17 @@ public class BusinessAdapter extends ListAdapter <Business, BusinessAdapter.Busi
     @NotNull
     @Override
     public BusinessAdapter.BusinessHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.business_event, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reciclerview_business, null, false);
         return new BusinessHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull BusinessAdapter.BusinessHolder holder, int position) {
-
         Business business = getItem(position);
         businessCommonHolder.bindHolder(business);
     }
 
     public class BusinessHolder extends RecyclerView.ViewHolder {
-
         public BusinessHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             businessCommonHolder = new BusinessCommonHolder(itemView);

@@ -4,9 +4,12 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.File;
 import java.util.List;
 
+import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.models.Products;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
@@ -28,10 +31,11 @@ public class BusinessRepo {
     //private MutableLiveData<ResultImpl> mResponseGetBusiness;
     private final MutableLiveData<ResultImpl> mResponseUploadPhoto;
     private final MutableLiveData<List<Business>> mResponseBusinessList;
-    private MutableLiveData<List<Products>> mResponseProductList;
+    private final MutableLiveData<List<Business>> mResponseBusinessOwnList;
+    private final MutableLiveData<List<Products>> mResponseProductList;
+    private final MutableLiveData<ResultImpl> mResponseUpdateBusiness;
 
     private final BusinessServiceI businessService;
-
 
     public MutableLiveData<ResultImpl> getmResponseCreateBusiness() {
         return mResponseCreateBusiness;
@@ -41,8 +45,20 @@ public class BusinessRepo {
         return mResponseBusinessList;
     }
 
+    public MutableLiveData<List<Business>> getmResponseBusinessOwnList() {
+        return mResponseBusinessOwnList;
+    }
+
     public MutableLiveData<ResultImpl> getmResponseUploadPhoto() {
         return mResponseUploadPhoto;
+    }
+
+    public MutableLiveData<List<Products>> getmResponseProductList() {
+        return mResponseProductList;
+    }
+
+    public MutableLiveData<ResultImpl> getmResponseUpdateBusiness() {
+        return mResponseUpdateBusiness;
     }
 
     public BusinessRepo() {
@@ -50,14 +66,16 @@ public class BusinessRepo {
         this.businessService = new BusinessServiceImpl();
         this.mResponseCreateBusiness = new MutableLiveData<>();
         this.mResponseBusinessList = new MutableLiveData<>();
+        this.mResponseBusinessOwnList = new MutableLiveData<>();
         this.mResponseUploadPhoto = new MutableLiveData<>();
+        this.mResponseUpdateBusiness = new MutableLiveData<>();
     }
 
     public void createBusiness(Business business){
         String token = PreferencesProvider.providePreferences().getString("token", "");
         this.businessService.create_business(token, business).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(@NotNull Call<ResponseBody> call, @NotNull Response<ResponseBody> response) {
                 int return_code = response.code();  //200, 404, 401,...
                 Log.d(TAG,"CreateBusiness() -> ha rebut el codi: " +  return_code);
 
@@ -73,7 +91,7 @@ public class BusinessRepo {
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
 
             }
         });
@@ -83,24 +101,47 @@ public class BusinessRepo {
         String token = PreferencesProvider.providePreferences().getString("token", "");
         this.businessService.get_business(token).enqueue(new Callback<List<Business>>() {
             @Override
-            public void onResponse(Call<List<Business>> call, Response<List<Business>> response) {
+            public void onResponse(@NotNull Call<List<Business>> call, @NotNull Response<List<Business>> response) {
                 int return_code = response.code();  //200, 404, 401,...
-                Log.d(TAG,"CreateBusiness() -> ha rebut el codi: " +  return_code);
+                Log.d(TAG,"getBusiness() -> ha rebut el codi: " +  return_code);
 
                 if (return_code == 200){
                     //mResponseGetBusiness.setValue (new ResultImpl(0, true));
                     mResponseBusinessList.setValue(response.body());
+                    //Log.d (TAG, response.body().toString());
                 }else{
-
                     String error_msg = "Error: " + response.errorBody();
                     Log.d (TAG, error_msg);
-
                     //mResponseGetBusiness.setValue (new ResultImpl(0, false));
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Business>> call, Throwable t) {
+            public void onFailure(@NotNull Call<List<Business>> call, @NotNull Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "createTokenUser() onFailure() -> ha rebut el missatge:  " + error_msg);
+            }
+        });
+    }
+
+    public void getOwnBusiness(){
+        String token = PreferencesProvider.providePreferences().getString("token", "");
+        this.businessService.get_own_business(token).enqueue(new Callback<List<Business>>() {
+            @Override
+            public void onResponse(@NotNull Call<List<Business>> call, @NotNull Response<List<Business>> response) {
+                int return_code = response.code();  //200, 404, 401,...
+                Log.d(TAG,"getOwnBusiness() -> ha rebut el codi: " +  return_code);
+
+                if (return_code == 200){
+                    mResponseBusinessOwnList.setValue(response.body());
+                }else{
+                    String error_msg = "Error: " + response.errorBody();
+                    Log.d (TAG, error_msg);
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<List<Business>> call, @NotNull Throwable t) {
                 String error_msg = "Error: " + t.getMessage();
                 Log.d(TAG,  "createTokenUser() onFailure() -> ha rebut el missatge:  " + error_msg);
             }
@@ -109,10 +150,8 @@ public class BusinessRepo {
 
     public void uploadBusinessPhoto (File image, String name) {
         String token = PreferencesProvider.providePreferences().getString("token", "");
-
         RequestBody reqBody = RequestBody.create(image, MediaType.parse("image/*"));
         //MultipartBody.Part multipart = MultipartBody.Part.createFormData("image_file", image.getName(), reqBody);
-
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         builder.addFormDataPart("image_file", image.getName(),reqBody);
         builder.addFormDataPart("name", name);
@@ -120,20 +159,18 @@ public class BusinessRepo {
 
         this.businessService.upload_business_photo(requestBody, token).enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(@NotNull Call<ResponseBody> call, @NotNull Response<ResponseBody> response) {
                 int code = response.code();
                 Log.d(TAG,"uploadPhoto() -> ha rebut el codi: " +  code);
-
                 if (code == 200) {
                     mResponseUploadPhoto.setValue(new ResultImpl(0, true));
                 } else {
                     mResponseUploadPhoto.setValue(new ResultImpl(0, false));
                 }
-
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
                 String error_msg = "Error: " + t.getMessage();
                 Log.d(TAG,  "createTokenUser() onFailure() -> ha rebut el missatge:  " + error_msg);
             }
@@ -143,31 +180,51 @@ public class BusinessRepo {
     public void getProductList(int id){
         this.businessService.get_productList(id).enqueue(new Callback<List<Products>>() {
             @Override
-            public void onResponse(Call<List<Products>> call, Response<List<Products>> response) {
+            public void onResponse(@NotNull Call<List<Products>> call, @NotNull Response<List<Products>> response) {
                 int return_code = response.code();  //200, 404, 401,...
                 Log.d(TAG,"GetProductList() -> ha rebut el codi: " +  return_code);
-
                 if (return_code == 200){
                     //mResponseGetBusiness.setValue (new ResultImpl(0, true));
                     mResponseProductList.setValue(response.body());
                     Log.d(TAG, "returned product list from id: " + id);
                 }else{
-
                     String error_msg = "Error: " + response.errorBody();
                     Log.d (TAG, error_msg);
-
                     //mResponseProductList.setValue (new ResultImpl(0, false));
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Products>> call, Throwable t) {
-
+            public void onFailure(@NotNull Call<List<Products>> call, @NotNull Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "getProductList() onFailure() -> ha rebut el missatge:  " + error_msg);
             }
         });
     }
 
-    public MutableLiveData<List<Products>> getmResponseProductList() {
-        return mResponseProductList;
+    public void updateBusiness (String token, Business business) {
+        businessService.update_business(token, business).enqueue(new Callback <ResponseBody> () {
+
+            @Override
+            public void onResponse (@NotNull Call <ResponseBody> call, @NotNull Response<ResponseBody> response) {
+                int return_code = response.code();
+                Log.d(TAG,  "updateBusiness() -> ha rebut el codi:  " + return_code);
+                if (return_code == 200) {
+                    mResponseUpdateBusiness.setValue(new ResultImpl(0, true));
+                    Log.d(TAG,  "updateBusiness() -> Usuari actualitzat correctament.");
+                } else {
+                    String error_msg = "Error: " + response.errorBody();
+                    Log.d (TAG, "updateBusiness() -> ha rebut l'error:" + error_msg);
+                    mResponseUpdateBusiness.setValue(new ResultImpl(0, false));
+                }
+            }
+
+            @Override
+            public void onFailure (@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "updateBusiness() onFailure() -> ha rebut el missatge:  " + error_msg);
+                mResponseUpdateBusiness.setValue(new ResultImpl(0, false));
+            }
+        });
     }
 }

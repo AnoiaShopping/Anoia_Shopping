@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="dam.anoiashopping.gtidic.udl.cat.viewmodels.ConfigurationViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".views.Fragments.ConfigurationActivity">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/im_profile"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_marginTop="16dp"
+                android:contentDescription="@string/todo"
+                android:visibility="visible"
+                app:civ_border_color="#98CCFD"
+                app:civ_border_width="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/user500" />
+
+            <Button
+                android:id="@+id/b_updateImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/update"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/im_profile"
+                android:textColor="#4788C7"
+                app:backgroundTint="#98CCFD"/>
+
+            <EditText
+                android:id="@+id/t_username"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:fontFamily="monospace"
+                android:hint="@string/username"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.accountMutableLiveData.username}"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/b_updateImage" />
+
+            <EditText
+                android:id="@+id/t_firstname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="monospace"
+                android:hint="@string/firstName"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.accountMutableLiveData.firstname}"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="@+id/t_username"
+                app:layout_constraintStart_toStartOf="@+id/t_username"
+                app:layout_constraintTop_toBottomOf="@+id/t_username" />
+
+            <EditText
+                android:id="@+id/t_lastname"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="serif"
+                android:hint="@string/lastName"
+                android:inputType="textPersonName"
+                android:text="@={viewModel.accountMutableLiveData.lastname}"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="@+id/t_firstname"
+                app:layout_constraintStart_toStartOf="@+id/t_firstname"
+                app:layout_constraintTop_toBottomOf="@+id/t_firstname" />
+
+            <EditText
+                android:id="@+id/t_email"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="monospace"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:text="@={viewModel.accountMutableLiveData.email}"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="@+id/t_lastname"
+                app:layout_constraintStart_toStartOf="@+id/t_lastname"
+                app:layout_constraintTop_toBottomOf="@+id/t_lastname" />
+
+            <Button
+                android:id="@+id/b_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/delete"
+                android:textSize="12sp"
+                app:backgroundTint="@android:color/holo_red_dark"
+                app:layout_constraintEnd_toEndOf="@+id/bt_actualitzarcompte"
+                app:layout_constraintStart_toStartOf="@+id/bt_actualitzarcompte"
+                app:layout_constraintTop_toBottomOf="@+id/bt_actualitzarcompte" />
+
+            <Button
+                android:id="@+id/bt_actualitzarcompte"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Actualitzar"
+                android:textColor="#4788C7"
+                app:backgroundTint="#98CCFD"
+                android:onClick="@{() -> viewModel.updateAccount()}"
+                app:layout_constraintEnd_toEndOf="@+id/t_email"
+                app:layout_constraintStart_toStartOf="@+id/t_email"
+                app:layout_constraintTop_toBottomOf="@+id/t_email" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
