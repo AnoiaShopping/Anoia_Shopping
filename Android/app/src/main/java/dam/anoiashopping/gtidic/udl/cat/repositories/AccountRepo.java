@@ -37,16 +37,18 @@ public class AccountRepo {
     private final MutableLiveData <ResultImpl> mResponseRecoveryCode;
     private final MutableLiveData <ResultImpl> mResponseUpdatePassword;
     private final MutableLiveData <Account>    mResponseGetAccount;
+    private final MutableLiveData <ResultImpl> mResponseUpdateAccount;
 
     public AccountRepo() {
-        this.mResponseRecoveryCode   = new MutableLiveData<>();
+        this.mResponseRecoveryCode   = new MutableLiveData <> ();
         this.accountService          = new AccountServiceImpl ();
         this.mResponseRegister       = new MutableLiveData <> ();
         this.mResponseGetAccount     = new MutableLiveData <> ();
         this.mResponseCreateToken    = new MutableLiveData <> ();
         this.mResponseDeleteToken    = new MutableLiveData <> ();
         this.mResponseUploadImage    = new MutableLiveData <> ();
-        this.mResponseUpdatePassword = new MutableLiveData<>();
+        this.mResponseUpdatePassword = new MutableLiveData <> ();
+        this.mResponseUpdateAccount  = new MutableLiveData <> ();
     }
 
     public MutableLiveData <ResultImpl> getmResponseRegister() {
@@ -68,6 +70,8 @@ public class AccountRepo {
     public MutableLiveData<ResultImpl> getmResponseRecoveryCode()  {return mResponseRecoveryCode;}
 
     public MutableLiveData<ResultImpl> getmResponseUpdatePassword() {return mResponseUpdatePassword;}
+
+    public MutableLiveData<ResultImpl> getmResponseUpdateAccount() { return mResponseUpdateAccount; }
 
     public void registerAccount(Account account){
 
@@ -266,4 +270,29 @@ public class AccountRepo {
         });
     }
 
+    public void updateAccount (String token, Account account) {
+        accountService.update_account(token, account).enqueue(new Callback <ResponseBody> () {
+
+            @Override
+            public void onResponse (@NotNull Call <ResponseBody> call, @NotNull Response<ResponseBody> response) {
+                int return_code = response.code();
+                Log.d(TAG,  "updateAccount() -> ha rebut el codi:  " + return_code);
+                if (return_code == 200) {
+                    mResponseUpdateAccount.setValue(new ResultImpl(0, true));
+                    Log.d(TAG,  "updateAccount() -> Usuari actualitzat correctament.");
+                } else {
+                    String error_msg = "Error: " + response.errorBody();
+                    Log.d (TAG, "updateAccount() -> ha rebut l'error:" + error_msg);
+                    mResponseUpdateAccount.setValue(new ResultImpl(0, false));
+                }
+            }
+
+            @Override
+            public void onFailure (@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "updateAccount() onFailure() -> ha rebut el missatge:  " + error_msg);
+                mResponseUpdateAccount.setValue(new ResultImpl(0, false));
+            }
+        });
+    }
 }

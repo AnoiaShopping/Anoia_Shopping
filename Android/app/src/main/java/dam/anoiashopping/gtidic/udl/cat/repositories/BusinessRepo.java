@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 import java.util.List;
 
+import dam.anoiashopping.gtidic.udl.cat.models.Account;
 import dam.anoiashopping.gtidic.udl.cat.models.Business;
 import dam.anoiashopping.gtidic.udl.cat.models.Products;
 import dam.anoiashopping.gtidic.udl.cat.preferences.PreferencesProvider;
@@ -32,6 +33,7 @@ public class BusinessRepo {
     private final MutableLiveData<List<Business>> mResponseBusinessList;
     private final MutableLiveData<List<Business>> mResponseBusinessOwnList;
     private final MutableLiveData<List<Products>> mResponseProductList;
+    private final MutableLiveData<ResultImpl> mResponseUpdateBusiness;
 
     private final BusinessServiceI businessService;
 
@@ -55,6 +57,10 @@ public class BusinessRepo {
         return mResponseProductList;
     }
 
+    public MutableLiveData<ResultImpl> getmResponseUpdateBusiness() {
+        return mResponseUpdateBusiness;
+    }
+
     public BusinessRepo() {
         this.mResponseProductList = new MutableLiveData<>();
         this.businessService = new BusinessServiceImpl();
@@ -62,6 +68,7 @@ public class BusinessRepo {
         this.mResponseBusinessList = new MutableLiveData<>();
         this.mResponseBusinessOwnList = new MutableLiveData<>();
         this.mResponseUploadPhoto = new MutableLiveData<>();
+        this.mResponseUpdateBusiness = new MutableLiveData<>();
     }
 
     public void createBusiness(Business business){
@@ -191,6 +198,32 @@ public class BusinessRepo {
             public void onFailure(@NotNull Call<List<Products>> call, @NotNull Throwable t) {
                 String error_msg = "Error: " + t.getMessage();
                 Log.d(TAG,  "getProductList() onFailure() -> ha rebut el missatge:  " + error_msg);
+            }
+        });
+    }
+
+    public void updateBusiness (String token, Business business) {
+        businessService.update_business(token, business).enqueue(new Callback <ResponseBody> () {
+
+            @Override
+            public void onResponse (@NotNull Call <ResponseBody> call, @NotNull Response<ResponseBody> response) {
+                int return_code = response.code();
+                Log.d(TAG,  "updateBusiness() -> ha rebut el codi:  " + return_code);
+                if (return_code == 200) {
+                    mResponseUpdateBusiness.setValue(new ResultImpl(0, true));
+                    Log.d(TAG,  "updateBusiness() -> Usuari actualitzat correctament.");
+                } else {
+                    String error_msg = "Error: " + response.errorBody();
+                    Log.d (TAG, "updateBusiness() -> ha rebut l'error:" + error_msg);
+                    mResponseUpdateBusiness.setValue(new ResultImpl(0, false));
+                }
+            }
+
+            @Override
+            public void onFailure (@NotNull Call<ResponseBody> call, @NotNull Throwable t) {
+                String error_msg = "Error: " + t.getMessage();
+                Log.d(TAG,  "updateBusiness() onFailure() -> ha rebut el missatge:  " + error_msg);
+                mResponseUpdateBusiness.setValue(new ResultImpl(0, false));
             }
         });
     }

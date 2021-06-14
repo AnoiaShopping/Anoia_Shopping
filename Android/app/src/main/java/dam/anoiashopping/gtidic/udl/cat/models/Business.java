@@ -118,7 +118,7 @@ public class Business implements Parcelable {
     @NotNull
     @Override
     public String toString(){
-        return "name:"+nom+" "+" definicio:"+definicio;
+        return "name:"+nom+" "+" definicio:"+definicio+" "+" id:"+id;
     }
 
     @Override

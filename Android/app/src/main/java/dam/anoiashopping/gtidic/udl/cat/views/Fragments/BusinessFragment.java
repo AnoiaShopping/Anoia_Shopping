@@ -63,10 +63,9 @@ public class BusinessFragment extends Fragment {
         //Business business = getIntent().getExtras().getParcelable("business");
 
         final Bundle b = getArguments();
-        Business business = new Business();
-        business = b.getParcelable("business");
+        Business business = b.getParcelable("business");
 
-        Log.d(TAG, business.getNom());
+        Log.d(TAG, business.toString());
 
         //businessRepo.getProductList(Integer.parseInt(business.getId()));
 

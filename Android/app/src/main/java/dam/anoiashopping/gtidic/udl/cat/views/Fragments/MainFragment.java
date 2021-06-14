@@ -61,7 +61,7 @@ public class MainFragment extends Fragment {
 
             Bundle b = new Bundle();
             b.putParcelable("business", business);
-            Log.d(TAG, business.getNom());
+            //Log.d(TAG, business.getNom());
 
             NavHostFragment.findNavController(MainFragment.this).navigate(R.id.action_nav_home_to_businessFragment, b);
         });

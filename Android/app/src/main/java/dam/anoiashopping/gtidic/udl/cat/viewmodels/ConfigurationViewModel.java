@@ -27,6 +27,10 @@ public class ConfigurationViewModel extends ViewModel {
         return this.accountRepo.getmResponseGetAccount();
     }
 
+    public MutableLiveData <ResultImpl> getUpdateAccountResponse() {
+        return this.accountRepo.getmResponseUpdateAccount();
+    }
+
     public ConfigurationViewModel () {
         this.accountRepo = new AccountRepo();
     }
@@ -42,5 +46,9 @@ public class ConfigurationViewModel extends ViewModel {
     public void uploadAccountImage(File imageFile) {
         Log.d("VM", "uploading image... using repo");
         this.accountRepo.uploadImage(PreferencesProvider.providePreferences().getString("token", ""), imageFile);
+    }
+
+    public void updateAccount () {
+        this.accountRepo.updateAccount(PreferencesProvider.providePreferences().getString("token", ""), accountMutableLiveData.getValue());
     }
 }

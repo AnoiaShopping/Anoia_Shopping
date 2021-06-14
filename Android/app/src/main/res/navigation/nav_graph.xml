@@ -27,6 +27,9 @@
         <action
             android:id="@+id/action_nav_business_to_createBusinessFragment"
             app:destination="@id/createBusinessFragment" />
+        <action
+            android:id="@+id/action_nav_business_to_editBusinessFragment"
+            app:destination="@id/editBusinessFragment" />
     </fragment>
     <fragment
         android:id="@+id/chatFragment"
@@ -48,4 +51,8 @@
         android:id="@+id/createBusinessFragment"
         android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.CreateBusinessFragment"
         tools:layout="@layout/fragment_create_business" />
+    <fragment
+        android:id="@+id/editBusinessFragment"
+        android:name="dam.anoiashopping.gtidic.udl.cat.views.Fragments.EditBusinessFragment"
+        android:label="EditBusinessFragment" />
 </navigation>

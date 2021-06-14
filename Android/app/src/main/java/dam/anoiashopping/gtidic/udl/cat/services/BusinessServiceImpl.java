@@ -14,10 +14,19 @@ public class BusinessServiceImpl implements BusinessServiceI {
 
     private Retrofit retrofit = RetrofitClientInstance.getRetrofitInstance();
 
+    // POST CALLS
+
     @Override
     public Call<ResponseBody> create_business(String token, Business business) {
         return retrofit.create(BusinessServiceI.class).create_business(token, business);
     }
+
+    @Override
+    public Call<ResponseBody> upload_business_photo (RequestBody builder, String token) {
+        return retrofit.create(BusinessServiceI.class).upload_business_photo(builder, token);
+    }
+
+    // GET CALLS
 
     @Override
     public Call<List<Business>> get_business (String token) {
@@ -29,14 +38,15 @@ public class BusinessServiceImpl implements BusinessServiceI {
         return retrofit.create(BusinessServiceI.class).get_own_business(token);
     }
 
-
-    @Override
-    public Call<ResponseBody> upload_business_photo (RequestBody builder, String token) {
-        return retrofit.create(BusinessServiceI.class).upload_business_photo(builder, token);
-    }
-
     @Override
     public Call<List<Products>> get_productList(int id) {
         return retrofit.create(BusinessServiceI.class).get_productList(id);
+    }
+
+    // PUT CALLS
+
+    @Override
+    public Call<ResponseBody> update_business (String token, Business business) {
+        return retrofit.create(BusinessServiceI.class).update_business(token, business);
     }
 }

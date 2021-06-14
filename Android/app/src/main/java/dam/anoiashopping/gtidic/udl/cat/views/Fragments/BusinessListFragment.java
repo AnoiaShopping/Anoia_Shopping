@@ -71,7 +71,7 @@ public class BusinessListFragment extends Fragment {
             b.putParcelable("business", business);
             Log.d(TAG, business.getNom());
 
-            //NavHostFragment.findNavController(BusinessListFragment.this).navigate(R.id.action_nav_home_to_businessFragment);
+            NavHostFragment.findNavController(BusinessListFragment.this).navigate(R.id.action_nav_business_to_editBusinessFragment, b);
         });
     }
 }

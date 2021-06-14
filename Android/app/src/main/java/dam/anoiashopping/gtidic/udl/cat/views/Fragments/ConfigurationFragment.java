@@ -82,5 +82,13 @@ public class ConfigurationFragment extends Fragment {
         button.setOnClickListener(v -> {
             ((MenuActivity)getActivity()).userUpdate();
         });
+
+        configurationViewModel.getUpdateAccountResponse().observe(getViewLifecycleOwner(), response -> {
+            if (response.isValid()) {
+                Toast.makeText(getActivity(), "L'usuari ha estat actualitzat correctament.", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getActivity(), "Ha hagut un error al actualitzar les dades.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
